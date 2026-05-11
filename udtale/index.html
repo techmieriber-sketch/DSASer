@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Udtale – Dansk som andetsprog for serviceassistenter</title>
     <link rel="preload" href="../assets/hero-serviceassistenter.jpg" as="image" fetchpriority="high" />
+    <style id="critical-bg-cover">
+      /* Før resten af inline-CSS parses: stabilt lag uden hero-<img> (samme princip som forsiden) */
+      .bg-media {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        background-color: #394652;
+        background-image: url("../assets/hero-serviceassistenter.jpg");
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        transform: translateZ(0);
+      }
+    </style>
     <style>
       html {
         margin: 0;
@@ -30,16 +45,13 @@
         inset: 0;
         z-index: 0;
         overflow: hidden;
-        background: #cfd9e4;
+        background-color: #394652;
+        background-image: url("../assets/hero-serviceassistenter.jpg");
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
         backface-visibility: hidden;
         transform: translateZ(0);
-      }
-      .bg-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-        display: block;
       }
       .bg-scrim {
         position: fixed;
@@ -112,17 +124,7 @@
     </style>
   </head>
   <body>
-        <div class="bg-media" aria-hidden="true">
-      <img
-        class="bg-image"
-        src="../assets/hero-serviceassistenter.jpg"
-        alt=""
-        width="1920"
-        height="1080"
-        decoding="sync"
-        fetchpriority="high"
-      />
-    </div>
+    <div class="bg-media" aria-hidden="true"></div>
 
 
 <div class="bg-scrim" aria-hidden="true"></div>

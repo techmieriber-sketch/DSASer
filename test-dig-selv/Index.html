@@ -4,6 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Test dig selv – Dansk som andetsprog for serviceassistenter</title>
+    <style id="critical-bg-cover">
+      /* Foto på .bg-media før linked CSS; undgår sync-dekodet hero-<img> på svage maskiner */
+      .bg-media {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        transform: translateZ(0);
+        background-color: #d7e3ec;
+        background-image: url("../assets/bg-arbejdsmiljo.jpg");
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    </style>
     <link rel="preload" href="../assets/bg-arbejdsmiljo.jpg" as="image" fetchpriority="high" />
     <link rel="stylesheet" href="../arbejdsteknik/arbejdsteknik.css" />
     <link rel="preload" href="Test dig selv.mp3" as="audio" />
@@ -333,18 +348,7 @@
     </style>
   </head>
   <body class="page-quiz-mc page-mistake-v1">
-        <div class="bg-media" aria-hidden="true" style="background: #d7e3ec">
-      <img
-        class="bg-image"
-        style="object-fit: contain"
-        src=""
-        alt=""
-        width="1920"
-        height="1080"
-        decoding="sync"
-        fetchpriority="high"
-      />
-    </div>
+            <div class="bg-media" aria-hidden="true"></div>
 
 
 <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">

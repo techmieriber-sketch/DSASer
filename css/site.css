@@ -25,23 +25,21 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Fast fuldskærmsbaggrund */
+/* Fast fuldskærmsbaggrund: cover-lag ét sted → færre repaint/reflow end <img> + object-fit ved load */
 .bg-media {
   position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background: #cfd9e4;
+  /* Mørk tone tæt på fotoots midtergrå — mindre “blink” end lys #cfd9e4 før pixeldata er klar */
+  background-color: #394652;
+  background-image: url("../assets/hero-serviceassistenter.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* undgår contain: strict her — size containment + fixed layers har givet issues på nogle Chrome-versioner */
   backface-visibility: hidden;
   transform: translateZ(0);
-}
-
-.bg-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  display: block;
 }
 
 /* Let mørkning som tidligere hero-overlay, dækker kun viewport (fast lag) */
@@ -80,6 +78,10 @@ body {
   flex-direction: column;
   align-items: stretch;
   gap: 1rem;
+  /* Reserverer første skærms plads fra start → mindre layout-hop når typo/webfonts/card måles */
+  min-height: calc(100svh - (2rem + 3rem));
+  min-height: calc(100vh - (2rem + 3rem));
+  box-sizing: border-box;
 }
 
 /* Én linje: nowrap; små skærme kan scrolle vandret i wrap-containeren */
@@ -173,6 +175,12 @@ body {
 @media (max-width: 700px) {
   .page-shell {
     padding: 1.5rem 1rem 2rem;
+  }
+
+  /* Samme viewport-reservation som på desktop — bruger .page-shells faktiske padding */
+  .hero-band {
+    min-height: calc(100svh - (1.5rem + 2rem));
+    min-height: calc(100vh - (1.5rem + 2rem));
   }
 
   .content-card {

@@ -27,18 +27,16 @@ body {
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  background: #2a5f6f;
+  /* Fast farve under foto; konkret billede-URL sættes per side i <head> (kritisk inline) */
+  background-color: #2a5f6f;
+  background-position: center 35%;
+  background-size: cover;
+  background-repeat: no-repeat;
   backface-visibility: hidden;
   transform: translateZ(0);
 }
 
-.bg-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 35%;
-  display: block;
-}
+/* Baggrundsfoto ligger nu på .bg-media (background-image), ikke <img class="bg-image"> */
 
 .bg-scrim {
   position: fixed;

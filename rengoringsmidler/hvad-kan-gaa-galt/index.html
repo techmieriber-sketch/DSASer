@@ -4,6 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hvad kan gå galt? – Dansk som andetsprog for serviceassistenter</title>
+    <style id="critical-bg-cover">
+      /* Foto på .bg-media før linked CSS; undgår sync-dekodet hero-<img> på svage maskiner */
+      .bg-media {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        transform: translateZ(0);
+        background-color: #2a5f6f;
+        background-image: url("../../assets/bg-rengoringsmidler.jpg");
+        background-position: center 35%;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    </style>
     <link rel="preload" href="../../assets/bg-rengoringsmidler.jpg" as="image" fetchpriority="high" />
     <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
     <link rel="preload" href="Hvad kan ga galt.mp3" as="audio" />
@@ -279,17 +294,7 @@
   </head>
 
   <body class="page-mistake-v1">
-        <div class="bg-media" aria-hidden="true">
-      <img
-        class="bg-image"
-        src="../../assets/bg-rengoringsmidler.jpg"
-        alt=""
-        width="1920"
-        height="1080"
-        decoding="sync"
-        fetchpriority="high"
-      />
-    </div>
+            <div class="bg-media" aria-hidden="true"></div>
 
 
 <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">

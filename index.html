@@ -5,21 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dansk som andetsprog for serviceassistenter</title>
     <link rel="preload" href="assets/hero-serviceassistenter.jpg" as="image" fetchpriority="high" />
+    <!-- Kritisk: samme foto-URL + mørk basefarve malt før stylesheet, reducerer lys FOUC før CSS-parseren er klar -->
+    <style>
+      /* Fast lag + foto-URL først: første paint matcher det endelige cover-lag og undgår hvid/lys FOUC-rude */
+      .bg-media {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        background-color: #394652;
+        background-image: url("assets/hero-serviceassistenter.jpg");
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        transform: translateZ(0);
+      }
+    </style>
     <link rel="stylesheet" href="css/site.css" />
   </head>
   <body>
-    <div class="bg-media" aria-hidden="true">
-      <img
-        class="bg-image"
-        src="assets/hero-serviceassistenter.jpg"
-        alt=""
-        width="1920"
-        height="1080"
-        decoding="sync"
-        fetchpriority="high"
-      />
-    </div>
-
+    <!-- Foto via CSS baggrund på .bg-media: undgår img-dekod/layout-genskabelse (sync/async) på Chromebooks -->
+    <div class="bg-media" aria-hidden="true"></div>
 
     <div class="bg-scrim" aria-hidden="true"></div>
 

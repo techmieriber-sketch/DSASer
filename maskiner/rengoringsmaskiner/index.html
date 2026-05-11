@@ -4,12 +4,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Rengøringsmaskiner – Dansk som andetsprog for serviceassistenter</title>
+    <style id="critical-bg-cover">
+      /* Foto på .bg-media før linked CSS; undgår sync-dekodet hero-<img> på svage maskiner */
+      .bg-media {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        transform: translateZ(0);
+        background-color: #2a5f6f;
+        background-image: url("../Baggrundsbillede.png");
+        background-position: center 35%;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    </style>
     <link rel="preload" href="../Baggrundsbillede.png" as="image" fetchpriority="high" />
     <link rel="preload" href="Rengoeringsmaskiner Se paa maskinerne og vaelg den rigtige til opgaven..mp3" as="audio" />
     <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
     <style>
-      .page-rm-v3 .bg-image {
-        object-position: 50% 20%;
+      .page-rm-v3 .bg-media {
+        background-position: 50% 20%;
       }
 
       /* Samme designprincip som “Trivsel, ansvar og faglig vurdering” */
@@ -500,17 +515,7 @@
     </style>
   </head>
   <body class="page-rm-v3">
-        <div class="bg-media" aria-hidden="true">
-      <img
-        class="bg-image"
-        src="../Baggrundsbillede.png"
-        alt=""
-        width="1920"
-        height="1080"
-        decoding="sync"
-        fetchpriority="high"
-      />
-    </div>
+            <div class="bg-media" aria-hidden="true"></div>
 
 
 <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
