@@ -17,8 +17,9 @@ body {
   margin: 0;
   min-height: 100vh;
   min-height: 100svh;
+  min-height: 100dvh;
   position: relative;
-  font-family: "Segø UI", system-ui, sans-serif;
+  font-family: "Segoe UI", system-ui, sans-serif;
   color: #fff;
   background: #cfd9e4;
   -webkit-font-smoothing: antialiased;
@@ -61,6 +62,7 @@ body {
   z-index: 2;
   min-height: 100vh;
   min-height: 100svh;
+  min-height: 100dvh;
   padding: 2rem 1rem 3rem;
 }
 
@@ -79,8 +81,9 @@ body {
   align-items: stretch;
   gap: 1rem;
   /* Reserverer første skærms plads fra start → mindre layout-hop når typo/webfonts/card måles */
-  min-height: calc(100svh - (2rem + 3rem));
   min-height: calc(100vh - (2rem + 3rem));
+  min-height: calc(100svh - (2rem + 3rem));
+  min-height: calc(100dvh - (2rem + 3rem));
   box-sizing: border-box;
 }
 
@@ -179,8 +182,9 @@ body {
 
   /* Samme viewport-reservation som på desktop — bruger .page-shells faktiske padding */
   .hero-band {
-    min-height: calc(100svh - (1.5rem + 2rem));
     min-height: calc(100vh - (1.5rem + 2rem));
+    min-height: calc(100svh - (1.5rem + 2rem));
+    min-height: calc(100dvh - (1.5rem + 2rem));
   }
 
   .content-card {

@@ -1,13 +1,38 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="da">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Digitalt undervisningsmateriale til serviceassistenter: Dansk som andetsprog med temaer, tekster og opgaver." />
+    <link rel="icon" href="assets/site-icon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#394652" />
     <title>Dansk som andetsprog for serviceassistenter</title>
-    <link rel="preload" href="assets/hero-serviceassistenter.jpg" as="image" fetchpriority="high" />
-    <!-- Kritisk: samme foto-URL + mørk basefarve malt før stylesheet, reducerer lys FOUC før CSS-parseren er klar -->
+    <!-- Kritisk først: scrollbar/plads + shell + hero som i site.css, så første paint ikke hopper når nettet er langsomt (fx GitHub Pages) -->
     <style>
-      /* Fast lag + foto-URL først: første paint matcher det endelige cover-lag og undgår hvid/lys FOUC-rude */
+      html {
+        margin: 0;
+        min-height: 100%;
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+        background: #cfd9e4;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100svh;
+        min-height: 100dvh;
+        position: relative;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        color: #fff;
+        background: #cfd9e4;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
       .bg-media {
         position: fixed;
         inset: 0;
@@ -18,10 +43,84 @@
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
+        backface-visibility: hidden;
         transform: translateZ(0);
+      }
+      .bg-scrim {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(28, 40, 52, 0.12) 100%
+        );
+      }
+      .page-shell {
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+        min-height: 100svh;
+        min-height: 100dvh;
+        padding: 2rem 1rem 3rem;
+      }
+      .content {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 0 1rem;
+      }
+      .hero-band {
+        position: relative;
+        margin: 0 -1rem;
+        padding: 0 1rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        min-height: calc(100vh - (2rem + 3rem));
+        min-height: calc(100svh - (2rem + 3rem));
+        min-height: calc(100dvh - (2rem + 3rem));
+        box-sizing: border-box;
+      }
+      .hero__title-wrap {
+        position: relative;
+        z-index: 2;
+        flex-shrink: 0;
+        padding: clamp(0.5rem, 2vw, 1rem) 0.75rem 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        text-align: center;
+        -webkit-overflow-scrolling: touch;
+      }
+      .hero__title {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        max-width: none;
+        font-size: clamp(0.8rem, 2.35vw, 2.35rem);
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+        color: #fff;
+        text-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.45),
+          0 4px 24px rgba(0, 0, 0, 0.35);
+      }
+      @media (max-width: 700px) {
+        .page-shell {
+          padding: 1.5rem 1rem 2rem;
+        }
+        .hero-band {
+          min-height: calc(100vh - (1.5rem + 2rem));
+          min-height: calc(100svh - (1.5rem + 2rem));
+          min-height: calc(100dvh - (1.5rem + 2rem));
+        }
       }
     </style>
     <link rel="stylesheet" href="css/site.css" />
+    <link rel="preload" href="assets/hero-serviceassistenter.jpg" as="image" fetchpriority="high" />
   </head>
   <body>
     <!-- Foto via CSS baggrund på .bg-media: undgår img-dekod/layout-genskabelse (sync/async) på Chromebooks -->

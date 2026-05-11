@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="da">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Kryds og tværs om arbejdsmiljø — interaktiv øvelse. Dansk som andetsprog for serviceassistenter." />
+    <link rel="icon" href="../../assets/site-icon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#1a3a4a" />
     <title>Kryds og tværs om arbejdsmiljø – Arbejdsmiljø</title>
     <style id="critical-bg-cover">
       /* Foto på .bg-media før linked CSS; undgår sync-dekodet hero-<img> på svage maskiner */
@@ -19,6 +22,9 @@
         background-repeat: no-repeat;
       }
     </style>
+    <link rel="stylesheet" href="../arbejdsteknik/layout-shell.css" />
+    <link rel="stylesheet" href="../arbejdsteknik/arbejdsteknik.css" />
+    <link rel="stylesheet" href="../arbejdsmiljo.css" />
     <link rel="preload" href="../../assets/bg-arbejdsmiljo.jpg" as="image" fetchpriority="high" />
     <link rel="preload" href="Saadan goer du.mp3" as="audio" />
     <link rel="preload" href="Kryds og tvaer om arbejdsmiljoe.mp3" as="audio" />
@@ -28,13 +34,10 @@
     <link rel="preload" href="4.mp3" as="audio" />
     <link rel="preload" href="5.mp3" as="audio" />
     <link rel="preload" href="6.mp3" as="audio" />
-    <link rel="stylesheet" href="../arbejdsmiljo.css" />
   </head>
   <body>
-            <div class="bg-media" aria-hidden="true"></div>
-
-
-<svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+    <div class="bg-media" aria-hidden="true"></div>
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
       <defs>
         <symbol id="icon-speaker" viewBox="0 0 24 24">
           <path
@@ -50,9 +53,7 @@
         </symbol>
       </defs>
     </svg>
-
     <div class="bg-scrim" aria-hidden="true"></div>
-
     <div class="page-shell">
       <article class="article-card article-card--crossword crossword-theme-new">
         <div class="article-topbar">
@@ -62,7 +63,6 @@
             <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
           </nav>
         </div>
-
         <div class="crossword-page-title-row">
           <button
             type="button"
@@ -77,7 +77,6 @@
           </button>
           <h1 class="page-title" id="cw-page-title">Kryds og tværs om arbejdsmiljø</h1>
         </div>
-
         <section class="crossword-section" aria-labelledby="cw-page-title">
           <div id="crosswordApp" class="crossword-container">
             <header class="crossword-header">
@@ -90,7 +89,6 @@
                 <button type="button" id="clearAllBtn" class="crossword-btn secondary">Nulstil alle felter</button>
               </div>
             </header>
-
             <div class="crossword-layout">
               <div class="crossword-board-area">
                 <div class="crossword-board-scroll">
@@ -98,7 +96,6 @@
                 </div>
                 <p class="crossword-status" id="status" aria-live="polite"></p>
               </div>
-
               <div class="crossword-clues-column">
                 <section class="crossword-panel" aria-label="Sådan gør du">
                   <div class="crossword-panel-title-row">
@@ -121,7 +118,6 @@
                     mellemrumsfeltet.
                   </p>
                 </section>
-
                 <section class="crossword-panel">
                   <h2 class="crossword-panel__title crossword-panel__title--minor">Tips</h2>
                   <ol class="clue-list" id="clueList"></ol>
@@ -132,7 +128,6 @@
         </section>
       </article>
     </div>
-
     <script src="kryds-arbejdsmiljo.js"></script>
   </body>
 </html>

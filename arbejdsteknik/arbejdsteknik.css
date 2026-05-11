@@ -1,25 +1,11 @@
-html {
-  margin: 0;
-  min-height: 100%;
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
-  background: #1a3a4a;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+/* Grund-layout (html, scrollbar, viewport, body-baggrund) ligger i layout-shell.css som indlæses før denne fil. */
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  min-height: 100svh;
-  background: #1a3a4a;
-  font-family: system-ui, -apple-system, "Segø UI", Arial, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   color: #14212e;
   position: relative;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .bg-media {
@@ -56,6 +42,7 @@ body {
   z-index: 2;
   min-height: 100vh;
   min-height: 100svh;
+  min-height: 100dvh;
   padding: 2rem 1rem 3rem;
 }
 

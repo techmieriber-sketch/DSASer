@@ -1,10 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="da">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Udtale - Dansk som andetsprog for serviceassistenter." />
+    <link rel="icon" href="../assets/site-icon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#394652" />
     <title>Udtale – Dansk som andetsprog for serviceassistenter</title>
-    <link rel="preload" href="../assets/hero-serviceassistenter.jpg" as="image" fetchpriority="high" />
     <style id="critical-bg-cover">
       /* Før resten af inline-CSS parses: stabilt lag uden hero-<img> (samme princip som forsiden) */
       .bg-media {
@@ -35,8 +37,9 @@
         margin: 0;
         min-height: 100vh;
         min-height: 100svh;
+        min-height: 100dvh;
         background: #cfd9e4;
-        font-family: system-ui, -apple-system, "Segø UI", Arial, sans-serif;
+        font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
         color: #fff;
         position: relative;
       }
@@ -69,6 +72,7 @@
         z-index: 2;
         min-height: 100vh;
         min-height: 100svh;
+        min-height: 100dvh;
         padding: 2rem;
       }
       .overlay {
@@ -76,6 +80,7 @@
         z-index: 1;
         min-height: calc(100vh - 4rem);
         min-height: calc(100svh - 4rem);
+        min-height: calc(100dvh - 4rem);
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
@@ -122,6 +127,8 @@
         display: block;
       }
     </style>
+
+    <link rel="preload" href="../assets/hero-serviceassistenter.jpg" as="image" fetchpriority="high" />
   </head>
   <body>
     <div class="bg-media" aria-hidden="true"></div>

@@ -1,4 +1,4 @@
-@import url("../arbejdsteknik/arbejdsteknik.css");
+/* Indlæs arbejdsteknik.css + layout-shell.css via <link> i HTML (undgår @import-blokering). */
 
 /* Mellemrumsfelter i kryds og tvaers (svar i flere ord) */
 .article-card--crossword.crossword-theme-new .cell-wrap.separator {
