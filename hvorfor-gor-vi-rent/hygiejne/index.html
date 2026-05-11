@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hygiejne – Hygiejnisk eller ikke hygiejnisk? – Dansk som andetsprog for serviceassistenter</title>
-    <link rel="preload" href="../../assets/hero-hvorfor-gor-vi-rent.jpg" as="image" fetchpriority="high" />
+    <link rel="preload" id="dsa-page-bg-preload" href="" as="image" fetchpriority="high" />
     <link rel="preload" href="Hygiejne.mp3" as="audio" />
     <link rel="preload" href="God hygiejne.mp3" as="audio" />
     <link rel="preload" href="Daarlig hygiejne.mp3" as="audio" />
@@ -472,7 +472,7 @@
         <div class="bg-media" aria-hidden="true">
       <img
         class="bg-image"
-        src="../../assets/hero-hvorfor-gor-vi-rent.jpg"
+        src=""
         alt=""
         width="1920"
         height="1080"
@@ -480,6 +480,21 @@
         fetchpriority="high"
       />
     </div>
+    <script>
+      (function () {
+        var FILE = "../../assets/hero-hvorfor-gor-vi-rent.jpg";
+        var u = new URL(FILE, location.href).href;
+        var s = document.currentScript;
+        var media = s && s.previousElementSibling;
+        if (media && media.classList && media.classList.contains("bg-media")) {
+          var im = media.querySelector("img.bg-image");
+          if (im) im.src = u;
+        }
+        var pl = document.getElementById("dsa-page-bg-preload");
+        if (pl) pl.href = u;
+      })();
+    </script>
+
 
 <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
       <defs>

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Gulve – Dansk som andetsprog for serviceassistenter</title>
-    <link rel="preload" href="../../assets/bg-overflader-og-materialer.jpg" as="image" fetchpriority="high" />
+    <link rel="preload" id="dsa-page-bg-preload" href="" as="image" fetchpriority="high" />
     <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
     <link rel="preload" href="Gulve.mp3" as="audio" />
     <style>
@@ -130,7 +130,7 @@
         <div class="bg-media" aria-hidden="true">
       <img
         class="bg-image"
-        src="../../assets/bg-overflader-og-materialer.jpg"
+        src=""
         alt=""
         width="1920"
         height="1080"
@@ -138,6 +138,21 @@
         fetchpriority="high"
       />
     </div>
+    <script>
+      (function () {
+        var FILE = "../../assets/bg-overflader-og-materialer.jpg";
+        var u = new URL(FILE, location.href).href;
+        var s = document.currentScript;
+        var media = s && s.previousElementSibling;
+        if (media && media.classList && media.classList.contains("bg-media")) {
+          var im = media.querySelector("img.bg-image");
+          if (im) im.src = u;
+        }
+        var pl = document.getElementById("dsa-page-bg-preload");
+        if (pl) pl.href = u;
+      })();
+    </script>
+
 
 <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
       <defs>
