@@ -25,7 +25,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Fast fuldskærmsbaggrund — som .bg-media på gastronom-siden */
+/* Fast fuldskærmsbaggrund */
 .bg-media {
   position: fixed;
   inset: 0;

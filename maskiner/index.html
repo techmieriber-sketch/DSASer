@@ -4,10 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Maskiner – Dansk som andetsprog for serviceassistenter</title>
-    <link rel="preload" id="page-bg-preload" href="" as="image" fetchpriority="high" />
+    <link rel="preload" href="Baggrundsbillede.png" as="image" fetchpriority="high" />
     <link rel="stylesheet" href="../arbejdsteknik/arbejdsteknik.css" />
     <style>
-      .page-landing--maskiner .bg-image,
       .page-landing--maskiner .landing-photo {
         object-position: 50% 20%;
       }
@@ -15,10 +14,10 @@
   </head>
 
   <body class="page-landing page-landing--maskiner">
-    <div class="bg-media" aria-hidden="true">
+        <div class="bg-media" aria-hidden="true">
       <img
         class="bg-image"
-        src=""
+        src="Baggrundsbillede.png"
         alt=""
         width="1920"
         height="1080"
@@ -26,22 +25,8 @@
         fetchpriority="high"
       />
     </div>
-    <script>
-      (function () {
-        var F = "Baggrundsbillede.png";
-        var u = new URL(F, location.href).href;
-        var s = document.currentScript;
-        var media = s && s.previousElementSibling;
-        if (media && media.classList && media.classList.contains("bg-media")) {
-          var im = media.querySelector("img.bg-image");
-          if (im) im.src = u;
-        }
-        var p = document.getElementById("page-bg-preload");
-        if (p) p.href = u;
-      })();
-    </script>
 
-    <div class="bg-scrim" aria-hidden="true"></div>
+<div class="bg-scrim" aria-hidden="true"></div>
 
     <div class="page-shell page-shell--landing">
       <main class="landing-card">

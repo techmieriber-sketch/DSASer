@@ -4,13 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kryds og tværs om arbejdsteknik – Arbejdsteknik</title>
-    <link rel="preload" id="page-bg-preload" href="" as="image" fetchpriority="high" />
+    <link rel="preload" href="../../assets/bg-arbejdsteknik.jpg" as="image" fetchpriority="high" />
     <link rel="preload" href="Saadan goer du.mp3" as="audio" />
     <link rel="preload" href="Kryds og tvaers om arbejdsteknik.mp3" as="audio" />
     <link rel="stylesheet" href="../arbejdsteknik.css" />
   </head>
   <body>
-    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+        <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-arbejdsteknik.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+
+<svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
       <defs>
         <symbol id="icon-speaker" viewBox="0 0 24 24">
           <path
@@ -26,32 +38,6 @@
         </symbol>
       </defs>
     </svg>
-    <div class="bg-media" aria-hidden="true">
-      <img
-        class="bg-image"
-        src=""
-        alt=""
-        width="1920"
-        height="1080"
-        decoding="async"
-        fetchpriority="high"
-      />
-    </div>
-    <script>
-      (function () {
-        var F = "../../assets/bg-arbejdsteknik.jpg";
-        var u = new URL(F, location.href).href;
-        var s = document.currentScript;
-        var media = s && s.previousElementSibling;
-        if (media && media.classList && media.classList.contains("bg-media")) {
-          var im = media.querySelector("img.bg-image");
-          if (im) im.src = u;
-        }
-        var p = document.getElementById("page-bg-preload");
-        if (p) p.href = u;
-      })();
-    </script>
-
     <div class="bg-scrim" aria-hidden="true"></div>
 
     <div class="page-shell">
