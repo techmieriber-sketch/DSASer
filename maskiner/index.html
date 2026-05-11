@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Maskiner – Dansk som andetsprog for serviceassistenter</title>
-    <link rel="preload" href="Baggrundsbillede.png" as="image" fetchpriority="high" />
+    <link rel="preload" id="page-bg-preload" href="" as="image" fetchpriority="high" />
     <link rel="stylesheet" href="../arbejdsteknik/arbejdsteknik.css" />
     <style>
       .page-landing--maskiner .bg-image,
@@ -18,7 +18,7 @@
     <div class="bg-media" aria-hidden="true">
       <img
         class="bg-image"
-        src="Baggrundsbillede.png"
+        src=""
         alt=""
         width="1920"
         height="1080"
@@ -26,6 +26,21 @@
         fetchpriority="high"
       />
     </div>
+    <script>
+      (function () {
+        var F = "Baggrundsbillede.png";
+        var u = new URL(F, location.href).href;
+        var s = document.currentScript;
+        var media = s && s.previousElementSibling;
+        if (media && media.classList && media.classList.contains("bg-media")) {
+          var im = media.querySelector("img.bg-image");
+          if (im) im.src = u;
+        }
+        var p = document.getElementById("page-bg-preload");
+        if (p) p.href = u;
+      })();
+    </script>
+
     <div class="bg-scrim" aria-hidden="true"></div>
 
     <div class="page-shell page-shell--landing">
