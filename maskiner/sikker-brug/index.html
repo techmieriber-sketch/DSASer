@@ -1,0 +1,5315 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sikker brug – Find 5 fejl</title>
+
+    <link rel="preload" href="../Baggrundsbillede.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="Sikker brug.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+
+    <style>
+      .page-sikker-maskiner .bg-image {
+        object-position: 50% 20%;
+      }
+
+      .article-card.find-fejl-shell {
+        max-width: min(1420px, calc(100vw - 2rem));
+        background: linear-gradient(
+          180deg,
+          rgba(244, 248, 251, 0.97) 0%,
+          rgba(232, 240, 245, 0.97) 100%
+        );
+        border: 1px solid rgba(19, 59, 93, 0.12);
+        box-shadow:
+          0 8px 32px rgba(20, 60, 80, 0.12),
+          0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .find-fem-page {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --primary: #1f4e79;
+        --primary-light: #dbeaf7;
+        --accent: #2e7d32;
+        --warning: #c62828;
+        --text: #1f2933;
+        --border: #cfd8e3;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --radius: 18px;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .find-fem-page * {
+        box-sizing: border-box;
+      }
+
+      .find-fem-page .page-inner {
+        max-width: 1420px;
+        margin: 0 auto;
+        padding: 0 0 0.5rem;
+      }
+
+      .find-fem-page .topbar {
+        margin-bottom: 16px;
+      }
+
+      .find-fem-page .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+      }
+
+      .find-fem-page .title-row h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 2.5vw, 2rem);
+        color: var(--primary);
+        text-align: center;
+      }
+
+      .find-fem-page .intro {
+        max-width: 900px;
+        margin: 0;
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      .find-fem-page .task-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(200px, 260px);
+        gap: 16px;
+        align-items: start;
+        margin-top: 18px;
+      }
+
+      .find-fem-page .task-main {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .find-fem-page .task-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+        align-self: start;
+        will-change: transform;
+      }
+
+      .find-fem-page .image-card,
+      .find-fem-page .risks-card,
+      .find-fem-page .status-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 16px;
+      }
+
+      .find-fem-page .image-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #e9eef5;
+      }
+
+      .find-fem-page .main-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: min(78vh, 860px);
+        object-fit: contain;
+      }
+
+      .find-fem-page .dropzone {
+        position: absolute;
+        width: 8%;
+        aspect-ratio: 1 / 1;
+        border: none;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.12rem;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          box-shadow 0.2s ease;
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.22),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+      }
+
+      .find-fem-page .dropzone::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.95);
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.85),
+          0 0 0 6px rgba(31, 78, 121, 0.18);
+      }
+
+      .find-fem-page .dropzone.over {
+        transform: scale(1.06);
+        background: rgba(219, 234, 247, 0.45);
+        box-shadow:
+          0 0 0 4px rgba(31, 78, 121, 0.16),
+          0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .find-fem-page .dropzone.correct {
+        background: rgba(46, 125, 50, 0.18);
+        box-shadow:
+          0 0 0 4px rgba(46, 125, 50, 0.14),
+          0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .find-fem-page .dropzone.locked {
+        cursor: default;
+      }
+
+      .find-fem-page .dropzone span {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        transform: translate(-50%, -50%);
+        width: 220%;
+        max-width: min(12rem, 42vw);
+        text-align: center;
+        font-size: 0.52rem;
+        font-weight: 700;
+        line-height: 1.15;
+        color: #145a1f;
+        pointer-events: none;
+      }
+
+      /* Finjusterede placeringer */
+      .find-fem-page .zone-1 {
+        top: 52%;
+        left: 19%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-1.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-2 {
+        top: 83.5%;
+        left: 24.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-2.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-3 {
+        top: 30%;
+        left: 53%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-3.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-4 {
+        top: 73%;
+        left: 67%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-4.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-5 {
+        top: 81%;
+        left: 69.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-5.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .risks-card {
+        padding: 11px 12px;
+      }
+
+      .find-fem-page .risks-card h2 {
+        font-size: 1.05rem;
+        margin: 0 0 8px;
+      }
+
+      .find-fem-page .risk-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .find-fem-page .risk-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+
+      .find-fem-page .risk-row .risk-item {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .find-fem-page .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.12);
+        color: #1f4e79;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.15);
+        transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .find-fem-page .crossword-audio-btn:hover {
+        background: rgba(31, 78, 121, 0.2);
+        color: #123b5d;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.22);
+      }
+
+      .find-fem-page .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .find-fem-page .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn__svg--pause,
+      .find-fem-page .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .find-fem-page
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn--intro {
+        width: 2.4rem;
+        height: 2.4rem;
+        flex-shrink: 0;
+      }
+
+      .find-fem-page .crossword-audio-btn--compact {
+        width: 2rem;
+        height: 2rem;
+        align-self: flex-start;
+        margin-top: 0.02rem;
+      }
+
+      .find-fem-page .risk-item {
+        background: #f8fbff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 9px 10px;
+        cursor: grab;
+        font-size: 0.84rem;
+        font-weight: 600;
+        line-height: 1.35;
+        user-select: none;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
+      }
+
+      .find-fem-page .risk-item:hover,
+      .find-fem-page .risk-item:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        background: var(--primary-light);
+        outline: none;
+      }
+
+      .find-fem-page .risk-item.dragging {
+        opacity: 0.55;
+        cursor: grabbing;
+      }
+
+      .find-fem-page .risk-item.placed {
+        background: #e7f5ea;
+        border-color: var(--accent);
+        color: #145a1f;
+        cursor: default;
+        opacity: 0.95;
+      }
+
+      .find-fem-page .counter {
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      .find-fem-page .feedback {
+        margin: 10px 0 0;
+        font-size: 1rem;
+        font-weight: 700;
+        min-height: 1.5em;
+      }
+
+      .find-fem-page .feedback.success {
+        color: var(--accent);
+      }
+
+      .find-fem-page .feedback.error {
+        color: var(--warning);
+      }
+
+      .find-fem-page .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .find-fem-page button:not(.crossword-audio-btn) {
+        border: none;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+      }
+
+      .find-fem-page .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .find-fem-page .btn-secondary {
+        background: #e8eef5;
+        color: var(--text);
+      }
+
+      .find-fem-page button:not(.crossword-audio-btn):hover,
+      .find-fem-page button:not(.crossword-audio-btn):focus {
+        opacity: 0.95;
+      }
+
+      @media (max-width: 1100px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: minmax(0, 1.45fr) minmax(200px, 250px);
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(72vh, 760px);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(66vh, 640px);
+        }
+
+        .find-fem-page .dropzone {
+          width: 7%;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .find-fem-page .image-card,
+        .find-fem-page .status-card {
+          padding: 14px;
+        }
+
+        .find-fem-page .risks-card {
+          padding: 10px 11px;
+        }
+
+        .find-fem-page .dropzone {
+          width: 9%;
+        }
+
+        .find-fem-page .dropzone span {
+          font-size: 0.48rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="page-sikker-maskiner">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../Baggrundsbillede.png"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card find-fejl-shell">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Maskiner</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <main class="find-fem-page">
+          <div class="page-inner">
+            <div class="topbar">
+              <div class="title-row">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--intro"
+                  data-audio="Sikker brug.mp3"
+                  aria-label="Afspil overskrift og opgaven højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <h1>Sikker brug</h1>
+              </div>
+
+              <p class="intro">
+                Se på billedet. Der er 5 fejl, som gør det usikkert at bruge rengøringsmaskinen. Træk den rigtige
+                fejltype hen til det rigtige sted på billedet.
+              </p>
+            </div>
+
+            <section class="task-layout">
+              <div class="task-main">
+                <section class="image-card">
+                  <div class="image-wrapper" aria-label="Billede med 5 sikkerhedsfejl ved brug af en rengøringsmaskine">
+                    <img
+                      src="Farer i rengoeringssituationen.png"
+                      alt="En serviceassistent bruger en rengøringsmaskine. På billedet er der fem sikkerhedsfejl."
+                      class="main-image"
+                      width="1536"
+                      height="1024"
+                      decoding="async"
+                    />
+
+                    <div class="dropzone zone-1" data-match="defekt-stik" aria-label="Dropzone 1">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-2" data-match="beskadiget-ledning" aria-label="Dropzone 2">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-3" data-match="uopmærksom" aria-label="Dropzone 3">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-4" data-match="forkert-fodtøj" aria-label="Dropzone 4">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-5" data-match="spild-på-gulv" aria-label="Dropzone 5">
+                      <span></span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="task-sidebar">
+                <section class="risks-card">
+                  <h2>Fejltyper</h2>
+                  <div class="risk-list" id="riskList"></div>
+                </section>
+
+                <section class="status-card" aria-live="polite">
+                  <p class="counter">Rigtige svar: <span id="score">0</span> / 5</p>
+                  <p id="feedback" class="feedback"></p>
+
+                  <div class="buttons">
+                    <button type="button" class="btn-secondary" id="resetBtn">Prøv igen</button>
+                  </div>
+                </section>
+              </aside>
+            </section>
+          </div>
+        </main>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        const dropzones = document.querySelectorAll(".dropzone");
+        const scoreEl = document.getElementById("score");
+        const feedbackEl = document.getElementById("feedback");
+        const resetBtn = document.getElementById("resetBtn");
+        const riskList = document.getElementById("riskList");
+
+        const riskAudioFiles = {
+          "defekt-stik": "Stik og stroem er ikke sikre.mp3",
+          "beskadiget-ledning": "Ledningen ved maskinen er beskadiget.mp3",
+          "uopmærksom": "Serviceassistenten bruger sin mobil og er ikke opmaerksom.mp3",
+          "forkert-fodtøj": "Forkert fodtoej ved maskinbrug.mp3",
+          "spild-på-gulv": "Spild paa gulvet giver risiko for at glide.mp3"
+        };
+
+        const risks = [
+          {
+            key: "defekt-stik",
+            text: "Stik og strøm er ikke sikre"
+          },
+          {
+            key: "beskadiget-ledning",
+            text: "Ledningen ved maskinen er beskadiget"
+          },
+          {
+            key: "uopmærksom",
+            text: "Serviceassistenten bruger sin mobil og er ikke opmærksom"
+          },
+          {
+            key: "forkert-fodtøj",
+            text: "Forkert fodtøj ved maskinbrug"
+          },
+          {
+            key: "spild-på-gulv",
+            text: "Spild på gulvet giver risiko for at glide"
+          }
+        ];
+
+        let draggedItem = null;
+        let score = 0;
+
+        function setFeedback(message, type) {
+          feedbackEl.textContent = message || "";
+          feedbackEl.className = "feedback";
+          if (type) {
+            feedbackEl.classList.add(type);
+          }
+        }
+
+        function updateScore() {
+          scoreEl.textContent = String(score);
+          if (score === 5) {
+            setFeedback("Flot! Du fandt alle 5 fejl.", "success");
+          }
+        }
+
+        function shuffle(array) {
+          const copy = [...array];
+          for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+          }
+          return copy;
+        }
+
+        function renderRiskItems() {
+          const shuffled = shuffle(risks);
+
+          riskList.innerHTML = shuffled
+            .map(
+              (risk) => `
+                <div class="risk-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="${riskAudioFiles[risk.key]}"
+                    aria-label="Afspil denne fejltype højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <div class="risk-item" draggable="true" tabindex="0" data-risk="${risk.key}">
+                    ${risk.text}
+                  </div>
+                </div>
+              `
+            )
+            .join("");
+
+          bindRiskItems();
+        }
+
+        function bindRiskItems() {
+          document.querySelectorAll(".risk-item").forEach((item) => {
+            item.addEventListener("dragstart", (e) => {
+              if (e.target && e.target.closest && e.target.closest(".crossword-audio-btn")) {
+                e.preventDefault();
+                return;
+              }
+              if (item.classList.contains("placed")) return;
+              draggedItem = item;
+              item.classList.add("dragging");
+            });
+
+            item.addEventListener("dragend", () => {
+              item.classList.remove("dragging");
+            });
+          });
+        }
+
+        dropzones.forEach((zone) => {
+          zone.addEventListener("dragover", (e) => {
+            if (zone.classList.contains("locked")) return;
+            e.preventDefault();
+            zone.classList.add("over");
+          });
+
+          zone.addEventListener("dragleave", () => {
+            zone.classList.remove("over");
+          });
+
+          zone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            zone.classList.remove("over");
+
+            if (!draggedItem || zone.classList.contains("locked")) return;
+
+            const correctRisk = zone.dataset.match;
+            const draggedRisk = draggedItem.dataset.risk;
+
+            if (draggedRisk === correctRisk) {
+              zone.classList.add("correct", "locked");
+              zone.innerHTML = "<span>" + draggedItem.textContent.trim() + "</span>";
+
+              draggedItem.classList.add("placed");
+              draggedItem.setAttribute("draggable", "false");
+
+              score++;
+              updateScore();
+
+              if (score < 5) {
+                setFeedback("Rigtigt svar.", "success");
+              }
+            } else {
+              setFeedback("Det er ikke det rigtige sted. Prøv igen.", "error");
+            }
+
+            draggedItem = null;
+          });
+        });
+
+        resetBtn.addEventListener("click", () => {
+          score = 0;
+          scoreEl.textContent = "0";
+          setFeedback("");
+          draggedItem = null;
+
+          dropzones.forEach((zone) => {
+            zone.classList.remove("correct", "locked", "over");
+            zone.innerHTML = "<span></span>";
+          });
+
+          renderRiskItems();
+        });
+
+        renderRiskItems();
+      })();
+    </script>
+    <script>
+      (function setupSikkerBrugAudio() {
+        var root = document.querySelector("article.article-card.find-fejl-shell");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename || !buttonEl) return;
+          stashAria(buttonEl);
+          if (currentBtn === buttonEl && currentAudio) {
+            if (!currentAudio.paused) {
+              currentAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  updateBtnAria(buttonEl);
+                })
+                .catch(function () {
+                  releasePrior();
+                });
+            } else {
+              updateBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePrior();
+          buttonEl.classList.remove("is-audio-paused");
+          currentBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL("./" + encodeURIComponent(filename), window.location.href).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+
+        var list = document.getElementById("riskList");
+        if (list && window.MutationObserver) {
+          var obs = new MutationObserver(function () {
+            list.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+          });
+          obs.observe(list, { childList: true });
+        }
+      })();
+    </script>
+    <script>
+      (function () {
+        var sidebar = document.querySelector('aside.task-sidebar');
+        if (!sidebar) return;
+        var container = sidebar.closest('.task-layout');
+        if (!container) return;
+        var MARGIN = 16;
+
+        function update() {
+          var containerRect = container.getBoundingClientRect();
+          var sidebarH = sidebar.offsetHeight;
+
+          if (containerRect.top >= MARGIN) {
+            sidebar.style.transform = '';
+            return;
+          }
+
+          var scrolled = MARGIN - containerRect.top;
+          var maxScroll = Math.max(0, container.offsetHeight - sidebarH - MARGIN);
+          sidebar.style.transform = 'translateY(' + Math.min(scrolled, maxScroll) + 'px)';
+        }
+
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', function () {
+          sidebar.style.transform = '';
+          update();
+        }, { passive: true });
+      })();
+    </script>
+  </body>
+</html>
+<!-- DUPLICATE CONTENT BELOW (disabled)
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sikker brug – Find 5 fejl</title>
+
+    <link rel="preload" href="../Baggrundsbillede.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="Sikker brug.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+
+    <style>
+      .page-sikker-maskiner .bg-image {
+        object-position: 50% 20%;
+      }
+
+      .article-card.find-fejl-shell {
+        max-width: min(1420px, calc(100vw - 2rem));
+        background: linear-gradient(
+          180deg,
+          rgba(244, 248, 251, 0.97) 0%,
+          rgba(232, 240, 245, 0.97) 100%
+        );
+        border: 1px solid rgba(19, 59, 93, 0.12);
+        box-shadow:
+          0 8px 32px rgba(20, 60, 80, 0.12),
+          0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .find-fem-page {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --primary: #1f4e79;
+        --primary-light: #dbeaf7;
+        --accent: #2e7d32;
+        --warning: #c62828;
+        --text: #1f2933;
+        --border: #cfd8e3;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --radius: 18px;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .find-fem-page * {
+        box-sizing: border-box;
+      }
+
+      .find-fem-page .page-inner {
+        max-width: 1420px;
+        margin: 0 auto;
+        padding: 0 0 0.5rem;
+      }
+
+      .find-fem-page .topbar {
+        margin-bottom: 16px;
+      }
+
+      .find-fem-page .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+      }
+
+      .find-fem-page .title-row h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 2.5vw, 2rem);
+        color: var(--primary);
+        text-align: center;
+      }
+
+      .find-fem-page .intro {
+        max-width: 900px;
+        margin: 0;
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      .find-fem-page .task-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(200px, 260px);
+        gap: 16px;
+        align-items: start;
+        margin-top: 18px;
+      }
+
+      .find-fem-page .task-main {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .find-fem-page .task-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+        align-self: start;
+        will-change: transform;
+      }
+
+      .find-fem-page .image-card,
+      .find-fem-page .risks-card,
+      .find-fem-page .status-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 16px;
+      }
+
+      .find-fem-page .image-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #e9eef5;
+      }
+
+      .find-fem-page .main-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: min(78vh, 860px);
+        object-fit: contain;
+      }
+
+      .find-fem-page .dropzone {
+        position: absolute;
+        width: 8%;
+        aspect-ratio: 1 / 1;
+        border: none;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.12rem;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          box-shadow 0.2s ease;
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.22),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+      }
+
+      .find-fem-page .dropzone::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.95);
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.85),
+          0 0 0 6px rgba(31, 78, 121, 0.18);
+      }
+
+      .find-fem-page .dropzone.over {
+        transform: scale(1.06);
+        background: rgba(219, 234, 247, 0.45);
+        box-shadow:
+          0 0 0 4px rgba(31, 78, 121, 0.16),
+          0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .find-fem-page .dropzone.correct {
+        background: rgba(46, 125, 50, 0.18);
+        box-shadow:
+          0 0 0 4px rgba(46, 125, 50, 0.14),
+          0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .find-fem-page .dropzone.locked {
+        cursor: default;
+      }
+
+      .find-fem-page .dropzone span {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        transform: translate(-50%, -50%);
+        width: 220%;
+        max-width: min(12rem, 42vw);
+        text-align: center;
+        font-size: 0.52rem;
+        font-weight: 700;
+        line-height: 1.15;
+        color: #145a1f;
+        pointer-events: none;
+      }
+
+      /* Finjusterede placeringer */
+      .find-fem-page .zone-1 {
+        top: 49%;
+        left: 4.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-1.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-2 {
+        top: 83.5%;
+        left: 24.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-2.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-3 {
+        top: 30%;
+        left: 53%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-3.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-4 {
+        top: 63%;
+        left: 63%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-4.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-5 {
+        top: 81%;
+        left: 69.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-5.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .risks-card {
+        padding: 11px 12px;
+      }
+
+      .find-fem-page .risks-card h2 {
+        font-size: 1.05rem;
+        margin: 0 0 8px;
+      }
+
+      .find-fem-page .risk-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .find-fem-page .risk-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+
+      .find-fem-page .risk-row .risk-item {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .find-fem-page .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.12);
+        color: #1f4e79;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.15);
+        transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .find-fem-page .crossword-audio-btn:hover {
+        background: rgba(31, 78, 121, 0.2);
+        color: #123b5d;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.22);
+      }
+
+      .find-fem-page .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .find-fem-page .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn__svg--pause,
+      .find-fem-page .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .find-fem-page
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn--intro {
+        width: 2.4rem;
+        height: 2.4rem;
+        flex-shrink: 0;
+      }
+
+      .find-fem-page .crossword-audio-btn--compact {
+        width: 2rem;
+        height: 2rem;
+        align-self: flex-start;
+        margin-top: 0.02rem;
+      }
+
+      .find-fem-page .risk-item {
+        background: #f8fbff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 9px 10px;
+        cursor: grab;
+        font-size: 0.84rem;
+        font-weight: 600;
+        line-height: 1.35;
+        user-select: none;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
+      }
+
+      .find-fem-page .risk-item:hover,
+      .find-fem-page .risk-item:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        background: var(--primary-light);
+        outline: none;
+      }
+
+      .find-fem-page .risk-item.dragging {
+        opacity: 0.55;
+        cursor: grabbing;
+      }
+
+      .find-fem-page .risk-item.placed {
+        background: #e7f5ea;
+        border-color: var(--accent);
+        color: #145a1f;
+        cursor: default;
+        opacity: 0.95;
+      }
+
+      .find-fem-page .counter {
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      .find-fem-page .feedback {
+        margin: 10px 0 0;
+        font-size: 1rem;
+        font-weight: 700;
+        min-height: 1.5em;
+      }
+
+      .find-fem-page .feedback.success {
+        color: var(--accent);
+      }
+
+      .find-fem-page .feedback.error {
+        color: var(--warning);
+      }
+
+      .find-fem-page .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .find-fem-page button:not(.crossword-audio-btn) {
+        border: none;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+      }
+
+      .find-fem-page .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .find-fem-page .btn-secondary {
+        background: #e8eef5;
+        color: var(--text);
+      }
+
+      .find-fem-page button:not(.crossword-audio-btn):hover,
+      .find-fem-page button:not(.crossword-audio-btn):focus {
+        opacity: 0.95;
+      }
+
+      @media (max-width: 1100px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: minmax(0, 1.45fr) minmax(200px, 250px);
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(72vh, 760px);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(66vh, 640px);
+        }
+
+        .find-fem-page .dropzone {
+          width: 7%;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .find-fem-page .image-card,
+        .find-fem-page .status-card {
+          padding: 14px;
+        }
+
+        .find-fem-page .risks-card {
+          padding: 10px 11px;
+        }
+
+        .find-fem-page .dropzone {
+          width: 9%;
+        }
+
+        .find-fem-page .dropzone span {
+          font-size: 0.48rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="page-sikker-maskiner">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../Baggrundsbillede.png"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card find-fejl-shell">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Maskiner</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <main class="find-fem-page">
+          <div class="page-inner">
+            <div class="topbar">
+              <div class="title-row">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--intro"
+                  data-audio="Sikker brug.mp3"
+                  aria-label="Afspil overskrift og opgaven højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <h1>Sikker brug</h1>
+              </div>
+
+              <p class="intro">
+                Se på billedet. Der er 5 fejl, som gør det usikkert at bruge rengøringsmaskinen. Træk den rigtige
+                fejltype hen til det rigtige sted på billedet.
+              </p>
+            </div>
+
+            <section class="task-layout">
+              <div class="task-main">
+                <section class="image-card">
+                  <div class="image-wrapper" aria-label="Billede med 5 sikkerhedsfejl ved brug af en rengøringsmaskine">
+                    <img
+                      src="Farer i rengoeringssituationen.png"
+                      alt="En serviceassistent bruger en rengøringsmaskine. På billedet er der fem sikkerhedsfejl."
+                      class="main-image"
+                      width="1536"
+                      height="1024"
+                      decoding="async"
+                    />
+
+                    <div class="dropzone zone-1" data-match="defekt-stik" aria-label="Dropzone 1">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-2" data-match="beskadiget-ledning" aria-label="Dropzone 2">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-3" data-match="uopmærksom" aria-label="Dropzone 3">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-4" data-match="forkert-fodtøj" aria-label="Dropzone 4">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-5" data-match="spild-på-gulv" aria-label="Dropzone 5">
+                      <span></span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="task-sidebar">
+                <section class="risks-card">
+                  <h2>Fejltyper</h2>
+                  <div class="risk-list" id="riskList"></div>
+                </section>
+
+                <section class="status-card" aria-live="polite">
+                  <p class="counter">Rigtige svar: <span id="score">0</span> / 5</p>
+                  <p id="feedback" class="feedback"></p>
+
+                  <div class="buttons">
+                    <button type="button" class="btn-secondary" id="resetBtn">Prøv igen</button>
+                    <button type="button" class="btn-primary" id="showAnswersBtn">Vis facit</button>
+                  </div>
+                </section>
+              </aside>
+            </section>
+          </div>
+        </main>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        const dropzones = document.querySelectorAll(".dropzone");
+        const scoreEl = document.getElementById("score");
+        const feedbackEl = document.getElementById("feedback");
+        const resetBtn = document.getElementById("resetBtn");
+        const showAnswersBtn = document.getElementById("showAnswersBtn");
+        const riskList = document.getElementById("riskList");
+
+        const riskAudioFiles = {
+          "defekt-stik": "Stik og stroem er ikke sikre.mp3",
+          "beskadiget-ledning": "Ledningen ved maskinen er beskadiget.mp3",
+          "uopmærksom": "Serviceassistenten bruger sin mobil og er ikke opmaerksom.mp3",
+          "forkert-fodtøj": "Forkert fodtoej ved maskinbrug.mp3",
+          "spild-på-gulv": "Spild paa gulvet giver risiko for at glide.mp3"
+        };
+
+        const risks = [
+          {
+            key: "defekt-stik",
+            text: "Stik og strøm er ikke sikre"
+          },
+          {
+            key: "beskadiget-ledning",
+            text: "Ledningen ved maskinen er beskadiget"
+          },
+          {
+            key: "uopmærksom",
+            text: "Serviceassistenten bruger sin mobil og er ikke opmærksom"
+          },
+          {
+            key: "forkert-fodtøj",
+            text: "Forkert fodtøj ved maskinbrug"
+          },
+          {
+            key: "spild-på-gulv",
+            text: "Spild på gulvet giver risiko for at glide"
+          }
+        ];
+
+        let draggedItem = null;
+        let score = 0;
+
+        function setFeedback(message, type) {
+          feedbackEl.textContent = message || "";
+          feedbackEl.className = "feedback";
+          if (type) {
+            feedbackEl.classList.add(type);
+          }
+        }
+
+        function updateScore() {
+          scoreEl.textContent = String(score);
+          if (score === 5) {
+            setFeedback("Flot! Du fandt alle 5 fejl.", "success");
+          }
+        }
+
+        function shuffle(array) {
+          const copy = [...array];
+          for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+          }
+          return copy;
+        }
+
+        function renderRiskItems() {
+          const shuffled = shuffle(risks);
+
+          riskList.innerHTML = shuffled
+            .map(
+              (risk) => `
+                <div class="risk-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="${riskAudioFiles[risk.key]}"
+                    aria-label="Afspil denne fejltype højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <div class="risk-item" draggable="true" tabindex="0" data-risk="${risk.key}">
+                    ${risk.text}
+                  </div>
+                </div>
+              `
+            )
+            .join("");
+
+          bindRiskItems();
+        }
+
+        function bindRiskItems() {
+          document.querySelectorAll(".risk-item").forEach((item) => {
+            item.addEventListener("dragstart", (e) => {
+              if (e.target && e.target.closest && e.target.closest(".crossword-audio-btn")) {
+                e.preventDefault();
+                return;
+              }
+              if (item.classList.contains("placed")) return;
+              draggedItem = item;
+              item.classList.add("dragging");
+            });
+
+            item.addEventListener("dragend", () => {
+              item.classList.remove("dragging");
+            });
+          });
+        }
+
+        dropzones.forEach((zone) => {
+          zone.addEventListener("dragover", (e) => {
+            if (zone.classList.contains("locked")) return;
+            e.preventDefault();
+            zone.classList.add("over");
+          });
+
+          zone.addEventListener("dragleave", () => {
+            zone.classList.remove("over");
+          });
+
+          zone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            zone.classList.remove("over");
+
+            if (!draggedItem || zone.classList.contains("locked")) return;
+
+            const correctRisk = zone.dataset.match;
+            const draggedRisk = draggedItem.dataset.risk;
+
+            if (draggedRisk === correctRisk) {
+              zone.classList.add("correct", "locked");
+              zone.innerHTML = "<span>" + draggedItem.textContent.trim() + "</span>";
+
+              draggedItem.classList.add("placed");
+              draggedItem.setAttribute("draggable", "false");
+
+              score++;
+              updateScore();
+
+              if (score < 5) {
+                setFeedback("Rigtigt svar.", "success");
+              }
+            } else {
+              setFeedback("Det er ikke det rigtige sted. Prøv igen.", "error");
+            }
+
+            draggedItem = null;
+          });
+        });
+
+        resetBtn.addEventListener("click", () => {
+          score = 0;
+          scoreEl.textContent = "0";
+          setFeedback("");
+          draggedItem = null;
+
+          dropzones.forEach((zone) => {
+            zone.classList.remove("correct", "locked", "over");
+            zone.innerHTML = "<span></span>";
+          });
+
+          renderRiskItems();
+        });
+
+        showAnswersBtn.addEventListener("click", () => {
+          const answers = {
+            "defekt-stik": "Stik og strøm er ikke sikre",
+            "beskadiget-ledning": "Ledningen ved maskinen er beskadiget",
+            "uopmærksom": "Serviceassistenten bruger sin mobil og er ikke opmærksom",
+            "forkert-fodtøj": "Forkert fodtøj ved maskinbrug",
+            "spild-på-gulv": "Spild på gulvet giver risiko for at glide"
+          };
+
+          dropzones.forEach((zone) => {
+            const key = zone.dataset.match;
+            zone.classList.add("correct", "locked");
+            zone.innerHTML = "<span>" + answers[key] + "</span>";
+          });
+
+          document.querySelectorAll(".risk-item").forEach((item) => {
+            item.classList.add("placed");
+            item.setAttribute("draggable", "false");
+          });
+
+          score = 5;
+          updateScore();
+          setFeedback("Her kan du se facit.", "success");
+        });
+
+        renderRiskItems();
+      })();
+    </script>
+  </body>
+</html><!-- (slut på den rigtige side) -- >
+<!--
+ALT herunder er en gammel duplikeret version, og er bevidst kommenteret ud.
+
+*** End of File
+
+-- >
+
+    <link rel="preload" href="../Baggrundsbillede.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="Sikker brug.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+
+    <style>
+      .page-sikker-maskiner .bg-image {
+        object-position: 50% 20%;
+      }
+
+      .article-card.find-fejl-shell {
+        max-width: min(1420px, calc(100vw - 2rem));
+        background: linear-gradient(
+          180deg,
+          rgba(244, 248, 251, 0.97) 0%,
+          rgba(232, 240, 245, 0.97) 100%
+        );
+        border: 1px solid rgba(19, 59, 93, 0.12);
+        box-shadow:
+          0 8px 32px rgba(20, 60, 80, 0.12),
+          0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .find-fem-page {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --primary: #1f4e79;
+        --primary-light: #dbeaf7;
+        --accent: #2e7d32;
+        --warning: #c62828;
+        --text: #1f2933;
+        --border: #cfd8e3;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --radius: 18px;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .find-fem-page * {
+        box-sizing: border-box;
+      }
+
+      .find-fem-page .page-inner {
+        max-width: 1420px;
+        margin: 0 auto;
+        padding: 0 0 0.5rem;
+      }
+
+      .find-fem-page .topbar {
+        margin-bottom: 16px;
+      }
+
+      .find-fem-page .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+      }
+
+      .find-fem-page .title-row h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 2.5vw, 2rem);
+        color: var(--primary);
+        text-align: center;
+      }
+
+      .find-fem-page .intro {
+        max-width: 900px;
+        margin: 0;
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      .find-fem-page .task-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(200px, 260px);
+        gap: 16px;
+        align-items: start;
+        margin-top: 18px;
+      }
+
+      .find-fem-page .task-main {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .find-fem-page .task-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+        align-self: start;
+        will-change: transform;
+      }
+
+      .find-fem-page .image-card,
+      .find-fem-page .risks-card,
+      .find-fem-page .status-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 16px;
+      }
+
+      .find-fem-page .image-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #e9eef5;
+      }
+
+      .find-fem-page .main-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: min(78vh, 860px);
+        object-fit: contain;
+      }
+
+      .find-fem-page .dropzone {
+        position: absolute;
+        width: 8%;
+        aspect-ratio: 1 / 1;
+        border: none;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.12rem;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          box-shadow 0.2s ease;
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.22),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+      }
+
+      .find-fem-page .dropzone::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.95);
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.85),
+          0 0 0 6px rgba(31, 78, 121, 0.18);
+      }
+
+      .find-fem-page .dropzone.over {
+        transform: scale(1.06);
+        background: rgba(219, 234, 247, 0.45);
+        box-shadow:
+          0 0 0 4px rgba(31, 78, 121, 0.16),
+          0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .find-fem-page .dropzone.correct {
+        background: rgba(46, 125, 50, 0.18);
+        box-shadow:
+          0 0 0 4px rgba(46, 125, 50, 0.14),
+          0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .find-fem-page .dropzone.locked {
+        cursor: default;
+      }
+
+      .find-fem-page .dropzone span {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        transform: translate(-50%, -50%);
+        width: 220%;
+        max-width: min(12rem, 42vw);
+        text-align: center;
+        font-size: 0.52rem;
+        font-weight: 700;
+        line-height: 1.15;
+        color: #145a1f;
+        pointer-events: none;
+      }
+
+      /* Finjusterede placeringer */
+      .find-fem-page .zone-1 {
+        top: 54%;
+        left: 13%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-1.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-2 {
+        top: 83.5%;
+        left: 24.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-2.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-3 {
+        top: 30%;
+        left: 53%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-3.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-4 {
+        top: 78%;
+        left: 70%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-4.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-5 {
+        top: 81%;
+        left: 69.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-5.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .risks-card {
+        padding: 11px 12px;
+      }
+
+      .find-fem-page .risks-card h2 {
+        font-size: 1.05rem;
+        margin: 0 0 8px;
+      }
+
+      .find-fem-page .risk-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .find-fem-page .risk-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+
+      .find-fem-page .risk-row .risk-item {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .find-fem-page .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.12);
+        color: #1f4e79;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.15);
+        transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .find-fem-page .crossword-audio-btn:hover {
+        background: rgba(31, 78, 121, 0.2);
+        color: #123b5d;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.22);
+      }
+
+      .find-fem-page .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .find-fem-page .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn__svg--pause,
+      .find-fem-page .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .find-fem-page
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn--intro {
+        width: 2.4rem;
+        height: 2.4rem;
+        flex-shrink: 0;
+      }
+
+      .find-fem-page .crossword-audio-btn--compact {
+        width: 2rem;
+        height: 2rem;
+        align-self: flex-start;
+        margin-top: 0.02rem;
+      }
+
+      .find-fem-page .risk-item {
+        background: #f8fbff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 9px 10px;
+        cursor: grab;
+        font-size: 0.84rem;
+        font-weight: 600;
+        line-height: 1.35;
+        user-select: none;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
+      }
+
+      .find-fem-page .risk-item:hover,
+      .find-fem-page .risk-item:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        background: var(--primary-light);
+        outline: none;
+      }
+
+      .find-fem-page .risk-item.dragging {
+        opacity: 0.55;
+        cursor: grabbing;
+      }
+
+      .find-fem-page .risk-item.placed {
+        background: #e7f5ea;
+        border-color: var(--accent);
+        color: #145a1f;
+        cursor: default;
+        opacity: 0.95;
+      }
+
+      .find-fem-page .counter {
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      .find-fem-page .feedback {
+        margin: 10px 0 0;
+        font-size: 1rem;
+        font-weight: 700;
+        min-height: 1.5em;
+      }
+
+      .find-fem-page .feedback.success {
+        color: var(--accent);
+      }
+
+      .find-fem-page .feedback.error {
+        color: var(--warning);
+      }
+
+      .find-fem-page .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .find-fem-page button:not(.crossword-audio-btn) {
+        border: none;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+      }
+
+      .find-fem-page .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .find-fem-page .btn-secondary {
+        background: #e8eef5;
+        color: var(--text);
+      }
+
+      .find-fem-page button:not(.crossword-audio-btn):hover,
+      .find-fem-page button:not(.crossword-audio-btn):focus {
+        opacity: 0.95;
+      }
+
+      @media (max-width: 1100px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: minmax(0, 1.45fr) minmax(200px, 250px);
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(72vh, 760px);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(66vh, 640px);
+        }
+
+        .find-fem-page .dropzone {
+          width: 7%;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .find-fem-page .image-card,
+        .find-fem-page .status-card {
+          padding: 14px;
+        }
+
+        .find-fem-page .risks-card {
+          padding: 10px 11px;
+        }
+
+        .find-fem-page .dropzone {
+          width: 9%;
+        }
+
+        .find-fem-page .dropzone span {
+          font-size: 0.48rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="page-sikker-maskiner">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../Baggrundsbillede.png"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card find-fejl-shell">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Maskiner</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <main class="find-fem-page">
+          <div class="page-inner">
+            <div class="topbar">
+              <div class="title-row">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--intro"
+                  data-audio="Sikker brug.mp3"
+                  aria-label="Afspil overskrift og opgaven højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <h1>Sikker brug</h1>
+              </div>
+
+              <p class="intro">
+                Se på billedet. Der er 5 fejl, som gør det usikkert at bruge rengøringsmaskinen. Træk den rigtige
+                fejltype hen til det rigtige sted på billedet.
+              </p>
+            </div>
+
+            <section class="task-layout">
+              <div class="task-main">
+                <section class="image-card">
+                  <div class="image-wrapper" aria-label="Billede med 5 sikkerhedsfejl ved brug af en rengøringsmaskine">
+                    <img
+                      src="Farer i rengoeringssituationen.png"
+                      alt="En serviceassistent bruger en rengøringsmaskine. På billedet er der fem sikkerhedsfejl."
+                      class="main-image"
+                      width="1536"
+                      height="1024"
+                      decoding="async"
+                    />
+
+                    <div class="dropzone zone-1" data-match="defekt-stik" aria-label="Dropzone 1">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-2" data-match="beskadiget-ledning" aria-label="Dropzone 2">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-3" data-match="uopmærksom" aria-label="Dropzone 3">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-4" data-match="forkert-fodtøj" aria-label="Dropzone 4">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-5" data-match="spild-på-gulv" aria-label="Dropzone 5">
+                      <span></span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="task-sidebar">
+                <section class="risks-card">
+                  <h2>Fejltyper</h2>
+                  <div class="risk-list" id="riskList"></div>
+                </section>
+
+                <section class="status-card" aria-live="polite">
+                  <p class="counter">Rigtige svar: <span id="score">0</span> / 5</p>
+                  <p id="feedback" class="feedback"></p>
+
+                  <div class="buttons">
+                    <button type="button" class="btn-secondary" id="resetBtn">Prøv igen</button>
+                    <button type="button" class="btn-primary" id="showAnswersBtn">Vis facit</button>
+                  </div>
+                </section>
+              </aside>
+            </section>
+          </div>
+        </main>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        const dropzones = document.querySelectorAll(".dropzone");
+        const scoreEl = document.getElementById("score");
+        const feedbackEl = document.getElementById("feedback");
+        const resetBtn = document.getElementById("resetBtn");
+        const showAnswersBtn = document.getElementById("showAnswersBtn");
+        const riskList = document.getElementById("riskList");
+
+        const riskAudioFiles = {
+          "defekt-stik": "Stik og stroem er ikke sikre.mp3",
+          "beskadiget-ledning": "Ledningen ved maskinen er beskadiget.mp3",
+          "uopmærksom": "Serviceassistenten bruger sin mobil og er ikke opmaerksom.mp3",
+          "forkert-fodtøj": "Forkert fodtoej ved maskinbrug.mp3",
+          "spild-på-gulv": "Spild paa gulvet giver risiko for at glide.mp3"
+        };
+
+        const risks = [
+          {
+            key: "defekt-stik",
+            text: "Stik og strøm er ikke sikre"
+          },
+          {
+            key: "beskadiget-ledning",
+            text: "Ledningen ved maskinen er beskadiget"
+          },
+          {
+            key: "uopmærksom",
+            text: "Serviceassistenten bruger sin mobil og er ikke opmærksom"
+          },
+          {
+            key: "forkert-fodtøj",
+            text: "Forkert fodtøj ved maskinbrug"
+          },
+          {
+            key: "spild-på-gulv",
+            text: "Spild på gulvet giver risiko for at glide"
+          }
+        ];
+
+        let draggedItem = null;
+        let score = 0;
+
+        function setFeedback(message, type) {
+          feedbackEl.textContent = message || "";
+          feedbackEl.className = "feedback";
+          if (type) {
+            feedbackEl.classList.add(type);
+          }
+        }
+
+        function updateScore() {
+          scoreEl.textContent = String(score);
+          if (score === 5) {
+            setFeedback("Flot! Du fandt alle 5 fejl.", "success");
+          }
+        }
+
+        function shuffle(array) {
+          const copy = [...array];
+          for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+          }
+          return copy;
+        }
+
+        function renderRiskItems() {
+          const shuffled = shuffle(risks);
+
+          riskList.innerHTML = shuffled
+            .map(
+              (risk) => `
+                <div class="risk-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="${riskAudioFiles[risk.key]}"
+                    aria-label="Afspil denne fejltype højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <div class="risk-item" draggable="true" tabindex="0" data-risk="${risk.key}">
+                    ${risk.text}
+                  </div>
+                </div>
+              `
+            )
+            .join("");
+
+          bindRiskItems();
+        }
+
+        function bindRiskItems() {
+          document.querySelectorAll(".risk-item").forEach((item) => {
+            item.addEventListener("dragstart", (e) => {
+              if (e.target && e.target.closest && e.target.closest(".crossword-audio-btn")) {
+                e.preventDefault();
+                return;
+              }
+              if (item.classList.contains("placed")) return;
+              draggedItem = item;
+              item.classList.add("dragging");
+            });
+
+            item.addEventListener("dragend", () => {
+              item.classList.remove("dragging");
+            });
+          });
+        }
+
+        dropzones.forEach((zone) => {
+          zone.addEventListener("dragover", (e) => {
+            if (zone.classList.contains("locked")) return;
+            e.preventDefault();
+            zone.classList.add("over");
+          });
+
+          zone.addEventListener("dragleave", () => {
+            zone.classList.remove("over");
+          });
+
+          zone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            zone.classList.remove("over");
+
+            if (!draggedItem || zone.classList.contains("locked")) return;
+
+            const correctRisk = zone.dataset.match;
+            const draggedRisk = draggedItem.dataset.risk;
+
+            if (draggedRisk === correctRisk) {
+              zone.classList.add("correct", "locked");
+              zone.innerHTML = "<span>" + draggedItem.textContent.trim() + "</span>";
+
+              draggedItem.classList.add("placed");
+              draggedItem.setAttribute("draggable", "false");
+
+              score++;
+              updateScore();
+
+              if (score < 5) {
+                setFeedback("Rigtigt svar.", "success");
+              }
+            } else {
+              setFeedback("Det er ikke det rigtige sted. Prøv igen.", "error");
+            }
+
+            draggedItem = null;
+          });
+        });
+
+        resetBtn.addEventListener("click", () => {
+          score = 0;
+          scoreEl.textContent = "0";
+          setFeedback("");
+          draggedItem = null;
+
+          dropzones.forEach((zone) => {
+            zone.classList.remove("correct", "locked", "over");
+            zone.innerHTML = "<span></span>";
+          });
+
+          renderRiskItems();
+        });
+
+        showAnswersBtn.addEventListener("click", () => {
+          const answers = {
+            "defekt-stik": "Stik og strøm er ikke sikre",
+            "beskadiget-ledning": "Ledningen ved maskinen er beskadiget",
+            "uopmærksom": "Serviceassistenten bruger sin mobil og er ikke opmærksom",
+            "forkert-fodtøj": "Forkert fodtøj ved maskinbrug",
+            "spild-på-gulv": "Spild på gulvet giver risiko for at glide"
+          };
+
+          dropzones.forEach((zone) => {
+            const key = zone.dataset.match;
+            zone.classList.add("correct", "locked");
+            zone.innerHTML = "<span>" + answers[key] + "</span>";
+          });
+
+          document.querySelectorAll(".risk-item").forEach((item) => {
+            item.classList.add("placed");
+            item.setAttribute("draggable", "false");
+          });
+
+          score = 5;
+          updateScore();
+          setFeedback("Her kan du se facit.", "success");
+        });
+
+        renderRiskItems();
+      })();
+    </script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sikker brug – Find 5 fejl</title>
+
+    <link rel="preload" href="../Baggrundsbillede.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="Sikker brug.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+
+    <style>
+      .page-sikker-maskiner .bg-image {
+        object-position: 50% 20%;
+      }
+
+      .article-card.find-fejl-shell {
+        max-width: min(1420px, calc(100vw - 2rem));
+        background: linear-gradient(
+          180deg,
+          rgba(244, 248, 251, 0.97) 0%,
+          rgba(232, 240, 245, 0.97) 100%
+        );
+        border: 1px solid rgba(19, 59, 93, 0.12);
+        box-shadow:
+          0 8px 32px rgba(20, 60, 80, 0.12),
+          0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .find-fem-page {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --primary: #1f4e79;
+        --primary-light: #dbeaf7;
+        --accent: #2e7d32;
+        --warning: #c62828;
+        --text: #1f2933;
+        --border: #cfd8e3;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --radius: 18px;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .find-fem-page * {
+        box-sizing: border-box;
+      }
+
+      .find-fem-page .page-inner {
+        max-width: 1420px;
+        margin: 0 auto;
+        padding: 0 0 0.5rem;
+      }
+
+      .find-fem-page .topbar {
+        margin-bottom: 16px;
+      }
+
+      .find-fem-page .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+      }
+
+      .find-fem-page .title-row h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 2.5vw, 2rem);
+        color: var(--primary);
+        text-align: center;
+      }
+
+      .find-fem-page .intro {
+        max-width: 900px;
+        margin: 0;
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      .find-fem-page .task-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(200px, 260px);
+        gap: 16px;
+        align-items: start;
+        margin-top: 18px;
+      }
+
+      .find-fem-page .task-main {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .find-fem-page .task-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+        align-self: start;
+        will-change: transform;
+      }
+
+      .find-fem-page .image-card,
+      .find-fem-page .risks-card,
+      .find-fem-page .status-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 16px;
+      }
+
+      .find-fem-page .image-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #e9eef5;
+      }
+
+      .find-fem-page .main-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: min(78vh, 860px);
+        object-fit: contain;
+      }
+
+      .find-fem-page .dropzone {
+        position: absolute;
+        width: 8%;
+        aspect-ratio: 1 / 1;
+        border: none;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.12rem;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          box-shadow 0.2s ease;
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.22),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+      }
+
+      .find-fem-page .dropzone::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.95);
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.85),
+          0 0 0 6px rgba(31, 78, 121, 0.18);
+      }
+
+      .find-fem-page .dropzone.over {
+        transform: scale(1.06);
+        background: rgba(219, 234, 247, 0.45);
+        box-shadow:
+          0 0 0 4px rgba(31, 78, 121, 0.16),
+          0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .find-fem-page .dropzone.correct {
+        background: rgba(46, 125, 50, 0.18);
+        box-shadow:
+          0 0 0 4px rgba(46, 125, 50, 0.14),
+          0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .find-fem-page .dropzone.locked {
+        cursor: default;
+      }
+
+      .find-fem-page .dropzone span {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        transform: translate(-50%, -50%);
+        width: 220%;
+        max-width: min(12rem, 42vw);
+        text-align: center;
+        font-size: 0.52rem;
+        font-weight: 700;
+        line-height: 1.15;
+        color: #145a1f;
+        pointer-events: none;
+      }
+
+      /* Finjusterede placeringer */
+      .find-fem-page .zone-1 {
+        top: 54%;
+        left: 13%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-1.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-2 {
+        top: 83.5%;
+        left: 24.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-2.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-3 {
+        top: 30%;
+        left: 53%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-3.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-4 {
+        top: 78%;
+        left: 70%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-4.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-5 {
+        top: 81%;
+        left: 69.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-5.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .risks-card {
+        padding: 11px 12px;
+      }
+
+      .find-fem-page .risks-card h2 {
+        font-size: 1.05rem;
+        margin: 0 0 8px;
+      }
+
+      .find-fem-page .risk-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .find-fem-page .risk-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+
+      .find-fem-page .risk-row .risk-item {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .find-fem-page .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.12);
+        color: #1f4e79;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.15);
+        transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .find-fem-page .crossword-audio-btn:hover {
+        background: rgba(31, 78, 121, 0.2);
+        color: #123b5d;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.22);
+      }
+
+      .find-fem-page .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .find-fem-page .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn__svg--pause,
+      .find-fem-page .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .find-fem-page
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn--intro {
+        width: 2.4rem;
+        height: 2.4rem;
+        flex-shrink: 0;
+      }
+
+      .find-fem-page .crossword-audio-btn--compact {
+        width: 2rem;
+        height: 2rem;
+        align-self: flex-start;
+        margin-top: 0.02rem;
+      }
+
+      .find-fem-page .risk-item {
+        background: #f8fbff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 9px 10px;
+        cursor: grab;
+        font-size: 0.84rem;
+        font-weight: 600;
+        line-height: 1.35;
+        user-select: none;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
+      }
+
+      .find-fem-page .risk-item:hover,
+      .find-fem-page .risk-item:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        background: var(--primary-light);
+        outline: none;
+      }
+
+      .find-fem-page .risk-item.dragging {
+        opacity: 0.55;
+        cursor: grabbing;
+      }
+
+      .find-fem-page .risk-item.placed {
+        background: #e7f5ea;
+        border-color: var(--accent);
+        color: #145a1f;
+        cursor: default;
+        opacity: 0.95;
+      }
+
+      .find-fem-page .counter {
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      .find-fem-page .feedback {
+        margin: 10px 0 0;
+        font-size: 1rem;
+        font-weight: 700;
+        min-height: 1.5em;
+      }
+
+      .find-fem-page .feedback.success {
+        color: var(--accent);
+      }
+
+      .find-fem-page .feedback.error {
+        color: var(--warning);
+      }
+
+      .find-fem-page .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .find-fem-page button:not(.crossword-audio-btn) {
+        border: none;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+      }
+
+      .find-fem-page .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .find-fem-page .btn-secondary {
+        background: #e8eef5;
+        color: var(--text);
+      }
+
+      .find-fem-page button:not(.crossword-audio-btn):hover,
+      .find-fem-page button:not(.crossword-audio-btn):focus {
+        opacity: 0.95;
+      }
+
+      @media (max-width: 1100px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: minmax(0, 1.45fr) minmax(200px, 250px);
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(72vh, 760px);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(66vh, 640px);
+        }
+
+        .find-fem-page .dropzone {
+          width: 7%;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .find-fem-page .image-card,
+        .find-fem-page .status-card {
+          padding: 14px;
+        }
+
+        .find-fem-page .risks-card {
+          padding: 10px 11px;
+        }
+
+        .find-fem-page .dropzone {
+          width: 9%;
+        }
+
+        .find-fem-page .dropzone span {
+          font-size: 0.48rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="page-sikker-maskiner">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../Baggrundsbillede.png"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card find-fejl-shell">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Maskiner</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <main class="find-fem-page">
+          <div class="page-inner">
+            <div class="topbar">
+              <div class="title-row">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--intro"
+                  data-audio="Sikker brug.mp3"
+                  aria-label="Afspil overskrift og opgaven højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <h1>Sikker brug</h1>
+              </div>
+
+              <p class="intro">
+                Se på billedet. Der er 5 fejl, som gør det usikkert at bruge rengøringsmaskinen. Træk den rigtige
+                fejltype hen til det rigtige sted på billedet.
+              </p>
+            </div>
+
+            <section class="task-layout">
+              <div class="task-main">
+                <section class="image-card">
+                  <div class="image-wrapper" aria-label="Billede med 5 sikkerhedsfejl ved brug af en rengøringsmaskine">
+                    <img
+                      src="Farer i rengoeringssituationen.png"
+                      alt="En serviceassistent bruger en rengøringsmaskine. På billedet er der fem sikkerhedsfejl."
+                      class="main-image"
+                      width="1536"
+                      height="1024"
+                      decoding="async"
+                    />
+
+                    <div class="dropzone zone-1" data-match="defekt-stik" aria-label="Dropzone 1">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-2" data-match="beskadiget-ledning" aria-label="Dropzone 2">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-3" data-match="uopmærksom" aria-label="Dropzone 3">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-4" data-match="forkert-fodtøj" aria-label="Dropzone 4">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-5" data-match="spild-på-gulv" aria-label="Dropzone 5">
+                      <span></span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="task-sidebar">
+                <section class="risks-card">
+                  <h2>Fejltyper</h2>
+                  <div class="risk-list" id="riskList"></div>
+                </section>
+
+                <section class="status-card" aria-live="polite">
+                  <p class="counter">Rigtige svar: <span id="score">0</span> / 5</p>
+                  <p id="feedback" class="feedback"></p>
+
+                  <div class="buttons">
+                    <button type="button" class="btn-secondary" id="resetBtn">Prøv igen</button>
+                    <button type="button" class="btn-primary" id="showAnswersBtn">Vis facit</button>
+                  </div>
+                </section>
+              </aside>
+            </section>
+          </div>
+        </main>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        const dropzones = document.querySelectorAll(".dropzone");
+        const scoreEl = document.getElementById("score");
+        const feedbackEl = document.getElementById("feedback");
+        const resetBtn = document.getElementById("resetBtn");
+        const showAnswersBtn = document.getElementById("showAnswersBtn");
+        const riskList = document.getElementById("riskList");
+
+        const riskAudioFiles = {
+          "defekt-stik": "Stik og stroem er ikke sikre.mp3",
+          "beskadiget-ledning": "Ledningen ved maskinen er beskadiget.mp3",
+          "uopmærksom": "Serviceassistenten bruger sin mobil og er ikke opmaerksom.mp3",
+          "forkert-fodtøj": "Forkert fodtoej ved maskinbrug.mp3",
+          "spild-på-gulv": "Spild paa gulvet giver risiko for at glide.mp3"
+        };
+
+        const risks = [
+          {
+            key: "defekt-stik",
+            text: "Stik og strøm er ikke sikre"
+          },
+          {
+            key: "beskadiget-ledning",
+            text: "Ledningen ved maskinen er beskadiget"
+          },
+          {
+            key: "uopmærksom",
+            text: "Serviceassistenten bruger sin mobil og er ikke opmærksom"
+          },
+          {
+            key: "forkert-fodtøj",
+            text: "Forkert fodtøj ved maskinbrug"
+          },
+          {
+            key: "spild-på-gulv",
+            text: "Spild på gulvet giver risiko for at glide"
+          }
+        ];
+
+        let draggedItem = null;
+        let score = 0;
+
+        function setFeedback(message, type) {
+          feedbackEl.textContent = message || "";
+          feedbackEl.className = "feedback";
+          if (type) {
+            feedbackEl.classList.add(type);
+          }
+        }
+
+        function updateScore() {
+          scoreEl.textContent = String(score);
+          if (score === 5) {
+            setFeedback("Flot! Du fandt alle 5 fejl.", "success");
+          }
+        }
+
+        function shuffle(array) {
+          const copy = [...array];
+          for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+          }
+          return copy;
+        }
+
+        function renderRiskItems() {
+          const shuffled = shuffle(risks);
+
+          riskList.innerHTML = shuffled
+            .map(
+              (risk) => `
+                <div class="risk-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="${riskAudioFiles[risk.key]}"
+                    aria-label="Afspil denne fejltype højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <div class="risk-item" draggable="true" tabindex="0" data-risk="${risk.key}">
+                    ${risk.text}
+                  </div>
+                </div>
+              `
+            )
+            .join("");
+
+          bindRiskItems();
+        }
+
+        function bindRiskItems() {
+          document.querySelectorAll(".risk-item").forEach((item) => {
+            item.addEventListener("dragstart", (e) => {
+              if (e.target && e.target.closest && e.target.closest(".crossword-audio-btn")) {
+                e.preventDefault();
+                return;
+              }
+              if (item.classList.contains("placed")) return;
+              draggedItem = item;
+              item.classList.add("dragging");
+            });
+
+            item.addEventListener("dragend", () => {
+              item.classList.remove("dragging");
+            });
+          });
+        }
+
+        dropzones.forEach((zone) => {
+          zone.addEventListener("dragover", (e) => {
+            if (zone.classList.contains("locked")) return;
+            e.preventDefault();
+            zone.classList.add("over");
+          });
+
+          zone.addEventListener("dragleave", () => {
+            zone.classList.remove("over");
+          });
+
+          zone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            zone.classList.remove("over");
+
+            if (!draggedItem || zone.classList.contains("locked")) return;
+
+            const correctRisk = zone.dataset.match;
+            const draggedRisk = draggedItem.dataset.risk;
+
+            if (draggedRisk === correctRisk) {
+              zone.classList.add("correct", "locked");
+              zone.innerHTML = "<span>" + draggedItem.textContent.trim() + "</span>";
+
+              draggedItem.classList.add("placed");
+              draggedItem.setAttribute("draggable", "false");
+
+              score++;
+              updateScore();
+
+              if (score < 5) {
+                setFeedback("Rigtigt svar.", "success");
+              }
+            } else {
+              setFeedback("Det er ikke det rigtige sted. Prøv igen.", "error");
+            }
+
+            draggedItem = null;
+          });
+        });
+
+        resetBtn.addEventListener("click", () => {
+          score = 0;
+          scoreEl.textContent = "0";
+          setFeedback("");
+          draggedItem = null;
+
+          dropzones.forEach((zone) => {
+            zone.classList.remove("correct", "locked", "over");
+            zone.innerHTML = "<span></span>";
+          });
+
+          renderRiskItems();
+        });
+
+        showAnswersBtn.addEventListener("click", () => {
+          const answers = {
+            "defekt-stik": "Stik og strøm er ikke sikre",
+            "beskadiget-ledning": "Ledningen ved maskinen er beskadiget",
+            "uopmærksom": "Serviceassistenten bruger sin mobil og er ikke opmærksom",
+            "forkert-fodtøj": "Forkert fodtøj ved maskinbrug",
+            "spild-på-gulv": "Spild på gulvet giver risiko for at glide"
+          };
+
+          dropzones.forEach((zone) => {
+            const key = zone.dataset.match;
+            zone.classList.add("correct", "locked");
+            zone.innerHTML = "<span>" + answers[key] + "</span>";
+          });
+
+          document.querySelectorAll(".risk-item").forEach((item) => {
+            item.classList.add("placed");
+            item.setAttribute("draggable", "false");
+          });
+
+          score = 5;
+          updateScore();
+          setFeedback("Her kan du se facit.", "success");
+        });
+
+        renderRiskItems();
+      })();
+    </script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sikker brug – Find 5 fejl</title>
+
+    <link rel="preload" href="../Baggrundsbillede.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="Sikker brug.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+
+    <style>
+      .page-sikker-maskiner .bg-image {
+        object-position: 50% 20%;
+      }
+
+      .article-card.find-fejl-shell {
+        max-width: min(1420px, calc(100vw - 2rem));
+        background: linear-gradient(
+          180deg,
+          rgba(244, 248, 251, 0.97) 0%,
+          rgba(232, 240, 245, 0.97) 100%
+        );
+        border: 1px solid rgba(19, 59, 93, 0.12);
+        box-shadow:
+          0 8px 32px rgba(20, 60, 80, 0.12),
+          0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .find-fem-page {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --primary: #1f4e79;
+        --primary-light: #dbeaf7;
+        --accent: #2e7d32;
+        --warning: #c62828;
+        --text: #1f2933;
+        --border: #cfd8e3;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --radius: 18px;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .find-fem-page * {
+        box-sizing: border-box;
+      }
+
+      .find-fem-page .page-inner {
+        max-width: 1420px;
+        margin: 0 auto;
+        padding: 0 0 0.5rem;
+      }
+
+      .find-fem-page .topbar {
+        margin-bottom: 16px;
+      }
+
+      .find-fem-page .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+      }
+
+      .find-fem-page .title-row h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 2.5vw, 2rem);
+        color: var(--primary);
+        text-align: center;
+      }
+
+      .find-fem-page .intro {
+        max-width: 900px;
+        margin: 0;
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      .find-fem-page .task-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(200px, 260px);
+        gap: 16px;
+        align-items: start;
+        margin-top: 18px;
+      }
+
+      .find-fem-page .task-main {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .find-fem-page .task-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+        align-self: start;
+        will-change: transform;
+      }
+
+      .find-fem-page .image-card,
+      .find-fem-page .risks-card,
+      .find-fem-page .status-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 16px;
+      }
+
+      .find-fem-page .image-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #e9eef5;
+      }
+
+      .find-fem-page .main-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: min(78vh, 860px);
+        object-fit: contain;
+      }
+
+      .find-fem-page .dropzone {
+        position: absolute;
+        width: 8%;
+        aspect-ratio: 1 / 1;
+        border: none;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.12rem;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          box-shadow 0.2s ease;
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.22),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+      }
+
+      .find-fem-page .dropzone::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.95);
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.85),
+          0 0 0 6px rgba(31, 78, 121, 0.18);
+      }
+
+      .find-fem-page .dropzone.over {
+        transform: scale(1.06);
+        background: rgba(219, 234, 247, 0.45);
+        box-shadow:
+          0 0 0 4px rgba(31, 78, 121, 0.16),
+          0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .find-fem-page .dropzone.correct {
+        background: rgba(46, 125, 50, 0.18);
+        box-shadow:
+          0 0 0 4px rgba(46, 125, 50, 0.14),
+          0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .find-fem-page .dropzone.locked {
+        cursor: default;
+      }
+
+      .find-fem-page .dropzone span {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        transform: translate(-50%, -50%);
+        width: 220%;
+        max-width: min(12rem, 42vw);
+        text-align: center;
+        font-size: 0.52rem;
+        font-weight: 700;
+        line-height: 1.15;
+        color: #145a1f;
+        pointer-events: none;
+      }
+
+      /* Finjusterede placeringer */
+      .find-fem-page .zone-1 {
+        top: 54%;
+        left: 13%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-1.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-2 {
+        top: 83.5%;
+        left: 24.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-2.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-3 {
+        top: 30%;
+        left: 53%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-3.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-4 {
+        top: 78%;
+        left: 70%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-4.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-5 {
+        top: 81%;
+        left: 69.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-5.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .risks-card {
+        padding: 11px 12px;
+      }
+
+      .find-fem-page .risks-card h2 {
+        font-size: 1.05rem;
+        margin: 0 0 8px;
+      }
+
+      .find-fem-page .risk-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .find-fem-page .risk-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+
+      .find-fem-page .risk-row .risk-item {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .find-fem-page .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.12);
+        color: #1f4e79;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.15);
+        transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .find-fem-page .crossword-audio-btn:hover {
+        background: rgba(31, 78, 121, 0.2);
+        color: #123b5d;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.22);
+      }
+
+      .find-fem-page .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .find-fem-page .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn__svg--pause,
+      .find-fem-page .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .find-fem-page
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .find-fem-page .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .find-fem-page .crossword-audio-btn--intro {
+        width: 2.4rem;
+        height: 2.4rem;
+        flex-shrink: 0;
+      }
+
+      .find-fem-page .crossword-audio-btn--compact {
+        width: 2rem;
+        height: 2rem;
+        align-self: flex-start;
+        margin-top: 0.02rem;
+      }
+
+      .find-fem-page .risk-item {
+        background: #f8fbff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 9px 10px;
+        cursor: grab;
+        font-size: 0.84rem;
+        font-weight: 600;
+        line-height: 1.35;
+        user-select: none;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
+      }
+
+      .find-fem-page .risk-item:hover,
+      .find-fem-page .risk-item:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        background: var(--primary-light);
+        outline: none;
+      }
+
+      .find-fem-page .risk-item.dragging {
+        opacity: 0.55;
+        cursor: grabbing;
+      }
+
+      .find-fem-page .risk-item.placed {
+        background: #e7f5ea;
+        border-color: var(--accent);
+        color: #145a1f;
+        cursor: default;
+        opacity: 0.95;
+      }
+
+      .find-fem-page .counter {
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      .find-fem-page .feedback {
+        margin: 10px 0 0;
+        font-size: 1rem;
+        font-weight: 700;
+        min-height: 1.5em;
+      }
+
+      .find-fem-page .feedback.success {
+        color: var(--accent);
+      }
+
+      .find-fem-page .feedback.error {
+        color: var(--warning);
+      }
+
+      .find-fem-page .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .find-fem-page button:not(.crossword-audio-btn) {
+        border: none;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+      }
+
+      .find-fem-page .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .find-fem-page .btn-secondary {
+        background: #e8eef5;
+        color: var(--text);
+      }
+
+      .find-fem-page button:not(.crossword-audio-btn):hover,
+      .find-fem-page button:not(.crossword-audio-btn):focus {
+        opacity: 0.95;
+      }
+
+      @media (max-width: 1100px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: minmax(0, 1.45fr) minmax(200px, 250px);
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(72vh, 760px);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(66vh, 640px);
+        }
+
+        .find-fem-page .dropzone {
+          width: 7%;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .find-fem-page .image-card,
+        .find-fem-page .status-card {
+          padding: 14px;
+        }
+
+        .find-fem-page .risks-card {
+          padding: 10px 11px;
+        }
+
+        .find-fem-page .dropzone {
+          width: 9%;
+        }
+
+        .find-fem-page .dropzone span {
+          font-size: 0.48rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="page-sikker-maskiner">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../Baggrundsbillede.png"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card find-fejl-shell">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Maskiner</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <main class="find-fem-page">
+          <div class="page-inner">
+            <div class="topbar">
+              <div class="title-row">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--intro"
+                  data-audio="Sikker brug.mp3"
+                  aria-label="Afspil overskrift og opgaven højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <h1>Sikker brug</h1>
+              </div>
+
+              <p class="intro">
+                Se på billedet. Der er 5 fejl, som gør det usikkert at bruge rengøringsmaskinen. Træk den rigtige
+                fejltype hen til det rigtige sted på billedet.
+              </p>
+            </div>
+
+            <section class="task-layout">
+              <div class="task-main">
+                <section class="image-card">
+                  <div class="image-wrapper" aria-label="Billede med 5 sikkerhedsfejl ved brug af en rengøringsmaskine">
+                    <img
+                      src="Farer i rengoeringssituationen.png"
+                      alt="En serviceassistent bruger en rengøringsmaskine. På billedet er der fem sikkerhedsfejl."
+                      class="main-image"
+                      width="1536"
+                      height="1024"
+                      decoding="async"
+                    />
+
+                    <div class="dropzone zone-1" data-match="defekt-stik" aria-label="Dropzone 1">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-2" data-match="beskadiget-ledning" aria-label="Dropzone 2">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-3" data-match="uopmærksom" aria-label="Dropzone 3">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-4" data-match="forkert-fodtøj" aria-label="Dropzone 4">
+                      <span></span>
+                    </div>
+
+                    <div class="dropzone zone-5" data-match="spild-på-gulv" aria-label="Dropzone 5">
+                      <span></span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="task-sidebar">
+                <section class="risks-card">
+                  <h2>Fejltyper</h2>
+                  <div class="risk-list" id="riskList"></div>
+                </section>
+
+                <section class="status-card" aria-live="polite">
+                  <p class="counter">Rigtige svar: <span id="score">0</span> / 5</p>
+                  <p id="feedback" class="feedback"></p>
+
+                  <div class="buttons">
+                    <button type="button" class="btn-secondary" id="resetBtn">Prøv igen</button>
+                    <button type="button" class="btn-primary" id="showAnswersBtn">Vis facit</button>
+                  </div>
+                </section>
+              </aside>
+            </section>
+          </div>
+        </main>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        const dropzones = document.querySelectorAll(".dropzone");
+        const scoreEl = document.getElementById("score");
+        const feedbackEl = document.getElementById("feedback");
+        const resetBtn = document.getElementById("resetBtn");
+        const showAnswersBtn = document.getElementById("showAnswersBtn");
+        const riskList = document.getElementById("riskList");
+
+        const riskAudioFiles = {
+          "defekt-stik": "Stik og stroem er ikke sikre.mp3",
+          "beskadiget-ledning": "Ledningen ved maskinen er beskadiget.mp3",
+          "uopmærksom": "Serviceassistenten bruger sin mobil og er ikke opmaerksom.mp3",
+          "forkert-fodtøj": "Forkert fodtoej ved maskinbrug.mp3",
+          "spild-på-gulv": "Spild paa gulvet giver risiko for at glide.mp3"
+        };
+
+        const risks = [
+          {
+            key: "defekt-stik",
+            text: "Stik og strøm er ikke sikre"
+          },
+          {
+            key: "beskadiget-ledning",
+            text: "Ledningen ved maskinen er beskadiget"
+          },
+          {
+            key: "uopmærksom",
+            text: "Serviceassistenten bruger sin mobil og er ikke opmærksom"
+          },
+          {
+            key: "forkert-fodtøj",
+            text: "Forkert fodtøj ved maskinbrug"
+          },
+          {
+            key: "spild-på-gulv",
+            text: "Spild på gulvet giver risiko for at glide"
+          }
+        ];
+
+        let draggedItem = null;
+        let score = 0;
+
+        function setFeedback(message, type) {
+          feedbackEl.textContent = message || "";
+          feedbackEl.className = "feedback";
+          if (type) {
+            feedbackEl.classList.add(type);
+          }
+        }
+
+        function updateScore() {
+          scoreEl.textContent = String(score);
+          if (score === 5) {
+            setFeedback("Flot! Du fandt alle 5 fejl.", "success");
+          }
+        }
+
+        function shuffle(array) {
+          const copy = [...array];
+          for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+          }
+          return copy;
+        }
+
+        function renderRiskItems() {
+          const shuffled = shuffle(risks);
+
+          riskList.innerHTML = shuffled
+            .map(
+              (risk) => `
+                <div class="risk-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="${riskAudioFiles[risk.key]}"
+                    aria-label="Afspil denne fejltype højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <div class="risk-item" draggable="true" tabindex="0" data-risk="${risk.key}">
+                    ${risk.text}
+                  </div>
+                </div>
+              `
+            )
+            .join("");
+
+          bindRiskItems();
+        }
+
+        function bindRiskItems() {
+          document.querySelectorAll(".risk-item").forEach((item) => {
+            item.addEventListener("dragstart", (e) => {
+              if (e.target && e.target.closest && e.target.closest(".crossword-audio-btn")) {
+                e.preventDefault();
+                return;
+              }
+              if (item.classList.contains("placed")) return;
+              draggedItem = item;
+              item.classList.add("dragging");
+            });
+
+            item.addEventListener("dragend", () => {
+              item.classList.remove("dragging");
+            });
+          });
+        }
+
+        dropzones.forEach((zone) => {
+          zone.addEventListener("dragover", (e) => {
+            if (zone.classList.contains("locked")) return;
+            e.preventDefault();
+            zone.classList.add("over");
+          });
+
+          zone.addEventListener("dragleave", () => {
+            zone.classList.remove("over");
+          });
+
+          zone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            zone.classList.remove("over");
+
+            if (!draggedItem || zone.classList.contains("locked")) return;
+
+            const correctRisk = zone.dataset.match;
+            const draggedRisk = draggedItem.dataset.risk;
+
+            if (draggedRisk === correctRisk) {
+              zone.classList.add("correct", "locked");
+              zone.innerHTML = "<span>" + draggedItem.textContent.trim() + "</span>";
+
+              draggedItem.classList.add("placed");
+              draggedItem.setAttribute("draggable", "false");
+
+              score++;
+              updateScore();
+
+              if (score < 5) {
+                setFeedback("Rigtigt svar.", "success");
+              }
+            } else {
+              setFeedback("Det er ikke det rigtige sted. Prøv igen.", "error");
+            }
+
+            draggedItem = null;
+          });
+        });
+
+        resetBtn.addEventListener("click", () => {
+          score = 0;
+          scoreEl.textContent = "0";
+          setFeedback("");
+          draggedItem = null;
+
+          dropzones.forEach((zone) => {
+            zone.classList.remove("correct", "locked", "over");
+            zone.innerHTML = "<span></span>";
+          });
+
+          renderRiskItems();
+        });
+
+        showAnswersBtn.addEventListener("click", () => {
+          const answers = {
+            "defekt-stik": "Stik og strøm er ikke sikre",
+            "beskadiget-ledning": "Ledningen ved maskinen er beskadiget",
+            "uopmærksom": "Serviceassistenten bruger sin mobil og er ikke opmærksom",
+            "forkert-fodtøj": "Forkert fodtøj ved maskinbrug",
+            "spild-på-gulv": "Spild på gulvet giver risiko for at glide"
+          };
+
+          dropzones.forEach((zone) => {
+            const key = zone.dataset.match;
+            zone.classList.add("correct", "locked");
+            zone.innerHTML = "<span>" + answers[key] + "</span>";
+          });
+
+          document.querySelectorAll(".risk-item").forEach((item) => {
+            item.classList.add("placed");
+            item.setAttribute("draggable", "false");
+          });
+
+          score = 5;
+          updateScore();
+          setFeedback("Her kan du se facit.", "success");
+        });
+
+        renderRiskItems();
+      })();
+    </script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sikker brug – Find 5 fejl</title>
+
+    <link rel="preload" href="../Baggrundsbillede.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="Sikker brug.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+
+    <style>
+      .page-sikker-maskiner .bg-image {
+        object-position: 50% 20%;
+      }
+
+      .article-card.find-fejl-shell {
+        max-width: min(1420px, calc(100vw - 2rem));
+        background: linear-gradient(180deg, rgba(244, 248, 251, 0.97) 0%, rgba(232, 240, 245, 0.97) 100%);
+        border: 1px solid rgba(19, 59, 93, 0.12);
+        box-shadow:
+          0 8px 32px rgba(20, 60, 80, 0.12),
+          0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .find-fem-page {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --primary: #1f4e79;
+        --primary-light: #dbeaf7;
+        --accent: #2e7d32;
+        --warning: #c62828;
+        --text: #1f2933;
+        --border: #cfd8e3;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --radius: 18px;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .find-fem-page * {
+        box-sizing: border-box;
+      }
+
+      .find-fem-page .page-inner {
+        max-width: 1420px;
+        margin: 0 auto;
+        padding: 0 0 0.5rem;
+      }
+
+      .find-fem-page .topbar {
+        margin-bottom: 16px;
+      }
+
+      .find-fem-page .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+      }
+
+      .find-fem-page .title-row h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 2.5vw, 2rem);
+        color: var(--primary);
+        text-align: center;
+      }
+
+      .find-fem-page .intro {
+        max-width: 900px;
+        margin: 0;
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      .find-fem-page .task-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(200px, 260px);
+        gap: 16px;
+        align-items: start;
+        margin-top: 18px;
+      }
+
+      .find-fem-page .task-main {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .find-fem-page .task-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+        align-self: start;
+        will-change: transform;
+      }
+
+      .find-fem-page .image-card,
+      .find-fem-page .risks-card,
+      .find-fem-page .status-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 16px;
+      }
+
+      .find-fem-page .image-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #e9eef5;
+      }
+
+      .find-fem-page .main-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: min(78vh, 860px);
+        object-fit: contain;
+      }
+
+      .find-fem-page .dropzone {
+        position: absolute;
+        width: 8%;
+        aspect-ratio: 1 / 1;
+        border: none;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.12rem;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          box-shadow 0.2s ease;
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.22),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+      }
+
+      .find-fem-page .dropzone::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.95);
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.85),
+          0 0 0 6px rgba(31, 78, 121, 0.18);
+      }
+
+      .find-fem-page .dropzone.over {
+        transform: scale(1.06);
+        background: rgba(219, 234, 247, 0.45);
+        box-shadow:
+          0 0 0 4px rgba(31, 78, 121, 0.16),
+          0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .find-fem-page .dropzone.correct {
+        background: rgba(46, 125, 50, 0.18);
+        box-shadow:
+          0 0 0 4px rgba(46, 125, 50, 0.14),
+          0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .find-fem-page .dropzone.locked {
+        cursor: default;
+      }
+
+      .find-fem-page .dropzone span {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        transform: translate(-50%, -50%);
+        width: 220%;
+        max-width: min(12rem, 42vw);
+        text-align: center;
+        font-size: 0.52rem;
+        font-weight: 700;
+        line-height: 1.15;
+        color: #145a1f;
+        pointer-events: none;
+      }
+
+      .find-fem-page .zone-1 {
+        top: 52%;
+        left: 5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-1.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-2 {
+        top: 83.5%;
+        left: 24.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-2.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-3 {
+        top: 30%;
+        left: 53%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-3.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-4 {
+        top: 75%;
+        left: 65%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-4.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .zone-5 {
+        top: 81%;
+        left: 69.5%;
+        transform: translate(-50%, -50%);
+      }
+
+      .find-fem-page .dropzone.zone-5.over {
+        transform: translate(-50%, -50%) scale(1.06);
+      }
+
+      .find-fem-page .risks-card {
+        padding: 11px 12px;
+      }
+
+      .find-fem-page .risks-card h2 {
+        font-size: 1.05rem;
+        margin: 0 0 8px;
+      }
+
+      .find-fem-page .risk-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .find-fem-page .risk-item {
+        background: #f8fbff;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 9px 10px;
+        cursor: grab;
+        font-size: 0.84rem;
+        font-weight: 600;
+        line-height: 1.35;
+        user-select: none;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
+      }
+
+      .find-fem-page .risk-item:hover,
+      .find-fem-page .risk-item:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        background: var(--primary-light);
+        outline: none;
+      }
+
+      .find-fem-page .risk-item.dragging {
+        opacity: 0.55;
+        cursor: grabbing;
+      }
+
+      .find-fem-page .risk-item.placed {
+        background: #e7f5ea;
+        border-color: var(--accent);
+        color: #145a1f;
+        cursor: default;
+        opacity: 0.95;
+      }
+
+      .find-fem-page .counter {
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      .find-fem-page .feedback {
+        margin: 10px 0 0;
+        font-size: 1rem;
+        font-weight: 700;
+        min-height: 1.5em;
+      }
+
+      .find-fem-page .feedback.success {
+        color: var(--accent);
+      }
+
+      .find-fem-page .feedback.error {
+        color: var(--warning);
+      }
+
+      .find-fem-page .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .find-fem-page button {
+        border: none;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+      }
+
+      .find-fem-page .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .find-fem-page .btn-secondary {
+        background: #e8eef5;
+        color: var(--text);
+      }
+
+      .find-fem-page button:hover,
+      .find-fem-page button:focus {
+        opacity: 0.95;
+      }
+
+      @media (max-width: 1100px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: minmax(0, 1.45fr) minmax(200px, 250px);
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(72vh, 760px);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .find-fem-page .task-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .find-fem-page .main-image {
+          max-height: min(66vh, 640px);
+        }
+
+        .find-fem-page .dropzone {
+          width: 7%;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .find-fem-page .image-card,
+        .find-fem-page .status-card {
+          padding: 14px;
+        }
+
+        .find-fem-page .risks-card {
+          padding: 10px 11px;
+        }
+
+        .find-fem-page .dropzone {
+          width: 9%;
+        }
+
+        .find-fem-page .dropzone span {
+          font-size: 0.48rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="page-sikker-maskiner">
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../Baggrundsbillede.png"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card find-fejl-shell">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Maskiner</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <main class="find-fem-page">
+          <div class="page-inner">
+            <div class="topbar">
+              <div class="title-row">
+                <h1>Sikker brug</h1>
+              </div>
+
+              <p class="intro">
+                Se på billedet. Der er 5 fejl, som gør det usikkert at bruge rengøringsmaskinen. Træk den rigtige
+                fejltype hen til det rigtige sted på billedet.
+              </p>
+            </div>
+
+            <section class="task-layout">
+              <div class="task-main">
+                <section class="image-card">
+                  <div class="image-wrapper" aria-label="Billede med 5 sikkerhedsfejl ved brug af en rengøringsmaskine">
+                    <img
+                      src="Farer i rengoeringssituationen.png"
+                      alt="En serviceassistent bruger en rengøringsmaskine. På billedet er der fem sikkerhedsfejl."
+                      class="main-image"
+                      width="1536"
+                      height="1024"
+                      decoding="async"
+                    />
+
+                    <div class="dropzone zone-1" data-match="defekt-stik" aria-label="Dropzone 1"><span></span></div>
+
+                    <div class="dropzone zone-2" data-match="beskadiget-ledning" aria-label="Dropzone 2"><span></span></div>
+
+                    <div class="dropzone zone-3" data-match="uopmærksom" aria-label="Dropzone 3"><span></span></div>
+
+                    <div class="dropzone zone-4" data-match="forkert-fodtøj" aria-label="Dropzone 4"><span></span></div>
+
+                    <div class="dropzone zone-5" data-match="spild-på-gulv" aria-label="Dropzone 5"><span></span></div>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="task-sidebar">
+                <section class="risks-card">
+                  <h2>Fejltyper</h2>
+                  <div class="risk-list" id="riskList">
+                    <div class="risk-item" draggable="true" tabindex="0" data-risk="defekt-stik">Stik og strøm er ikke sikre</div>
+
+                    <div class="risk-item" draggable="true" tabindex="0" data-risk="beskadiget-ledning">
+                      Ledningen ved maskinen er beskadiget
+                    </div>
+
+                    <div class="risk-item" draggable="true" tabindex="0" data-risk="uopmærksom">Serviceassistenten bruger sin mobil og er ikke opmærksom</div>
+
+                    <div class="risk-item" draggable="true" tabindex="0" data-risk="forkert-fodtøj">
+                      Forkert fodtøj ved maskinbrug
+                    </div>
+
+                    <div class="risk-item" draggable="true" tabindex="0" data-risk="spild-på-gulv">
+                      Spild på gulvet giver risiko for at glide
+                    </div>
+                  </div>
+                </section>
+
+                <section class="status-card" aria-live="polite">
+                  <p class="counter">Rigtige svar: <span id="score">0</span> / 5</p>
+                  <p id="feedback" class="feedback"></p>
+
+                  <div class="buttons">
+                    <button type="button" class="btn-secondary" id="resetBtn">Prøv igen</button>
+                    <button type="button" class="btn-primary" id="showAnswersBtn">Vis facit</button>
+                  </div>
+                </section>
+              </aside>
+            </section>
+          </div>
+        </main>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        const dropzones = document.querySelectorAll(".dropzone");
+        const scoreEl = document.getElementById("score");
+        const feedbackEl = document.getElementById("feedback");
+        const resetBtn = document.getElementById("resetBtn");
+        const showAnswersBtn = document.getElementById("showAnswersBtn");
+        const riskList = document.getElementById("riskList");
+
+        const RISK_LIST_HTML = `
+          <div class="risk-item" draggable="true" tabindex="0" data-risk="defekt-stik">
+            Stik og strøm er ikke sikre
+          </div>
+
+          <div class="risk-item" draggable="true" tabindex="0" data-risk="beskadiget-ledning">
+            Ledningen ved maskinen er beskadiget
+          </div>
+
+          <div class="risk-item" draggable="true" tabindex="0" data-risk="uopmærksom">
+            Serviceassistenten bruger sin mobil og er ikke opmærksom
+          </div>
+
+          <div class="risk-item" draggable="true" tabindex="0" data-risk="forkert-fodtøj">
+            Forkert fodtøj ved maskinbrug
+          </div>
+
+          <div class="risk-item" draggable="true" tabindex="0" data-risk="spild-på-gulv">
+            Spild på gulvet giver risiko for at glide
+          </div>
+        `;
+
+        let draggedItem = null;
+        let score = 0;
+
+        function setFeedback(message, type) {
+          feedbackEl.textContent = message || "";
+          feedbackEl.className = "feedback";
+          if (type) {
+            feedbackEl.classList.add(type);
+          }
+        }
+
+        function updateScore() {
+          scoreEl.textContent = String(score);
+          if (score === 5) {
+            setFeedback("Flot! Du fandt alle 5 fejl.", "success");
+          }
+        }
+
+        function bindRiskItems() {
+          document.querySelectorAll(".risk-item").forEach((item) => {
+            item.addEventListener("dragstart", (e) => {
+              if (e.target && e.target.closest && e.target.closest(".crossword-audio-btn")) {
+                e.preventDefault();
+                return;
+              }
+              if (item.classList.contains("placed")) return;
+              draggedItem = item;
+              item.classList.add("dragging");
+            });
+
+            item.addEventListener("dragend", () => {
+              item.classList.remove("dragging");
+            });
+          });
+        }
+
+        bindRiskItems();
+
+        dropzones.forEach((zone) => {
+          zone.addEventListener("dragover", (e) => {
+            if (zone.classList.contains("locked")) return;
+            e.preventDefault();
+            zone.classList.add("over");
+          });
+
+          zone.addEventListener("dragleave", () => {
+            zone.classList.remove("over");
+          });
+
+          zone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            zone.classList.remove("over");
+
+            if (!draggedItem || zone.classList.contains("locked")) return;
+
+            const correctRisk = zone.dataset.match;
+            const draggedRisk = draggedItem.dataset.risk;
+
+            if (draggedRisk === correctRisk) {
+              zone.classList.add("correct", "locked");
+              zone.innerHTML = "<span>" + draggedItem.textContent.trim() + "</span>";
+
+              draggedItem.classList.add("placed");
+              draggedItem.setAttribute("draggable", "false");
+
+              score++;
+              updateScore();
+
+              if (score < 5) {
+                setFeedback("Rigtigt svar.", "success");
+              }
+            } else {
+              setFeedback("Det er ikke det rigtige sted. Prøv igen.", "error");
+            }
+
+            draggedItem = null;
+          });
+        });
+
+        resetBtn.addEventListener("click", () => {
+          score = 0;
+          scoreEl.textContent = "0";
+          setFeedback("");
+
+          riskList.innerHTML = RISK_LIST_HTML;
+
+          dropzones.forEach((zone) => {
+            zone.classList.remove("correct", "locked", "over");
+            zone.innerHTML = "<span></span>";
+          });
+
+          bindRiskItems();
+        });
+
+        showAnswersBtn.addEventListener("click", () => {
+          const answers = {
+            "defekt-stik": "Stik og strøm er ikke sikre",
+            "beskadiget-ledning": "Ledningen ved maskinen er beskadiget",
+            uopmærksom: "Serviceassistenten bruger sin mobil og er ikke opmærksom",
+            "forkert-fodtøj": "Forkert fodtøj ved maskinbrug",
+            "spild-på-gulv": "Spild på gulvet giver risiko for at glide"
+          };
+
+          dropzones.forEach((zone) => {
+            const key = zone.dataset.match;
+            zone.classList.add("correct", "locked");
+            zone.innerHTML = "<span>" + answers[key] + "</span>";
+          });
+
+          document.querySelectorAll(".risk-item").forEach((item) => {
+            item.classList.add("placed");
+            item.setAttribute("draggable", "false");
+          });
+
+          score = 5;
+          updateScore();
+          setFeedback("Her kan du se facit.", "success");
+        });
+      })();
+    </script>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sikker brug – Find 5 fejl</title>
+
+    <link rel="preload" href="../Baggrundsbillede.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="Sikker brug.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+
+    <style>
+      .sb-find-page {
+        --bg: #f4f7fb;
+        --card: #ffffff;
+        --primary: #1f4e79;
+        --primary-light: #dbeaf7;
+        --accent: #2e7d32;
+        --warning: #c62828;
+        --text: #1f2933;
+        --muted: #52606d;
+        --border: #cfd8e3;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --radius: 18px;
+
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .sb-find-page * {
+        box-sizing: border-box;
+      }
+
+      .sb-find-page .page-inner {
+        max-width: 1420px;
+        margin: 0 auto;
+        padding: 0 0 0.5rem;
+      }
+
+      .sb-find-page .topbar {
+        margin-bottom: 16px;
+      }
+
+      .sb-find-page .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+      }
+
+      .sb-find-page .title-row h1 {
+        margin: 0;
+        font-size: clamp(1.6rem, 2.5vw, 2rem);
+        color: var(--primary);
+        text-align: center;
+      }
+
+      .sb-find-page .intro {
+        max-width: 900px;
+        margin: 0 auto;
+        font-size: 1rem;
+        color: var(--text);
+        text-align: center;
+      }
+
+      .sb-find-page .task-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(260px, 320px);
+        gap: 20px;
+        align-items: start;
+      }
+
+      .sb-find-page .image-card,
+      .sb-find-page .status-card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.98) 0%,
+          rgba(244, 248, 251, 0.98) 100%
+        );
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .sb-find-page .image-card {
+        padding: 16px;
+      }
+
+      .sb-find-page .status-card {
+        padding: 18px;
+        position: sticky;
+        top: 18px;
+      }
+
+      .sb-find-page .image-wrapper {
+        position: relative;
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #eef4f8;
+        border: 1px solid #d9e3ec;
+      }
+
+      .sb-find-page .main-image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .sb-find-page .hotspot {
+        position: absolute;
+        border: 3px solid transparent;
+        background: rgba(198, 40, 40, 0.08);
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.18s ease;
+      }
+
+      .sb-find-page .hotspot:hover,
+      .sb-find-page .hotspot:focus-visible {
+        border-color: rgba(198, 40, 40, 0.7);
+        background: rgba(198, 40, 40, 0.16);
+        outline: none;
+      }
+
+      .sb-find-page .hotspot.found {
+        border-color: #2e7d32;
+        background: rgba(46, 125, 50, 0.18);
+        cursor: default;
+      }
+
+      .sb-find-page .counter {
+        margin: 0 0 10px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .sb-find-page .feedback {
+        min-height: 48px;
+        margin: 0 0 14px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: #eef4ff;
+        color: #1e3a5f;
+        border: 1px solid #c9dæf;
+      }
+
+      .sb-find-page .feedback.success {
+        background: #e7f6ea;
+        color: #176534;
+        border-color: #bfe3c8;
+      }
+
+      .sb-find-page .feedback.error {
+        background: #fdecec;
+        color: #9f1d1d;
+        border-color: #f4c6c6;
+      }
+
+      .sb-find-page .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .sb-find-page .btn-primary,
+      .sb-find-page .btn-secondary {
+        appearance: none;
+        border: none;
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+      }
+
+      .sb-find-page .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .sb-find-page .btn-primary:hover,
+      .sb-find-page .btn-secondary:hover {
+        transform: translateY(-1px);
+      }
+
+      .sb-find-page .btn-secondary {
+        background: #e8eef5;
+        color: #243b53;
+      }
+
+      .sb-find-page .answer-box {
+        display: none;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: #f8fbff;
+        border: 1px solid #bfd3ea;
+      }
+
+      .sb-find-page .answer-box.show {
+        display: block;
+      }
+
+      .sb-find-page .answer-box h2 {
+        margin: 0 0 8px;
+        font-size: 1.05rem;
+        color: var(--primary);
+      }
+
+      .sb-find-page .answer-box ol {
+        margin: 0;
+        padding-left: 1.2rem;
+      }
+
+      .sb-find-page .tip {
+        margin-top: 16px;
+        font-size: 0.96rem;
+        color: var(--muted);
+      }
+
+      @media (max-width: 980px) {
+        .sb-find-page .task-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .sb-find-page .status-card {
+          position: static;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .sb-find-page .image-card,
+        .sb-find-page .status-card {
+          padding: 12px;
+        }
+
+        .sb-find-page .hotspot {
+          border-width: 2px;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="page-sikker-maskiner">
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../Baggrundsbillede.png"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Maskiner</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <main class="sb-find-page">
+          <div class="page-inner">
+            <div class="topbar">
+              <div class="title-row">
+                <h1>Sikker brug – Find 5 fejl</h1>
+              </div>
+
+              <p class="intro">
+                Se på billedet og klik på de 5 fejl. Eleverne skal finde de ting, der gør det usikkert at bruge en
+                rengøringsmaskine.
+              </p>
+            </div>
+
+            <section class="task-layout">
+              <div class="task-main">
+                <section class="image-card">
+                  <div class="image-wrapper" aria-label="Billede med 5 sikkerhedsfejl ved brug af en maskine">
+                    <img
+                      src="Farer i rengoeringssituationen.png"
+                      alt="En serviceassistent bruger en rengøringsmaskine. På billedet er der fem fejl, som gør arbejdet usikkert."
+                      class="main-image"
+                      width="1536"
+                      height="1024"
+                      decoding="async"
+                    />
+
+                    <button
+                      class="hotspot"
+                      type="button"
+                      data-id="1"
+                      aria-label="Fejl 1"
+                      style="left: 6.5%; top: 44%; width: 12%; height: 22%;"
+                    ></button>
+
+                    <button
+                      class="hotspot"
+                      type="button"
+                      data-id="2"
+                      aria-label="Fejl 2"
+                      style="left: 18%; top: 74%; width: 23%; height: 16%;"
+                    ></button>
+
+                    <button
+                      class="hotspot"
+                      type="button"
+                      data-id="3"
+                      aria-label="Fejl 3"
+                      style="left: 46%; top: 19%; width: 16%; height: 23%;"
+                    ></button>
+
+                    <button
+                      class="hotspot"
+                      type="button"
+                      data-id="4"
+                      aria-label="Fejl 4"
+                      style="left: 56%; top: 67%; width: 18%; height: 20%;"
+                    ></button>
+
+                    <button
+                      class="hotspot"
+                      type="button"
+                      data-id="5"
+                      aria-label="Fejl 5"
+                      style="left: 60%; top: 72%; width: 18%; height: 18%;"
+                    ></button>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="task-sidebar">
+                <section class="status-card" aria-live="polite">
+                  <p class="counter">Fundne fejl: <span id="score">0</span> / 5</p>
+
+                  <p id="feedback" class="feedback">Klik på billedet og find de 5 fejl.</p>
+
+                  <div class="buttons">
+                    <button type="button" class="btn-secondary" id="resetBtn">Prøv igen</button>
+                    <button type="button" class="btn-primary" id="showAnswersBtn">Vis facit</button>
+                  </div>
+
+                  <div class="answer-box" id="answerBox">
+                    <h2>Facit</h2>
+                    <ol>
+                      <li>Stik og strøm er ikke sikre.</li>
+                      <li>Ledningen ved maskinen er farlig.</li>
+                      <li>Serviceassistenten bruger sin mobil og er ikke opmærksom.</li>
+                      <li>Fodtøjet beskytter ikke fødderne.</li>
+                      <li>Der er spild på gulvet og risiko for at glide.</li>
+                    </ol>
+                  </div>
+
+                  <p class="tip">Tal bagefter om, hvad man skal gøre rigtigt, før man starter maskinen.</p>
+                </section>
+              </aside>
+            </section>
+          </div>
+        </main>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        const hotspots = document.querySelectorAll(".hotspot");
+        const scoreEl = document.getElementById("score");
+        const feedbackEl = document.getElementById("feedback");
+        const resetBtn = document.getElementById("resetBtn");
+        const showAnswersBtn = document.getElementById("showAnswersBtn");
+        const answerBox = document.getElementById("answerBox");
+
+        let score = 0;
+
+        function setFeedback(message, type = "") {
+          feedbackEl.textContent = message;
+          feedbackEl.className = "feedback";
+          if (type) feedbackEl.classList.add(type);
+        }
+
+        function updateScore() {
+          scoreEl.textContent = score;
+
+          if (score === 5) {
+            setFeedback("Flot. Du har fundet alle 5 fejl.", "success");
+          }
+        }
+
+        hotspots.forEach((hotspot) => {
+          hotspot.addEventListener("click", () => {
+            if (hotspot.classList.contains("found")) return;
+
+            hotspot.classList.add("found");
+            score += 1;
+            updateScore();
+
+            if (score < 5) {
+              setFeedback("Godt set. Du har fundet en fejl.", "success");
+            }
+          });
+        });
+
+        resetBtn.addEventListener("click", () => {
+          score = 0;
+          scoreEl.textContent = "0";
+          answerBox.classList.remove("show");
+
+          hotspots.forEach((hotspot) => {
+            hotspot.classList.remove("found");
+          });
+
+          setFeedback("Klik på billedet og find de 5 fejl.");
+        });
+
+        showAnswersBtn.addEventListener("click", () => {
+          answerBox.classList.toggle("show");
+
+          hotspots.forEach((hotspot) => {
+            hotspot.classList.add("found");
+          });
+
+          score = 5;
+          updateScore();
+          setFeedback("Her kan du se facit til de 5 fejl.", "success");
+        });
+      })();
+    </script>
+  </body>
+</html>

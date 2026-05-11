@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Find det rigtige match – Arbejdsteknik</title>
+    <link rel="preload" href="../../assets/bg-arbejdsteknik.jpg" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="../arbejdsteknik.css" />
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-arbejdsteknik.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card article-card--match">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Arbejdsteknik</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <h1 class="page-title page-title--match-audio-row" id="match-heading">
+          <button
+            type="button"
+            class="match-audio-btn match-audio-btn--intro"
+            data-audio="Find det rigtige match.mp3"
+            aria-label="Afspil vejledning til opgaven"
+          >
+            <svg class="match-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+          </button>
+          <span class="page-title__words">Find det rigtige match</span>
+        </h1>
+
+        <section class="match-section" aria-labelledby="match-heading">
+          <div class="match-container">
+            <div class="match-header">
+              <p class="match-header__p">
+                Træk det rigtige <strong>fagord</strong> og den rigtige
+                <strong>forklaring</strong> hen til det billede, der passer.
+                Du kan også <strong>klikke</strong> på et kort i listen og derefter på det felt under
+                billedet, hvor det skal stå. Tryk <kbd>Esc</kbd> for at fravælge et valgt kort.
+              </p>
+            </div>
+
+            <div class="match-layout">
+              <div class="image-column">
+                <div class="match-card" data-match="neutralstilling">
+                  <div class="match-visual">
+                    <img
+                      src="neutralstilling.png"
+                      alt="Illustration: person i god balance med rank ryg og let bøjede knæ."
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <button
+                      type="button"
+                      class="match-audio-btn match-audio-btn--visual"
+                      data-match="neutralstilling"
+                      aria-label="Afspil lyd til billede og beskrivelse for kort 1"
+                    >
+                      <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h3>1</h3>
+                  <p>En person står i god balance med rank ryg og let bøjede knæ.</p>
+
+                  <div class="drop-zone word-drop" data-type="word" data-match="neutralstilling">
+                    Træk fagord her
+                  </div>
+
+                  <div class="drop-zone explanation-drop" data-type="explanation" data-match="neutralstilling">
+                    Træk forklaring her
+                  </div>
+                </div>
+
+                <div class="match-card" data-match="tæt-pa-kroppen">
+                  <div class="match-visual">
+                    <img
+                      src="taet-pa-kroppen.png"
+                      alt="Illustration: person arbejder med redskabet tæt ind til kroppen."
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <button
+                      type="button"
+                      class="match-audio-btn match-audio-btn--visual"
+                      data-match="tæt-pa-kroppen"
+                      aria-label="Afspil lyd til billede og beskrivelse for kort 2"
+                    >
+                      <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h3>2</h3>
+                  <p>En person arbejder med redskabet tæt ind til kroppen.</p>
+
+                  <div class="drop-zone word-drop" data-type="word" data-match="tæt-pa-kroppen">
+                    Træk fagord her
+                  </div>
+
+                  <div class="drop-zone explanation-drop" data-type="explanation" data-match="tæt-pa-kroppen">
+                    Træk forklaring her
+                  </div>
+                </div>
+
+                <div class="match-card" data-match="vægtoverforing">
+                  <div class="match-visual">
+                    <img
+                      src="vaegtoverforing.png"
+                      alt="Illustration: person flytter vægten fra ben til ben under arbejdet."
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <button
+                      type="button"
+                      class="match-audio-btn match-audio-btn--visual"
+                      data-match="vægtoverforing"
+                      aria-label="Afspil lyd til billede og beskrivelse for kort 3"
+                    >
+                      <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h3>3</h3>
+                  <p>En person flytter vægten fra ben til ben under arbejdet.</p>
+
+                  <div class="drop-zone word-drop" data-type="word" data-match="vægtoverforing">
+                    Træk fagord her
+                  </div>
+
+                  <div class="drop-zone explanation-drop" data-type="explanation" data-match="vægtoverforing">
+                    Træk forklaring her
+                  </div>
+                </div>
+
+                <div class="match-card" data-match="vrid">
+                  <div class="match-visual">
+                    <img
+                      src="vrid.png"
+                      alt="Illustration: person drejer kroppen forkert i stedet for at flytte fødderne."
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <button
+                      type="button"
+                      class="match-audio-btn match-audio-btn--visual"
+                      data-match="vrid"
+                      aria-label="Afspil lyd til billede og beskrivelse for kort 4"
+                    >
+                      <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h3>4</h3>
+                  <p>En person drejer kroppen forkert i stedet for at flytte fødderne.</p>
+
+                  <div class="drop-zone word-drop" data-type="word" data-match="vrid">
+                    Træk fagord her
+                  </div>
+
+                  <div class="drop-zone explanation-drop" data-type="explanation" data-match="vrid">
+                    Træk forklaring her
+                  </div>
+                </div>
+
+                <div class="match-card" data-match="løfteteknik">
+                  <div class="match-visual">
+                    <img
+                      src="loefteteknik.png"
+                      alt="Illustration: person løfter med bøjede knæ og ting tæt på kroppen."
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <button
+                      type="button"
+                      class="match-audio-btn match-audio-btn--visual"
+                      data-match="løfteteknik"
+                      aria-label="Afspil lyd til billede og beskrivelse for kort 5"
+                    >
+                      <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h3>5</h3>
+                  <p>En person løfter ved at bøje i knæene og holde ting tæt på kroppen.</p>
+
+                  <div class="drop-zone word-drop" data-type="word" data-match="løfteteknik">
+                    Træk fagord her
+                  </div>
+
+                  <div class="drop-zone explanation-drop" data-type="explanation" data-match="løfteteknik">
+                    Træk forklaring her
+                  </div>
+                </div>
+
+                <div class="match-card" data-match="overbelastning">
+                  <div class="match-visual">
+                    <img
+                      src="overbelastning.png"
+                      alt="Illustration: kroppen belastet for meget over tid og med smerter."
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <button
+                      type="button"
+                      class="match-audio-btn match-audio-btn--visual"
+                      data-match="overbelastning"
+                      aria-label="Afspil lyd til billede og beskrivelse for kort 6"
+                    >
+                      <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                  </div>
+                  <h3>6</h3>
+                  <p>En person får ondt, fordi kroppen bliver belastet for meget over tid.</p>
+
+                  <div class="drop-zone word-drop" data-type="word" data-match="overbelastning">
+                    Træk fagord her
+                  </div>
+
+                  <div class="drop-zone explanation-drop" data-type="explanation" data-match="overbelastning">
+                    Træk forklaring her
+                  </div>
+                </div>
+              </div>
+
+              <div class="options-column">
+                <div class="options-box">
+                  <h3>Fagord</h3>
+                  <div class="draggables" id="word-bank">
+                    <div class="draggable match-draggable-row" draggable="true" data-type="word" data-match="neutralstilling">
+                      <span class="match-draggable-label">Neutralstilling</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="neutralstilling"
+                        aria-label="Afspil udtale af fagordet"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="draggable match-draggable-row" draggable="true" data-type="word" data-match="tæt-pa-kroppen">
+                      <span class="match-draggable-label">Tæt på kroppen</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="tæt-pa-kroppen"
+                        aria-label="Afspil udtale af fagordet"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="draggable match-draggable-row" draggable="true" data-type="word" data-match="vægtoverforing">
+                      <span class="match-draggable-label">Vægtoverføring</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="vægtoverforing"
+                        aria-label="Afspil udtale af fagordet"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="draggable match-draggable-row" draggable="true" data-type="word" data-match="vrid">
+                      <span class="match-draggable-label">Vrid</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="vrid"
+                        aria-label="Afspil udtale af fagordet"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="draggable match-draggable-row" draggable="true" data-type="word" data-match="løfteteknik">
+                      <span class="match-draggable-label">Løfteteknik</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="løfteteknik"
+                        aria-label="Afspil udtale af fagordet"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="draggable match-draggable-row" draggable="true" data-type="word" data-match="overbelastning">
+                      <span class="match-draggable-label">Overbelastning</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="overbelastning"
+                        aria-label="Afspil udtale af fagordet"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="options-box">
+                  <h3>Forklaringer</h3>
+                  <div class="draggables" id="explanation-bank">
+                    <div class="draggable match-draggable-row" draggable="true" data-type="explanation" data-match="vægtoverforing">
+                      <span class="match-draggable-label">Du flytter vægten fra det ene ben til det andet.</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="vægtoverforing"
+                        aria-label="Afspil oplæsning af forklaringen"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="draggable match-draggable-row" draggable="true" data-type="explanation" data-match="overbelastning">
+                      <span class="match-draggable-label">Kroppen bliver belastet for meget og kan få smerter.</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="overbelastning"
+                        aria-label="Afspil oplæsning af forklaringen"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="draggable match-draggable-row" draggable="true" data-type="explanation" data-match="vrid">
+                      <span class="match-draggable-label">Du drejer kroppen på en måde, som kan belaste ryggen.</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="vrid"
+                        aria-label="Afspil oplæsning af forklaringen"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="draggable match-draggable-row" draggable="true" data-type="explanation" data-match="neutralstilling">
+                      <span class="match-draggable-label">Kroppen er i balance med rank ryg og en god arbejdsstilling.</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="neutralstilling"
+                        aria-label="Afspil oplæsning af forklaringen"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="draggable match-draggable-row" draggable="true" data-type="explanation" data-match="tæt-pa-kroppen">
+                      <span class="match-draggable-label">Du arbejder med redskabet eller det, du løfter, tæt ind til kroppen.</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="tæt-pa-kroppen"
+                        aria-label="Afspil oplæsning af forklaringen"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="draggable match-draggable-row" draggable="true" data-type="explanation" data-match="løfteteknik">
+                      <span class="match-draggable-label">Du bøjer i knæene og bruger kroppen rigtigt, når du løfter.</span>
+                      <button
+                        type="button"
+                        class="match-audio-btn match-audio-btn--compact"
+                        data-match="løfteteknik"
+                        aria-label="Afspil oplæsning af forklaringen"
+                      >
+                        <svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="button-row">
+                  <button type="button" id="checkMatchBtn" class="match-btn">Tjek svar</button>
+                  <button type="button" id="resetMatchBtn" class="match-btn secondary">Prøv igen</button>
+                </div>
+
+                <p id="matchResult" class="match-result" aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        var section = document.querySelector(".article-card--match .match-section");
+        if (!section) return;
+
+        var matchArticle = section.closest(".article-card--match");
+        if (!matchArticle) return;
+
+        var wordBank = section.querySelector("#word-bank");
+        var explanationBank = section.querySelector("#explanation-bank");
+        var resultBox = section.querySelector("#matchResult");
+        var checkBtn = section.querySelector("#checkMatchBtn");
+        var resetBtn = section.querySelector("#resetMatchBtn");
+        var dropZones = section.querySelectorAll(".drop-zone");
+
+        var draggedItem = null;
+        var clickSelectedItem = null;
+        var suppressDraggableClickUntil = 0;
+        var currentMatchAudio = null;
+        var currentMatchAudioBtn = null;
+
+        /* Fagord: udtale af begrebet. Billede + forklaring: tekst der matcher situationen på kortet. */
+        var WORD_AUDIO = {
+          neutralstilling: "Neutralstilling.mp3",
+          "tæt-pa-kroppen": "taet-pa-kroppen.mp3",
+          vægtoverforing: "Vaegtoverforing.mp3",
+          vrid: "Vrid.mp3",
+          løfteteknik: "Loefteteknik.mp3",
+          overbelastning: "Overbelastning.mp3"
+        };
+
+        /* Oplæsning til billedkort: 1.mp3 … 6.mp3 svarer til tallene under billederne. */
+        var IMAGE_CARD_AUDIO = {
+          neutralstilling: "1.mp3",
+          "tæt-pa-kroppen": "2.mp3",
+          vægtoverforing: "3.mp3",
+          vrid: "4.mp3",
+          løfteteknik: "5.mp3",
+          overbelastning: "6.mp3"
+        };
+
+        /* Forklaringer i listen (ikke på selve billedet). */
+        var SCENARIO_AUDIO = {
+          neutralstilling: "Kroppen er i balance.mp3",
+          "tæt-pa-kroppen": "Du arbejder med redskabet.mp3",
+          vægtoverforing: "Du flytter vaegten.mp3",
+          vrid: "Du drejer kroppen.mp3",
+          løfteteknik: "Du boejer i knaene.mp3",
+          overbelastning: "Kroppen bliver belastet.mp3"
+        };
+
+        function releasePriorMatchAudio() {
+          if (currentMatchAudio) {
+            try {
+              currentMatchAudio.pause();
+              currentMatchAudio.currentTime = 0;
+            } catch (err) {}
+            currentMatchAudio = null;
+          }
+          if (currentMatchAudioBtn) {
+            currentMatchAudioBtn.classList.remove("is-audio-playing");
+            currentMatchAudioBtn.classList.remove("is-audio-paused");
+            var playL = currentMatchAudioBtn.getAttribute("data-aria-play");
+            if (playL) currentMatchAudioBtn.setAttribute("aria-label", playL);
+            currentMatchAudioBtn = null;
+          }
+        }
+
+        function clearMatchPlayingUi() {
+          releasePriorMatchAudio();
+        }
+
+        function stashMatchBtnAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateMatchAudioBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playMatchAudioFile(filename, buttonEl) {
+          if (!filename || !buttonEl) return;
+          stashMatchBtnAria(buttonEl);
+          if (currentMatchAudioBtn === buttonEl && currentMatchAudio) {
+            if (!currentMatchAudio.paused) {
+              currentMatchAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateMatchAudioBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentMatchAudio.play();
+            if (pr !== undefined) {
+              pr.then(function () {
+                updateMatchAudioBtnAria(buttonEl);
+              }).catch(function () {
+                releasePriorMatchAudio();
+              });
+            } else {
+              updateMatchAudioBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePriorMatchAudio();
+          buttonEl.classList.remove("is-audio-paused");
+          currentMatchAudioBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL(encodeURIComponent(filename), window.location.href).href;
+          currentMatchAudio = new Audio(src);
+          currentMatchAudio.addEventListener("ended", function onMatchAudioEnd() {
+            currentMatchAudio.removeEventListener("ended", onMatchAudioEnd);
+            if (currentMatchAudioBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentMatchAudioBtn = null;
+              try {
+                currentMatchAudio.currentTime = 0;
+              } catch (e2) {}
+              currentMatchAudio = null;
+            }
+          });
+          updateMatchAudioBtnAria(buttonEl);
+          var p0 = currentMatchAudio.play();
+          if (p0 !== undefined) {
+            p0.then(function () {
+              updateMatchAudioBtnAria(buttonEl);
+            }).catch(function () {
+              releasePriorMatchAudio();
+            });
+          } else {
+            updateMatchAudioBtnAria(buttonEl);
+          }
+        }
+
+        function ensureMatchAudioButtonIcons(btn) {
+          var speaker = btn.querySelector(".match-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".match-audio-btn__svg:not(.match-audio-btn__svg--pause):not(.match-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("match-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".match-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "match-audio-btn__svg match-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".match-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "match-audio-btn__svg match-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        function enhanceAllMatchAudioButtons() {
+          matchArticle.querySelectorAll(".match-audio-btn").forEach(ensureMatchAudioButtonIcons);
+        }
+
+        function resolveMatchAudio(btn) {
+          var direct = btn.getAttribute("data-audio");
+          if (direct) return direct;
+          var m = btn.getAttribute("data-match");
+          if (!m) return null;
+          var row = btn.closest(".draggable");
+          if (row && row.getAttribute("data-type") === "word") {
+            return WORD_AUDIO[m] || null;
+          }
+          if (btn.classList.contains("match-audio-btn--visual") || (btn.closest && btn.closest(".match-visual"))) {
+            return IMAGE_CARD_AUDIO[m] || null;
+          }
+          return SCENARIO_AUDIO[m] || null;
+        }
+
+        function buildDraggable(type, match, labelText) {
+          var wrap = document.createElement("div");
+          wrap.className = "draggable match-draggable-row";
+          wrap.draggable = true;
+          wrap.dataset.type = type;
+          wrap.dataset.match = match;
+          var span = document.createElement("span");
+          span.className = "match-draggable-label";
+          span.textContent = labelText;
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "match-audio-btn match-audio-btn--compact";
+          btn.dataset.match = match;
+          btn.setAttribute(
+            "aria-label",
+            type === "word" ? "Afspil udtale af fagordet" : "Afspil oplæsning af forklaringen"
+          );
+          btn.innerHTML =
+            '<svg class="match-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-speaker"/></svg>';
+          wrap.appendChild(span);
+          wrap.appendChild(btn);
+          ensureMatchAudioButtonIcons(btn);
+          return wrap;
+        }
+
+        function clearClickSelection() {
+          if (clickSelectedItem) {
+            clickSelectedItem.classList.remove("draggable--selected");
+            clickSelectedItem = null;
+          }
+          updateDropZoneClickHints();
+        }
+
+        function setClickSelection(item) {
+          clearClickSelection();
+          clickSelectedItem = item;
+          item.classList.add("draggable--selected");
+          updateDropZoneClickHints();
+        }
+
+        function toggleClickSelection(item) {
+          if (clickSelectedItem === item) {
+            clearClickSelection();
+          } else {
+            setClickSelection(item);
+          }
+        }
+
+        function updateDropZoneClickHints() {
+          dropZones.forEach(function (zone) {
+            zone.classList.remove("drop-zone--click-target");
+            if (clickSelectedItem && zone.dataset.type === clickSelectedItem.dataset.type) {
+              zone.classList.add("drop-zone--click-target");
+            }
+          });
+        }
+
+        function placeFromBankIntoZone(zone, item) {
+          if (!item || !item.parentNode) return false;
+          if (item.dataset.type !== zone.dataset.type) return false;
+
+          var existing = zone.querySelector(".placed-item");
+          if (existing) {
+            returnPlacedItem(existing);
+          }
+          placeItemInZone(item, zone);
+          return true;
+        }
+
+        function addDragEvents(item) {
+          item.addEventListener("dragstart", function (e) {
+            if (e.target.closest && e.target.closest(".match-audio-btn")) {
+              e.preventDefault();
+              return;
+            }
+            clearClickSelection();
+            draggedItem = item;
+            setTimeout(function () {
+              item.classList.add("hidden");
+            }, 0);
+          });
+          item.addEventListener("dragend", function () {
+            item.classList.remove("hidden");
+            draggedItem = null;
+            suppressDraggableClickUntil = Date.now() + 250;
+          });
+        }
+
+        function wireDraggables() {
+          section.querySelectorAll(".draggable").forEach(function (item) {
+            addDragEvents(item);
+          });
+        }
+
+        function placeItemInZone(item, zone) {
+          zone.innerHTML = "";
+          var placed = document.createElement("div");
+          placed.className = "placed-item";
+          var labelEl = item.querySelector(".match-draggable-label");
+          var labelText = labelEl ? labelEl.textContent.trim() : item.textContent.trim();
+          placed.textContent = labelText;
+          placed.dataset.match = item.dataset.match;
+          placed.dataset.type = item.dataset.type;
+          placed.dataset.sourceText = labelText;
+          zone.appendChild(placed);
+          zone.classList.add("filled");
+          zone.dataset.filled = "true";
+          item.remove();
+          clearClickSelection();
+        }
+
+        function returnPlacedItem(placedItem) {
+          var newItem = buildDraggable(
+            placedItem.dataset.type,
+            placedItem.dataset.match,
+            placedItem.dataset.sourceText
+          );
+          addDragEvents(newItem);
+
+          if (newItem.dataset.type === "word") {
+            wordBank.appendChild(newItem);
+          } else {
+            explanationBank.appendChild(newItem);
+          }
+
+          var parentZone = placedItem.parentElement;
+          parentZone.innerHTML =
+            parentZone.dataset.type === "word" ? "Træk fagord her" : "Træk forklaring her";
+          parentZone.classList.remove("filled", "correct", "incorrect");
+          delete parentZone.dataset.filled;
+        }
+
+        dropZones.forEach(function (zone) {
+          zone.addEventListener("dragover", function (e) {
+            e.preventDefault();
+            zone.classList.add("drag-over");
+          });
+          zone.addEventListener("dragleave", function () {
+            zone.classList.remove("drag-over");
+          });
+          zone.addEventListener("drop", function (e) {
+            e.preventDefault();
+            zone.classList.remove("drag-over");
+            if (!draggedItem) return;
+            placeFromBankIntoZone(zone, draggedItem);
+          });
+        });
+
+        matchArticle.addEventListener("click", function (e) {
+          if (Date.now() < suppressDraggableClickUntil) return;
+
+          var t = e.target;
+          if (!t.closest) return;
+
+          var audioBtn = t.closest(".match-audio-btn");
+          if (audioBtn && matchArticle.contains(audioBtn)) {
+            e.preventDefault();
+            e.stopPropagation();
+            var file = resolveMatchAudio(audioBtn);
+            playMatchAudioFile(file, audioBtn);
+            return;
+          }
+
+          var bankDraggable = t.closest(".draggable");
+          if (
+            bankDraggable &&
+            (wordBank.contains(bankDraggable) || explanationBank.contains(bankDraggable))
+          ) {
+            e.preventDefault();
+            toggleClickSelection(bankDraggable);
+            return;
+          }
+
+          var zoneEl = t.closest(".drop-zone");
+          if (zoneEl && section.contains(zoneEl)) {
+            if (
+              clickSelectedItem &&
+              clickSelectedItem.dataset.type === zoneEl.dataset.type
+            ) {
+              placeFromBankIntoZone(zoneEl, clickSelectedItem);
+            }
+            return;
+          }
+
+          if (!t.closest("button") && !t.closest("a")) {
+            clearClickSelection();
+          }
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key !== "Escape" || !clickSelectedItem) return;
+          clearClickSelection();
+        });
+
+        wireDraggables();
+        enhanceAllMatchAudioButtons();
+
+        checkBtn.addEventListener("click", function () {
+          var correctCount = 0;
+          var total = dropZones.length;
+
+          dropZones.forEach(function (zone) {
+            zone.classList.remove("correct", "incorrect");
+            var placed = zone.querySelector(".placed-item");
+            if (!placed) {
+              zone.classList.add("incorrect");
+              return;
+            }
+            var isCorrect = placed.dataset.match === zone.dataset.match;
+            if (isCorrect) {
+              zone.classList.add("correct");
+              correctCount++;
+            } else {
+              zone.classList.add("incorrect");
+            }
+          });
+
+          if (correctCount === total) {
+            resultBox.textContent = "Flot! Du har fundet alle de rigtige match.";
+          } else {
+            resultBox.textContent =
+              "Du har " + correctCount + " ud af " + total + " rigtige. Prøv igen.";
+          }
+        });
+
+        resetBtn.addEventListener("click", function () {
+          clearClickSelection();
+          dropZones.forEach(function (zone) {
+            var placed = zone.querySelector(".placed-item");
+            if (placed) {
+              returnPlacedItem(placed);
+            } else {
+              zone.classList.remove("correct", "incorrect", "filled");
+              zone.innerHTML =
+                zone.dataset.type === "word" ? "Træk fagord her" : "Træk forklaring her";
+              delete zone.dataset.filled;
+            }
+          });
+          resultBox.textContent = "";
+          shuffleBanks();
+        });
+
+        function shuffleBanks() {
+          shuffleContainer(wordBank);
+          shuffleContainer(explanationBank);
+        }
+
+        function shuffleContainer(container) {
+          if (!container) return;
+          var items = Array.prototype.slice.call(container.children);
+          for (var i = items.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = items[i];
+            items[i] = items[j];
+            items[j] = tmp;
+          }
+          items.forEach(function (item) {
+            container.appendChild(item);
+          });
+        }
+
+        shuffleBanks();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hygiejne – Hygiejnisk eller ikke hygiejnisk? – Dansk som andetsprog for serviceassistenter</title>
+    <link rel="preload" href="../../assets/hero-hvorfor-gor-vi-rent.jpg" as="image" fetchpriority="high" />
+    <link rel="preload" href="Hygiejne.mp3" as="audio" />
+    <link rel="preload" href="God hygiejne.mp3" as="audio" />
+    <link rel="preload" href="Daarlig hygiejne.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <style>
+      /* Fylder viewport: hvid opgave-boks vokser med skærmen */
+      .page-quiz-hygiejne .page-shell {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem 0.65rem 0.85rem;
+        box-sizing: border-box;
+      }
+
+      .page-quiz-hygiejne .article-card {
+        width: 100%;
+        max-width: min(72rem, calc(100vw - 1.25rem));
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0.85rem clamp(0.75rem, 2vw, 1.1rem) 1rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+
+      .page-quiz-hygiejne .article-card > .article-topbar,
+      .page-quiz-hygiejne .article-card > .hyg-page-title-row,
+      .page-quiz-hygiejne .article-card > .category-heading {
+        flex-shrink: 0;
+      }
+
+      .page-quiz-hygiejne .article-topbar {
+        margin-bottom: 0.35rem;
+      }
+
+      .page-quiz-hygiejne .hyg-page-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.45rem 0.6rem;
+        margin: 0 0 clamp(1rem, 2.8vw, 1.65rem);
+      }
+
+      .page-quiz-hygiejne .hyg-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+        font-size: clamp(1.25rem, 2.8vw, 1.65rem);
+      }
+
+      .page-quiz-hygiejne .category-heading {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        padding: 0.4rem 0.65rem;
+        font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      }
+
+      .page-quiz-hygiejne .hyg-card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+        padding: 0.85rem 0.75rem 1rem;
+        border: 1px solid #e5e7eb;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+
+      .page-quiz-hygiejne .hyg-intro {
+        margin: 0 0 0.5rem;
+        max-width: none;
+        flex-shrink: 0;
+      }
+
+      .page-quiz-hygiejne .hyg-intro p {
+        margin: 0;
+        color: #1f2937;
+        line-height: 1.35;
+        font-size: 0.88rem;
+      }
+
+      .page-quiz-hygiejne .hyg-intro p + p {
+        margin-top: 0.35rem;
+      }
+
+      .page-quiz-hygiejne .hyg-intro kbd {
+        font-size: 0.85em;
+        padding: 0.1em 0.35em;
+        border-radius: 3px;
+        background: #f3f4f6;
+        border: 1px solid #d1d5db;
+        font-family: inherit;
+      }
+
+      .page-quiz-hygiejne .hyg-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        gap: 0.5rem;
+        margin-top: 0;
+        flex: 1 1 auto;
+        min-height: 0;
+        align-items: stretch;
+      }
+
+      .page-quiz-hygiejne .bank {
+        background: #f9fafb;
+        border: 2px dashed #d1d5db;
+        border-radius: 10px;
+        padding: 0.45rem 0.5rem 0.5rem;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .page-quiz-hygiejne .bank h2,
+      .page-quiz-hygiejne .dropzone h2 {
+        margin: 0 0 0.2rem;
+        font-size: 0.95rem;
+        color: #1f2937;
+      }
+
+      .page-quiz-hygiejne .bank p,
+      .page-quiz-hygiejne .dropzone p {
+        margin: 0 0 0.25rem;
+        color: #6b7280;
+        line-height: 1.3;
+        font-size: 0.78rem;
+      }
+
+      .page-quiz-hygiejne .hyg-zone-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.4rem;
+        margin-bottom: 0.05rem;
+      }
+
+      .page-quiz-hygiejne .hyg-zone-head .crossword-audio-btn {
+        flex-shrink: 0;
+        margin-top: 0.1rem;
+      }
+
+      .page-quiz-hygiejne .hyg-zone-head-text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-quiz-hygiejne .items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        align-content: flex-start;
+        min-height: 0;
+      }
+
+      .page-quiz-hygiejne .dropzones {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0.45rem;
+        min-height: 0;
+        height: 100%;
+        align-content: stretch;
+      }
+
+      .page-quiz-hygiejne .dropzone {
+        min-height: 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        padding: 0.45rem 0.5rem 0.5rem;
+        border: 2px solid transparent;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .page-quiz-hygiejne .dropzone .items {
+        flex: 1;
+        min-height: 2.5rem;
+        align-content: flex-start;
+      }
+
+      .page-quiz-hygiejne .bank .items {
+        flex: 1;
+        align-content: flex-start;
+      }
+
+      .page-quiz-hygiejne .dropzone.good {
+        background: #dcfce7;
+        border-color: #86efac;
+      }
+
+      .page-quiz-hygiejne .dropzone.bad {
+        background: #fee2e2;
+        border-color: #fca5a5;
+      }
+
+      .page-quiz-hygiejne .dropzone.drag-over {
+        transform: scale(1.01);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+      }
+
+      .page-quiz-hygiejne .item[role="button"] {
+        display: inline-flex;
+      }
+
+      .page-quiz-hygiejne .item {
+        appearance: none;
+        border: 1px solid #cbd5e1;
+        background: #fff;
+        color: #1f2937;
+        padding: 0.35rem 0.5rem;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        font-family: inherit;
+        cursor: grab;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+        user-select: none;
+        text-align: left;
+        line-height: 1.25;
+        max-width: 100%;
+        align-items: flex-start;
+        gap: 0.35rem;
+      }
+
+      .page-quiz-hygiejne .item .crossword-audio-btn {
+        flex-shrink: 0;
+        margin-top: 0;
+        cursor: pointer;
+      }
+
+      .page-quiz-hygiejne .item .item-label {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-quiz-hygiejne .item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        border-color: #94a3b8;
+      }
+
+      .page-quiz-hygiejne .item:focus-visible {
+        outline: 3px solid #2563eb;
+        outline-offset: 2px;
+      }
+
+      .page-quiz-hygiejne .item:active {
+        cursor: grabbing;
+      }
+
+      .page-quiz-hygiejne .item.placed-good {
+        border-color: #166534;
+        background: #f0fdf4;
+      }
+
+      .page-quiz-hygiejne .item.placed-bad {
+        border-color: #b91c1c;
+        background: #fef2f2;
+      }
+
+      .page-quiz-hygiejne .item.is-selected {
+        outline: 3px solid #2563eb;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25), 0 8px 20px rgba(37, 99, 235, 0.2);
+        border-color: #2563eb;
+        z-index: 1;
+      }
+
+      .page-quiz-hygiejne .bank.drag-over,
+      .page-quiz-hygiejne .dropzone.drag-over {
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+      }
+
+      body.hyg-has-selection .page-quiz-hygiejne .dropzone.good,
+      body.hyg-has-selection .page-quiz-hygiejne .dropzone.bad {
+        cursor: pointer;
+      }
+
+      body.hyg-has-selection .page-quiz-hygiejne .bank {
+        cursor: pointer;
+      }
+
+      .page-quiz-hygiejne .hyg-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.5rem;
+        flex-shrink: 0;
+      }
+
+      .page-quiz-hygiejne .hyg-controls .btn {
+        border: none;
+        border-radius: 999px;
+        padding: 0.4rem 0.85rem;
+        font-size: 0.85rem;
+        font-weight: 700;
+        font-family: inherit;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      .page-quiz-hygiejne .btn-primary {
+        background: #0f766e;
+        color: #fff;
+      }
+
+      .page-quiz-hygiejne .btn-primary:hover,
+      .page-quiz-hygiejne .btn-primary:focus {
+        background: #115e59;
+      }
+
+      .page-quiz-hygiejne .btn-secondary {
+        background: #e5e7eb;
+        color: #111827;
+      }
+
+      .page-quiz-hygiejne .btn-secondary:hover,
+      .page-quiz-hygiejne .btn-secondary:focus {
+        background: #d1d5db;
+      }
+
+      .page-quiz-hygiejne .feedback {
+        margin-top: 0.45rem;
+        padding: 0.45rem 0.55rem;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.82rem;
+        display: none;
+        line-height: 1.35;
+        flex-shrink: 0;
+      }
+
+      .page-quiz-hygiejne .feedback.show {
+        display: block;
+      }
+
+      .page-quiz-hygiejne .feedback.success {
+        background: #dcfce7;
+        color: #166534;
+        border: 2px solid #86efac;
+      }
+
+      .page-quiz-hygiejne .feedback.error {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 2px solid #fca5a5;
+      }
+
+      .page-quiz-hygiejne .result-list {
+        margin-top: 0.3rem;
+        font-weight: 400;
+        font-size: 0.95em;
+      }
+
+      /* Højttalerknapper (samme logik som quiz-siderne) */
+      .page-quiz-hygiejne .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-quiz-hygiejne .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-quiz-hygiejne .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-quiz-hygiejne .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-quiz-hygiejne .crossword-audio-btn__svg--pause,
+      .page-quiz-hygiejne .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-quiz-hygiejne
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-quiz-hygiejne .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-quiz-hygiejne .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-quiz-hygiejne .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-quiz-hygiejne .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-quiz-hygiejne .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-quiz-hygiejne .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-quiz-hygiejne .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-quiz-hygiejne .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      /* Bred skærm: bunke + to zoner i én række (mindre vertikal scroll) */
+      @media (min-width: 960px) {
+        .page-quiz-hygiejne .hyg-layout {
+          grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr);
+          grid-template-rows: 1fr;
+          gap: 0.45rem;
+          align-items: stretch;
+        }
+
+        .page-quiz-hygiejne .dropzones {
+          display: contents;
+        }
+
+        .page-quiz-hygiejne .dropzone {
+          min-height: 0;
+        }
+
+        .page-quiz-hygiejne .bank {
+          min-height: 100%;
+        }
+      }
+
+      /* Mellem: kun de to zoner side om side */
+      @media (min-width: 640px) and (max-width: 959px) {
+        .page-quiz-hygiejne .dropzones {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-quiz-hygiejne">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/hero-hvorfor-gor-vi-rent.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Hvorfor gør vi rent?</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="hyg-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Hygiejne.mp3"
+            aria-label="Afspil overskriften højt"
+          >
+            <svg class="crossword-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+          </button>
+          <h1 class="page-title">Hygiejne</h1>
+        </div>
+        <p class="category-heading">Hygiejnisk eller ikke hygiejnisk?</p>
+
+        <div class="hyg-card">
+          <div class="hyg-intro">
+            <p>
+              <strong>Opgave:</strong> Træk kort til <em>God</em> eller <em>Dårlig</em> hygiejne — eller klik kort, derefter zone. Samme kort igen eller
+              <kbd>Esc</kbd> fjerner valg.
+            </p>
+          </div>
+
+          <div class="hyg-layout">
+            <section class="bank" id="bankSection" aria-label="Kortbunke">
+              <div class="items" id="startZone">
+                <div
+                  class="item"
+                  draggable="true"
+                  data-id="1"
+                  data-correct="good"
+                  role="button"
+                  tabindex="0"
+                >
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact hyg-item-audio"
+                    draggable="false"
+                    data-audio="Vaske haender foer arbejdet.mp3"
+                    aria-label="Afspil korttekst højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <span class="item-label">Vaske hænder før arbejdet</span>
+                </div>
+
+                <div
+                  class="item"
+                  draggable="true"
+                  data-id="2"
+                  data-correct="bad"
+                  role="button"
+                  tabindex="0"
+                >
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact hyg-item-audio"
+                    draggable="false"
+                    data-audio="Bruge en beskidt klud i flere rum.mp3"
+                    aria-label="Afspil korttekst højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <span class="item-label">Bruge en beskidt klud i flere rum</span>
+                </div>
+
+                <div
+                  class="item"
+                  draggable="true"
+                  data-id="3"
+                  data-correct="good"
+                  role="button"
+                  tabindex="0"
+                >
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact hyg-item-audio"
+                    draggable="false"
+                    data-audio="Toerre kontaktpunkter af.mp3"
+                    aria-label="Afspil korttekst højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <span class="item-label">Tørre kontaktpunkter af</span>
+                </div>
+
+                <div
+                  class="item"
+                  draggable="true"
+                  data-id="4"
+                  data-correct="good"
+                  role="button"
+                  tabindex="0"
+                >
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact hyg-item-audio"
+                    draggable="false"
+                    data-audio="Skifte klud naar den er snavset.mp3"
+                    aria-label="Afspil korttekst højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <span class="item-label">Skifte klud, når den er snavset</span>
+                </div>
+
+                <div
+                  class="item"
+                  draggable="true"
+                  data-id="5"
+                  data-correct="bad"
+                  role="button"
+                  tabindex="0"
+                >
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact hyg-item-audio"
+                    draggable="false"
+                    data-audio="Glemme at rengoere doerhaandtag.mp3"
+                    aria-label="Afspil korttekst højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <span class="item-label">Glemme at rengøre dørhåndtag</span>
+                </div>
+
+                <div
+                  class="item"
+                  draggable="true"
+                  data-id="6"
+                  data-correct="bad"
+                  role="button"
+                  tabindex="0"
+                >
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact hyg-item-audio"
+                    draggable="false"
+                    data-audio="Rengoere toilet og bord med samme klud.mp3"
+                    aria-label="Afspil korttekst højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <span class="item-label">Rengøre toilet og bord med samme klud</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="dropzones">
+              <div class="dropzone good" data-zone="good" tabindex="0" aria-label="God hygiejne">
+                <div class="hyg-zone-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="God hygiejne.mp3"
+                    aria-label="Afspil titlen God hygiejne højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <div class="hyg-zone-head-text">
+                    <h2>God hygiejne</h2>
+                    <p>Rent, mindre smitte.</p>
+                  </div>
+                </div>
+                <div class="items" id="goodZone"></div>
+              </div>
+
+              <div class="dropzone bad" data-zone="bad" tabindex="0" aria-label="Dårlig hygiejne">
+                <div class="hyg-zone-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Daarlig hygiejne.mp3"
+                    aria-label="Afspil titlen Dårlig hygiejne højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <div class="hyg-zone-head-text">
+                    <h2>Dårlig hygiejne</h2>
+                    <p>Snavs eller forkert brug af redskaber.</p>
+                  </div>
+                </div>
+                <div class="items" id="badZone"></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="hyg-controls">
+            <button type="button" class="btn btn-primary" id="checkBtn">Tjek svar</button>
+            <button type="button" class="btn btn-secondary" id="resetBtn">Start forfra</button>
+          </div>
+
+          <div class="feedback" id="feedback" aria-live="polite"></div>
+        </div>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        const startZone = document.getElementById("startZone");
+        const bankSection = document.getElementById("bankSection");
+        const goodZone = document.getElementById("goodZone");
+        const badZone = document.getElementById("badZone");
+        const feedback = document.getElementById("feedback");
+        const checkBtn = document.getElementById("checkBtn");
+        const resetBtn = document.getElementById("resetBtn");
+
+        const items = Array.from(document.querySelectorAll(".item"));
+        const dropzones = Array.from(document.querySelectorAll(".dropzone"));
+
+        let draggedItem = null;
+        let selectedItem = null;
+        let dragJustEnded = false;
+
+        function itemLabel(item) {
+          const label = item.querySelector(".item-label");
+          return (label ? label.textContent : item.textContent).trim();
+        }
+
+        function clearFeedback() {
+          feedback.className = "feedback";
+          feedback.textContent = "";
+        }
+
+        function clearSelection() {
+          if (selectedItem) {
+            if (document.activeElement === selectedItem) {
+              selectedItem.blur();
+            }
+            selectedItem.classList.remove("is-selected");
+            selectedItem.setAttribute("aria-selected", "false");
+          }
+          selectedItem = null;
+          document.body.classList.remove("hyg-has-selection");
+        }
+
+        function selectItem(item) {
+          if (selectedItem && selectedItem.dataset.id === item.dataset.id) {
+            clearSelection();
+            return;
+          }
+          clearSelection();
+          selectedItem = item;
+          item.classList.add("is-selected");
+          item.setAttribute("aria-selected", "true");
+          document.body.classList.add("hyg-has-selection");
+        }
+
+        function updateItemStyle(item, zone) {
+          item.classList.remove("placed-good", "placed-bad");
+          if (zone === "good") {
+            item.classList.add("placed-good");
+          } else if (zone === "bad") {
+            item.classList.add("placed-bad");
+          }
+        }
+
+        function moveItem(item, zone) {
+          clearFeedback();
+          clearSelection();
+
+          if (zone === "good") {
+            goodZone.appendChild(item);
+          } else if (zone === "bad") {
+            badZone.appendChild(item);
+          } else {
+            startZone.appendChild(item);
+          }
+
+          item.dataset.zone = zone === "good" || zone === "bad" ? zone : "start";
+          updateItemStyle(item, zone === "good" || zone === "bad" ? zone : "start");
+        }
+
+        function clearDragOver() {
+          dropzones.forEach((z) => z.classList.remove("drag-over"));
+          if (bankSection) bankSection.classList.remove("drag-over");
+        }
+
+        function getItemFromTransfer(event) {
+          const id = event.dataTransfer.getData("text/plain");
+          return items.find((el) => el.dataset.id === id) || draggedItem;
+        }
+
+        items.forEach((item) => {
+          item.dataset.zone = "start";
+          item.setAttribute("aria-selected", "false");
+
+          function activateItem(e) {
+            if (dragJustEnded) return;
+            if (e.target.closest(".hyg-item-audio")) return;
+            e.stopPropagation();
+            selectItem(item);
+          }
+
+          item.addEventListener("click", activateItem);
+
+          item.addEventListener("keydown", (e) => {
+            if (e.target.closest(".hyg-item-audio")) return;
+            if (e.key !== "Enter" && e.key !== " ") return;
+            e.preventDefault();
+            activateItem(e);
+          });
+
+          item.addEventListener("dragstart", (event) => {
+            if (event.target.closest(".hyg-item-audio")) {
+              event.preventDefault();
+              return;
+            }
+            draggedItem = item;
+            event.dataTransfer.setData("text/plain", item.dataset.id);
+            event.dataTransfer.effectAllowed = "move";
+          });
+
+          item.addEventListener("dragend", () => {
+            draggedItem = null;
+            clearDragOver();
+            dragJustEnded = true;
+            window.setTimeout(function () {
+              dragJustEnded = false;
+            }, 250);
+          });
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key !== "Escape") return;
+          if (!selectedItem) return;
+          e.preventDefault();
+          clearSelection();
+        });
+
+        dropzones.forEach((zone) => {
+          zone.addEventListener("click", (e) => {
+            if (e.target.closest(".item")) return;
+            if (e.target.closest(".crossword-audio-btn")) return;
+            if (!selectedItem) return;
+            moveItem(selectedItem, zone.dataset.zone);
+          });
+
+          zone.addEventListener("dragover", (event) => {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = "move";
+            zone.classList.add("drag-over");
+          });
+
+          zone.addEventListener("dragleave", (event) => {
+            if (!zone.contains(event.relatedTarget)) {
+              zone.classList.remove("drag-over");
+            }
+          });
+
+          zone.addEventListener("drop", (event) => {
+            event.preventDefault();
+            zone.classList.remove("drag-over");
+            const item = getItemFromTransfer(event);
+            if (item) {
+              moveItem(item, zone.dataset.zone);
+            }
+          });
+        });
+
+        if (bankSection && startZone) {
+          bankSection.addEventListener("click", (e) => {
+            if (e.target.closest(".item")) return;
+            if (e.target.closest(".crossword-audio-btn")) return;
+            if (!selectedItem) return;
+            moveItem(selectedItem, "start");
+          });
+
+          startZone.addEventListener("dragover", (event) => {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = "move";
+            bankSection.classList.add("drag-over");
+          });
+
+          startZone.addEventListener("dragleave", (event) => {
+            if (!startZone.contains(event.relatedTarget)) {
+              bankSection.classList.remove("drag-over");
+            }
+          });
+
+          startZone.addEventListener("drop", (event) => {
+            event.preventDefault();
+            bankSection.classList.remove("drag-over");
+            const item = getItemFromTransfer(event);
+            if (item) {
+              moveItem(item, "start");
+            }
+          });
+        }
+
+        checkBtn.addEventListener("click", () => {
+          let correct = 0;
+          let wrongItems = [];
+          let unplaced = [];
+
+          items.forEach((item) => {
+            const currentZone = item.dataset.zone || "start";
+            const correctZone = item.dataset.correct;
+
+            if (currentZone === "start") {
+              unplaced.push(itemLabel(item));
+            } else if (currentZone === correctZone) {
+              correct++;
+            } else {
+              wrongItems.push(itemLabel(item));
+            }
+          });
+
+          feedback.classList.add("show");
+
+          if (correct === items.length) {
+            feedback.classList.remove("error");
+            feedback.classList.add("success");
+            feedback.innerHTML = "Flot arbejde! Alle svar er rigtige.";
+            return;
+          }
+
+          feedback.classList.remove("success");
+          feedback.classList.add("error");
+
+          let message = `Du har ${correct} ud af ${items.length} rigtige.`;
+
+          if (wrongItems.length > 0) {
+            message += `<div class="result-list"><strong>Se igen på:</strong> ${wrongItems.join(", ")}</div>`;
+          }
+
+          if (unplaced.length > 0) {
+            message += `<div class="result-list"><strong>Ikke placeret endnu:</strong> ${unplaced.join(", ")}</div>`;
+          }
+
+          feedback.innerHTML = message;
+        });
+
+        resetBtn.addEventListener("click", () => {
+          clearSelection();
+          items.forEach((item) => {
+            startZone.appendChild(item);
+            item.dataset.zone = "start";
+            updateItemStyle(item, "start");
+            item.setAttribute("aria-selected", "false");
+          });
+          clearFeedback();
+        });
+      })();
+
+      (function setupHygiejneAudio() {
+        var root = document.querySelector(".page-quiz-hygiejne article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename || !buttonEl) return;
+          stashAria(buttonEl);
+          if (currentBtn === buttonEl && currentAudio) {
+            if (!currentAudio.paused) {
+              currentAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  updateBtnAria(buttonEl);
+                })
+                .catch(function () {
+                  releasePrior();
+                });
+            } else {
+              updateBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePrior();
+          buttonEl.classList.remove("is-audio-paused");
+          currentBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL("./" + encodeURIComponent(filename), window.location.href).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+      })();
+    </script>
+  </body>
+</html>

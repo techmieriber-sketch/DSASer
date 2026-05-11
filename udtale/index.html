@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Udtale – Dansk som andetsprog for serviceassistenter</title>
+    <link rel="preload" href="../assets/hero-serviceassistenter.jpg" as="image" fetchpriority="high" />
+    <style>
+      html {
+        margin: 0;
+        min-height: 100%;
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+        background: #cfd9e4;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100svh;
+        background: #cfd9e4;
+        font-family: system-ui, -apple-system, "Segø UI", Arial, sans-serif;
+        color: #fff;
+        position: relative;
+      }
+      .bg-media {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        background: #cfd9e4;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+      }
+      .bg-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+      }
+      .bg-scrim {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(28, 40, 52, 0.12) 100%
+        );
+      }
+      .page-shell {
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 2rem;
+      }
+      .overlay {
+        position: relative;
+        z-index: 1;
+        min-height: calc(100vh - 4rem);
+        min-height: calc(100svh - 4rem);
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 3rem 2rem 2rem;
+        background: rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .page-content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .title {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+        text-align: center;
+        width: 100%;
+      }
+      .back-link {
+        position: absolute;
+        top: 1.25rem;
+        left: 1.5rem;
+        color: #fff;
+        text-decoration: underline;
+        font-weight: 600;
+      }
+      .start-panel {
+        text-align: left;
+        margin-top: 1.25rem;
+      }
+      .text-link {
+        display: inline-block;
+        margin-top: 0.6rem;
+        color: #fff;
+        text-decoration: underline;
+        font-weight: 700;
+      }
+      .start-panel .text-link {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../assets/hero-serviceassistenter.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <main class="overlay">
+        <div class="page-content">
+          <h1 class="title">Udtale</h1>
+          <div class="start-panel">
+            <a
+              class="text-link"
+              href="https://ordlab.dk/alle-videoer/?share=Bedre!%!dansk!%!(Gratis)!%!%!3751,3765"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Bedre dansk (Gratis)</a
+            >
+            <a
+              class="text-link"
+              href="https://ordlab.dk/alle-videoer/?share=Bedre!%!dansk!%!(Premium)!%!%!3754,3760,3763,3757"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Bedre dansk (Premium)</a
+            >
+            <a
+              class="text-link"
+              href="https://drive.google.com/drive/folders/1cUmiCmQzDshnFyYLvbC4thB_P5lyc0HM?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Sprogmakker</a
+            >
+            <a
+              class="text-link"
+              href="https://www.youtube.com/watch?v=MFvDGZVD3Qw&list=PLk6g9tySafarm-24K2ztZRXHhjkG9R2LC"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Sådan siger man</a
+            >
+            <a
+              class="text-link"
+              href="https://www.youtube.com/watch?v=Ik_0DJu_dP8&list=PLk6g9tySafaqdGAp4lufNQU9o-b-C0CPG"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Danish Vowels</a
+            >
+            <a
+              class="text-link"
+              href="https://www.youtube.com/watch?v=0vaSpM3LenM&list=PLk6g9tySafapSyrz09XR_5swfBYrwLYrg"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Danske vokaler</a
+            >
+            <a
+              class="text-link"
+              href="https://www.youtube.com/watch?v=BHPKB9sBJT8&list=PLk6g9tySafaqjJJaz9OTTHoTFJjFN7dLo"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Danish Pronunciation for beginners</a
+            >
+            <a
+              class="text-link"
+              href="https://www.youtube.com/watch?v=WiHkOa55ZZI&list=PLk6g9tySafar_Zbj-93nFFzW4GnKsjM1c"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Danske dialoger</a
+            >
+            <a
+              class="text-link"
+              href="https://www.youtube.com/watch?v=W9YgPXDtDV0&list=PLk6g9tySafapZcYjKW0lffiCJBiOWg3lX"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Dansk udtale for lidt øvede</a
+            >
+            <a
+              class="text-link"
+              href="https://www.youtube.com/watch?v=sh9arggYnrY&list=PLk6g9tySafaoeb8kXu9KBAjagCxCymcWY"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Dansk udtale for øvede</a
+            >
+            <a
+              class="text-link"
+              href="https://www.youtube.com/watch?v=W9YgPXDtDV0&list=PLk6g9tySafaqKlQ0uFD2uGikcZ4SbG2Vf"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Danske konsonanter</a
+            >
+            <a
+              class="text-link"
+              href="https://www.youtube.com/watch?v=OXkDp4uA2aA&list=PLzQVrtlP5LA4oTQxygqdygvw8lxy58wDs"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Dansk sprog, grammatik og udtale</a
+            >
+          </div>
+          <a class="back-link" href="../index.html">Tilbage</a>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

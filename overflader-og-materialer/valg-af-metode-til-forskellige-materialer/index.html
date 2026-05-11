@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Valg af metode til forskellige materialer – Dansk som andetsprog for serviceassistenter</title>
+    <link
+      rel="preload"
+      href="../../assets/bg-overflader-og-materialer.jpg"
+      as="image"
+      fetchpriority="high"
+    />
+    <link rel="preload" href="Valg af metode til forskellige materialer.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <style>
+      .page-vamf-v1 article.article-card .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-vamf-v1 article.article-card .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-vamf-v1 article.article-card .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-vamf-v1 article.article-card .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-vamf-v1 article.article-card .crossword-audio-btn__svg--pause,
+      .page-vamf-v1 article.article-card .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-vamf-v1
+        article.article-card
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-vamf-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-vamf-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-vamf-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-vamf-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-vamf-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-vamf-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-vamf-v1 article.article-card .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-vamf-v1 article.article-card .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      .page-vamf-v1 article.article-card .vamf-page-title-row,
+      .page-vamf-v1 #valg-af-metode .vamf-support-heading-row,
+      .page-vamf-v1 #valg-af-metode .vamf-support-item-row,
+      .page-vamf-v1 #valg-af-metode .case-stem-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.45rem 0.6rem;
+      }
+
+      .page-vamf-v1 article.article-card .vamf-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-vamf-v1 article.article-card .vamf-page-title-row .crossword-audio-btn,
+      .page-vamf-v1 #valg-af-metode .vamf-support-heading-row .crossword-audio-btn--compact,
+      .page-vamf-v1 #valg-af-metode .vamf-support-item-row .crossword-audio-btn--compact,
+      .page-vamf-v1 #valg-af-metode .case-stem-row .crossword-audio-btn--compact {
+        margin-top: 0.08rem;
+      }
+
+      .page-vamf-v1 #valg-af-metode .vamf-support-item-row > div {
+        flex: 1;
+        min-width: 0;
+      }
+    </style>
+  </head>
+
+  <body class="page-vamf-v1">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-overflader-og-materialer.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card article-card--overflader-wide">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Overflader og materialer</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="vamf-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Valg af metode til forskellige materialer.mp3"
+            aria-label="Afspil overskrift højt"
+          >
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-pause" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-play" />
+            </svg>
+          </button>
+          <h1 class="page-title">Valg af metode til forskellige materialer</h1>
+        </div>
+        <h2 class="category-heading" id="valg-af-metode-title">Opgave</h2>
+
+        <section class="dsa-exercise" id="valg-af-metode" aria-labelledby="valg-af-metode-title">
+          <style>
+            #valg-af-metode {
+              --bg: #f7f8fc;
+              --card: #ffffff;
+              --text: #1f2937;
+              --muted: #5b6472;
+              --primary: #2f6fed;
+              --primary-soft: #eaf1ff;
+              --success: #157347;
+              --success-soft: #e8f6ee;
+              --danger: #b42318;
+              --danger-soft: #fdecec;
+              --warning: #b76e00;
+              --warning-soft: #fff4db;
+              --border: #d7deea;
+              --shadow: 0 10px 24px rgba(20, 31, 56, 0.08);
+              font-family: Arial, sans-serif;
+              color: var(--text);
+              background: var(--bg);
+              border: 1px solid var(--border);
+              border-radius: 20px;
+              padding: 24px;
+              max-width: 100%;
+              margin: 0.75rem 0 0;
+              box-shadow: var(--shadow);
+            }
+
+            #valg-af-metode * {
+              box-sizing: border-box;
+            }
+
+            #valg-af-metode h2,
+            #valg-af-metode h3,
+            #valg-af-metode p {
+              margin: 0;
+            }
+
+            #valg-af-metode .exercise-header {
+              margin-bottom: 20px;
+            }
+
+            #valg-af-metode .exercise-intro {
+              color: var(--muted);
+              line-height: 1.5;
+              max-width: 72ch;
+            }
+
+            #valg-af-metode .support-box {
+              margin-top: 16px;
+              background: #fff;
+              border: 1px solid var(--border);
+              border-radius: 16px;
+              padding: 14px 16px;
+              display: grid;
+              gap: 10px;
+            }
+
+            #valg-af-metode .support-title {
+              font-weight: 700;
+              font-size: 1rem;
+            }
+
+            #valg-af-metode .vamf-support-heading-row .support-title {
+              margin: 0;
+              align-self: center;
+              flex: 1;
+              min-width: 0;
+            }
+
+            #valg-af-metode .case-stem-body {
+              flex: 1;
+              min-width: 0;
+            }
+
+            #valg-af-metode .support-grid {
+              display: grid;
+              grid-template-columns: repeat(3, minmax(180px, 1fr));
+              gap: 10px;
+            }
+
+            #valg-af-metode .support-item {
+              background: #f9fafb;
+              border: 1px solid var(--border);
+              border-radius: 12px;
+              padding: 10px 12px;
+              line-height: 1.45;
+              min-height: 90px;
+            }
+
+            #valg-af-metode .support-item strong {
+              display: block;
+              margin-bottom: 4px;
+            }
+
+            #valg-af-metode .cases {
+              margin-top: 24px;
+              display: grid;
+              gap: 16px;
+            }
+
+            #valg-af-metode .case-card {
+              background: var(--card);
+              border: 1px solid var(--border);
+              border-radius: 18px;
+              padding: 18px;
+              display: grid;
+              grid-template-columns: 110px 1fr;
+              gap: 18px;
+              align-items: start;
+            }
+
+            #valg-af-metode .case-visual {
+              background: #f9fbff;
+              border: 1px solid var(--border);
+              border-radius: 16px;
+              min-height: 110px;
+              min-width: 0;
+              overflow: hidden;
+              padding: 0;
+            }
+
+            #valg-af-metode .case-visual img {
+              width: 100%;
+              height: 110px;
+              object-fit: cover;
+              object-position: center;
+              display: block;
+            }
+
+            #valg-af-metode .case-title {
+              font-size: 1.15rem;
+              font-weight: 700;
+              margin-bottom: 6px;
+            }
+
+            #valg-af-metode .case-description {
+              color: var(--muted);
+              line-height: 1.5;
+              margin-bottom: 14px;
+            }
+
+            #valg-af-metode .choice-grid {
+              display: grid;
+              grid-template-columns: repeat(2, minmax(180px, 1fr));
+              gap: 10px;
+            }
+
+            #valg-af-metode .choice-row {
+              display: flex;
+              align-items: stretch;
+              gap: 8px;
+            }
+
+            #valg-af-metode .choice-row .crossword-audio-btn {
+              align-self: center;
+              flex-shrink: 0;
+              margin-top: 0 !important;
+            }
+
+            #valg-af-metode .choice-row .choice-btn {
+              flex: 1;
+              min-width: 0;
+            }
+
+            #valg-af-metode .choice-btn {
+              border: 2px solid var(--border);
+              background: #fff;
+              border-radius: 14px;
+              padding: 12px 14px;
+              text-align: left;
+              cursor: pointer;
+              font-size: 1rem;
+              font-weight: 700;
+              color: var(--text);
+              transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease,
+                background 0.15s ease;
+              min-height: 58px;
+            }
+
+            #valg-af-metode .choice-btn:hover,
+            #valg-af-metode .choice-btn:focus-visible {
+              transform: translateY(-1px);
+              border-color: var(--primary);
+              box-shadow: 0 8px 18px rgba(47, 111, 237, 0.12);
+              outline: none;
+            }
+
+            #valg-af-metode .choice-btn.selected {
+              background: var(--primary-soft);
+              border-color: var(--primary);
+            }
+
+            #valg-af-metode .choice-btn.correct {
+              background: var(--success-soft);
+              border-color: var(--success);
+              color: var(--success);
+            }
+
+            #valg-af-metode .choice-btn.wrong {
+              background: var(--danger-soft);
+              border-color: var(--danger);
+              color: var(--danger);
+            }
+
+            #valg-af-metode .case-result {
+              margin-top: 12px;
+              border-radius: 12px;
+              padding: 10px 12px;
+              display: none;
+              line-height: 1.45;
+              font-weight: 700;
+            }
+
+            #valg-af-metode .case-result.show {
+              display: block;
+            }
+
+            #valg-af-metode .case-result.success {
+              background: var(--success-soft);
+              color: var(--success);
+              border: 1px solid #b7dfc6;
+            }
+
+            #valg-af-metode .case-result.error {
+              background: var(--danger-soft);
+              color: var(--danger);
+              border: 1px solid #f1b4ad;
+            }
+
+            #valg-af-metode .buttons {
+              margin-top: 22px;
+              display: flex;
+              flex-wrap: wrap;
+              gap: 12px;
+            }
+
+            #valg-af-metode button.action-btn {
+              border: none;
+              border-radius: 14px;
+              padding: 12px 18px;
+              font-size: 1rem;
+              font-weight: 700;
+              cursor: pointer;
+              transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+            }
+
+            #valg-af-metode button.action-btn:hover,
+            #valg-af-metode button.action-btn:focus-visible {
+              transform: translateY(-1px);
+              outline: none;
+            }
+
+            #valg-af-metode .btn-primary {
+              background: var(--primary);
+              color: #fff;
+              box-shadow: 0 10px 18px rgba(47, 111, 237, 0.22);
+            }
+
+            #valg-af-metode .btn-secondary {
+              background: #e9edf5;
+              color: var(--text);
+            }
+
+            #valg-af-metode .overall-feedback {
+              margin-top: 18px;
+              border-radius: 16px;
+              padding: 14px 16px;
+              line-height: 1.5;
+              display: none;
+              font-weight: 700;
+            }
+
+            #valg-af-metode .overall-feedback.show {
+              display: block;
+            }
+
+            #valg-af-metode .overall-feedback.success {
+              background: var(--success-soft);
+              color: var(--success);
+              border: 1px solid #b7dfc6;
+            }
+
+            #valg-af-metode .overall-feedback.warning {
+              background: var(--warning-soft);
+              color: #7a4b00;
+              border: 1px solid #efd089;
+            }
+
+            #valg-af-metode .overall-feedback.error {
+              background: var(--danger-soft);
+              color: var(--danger);
+              border: 1px solid #f1b4ad;
+            }
+
+            #valg-af-metode .progress {
+              margin-top: 14px;
+              color: var(--muted);
+              font-weight: 700;
+            }
+
+            #valg-af-metode .sr-only {
+              position: absolute;
+              width: 1px;
+              height: 1px;
+              padding: 0;
+              margin: -1px;
+              overflow: hidden;
+              clip: rect(0, 0, 0, 0);
+              white-space: nowrap;
+              border: 0;
+            }
+
+            @media (max-width: 760px) {
+              #valg-af-metode {
+                padding: 18px;
+              }
+
+              #valg-af-metode .support-grid,
+              #valg-af-metode .case-card,
+              #valg-af-metode .choice-grid {
+                grid-template-columns: 1fr;
+              }
+
+              #valg-af-metode .case-visual {
+                min-height: 90px;
+              }
+
+              #valg-af-metode .case-visual img {
+                height: 90px;
+              }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+              #valg-af-metode .choice-btn,
+              #valg-af-metode button.action-btn {
+                transition: none;
+              }
+            }
+          </style>
+
+          <div class="exercise-header">
+            <p class="exercise-intro">
+              Læs situationen. Vælg den arbejdsgang, der passer bedst til overfladen og snavset.
+            </p>
+
+            <div class="support-box" aria-label="Ordstøtte">
+              <div class="vamf-support-heading-row">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--compact"
+                  data-audio="Ordstoette.mp3"
+                  aria-label="Afspil ordstøtte højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <div class="support-title">Ordstøtte</div>
+              </div>
+              <div class="support-grid">
+                <div class="support-item">
+                  <div class="vamf-support-item-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Universalmiddel.mp3"
+                      aria-label="Afspil om universalmiddel højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div>
+                      <strong>Universalmiddel</strong>
+                      Bruges til almindeligt snavs på inventar, fx borde, døre og håndtag.
+                    </div>
+                  </div>
+                </div>
+                <div class="support-item">
+                  <div class="vamf-support-item-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Glasrens.mp3"
+                      aria-label="Afspil om glasrens højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div>
+                      <strong>Glasrens</strong>
+                      Bruges til glas, spejle og vinduer, når der er fedtede mærker.
+                    </div>
+                  </div>
+                </div>
+                <div class="support-item">
+                  <div class="vamf-support-item-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Korrekt dosering.mp3"
+                      aria-label="Afspil om korrekt dosering højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div>
+                      <strong>Korrekt dosering</strong>
+                      Brug den mængde middel, der står på produktets doseringsvejledning.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cases" id="methodCases">
+            <article class="case-card" data-case="1" data-correct="glasrens-mikrofiberklud">
+              <div class="case-visual">
+                <img
+                  src="Glasrude.png"
+                  alt="Glasrude med fingeraftryk"
+                  width="220"
+                  height="220"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <div class="case-stem-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Glas med fingeraftryk.mp3"
+                    aria-label="Afspil situation højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <div class="case-stem-body">
+                    <h3 class="case-title">1. Glas med fingeraftryk</h3>
+                    <p class="case-description">
+                      Overflade: glas<br />
+                      Snavs: fedtede fingeraftryk
+                    </p>
+                  </div>
+                </div>
+                <div class="choice-grid" role="group" aria-label="Vælg arbejdsgang til glas med fingeraftryk">
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Brug en helt toer klud uden middel.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="tør-klud">
+                      Brug en helt tør klud uden middel
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Brug glasrens og ren glas - mikrofiberklud.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="glasrens-mikrofiberklud">
+                      Brug glasrens og ren glas-/mikrofiberklud
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Skrub glasset med haard boerste.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="hård-børste">
+                      Skrub glasset med hård børste
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Brug kalkfjerner paa hele ruden.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="kalkfjerner">
+                      Brug kalkfjerner på hele ruden
+                    </button>
+                  </div>
+                </div>
+                <div class="case-result" aria-live="polite"></div>
+              </div>
+            </article>
+
+            <article class="case-card" data-case="2" data-correct="gulvmiddel-fugtig-moppe">
+              <div class="case-visual">
+                <img
+                  src="Gulv.png"
+                  alt="Trægulv med støv og løst snavs"
+                  width="220"
+                  height="220"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <div class="case-stem-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Traegulv med stoev og almindeligt snavs.mp3"
+                    aria-label="Afspil situation højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <div class="case-stem-body">
+                    <h3 class="case-title">2. Trægulv med støv og almindeligt snavs</h3>
+                    <p class="case-description">
+                      Overflade: behandlet trægulv<br />
+                      Snavs: støv og almindeligt snavs
+                    </p>
+                  </div>
+                </div>
+                <div class="choice-grid" role="group" aria-label="Vælg arbejdsgang til trægulv med støv og almindeligt snavs">
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Vask gulvet med meget vand.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="meget-vand">
+                      Vask gulvet med meget vand
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Brug kalkfjerner.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="kalkfjerner">
+                      Brug kalkfjerner
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Brug korrekt doseret gulvmiddel og fugtig moppe.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="gulvmiddel-fugtig-moppe">
+                      Brug korrekt doseret gulvmiddel og fugtig moppe
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Skrub gulvet med haard boerste.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="hård-børste">
+                      Skrub gulvet med hård børste
+                    </button>
+                  </div>
+                </div>
+                <div class="case-result" aria-live="polite"></div>
+              </div>
+            </article>
+
+            <article class="case-card" data-case="3" data-correct="universalmiddel-klud">
+              <div class="case-visual">
+                <img
+                  src="Doer.png"
+                  alt="Malet dør med synlige mærker og snavs"
+                  width="220"
+                  height="220"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <div class="case-stem-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Malet doer med snavs og maerker.mp3"
+                    aria-label="Afspil situation højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <div class="case-stem-body">
+                    <h3 class="case-title">3. Malet dør med snavs og mærker</h3>
+                    <p class="case-description">
+                      Overflade: malet dør<br />
+                      Snavs: fingermærker og almindeligt snavs
+                    </p>
+                  </div>
+                </div>
+                <div class="choice-grid" role="group" aria-label="Vælg arbejdsgang til malet dør med snavs og mærker">
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Brug staaluld paa maerkerne.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="ståluld">
+                      Brug ståluld på mærkerne
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Toer doeren af med en toer klud uden middel.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="tør-klud">
+                      Tør døren af med en tør klud uden middel
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Brug kalkfjerner.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="kalkfjerner">
+                      Brug kalkfjerner
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Brug korrekt doseret universalmiddel og klud.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="universalmiddel-klud">
+                      Brug korrekt doseret universalmiddel og klud
+                    </button>
+                  </div>
+                </div>
+                <div class="case-result" aria-live="polite"></div>
+              </div>
+            </article>
+
+            <article class="case-card" data-case="4" data-correct="universalmiddel-mikrofiberklud">
+              <div class="case-visual">
+                <img
+                  src="Laminatbord.png"
+                  alt="Laminatbord med krummer og kaffekoprande"
+                  width="220"
+                  height="220"
+                  decoding="async"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <div class="case-stem-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Laminatbord med krummer og kaffekoprande.mp3"
+                    aria-label="Afspil situation højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <div class="case-stem-body">
+                    <h3 class="case-title">4. Laminatbord med krummer og kaffekoprande</h3>
+                    <p class="case-description">
+                      Overflade: laminatbord<br />
+                      Snavs: krummer og kaffekoprande
+                    </p>
+                  </div>
+                </div>
+                <div class="choice-grid" role="group" aria-label="Vælg arbejdsgang til laminatbord med krummer og kaffekoprande">
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Haeld meget vand paa bordet.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="meget-vand">
+                      Hæld meget vand på bordet
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Brug korrekt doseret universalmiddel og mikrofiberklud.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="universalmiddel-mikrofiberklud">
+                      Brug korrekt doseret universalmiddel og mikrofiberklud
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Skrub bordet med haard boerste.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="hård-børste">
+                      Skrub bordet med hård børste
+                    </button>
+                  </div>
+                  <div class="choice-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Brug kalkfjerner.mp3"
+                      aria-label="Afspil svarmulighed højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <button type="button" class="choice-btn" data-choice="kalkfjerner">
+                      Brug kalkfjerner
+                    </button>
+                  </div>
+                </div>
+                <div class="case-result" aria-live="polite"></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="buttons">
+            <button class="action-btn btn-primary" id="checkMethodsBtn" type="button">Tjek svar</button>
+            <button class="action-btn btn-secondary" id="resetMethodsBtn" type="button">Prøv igen</button>
+          </div>
+
+          <div class="progress" id="methodProgress">Du har valgt 0 af 4 svar.</div>
+          <div class="overall-feedback" id="methodsFeedback" aria-live="polite"></div>
+          <p class="sr-only" id="methodsSrStatus" aria-live="polite"></p>
+
+          <script>
+            (function () {
+              const root = document.getElementById("valg-af-metode");
+              if (!root) return;
+
+              const caseCards = Array.from(root.querySelectorAll(".case-card"));
+              const feedback = root.querySelector("#methodsFeedback");
+              const progress = root.querySelector("#methodProgress");
+              const srStatus = root.querySelector("#methodsSrStatus");
+              const checkBtn = root.querySelector("#checkMethodsBtn");
+              const resetBtn = root.querySelector("#resetMethodsBtn");
+
+              const feedbackTexts = {
+                "glasrens-mikrofiberklud": {
+                  success:
+                    "Rigtigt. Fingeraftryk er fedtet snavs. Glasrens og en ren glas-/mikrofiberklud passer til glas.",
+                  help:
+                    "Prøv igen. Ved fedtede fingeraftryk på glas skal du vælge glasrens og en ren glas-/mikrofiberklud."
+                },
+                "gulvmiddel-fugtig-moppe": {
+                  success:
+                    "Rigtigt. Et behandlet trægulv med almindeligt snavs rengøres med korrekt doseret gulvmiddel og fugtig moppe. Undgå at gøre gulvet meget vådt.",
+                  help:
+                    "Prøv igen. Vælg korrekt doseret gulvmiddel og fugtig moppe. Meget vand og kalkfjerner passer ikke til trægulvet."
+                },
+                "universalmiddel-klud": {
+                  success:
+                    "Rigtigt. En malet dør med fingermærker og almindeligt snavs rengøres med korrekt doseret universalmiddel og klud.",
+                  help:
+                    "Prøv igen. Vælg korrekt doseret universalmiddel og klud til almindeligt snavs på en malet dør."
+                },
+                "universalmiddel-mikrofiberklud": {
+                  success:
+                    "Rigtigt. Laminatbord med krummer og kaffekoprande rengøres med korrekt doseret universalmiddel og mikrofiberklud.",
+                  help:
+                    "Prøv igen. Vælg korrekt doseret universalmiddel og mikrofiberklud til krummer og kaffekoprande på laminatbordet."
+                }
+              };
+
+              function updateProgress() {
+                const answered = caseCards.filter((card) => card.dataset.selected).length;
+                progress.textContent = "Du har valgt " + answered + " af " + caseCards.length + " svar.";
+              }
+
+              function hideOverallFeedback() {
+                feedback.className = "overall-feedback";
+                feedback.innerHTML = "";
+              }
+
+              function setCaseMessage(card, type, message) {
+                const box = card.querySelector(".case-result");
+                box.className = "case-result show " + type;
+                box.textContent = message;
+              }
+
+              function clearCaseMessage(card) {
+                const box = card.querySelector(".case-result");
+                box.className = "case-result";
+                box.textContent = "";
+              }
+
+              function clearChoiceStates(card) {
+                card.querySelectorAll(".choice-btn").forEach((btn) => {
+                  btn.classList.remove("selected", "correct", "wrong");
+                });
+              }
+
+              function selectChoice(card, button) {
+                clearChoiceStates(card);
+                button.classList.add("selected");
+                card.dataset.selected = button.dataset.choice;
+                clearCaseMessage(card);
+                hideOverallFeedback();
+                updateProgress();
+                srStatus.textContent = "Valgt: " + button.textContent;
+              }
+
+              function checkAnswers() {
+                const unanswered = caseCards.filter((card) => !card.dataset.selected);
+
+                if (unanswered.length > 0) {
+                  feedback.className = "overall-feedback show warning";
+                  feedback.textContent = "Du mangler at vælge svar på alle opgaver.";
+                  srStatus.textContent = "Der mangler svar.";
+                  return;
+                }
+
+                let correctCount = 0;
+
+                caseCards.forEach((card) => {
+                  const selected = card.dataset.selected;
+                  const correct = card.dataset.correct;
+                  const buttons = card.querySelectorAll(".choice-btn");
+
+                  buttons.forEach((btn) => {
+                    btn.classList.remove("correct", "wrong");
+
+                    if (btn.dataset.choice === selected && selected === correct) {
+                      btn.classList.add("correct");
+                    } else if (btn.dataset.choice === selected && selected !== correct) {
+                      btn.classList.add("wrong");
+                    }
+                  });
+
+                  if (selected === correct) {
+                    correctCount += 1;
+                    setCaseMessage(card, "success", feedbackTexts[correct].success);
+                  } else {
+                    setCaseMessage(card, "error", feedbackTexts[correct].help);
+                  }
+                });
+
+                if (correctCount === caseCards.length) {
+                  feedback.className = "overall-feedback show success";
+                  feedback.textContent = "Flot. Du har valgt de rigtige arbejdsgange.";
+                  srStatus.textContent = "Alle svar er rigtige.";
+                } else {
+                  feedback.className = "overall-feedback show error";
+                  feedback.textContent =
+                    "Du har " +
+                    correctCount +
+                    " af " +
+                    caseCards.length +
+                    " rigtige. Se de røde svar og prøv igen.";
+                  srStatus.textContent = "Nogle svar er forkerte.";
+                }
+              }
+
+              function resetExercise() {
+                caseCards.forEach((card) => {
+                  delete card.dataset.selected;
+                  clearChoiceStates(card);
+                  clearCaseMessage(card);
+                });
+
+                hideOverallFeedback();
+                updateProgress();
+                srStatus.textContent = "Øvelsen er nulstillet.";
+              }
+
+              caseCards.forEach((card) => {
+                const buttons = card.querySelectorAll(".choice-btn");
+
+                buttons.forEach((button) => {
+                  button.addEventListener("click", function () {
+                    selectChoice(card, button);
+                  });
+
+                  button.addEventListener("keydown", function (event) {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      selectChoice(card, button);
+                    }
+                  });
+                });
+              });
+
+              checkBtn.addEventListener("click", checkAnswers);
+              resetBtn.addEventListener("click", resetExercise);
+              updateProgress();
+            })();
+          </script>
+        </section>
+      </article>
+    </div>
+    <script>
+      (function setupVamfAudio() {
+        var root = document.querySelector(".page-vamf-v1 article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename || !buttonEl) return;
+          stashAria(buttonEl);
+          if (currentBtn === buttonEl && currentAudio) {
+            if (!currentAudio.paused) {
+              currentAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  updateBtnAria(buttonEl);
+                })
+                .catch(function () {
+                  releasePrior();
+                });
+            } else {
+              updateBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePrior();
+          buttonEl.classList.remove("is-audio-paused");
+          currentBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL("./" + encodeURIComponent(filename), window.location.href).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+      })();
+    </script>
+  </body>
+</html>

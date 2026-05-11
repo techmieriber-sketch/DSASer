@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kryds og tværs om arbejdsmiljø – Arbejdsmiljø</title>
+    <link rel="preload" href="../../assets/bg-arbejdsmiljo.jpg" as="image" fetchpriority="high" />
+    <link rel="preload" href="Saadan goer du.mp3" as="audio" />
+    <link rel="preload" href="Kryds og tvaer om arbejdsmiljoe.mp3" as="audio" />
+    <link rel="preload" href="1.mp3" as="audio" />
+    <link rel="preload" href="2.mp3" as="audio" />
+    <link rel="preload" href="3.mp3" as="audio" />
+    <link rel="preload" href="4.mp3" as="audio" />
+    <link rel="preload" href="5.mp3" as="audio" />
+    <link rel="preload" href="6.mp3" as="audio" />
+    <link rel="stylesheet" href="../arbejdsmiljo.css" />
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-arbejdsmiljo.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card article-card--crossword crossword-theme-new">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Arbejdsmiljø</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="crossword-page-title-row">
+          <button
+            type="button"
+            id="cwTitleAudioBtn"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Kryds og tvaer om arbejdsmiljoe.mp3"
+            aria-label="Afspil overskriften højt"
+          >
+            <svg class="crossword-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+          </button>
+          <h1 class="page-title" id="cw-page-title">Kryds og tværs om arbejdsmiljø</h1>
+        </div>
+
+        <section class="crossword-section" aria-labelledby="cw-page-title">
+          <div id="crosswordApp" class="crossword-container">
+            <header class="crossword-header">
+              <p class="crossword-intro">
+                Skriv ordene i felterne. Når et ord er rigtigt, bliver det grønt. Ved svar med to ord er der et tomt
+                mellemrumfelt i gitteret. Du kan klikke på et tip for at hoppe direkte til ordet.
+              </p>
+              <div class="crossword-button-row">
+                <button type="button" id="clearSelectedBtn" class="crossword-btn secondary">Slet valgt ord</button>
+                <button type="button" id="clearAllBtn" class="crossword-btn secondary">Nulstil alle felter</button>
+              </div>
+            </header>
+
+            <div class="crossword-layout">
+              <div class="crossword-board-area">
+                <div class="crossword-board-scroll">
+                  <div id="board" class="board" aria-label="Kryds og tværs om arbejdsmiljø"></div>
+                </div>
+                <p class="crossword-status" id="status" aria-live="polite"></p>
+              </div>
+
+              <div class="crossword-clues-column">
+                <section class="crossword-panel" aria-label="Sådan gør du">
+                  <div class="crossword-panel-title-row">
+                    <button
+                      type="button"
+                      id="cwIntroAudioBtn"
+                      class="crossword-audio-btn crossword-audio-btn--intro"
+                      data-audio="Saadan goer du.mp3"
+                      aria-label="Afspil vejledning: Sådan gør du"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <h2 class="crossword-panel__title crossword-panel__title--in-row">Sådan gør du</h2>
+                  </div>
+                  <p class="crossword-help">
+                    Brug tastaturet til at skrive. <kbd>Backspace</kbd> sletter. Piletaster flytter dig rundt. Klik på et
+                    tip for at starte ved det rigtige ord. Ved svar med to ord springer markøren automatisk over
+                    mellemrumsfeltet.
+                  </p>
+                </section>
+
+                <section class="crossword-panel">
+                  <h2 class="crossword-panel__title crossword-panel__title--minor">Tips</h2>
+                  <ol class="clue-list" id="clueList"></ol>
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <script src="kryds-arbejdsmiljo.js"></script>
+  </body>
+</html>

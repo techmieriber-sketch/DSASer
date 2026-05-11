@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vedligeholdelse af redskaber – Sortér kortene – Dansk som andetsprog for serviceassistenter</title>
+    <link rel="preload" href="../../assets/bg-redskaber.jpg" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <link rel="preload" href="Vedligeholdelse af redskaber.mp3" as="audio" />
+    <style>
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn__svg--pause,
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-vedligeholdelse-redskaber-v1
+        article.article-card
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .vedligeholdelse-page-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.45rem 0.6rem;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .vedligeholdelse-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .vedligeholdelse-page-title-row .crossword-audio-btn {
+        margin-top: 0.08rem;
+      }
+
+      .vedligeholdelse-redskaber-sort .vedligeholdelse-section-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.45rem 0.55rem;
+        margin: 0 0 14px;
+      }
+
+      .vedligeholdelse-redskaber-sort .vedligeholdelse-section-title-row .section-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .vedligeholdelse-redskaber-sort .vedligeholdelse-drop-zone-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 10px;
+        margin: 0 0 8px;
+      }
+
+      .vedligeholdelse-redskaber-sort .vedligeholdelse-drop-zone-title-row h3 {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .vedligeholdelse-redskaber-sort .placed-label-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: space-between;
+        min-width: 0;
+      }
+
+      .vedligeholdelse-redskaber-sort .placed-label-row .placed-label {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .vedligeholdelse-drop-zone-title-row .crossword-audio-btn {
+        margin-top: 0;
+      }
+
+      .page-vedligeholdelse-redskaber-v1 article.article-card .vedligeholdelse-section-title-row .crossword-audio-btn {
+        margin-top: 0;
+      }
+
+      .vedligeholdelse-redskaber-sort {
+        --vrs-bg: #f4f7fb;
+        --vrs-card: #ffffff;
+        --vrs-primary: #1f5f8b;
+        --vrs-primary-dark: #164866;
+        --vrs-accent: #d9ecf7;
+        --vrs-success: #1f8a4c;
+        --vrs-success-soft: #e8f6ee;
+        --vrs-error: #b23b3b;
+        --vrs-error-soft: #fdeeee;
+        --vrs-text: #1f2933;
+        --vrs-muted: #5b6b7a;
+        --vrs-border: #d7e1ea;
+        --vrs-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --vrs-radius: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--vrs-text);
+        line-height: 1.5;
+      }
+
+      .page-shell--vedligeholdelse-redskaber {
+        padding: 1.25rem 0.75rem 1.75rem;
+      }
+
+      .article-card--vedligeholdelse-redskaber {
+        max-width: min(1320px, calc(100vw - 1.5rem));
+        background: rgba(248, 252, 255, 0.94);
+        border: 1px solid rgba(215, 225, 234, 0.92);
+      }
+
+      .vedligeholdelse-redskaber-sort * {
+        box-sizing: border-box;
+      }
+
+      .vedligeholdelse-redskaber-sort .page {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 0 8px;
+      }
+
+      .vedligeholdelse-redskaber-sort .hero {
+        background: #f1f7fb;
+        border: 1px solid var(--vrs-border);
+        border-radius: 18px;
+        padding: 18px 20px;
+        box-shadow: none;
+        margin-bottom: 16px;
+      }
+
+      .vedligeholdelse-redskaber-sort .hero p {
+        margin: 0;
+        max-width: 72ch;
+        color: var(--vrs-muted);
+        font-size: 1.05rem;
+      }
+
+      .vedligeholdelse-redskaber-sort .panel {
+        background: #ffffff;
+        border: 1px solid var(--vrs-border);
+        border-radius: var(--vrs-radius);
+        padding: 16px 18px;
+        margin-bottom: 16px;
+        box-shadow: none;
+      }
+
+      .vedligeholdelse-redskaber-sort .panel h2 {
+        margin: 0 0 12px;
+        font-size: 1.25rem;
+        color: var(--vrs-primary-dark);
+      }
+
+      .vedligeholdelse-redskaber-sort .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .vedligeholdelse-redskaber-sort .btn {
+        border: none;
+        border-radius: 14px;
+        padding: 12px 18px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s ease;
+      }
+
+      .vedligeholdelse-redskaber-sort .btn-primary {
+        background: var(--vrs-primary);
+        color: white;
+      }
+
+      .vedligeholdelse-redskaber-sort .btn-primary:hover,
+      .vedligeholdelse-redskaber-sort .btn-primary:focus {
+        background: var(--vrs-primary-dark);
+      }
+
+      .vedligeholdelse-redskaber-sort .btn-secondary {
+        background: #eef4f8;
+        color: var(--vrs-primary-dark);
+        border: 1px solid var(--vrs-border);
+      }
+
+      .vedligeholdelse-redskaber-sort .btn-secondary:hover,
+      .vedligeholdelse-redskaber-sort .btn-secondary:focus {
+        background: #ddebf4;
+      }
+
+      .vedligeholdelse-redskaber-sort .status {
+        margin-top: 14px;
+        min-height: 28px;
+        font-weight: 700;
+      }
+
+      .vedligeholdelse-redskaber-sort .progress {
+        margin-top: 10px;
+        color: var(--vrs-muted);
+        font-weight: 700;
+      }
+
+      .vedligeholdelse-redskaber-sort .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(460px, 1.12fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      .vedligeholdelse-redskaber-sort .card-area,
+      .vedligeholdelse-redskaber-sort .drop-area {
+        background: #ffffff;
+        border: 1px solid var(--vrs-border);
+        border-radius: var(--vrs-radius);
+        padding: 18px;
+        box-shadow: 0 4px 18px rgba(22, 72, 102, 0.07);
+      }
+
+      .vedligeholdelse-redskaber-sort .section-title {
+        margin: 0 0 14px;
+        color: var(--vrs-primary-dark);
+        font-size: 1.2rem;
+      }
+
+      .vedligeholdelse-redskaber-sort .items-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(140px, 1fr));
+        gap: 14px;
+      }
+
+      .vedligeholdelse-redskaber-sort .drag-card {
+        background: #f8fbfd;
+        border: 1px solid var(--vrs-border);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: none;
+        cursor: grab;
+        user-select: none;
+        display: grid;
+        grid-template-rows: 120px 1fr;
+      }
+
+      .vedligeholdelse-redskaber-sort .drag-card:hover {
+        border-color: #a7c0d3;
+        box-shadow: 0 6px 16px rgba(31, 95, 139, 0.09);
+      }
+
+      .vedligeholdelse-redskaber-sort .drag-card:active {
+        cursor: grabbing;
+      }
+
+      .vedligeholdelse-redskaber-sort .drag-card.used {
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .vedligeholdelse-redskaber-sort .drag-image {
+        background: linear-gradient(135deg, #eef6fb, #ffffff);
+        border-bottom: 1px solid var(--vrs-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .vedligeholdelse-redskaber-sort .drag-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .vedligeholdelse-redskaber-sort .drag-body {
+        padding: 10px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .vedligeholdelse-redskaber-sort .drag-title-row {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .vedligeholdelse-redskaber-sort .drag-title {
+        font-weight: 700;
+        color: var(--vrs-primary-dark);
+        font-size: 0.96rem;
+      }
+
+      .vedligeholdelse-redskaber-sort .drag-hint {
+        color: var(--vrs-muted);
+        font-size: 0.9rem;
+        min-height: 54px;
+      }
+
+      .vedligeholdelse-redskaber-sort .drop-columns {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+
+      .vedligeholdelse-redskaber-sort .drop-zone {
+        min-height: 456px;
+        border: 2px dashed #9db7c8;
+        border-radius: 18px;
+        padding: 14px;
+        background: #f7fbfd;
+        transition: 0.2s ease;
+      }
+
+      .vedligeholdelse-redskaber-sort .drop-zone.over {
+        border-color: var(--vrs-primary);
+        background: #eaf4fa;
+      }
+
+      .vedligeholdelse-redskaber-sort .drop-zone.good {
+        border-color: rgba(31, 138, 76, 0.55);
+        background: linear-gradient(180deg, #f7fbfd 0%, #e8f6ee 100%);
+      }
+
+      .vedligeholdelse-redskaber-sort .drop-zone.bad {
+        border-color: rgba(178, 59, 59, 0.55);
+        background: linear-gradient(180deg, #f7fbfd 0%, #fdeeee 100%);
+      }
+
+      .vedligeholdelse-redskaber-sort .drop-zone.good h3 {
+        color: var(--vrs-success);
+      }
+
+      .vedligeholdelse-redskaber-sort .drop-zone.bad h3 {
+        color: var(--vrs-error);
+      }
+
+      .vedligeholdelse-redskaber-sort .drop-zone h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: var(--vrs-primary-dark);
+      }
+
+      .vedligeholdelse-redskaber-sort .drop-zone p {
+        margin: 0 0 14px;
+        color: var(--vrs-muted);
+        font-size: 0.96rem;
+      }
+
+      .vedligeholdelse-redskaber-sort .drop-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .vedligeholdelse-redskaber-sort .placed-card {
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid var(--vrs-border);
+        border-radius: 14px;
+        padding: 8px;
+        display: grid;
+        grid-template-columns: 78px minmax(0, 1fr);
+        gap: 8px;
+        align-items: center;
+        cursor: grab;
+      }
+
+      .vedligeholdelse-redskaber-sort .placed-card:active {
+        cursor: grabbing;
+      }
+
+      .vedligeholdelse-redskaber-sort .placed-card img {
+        width: 78px;
+        height: 64px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid var(--vrs-border);
+        background: #fff;
+      }
+
+      .vedligeholdelse-redskaber-sort .placed-label {
+        font-weight: 700;
+        color: var(--vrs-primary-dark);
+      }
+
+      .vedligeholdelse-redskaber-sort .placed-feedback {
+        font-size: 0.95rem;
+        color: var(--vrs-muted);
+      }
+
+      .vedligeholdelse-redskaber-sort .placed-text {
+        display: grid;
+        gap: 4px;
+        min-width: 0;
+      }
+
+      .vedligeholdelse-redskaber-sort .result-box {
+        margin-top: 22px;
+        display: none;
+        background: #ffffff;
+        border: 1px solid var(--vrs-border);
+        border-radius: var(--vrs-radius);
+        padding: 18px;
+        box-shadow: var(--vrs-shadow);
+      }
+
+      .vedligeholdelse-redskaber-sort .result-box.show {
+        display: block;
+      }
+
+      .vedligeholdelse-redskaber-sort .result-box h2 {
+        margin: 0 0 8px;
+        color: var(--vrs-success);
+      }
+
+      .vedligeholdelse-redskaber-sort .result-box p {
+        margin: 0;
+        color: var(--vrs-muted);
+      }
+
+      @media (max-width: 980px) {
+        .vedligeholdelse-redskaber-sort .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .vedligeholdelse-redskaber-sort .items-grid {
+          grid-template-columns: repeat(3, minmax(140px, 1fr));
+        }
+
+        .vedligeholdelse-redskaber-sort .drop-columns {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .vedligeholdelse-redskaber-sort .items-grid {
+          grid-template-columns: repeat(2, minmax(130px, 1fr));
+        }
+      }
+
+      @media (max-width: 460px) {
+        .vedligeholdelse-redskaber-sort .items-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .vedligeholdelse-redskaber-sort * {
+          transition: none !important;
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-vedligeholdelse-redskaber-v1">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-redskaber.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell page-shell--vedligeholdelse-redskaber">
+      <article class="article-card article-card--vedligeholdelse-redskaber">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Redskaber</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="vedligeholdelse-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Vedligeholdelse af redskaber.mp3"
+            aria-label="Afspil Vedligeholdelse af redskaber højt"
+          >
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-pause" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-play" />
+            </svg>
+          </button>
+          <h1 class="page-title">Vedligeholdelse af redskaber</h1>
+        </div>
+        <h2 class="category-heading">Sortér kortene</h2>
+
+        <div class="vedligeholdelse-redskaber-sort">
+          <div class="page">
+            <section class="hero">
+              <p>
+                Se på kortene. Træk hvert kort til den rigtige gruppe:
+                <strong>God vedligeholdelse</strong> eller <strong>Dårlig vedligeholdelse</strong>.
+              </p>
+            </section>
+
+            <section class="panel">
+              <h2>Sådan gør du</h2>
+              <p>Træk alle kort til den rigtige side.</p>
+
+              <div class="controls">
+                <button class="btn btn-primary" id="checkBtn" type="button">Tjek svar</button>
+                <button class="btn btn-secondary" id="resetBtn" type="button">Start forfra</button>
+              </div>
+
+              <div class="status" id="status" aria-live="polite"></div>
+              <div class="progress" id="progress">0 af 6 placeret rigtigt</div>
+            </section>
+
+            <section class="layout" aria-label="Sorteringsøvelse">
+              <div class="card-area">
+                <h2 class="section-title">Kort</h2>
+                <div class="items-grid" id="itemsGrid"></div>
+              </div>
+
+              <div class="drop-area">
+                <div class="vedligeholdelse-section-title-row">
+                  <h2 class="section-title">Sortér kortene</h2>
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Sortér kortene.mp3"
+                    aria-label="Afspil Sortér kortene højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="drop-columns">
+                  <div class="drop-zone good" data-zone="god">
+                    <div class="vedligeholdelse-drop-zone-title-row">
+                      <button
+                        type="button"
+                        class="crossword-audio-btn crossword-audio-btn--compact"
+                        data-audio="God vedligeholdelse.mp3"
+                        aria-label="Afspil forklaring på god vedligeholdelse"
+                      >
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-pause" />
+                        </svg>
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-play" />
+                        </svg>
+                      </button>
+                      <h3>God vedligeholdelse</h3>
+                    </div>
+                    <p>Rene, tørre og ordnede redskaber.</p>
+                    <div class="drop-list" id="goodList"></div>
+                  </div>
+
+                  <div class="drop-zone bad" data-zone="dårlig">
+                    <div class="vedligeholdelse-drop-zone-title-row">
+                      <button
+                        type="button"
+                        class="crossword-audio-btn crossword-audio-btn--compact"
+                        data-audio="Daarlig vedligeholdelse.mp3"
+                        aria-label="Afspil forklaring på dårlig vedligeholdelse"
+                      >
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-pause" />
+                        </svg>
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-play" />
+                        </svg>
+                      </button>
+                      <h3>Dårlig vedligeholdelse</h3>
+                    </div>
+                    <p>Beskidte, våde eller uordnede redskaber.</p>
+                    <div class="drop-list" id="badList"></div>
+                  </div>
+                </div>
+
+                <div class="result-box" id="resultBox" aria-live="polite">
+                  <h2>Flot!</h2>
+                  <p>Du har sorteret alle kort rigtigt.</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <script>
+      var items = [
+        {
+          id: "ren-klud",
+          title: "Ren og tør klud",
+          hint: "Kluden er klar til brug.",
+          image: "Ren og toer klud.png",
+          group: "god",
+          feedback: "En ren og tør klud er god vedligeholdelse.",
+          audio: "Ren og toer klud.mp3",
+        },
+        {
+          id: "våd-klud",
+          title: "Våde klude i en bunke",
+          hint: "Kludene ligger våde og sammenkrøllede.",
+          image: "Vaade klude i en bunke.png",
+          group: "dårlig",
+          feedback: "En våd klud i en bunke kan give dårlig hygiejne.",
+          audio: "Vaade klude i en bunke Kludene ligger vaade og sammenkroellede..mp3",
+        },
+        {
+          id: "ren-vogn",
+          title: "Ryddelig vogn",
+          hint: "Redskaberne står pænt og systematisk.",
+          image: "Rydelig vogn.png",
+          group: "god",
+          feedback: "En ryddelig vogn gør arbejdet lettere og mere hygiejnisk.",
+          audio: "Ryddelig vogn.mp3",
+        },
+        {
+          id: "uordnet-vogn",
+          title: "Uordnet vogn",
+          hint: "Tingene ligger rodet og blandet sammen.",
+          image: "Uordnet vogn.png",
+          group: "dårlig",
+          feedback: "En uordnet vogn giver dårlig oversigt og dårlig vedligeholdelse.",
+          audio: "Uordnet vogn Tingene ligger rodet og blandet sammen..mp3",
+        },
+        {
+          id: "ren-moppe",
+          title: "Beskidt moppe til vask",
+          hint: "Moppen håndteres korrekt efter brug.",
+          image: "Beskidt moppe til vask.png",
+          group: "god",
+          feedback: "En moppe, der håndteres korrekt, er god vedligeholdelse.",
+          audio: "Beskidt moppe til vask Moppen haandteres korrekt efter brug..mp3",
+        },
+        {
+          id: "beskidt-borste",
+          title: "Beskidt skuresvamp",
+          hint: "Svampen er fyldt med snavs.",
+          image: "Beskidt skuresvamp.png",
+          group: "dårlig",
+          feedback: "En beskidt skuresvamp kan sprede snavs videre.",
+          audio: "Beskidt skuresvamp Svampen er fyldt med snavs..mp3",
+        },
+      ];
+
+      function vedligeholdelseCompactAudioSvg() {
+        return (
+          '<svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-speaker" /></svg>' +
+          '<svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-pause" /></svg>' +
+          '<svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-play" /></svg>'
+        );
+      }
+
+      function createCompactAudioButton(audioFile, ariaLabel) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "crossword-audio-btn crossword-audio-btn--compact";
+        btn.setAttribute("data-audio", audioFile);
+        btn.setAttribute("aria-label", ariaLabel);
+        btn.innerHTML = vedligeholdelseCompactAudioSvg();
+        return btn;
+      }
+
+      function refreshVedligeholdelseAudioUi() {
+        if (typeof window.__vedligeholdelseRefreshAudioUi === "function") {
+          window.__vedligeholdelseRefreshAudioUi();
+        }
+      }
+
+      var itemsGrid = document.getElementById("itemsGrid");
+      var goodList = document.getElementById("goodList");
+      var badList = document.getElementById("badList");
+      var checkBtn = document.getElementById("checkBtn");
+      var resetBtn = document.getElementById("resetBtn");
+      var statusEl = document.getElementById("status");
+      var progressEl = document.getElementById("progress");
+      var resultBox = document.getElementById("resultBox");
+      var rootSort = document.querySelector(".vedligeholdelse-redskaber-sort");
+
+      var placements = {};
+
+      function shuffle(array) {
+        var copy = array.slice();
+        var i;
+        var j;
+        var tmp;
+        for (i = copy.length - 1; i > 0; i--) {
+          j = Math.floor(Math.random() * (i + 1));
+          tmp = copy[i];
+          copy[i] = copy[j];
+          copy[j] = tmp;
+        }
+        return copy;
+      }
+
+      function renderStartCards() {
+        itemsGrid.innerHTML = "";
+        var shuffled = shuffle(items);
+
+        shuffled.forEach(function (item) {
+          var card = document.createElement("div");
+          card.className = "drag-card";
+          card.draggable = true;
+          card.dataset.id = item.id;
+
+          var dragImage = document.createElement("div");
+          dragImage.className = "drag-image";
+          var img = document.createElement("img");
+          img.src = item.image;
+          img.alt = item.title;
+          img.loading = "lazy";
+          img.decoding = "async";
+          dragImage.appendChild(img);
+
+          var body = document.createElement("div");
+          body.className = "drag-body";
+          var titleRow = document.createElement("div");
+          titleRow.className = "drag-title-row";
+          var titleEl = document.createElement("div");
+          titleEl.className = "drag-title";
+          titleEl.textContent = item.title;
+          titleRow.appendChild(titleEl);
+          if (item.audio) {
+            titleRow.appendChild(createCompactAudioButton(item.audio, "Afspil " + item.title + " højt"));
+          }
+
+          var hintEl = document.createElement("div");
+          hintEl.className = "drag-hint";
+          hintEl.textContent = item.hint;
+          body.appendChild(titleRow);
+          body.appendChild(hintEl);
+          card.appendChild(dragImage);
+          card.appendChild(body);
+
+          card.addEventListener("dragstart", function (event) {
+            if (event.target.closest && event.target.closest(".crossword-audio-btn")) {
+              event.preventDefault();
+              return;
+            }
+            event.dataTransfer.setData("text/plain", item.id);
+          });
+
+          itemsGrid.appendChild(card);
+        });
+
+        refreshVedligeholdelseAudioUi();
+      }
+
+      function renderDropLists() {
+        goodList.innerHTML = "";
+        badList.innerHTML = "";
+
+        items.forEach(function (item) {
+          var zone = placements[item.id];
+          if (!zone) return;
+
+          var wrap = document.createElement("div");
+          wrap.className = "placed-card";
+          wrap.draggable = true;
+          wrap.dataset.id = item.id;
+          var pImg = document.createElement("img");
+          pImg.src = item.image;
+          pImg.alt = "";
+          pImg.loading = "lazy";
+          pImg.decoding = "async";
+          var textWrap = document.createElement("div");
+          textWrap.className = "placed-text";
+          var labelRow = document.createElement("div");
+          labelRow.className = "placed-label-row";
+          var pLabel = document.createElement("div");
+          pLabel.className = "placed-label";
+          pLabel.textContent = item.title;
+          labelRow.appendChild(pLabel);
+          if (item.audio) {
+            labelRow.appendChild(createCompactAudioButton(item.audio, "Afspil " + item.title + " højt"));
+          }
+          var pFb = document.createElement("div");
+          pFb.className = "placed-feedback";
+          pFb.textContent = item.feedback;
+          textWrap.appendChild(labelRow);
+          textWrap.appendChild(pFb);
+          wrap.appendChild(pImg);
+          wrap.appendChild(textWrap);
+
+          wrap.addEventListener("dragstart", function (event) {
+            if (event.target.closest && event.target.closest(".crossword-audio-btn")) {
+              event.preventDefault();
+              return;
+            }
+            event.dataTransfer.setData("text/plain", item.id);
+          });
+
+          if (zone === "god") {
+            goodList.appendChild(wrap);
+          } else if (zone === "dårlig") {
+            badList.appendChild(wrap);
+          }
+        });
+
+        rootSort.querySelectorAll(".drag-card").forEach(function (card) {
+          var id = card.dataset.id;
+          var used = Boolean(placements[id]);
+          card.classList.toggle("used", used);
+        });
+
+        refreshVedligeholdelseAudioUi();
+      }
+
+      function updateProgress() {
+        var correct = 0;
+        var placed = 0;
+        var i;
+        var item;
+
+        for (i = 0; i < items.length; i++) {
+          item = items[i];
+          if (placements[item.id]) {
+            placed += 1;
+          }
+          if (placements[item.id] === item.group) {
+            correct += 1;
+          }
+        }
+
+        progressEl.textContent = correct + " af " + items.length + " placeret rigtigt";
+
+        if (placed < items.length) {
+          resultBox.classList.remove("show");
+        }
+      }
+
+      function setupDropZones() {
+        rootSort.querySelectorAll(".drop-zone").forEach(function (zone) {
+          zone.addEventListener("dragover", function (event) {
+            event.preventDefault();
+            zone.classList.add("over");
+          });
+
+          zone.addEventListener("dragleave", function () {
+            zone.classList.remove("over");
+          });
+
+          zone.addEventListener("drop", function (event) {
+            event.preventDefault();
+            zone.classList.remove("over");
+
+            var itemId = event.dataTransfer.getData("text/plain");
+            var zoneName = zone.dataset.zone;
+
+            placements[itemId] = zoneName;
+            renderDropLists();
+            updateProgress();
+            statusEl.textContent = "";
+            statusEl.style.color = "";
+            resultBox.classList.remove("show");
+          });
+        });
+      }
+
+      function checkAnswers() {
+        var allPlaced = true;
+        var correct = 0;
+        var i;
+        var item;
+
+        for (i = 0; i < items.length; i++) {
+          item = items[i];
+          if (!placements[item.id]) {
+            allPlaced = false;
+          }
+          if (placements[item.id] === item.group) {
+            correct += 1;
+          }
+        }
+
+        updateProgress();
+
+        if (!allPlaced) {
+          statusEl.textContent = "Du mangler at sortere nogle kort.";
+          statusEl.style.color = "var(--vrs-error)";
+          return;
+        }
+
+        if (correct === items.length) {
+          statusEl.textContent = "Flot! Alle kort er sorteret rigtigt.";
+          statusEl.style.color = "var(--vrs-success)";
+          resultBox.classList.add("show");
+        } else {
+          statusEl.textContent = "Du har " + correct + " rigtige. Prøv igen.";
+          statusEl.style.color = "var(--vrs-error)";
+        }
+      }
+
+      function resetGame() {
+        placements = {};
+        statusEl.textContent = "";
+        statusEl.style.color = "";
+        resultBox.classList.remove("show");
+        renderStartCards();
+        renderDropLists();
+        updateProgress();
+      }
+
+      checkBtn.addEventListener("click", checkAnswers);
+      resetBtn.addEventListener("click", resetGame);
+
+      setupDropZones();
+      resetGame();
+    </script>
+    <script>
+      (function setupVedligeholdelseAudio() {
+        var root = document.querySelector(".page-vedligeholdelse-redskaber-v1 article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename || !buttonEl) return;
+          stashAria(buttonEl);
+          if (currentBtn === buttonEl && currentAudio) {
+            if (!currentAudio.paused) {
+              currentAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  updateBtnAria(buttonEl);
+                })
+                .catch(function () {
+                  releasePrior();
+                });
+            } else {
+              updateBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePrior();
+          buttonEl.classList.remove("is-audio-paused");
+          currentBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL("./" + encodeURIComponent(filename), window.location.href).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        window.__vedligeholdelseRefreshAudioUi = function () {
+          root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+        };
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        window.__vedligeholdelseRefreshAudioUi();
+      })();
+    </script>
+  </body>
+</html>

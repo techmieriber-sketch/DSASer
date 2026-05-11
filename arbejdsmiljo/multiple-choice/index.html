@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Multiple choice om arbejdsmiljø – Arbejdsmiljø</title>
+    <link rel="preload" href="../../assets/bg-arbejdsmiljo.jpg" as="image" fetchpriority="high" />
+    <link rel="preload" href="Multiple choice om arbejdsmiljo.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <style>
+      body.page-quiz-mc .page-shell {
+        padding: 1.15rem 0.85rem 1.5rem;
+      }
+
+      @media (min-width: 600px) {
+        body.page-quiz-mc .page-shell {
+          padding: 1.35rem 1rem 1.65rem;
+        }
+      }
+
+      body.page-quiz-mc .article-topbar {
+        margin-bottom: 0.65rem;
+      }
+
+      .article-card.quiz-card {
+        max-width: min(40rem, calc(100vw - 1.75rem));
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1.35rem clamp(1rem, 3.2vw, 1.6rem) 1.5rem;
+        background: rgba(18, 52, 68, 0.82);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow:
+          0 12px 40px rgba(10, 35, 48, 0.35),
+          0 2px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .article-card.quiz-card .page-title {
+        color: #fff;
+      }
+
+      .article-card.quiz-card .back-link {
+        color: #e8f4fc;
+      }
+
+      .article-card.quiz-card .subnav-sep {
+        color: rgba(255, 255, 255, 0.45);
+      }
+
+      .quiz-header {
+        margin-bottom: 1rem;
+      }
+
+      .quiz-title-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .quiz-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+        font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+        line-height: 1.2;
+      }
+
+      .quiz-intro {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #f3f7fb;
+        margin: 0;
+      }
+
+      .quiz-card .quiz-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .quiz-card .quiz-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .quiz-card .quiz-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .quiz-card .quiz-audio-btn__svg {
+        display: block;
+      }
+
+      .quiz-card .quiz-audio-btn__svg--pause,
+      .quiz-card .quiz-audio-btn__svg--play {
+        display: none;
+      }
+
+      .quiz-card
+        .quiz-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .quiz-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .quiz-card .quiz-audio-btn.is-audio-playing .quiz-audio-btn__svg--speaker,
+      .quiz-card .quiz-audio-btn.is-audio-playing .quiz-audio-btn__svg--play {
+        display: none;
+      }
+
+      .quiz-card .quiz-audio-btn.is-audio-playing .quiz-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .quiz-card .quiz-audio-btn.is-audio-paused .quiz-audio-btn__svg--speaker,
+      .quiz-card .quiz-audio-btn.is-audio-paused .quiz-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .quiz-card .quiz-audio-btn.is-audio-paused .quiz-audio-btn__svg--play {
+        display: block;
+      }
+
+      .quiz-card .quiz-audio-btn--intro {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+
+      .quiz-card .quiz-audio-btn--compact {
+        width: 2rem;
+        height: 2rem;
+        align-self: flex-start;
+        margin-top: 0.02rem;
+      }
+
+      .quiz-card .quiz-audio-btn--option {
+        width: 1.75rem;
+        height: 1.75rem;
+        flex-shrink: 0;
+        margin-top: 0.06rem;
+      }
+
+      .option-line {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.4rem;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .option-line .option-text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .question-title-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem;
+        margin: 0 0 0.6rem;
+      }
+
+      .question-title-row .question-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .quiz-list {
+        display: grid;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .question-card {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 14px;
+        padding: 0.75rem 0.85rem;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+      }
+
+      .question-title {
+        color: #fff;
+        font-size: 1.02rem;
+        line-height: 1.35;
+      }
+
+      .options {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .option-label {
+        display: flex;
+        gap: 0.45rem;
+        align-items: flex-start;
+        padding: 0.5rem 0.65rem;
+        border-radius: 11px;
+        border: 2px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.08);
+        cursor: pointer;
+        transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+      }
+
+      .option-label:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .option-label input[type="radio"] {
+        margin-top: 0.12rem;
+        transform: scale(1.08);
+        accent-color: #1f8f63;
+        flex-shrink: 0;
+      }
+
+      .option-text {
+        color: #fff;
+        font-size: 0.9rem;
+        line-height: 1.38;
+      }
+
+      .option-letter {
+        font-weight: 700;
+        margin-right: 0.3rem;
+      }
+
+      .option-label.correct {
+        background: rgba(30, 140, 90, 0.26);
+        border-color: rgba(101, 226, 155, 0.9);
+      }
+
+      .option-label.wrong {
+        background: rgba(180, 40, 40, 0.24);
+        border-color: rgba(255, 140, 140, 0.9);
+      }
+
+      .option-label.disabled {
+        cursor: default;
+      }
+
+      .question-feedback {
+        min-height: 1.25rem;
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .question-feedback.correct {
+        color: #9ef0bf;
+      }
+
+      .question-feedback.wrong {
+        color: #ffb4b4;
+      }
+
+      .quiz-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin-top: 1rem;
+      }
+
+      .quiz-btn {
+        appearance: none;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.55rem 1rem;
+        font: inherit;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.15s ease, opacity 0.15s ease;
+      }
+
+      .quiz-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .quiz-btn.primary {
+        background: #ffffff;
+        color: #16324f;
+      }
+
+      .quiz-btn.secondary {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+      }
+
+      .quiz-result {
+        margin-top: 0.65rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      @media (max-width: 720px) {
+        .question-card {
+          padding: 0.65rem 0.75rem;
+        }
+
+        .option-label {
+          padding: 0.45rem 0.55rem;
+        }
+
+        .question-title {
+          font-size: 0.98rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-quiz-mc">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-arbejdsmiljo.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card quiz-card" id="quizArticle">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Arbejdsmiljø</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <header class="quiz-header">
+          <div class="quiz-title-row">
+            <button
+              type="button"
+              id="quizTitleAudioBtn"
+              class="quiz-audio-btn quiz-audio-btn--intro"
+              data-audio="Multiple choice om arbejdsmiljo.mp3"
+              aria-label="Afspil overskriften højt"
+            >
+              <svg class="quiz-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-speaker" />
+              </svg>
+            </button>
+            <h1 class="page-title">Multiple choice om arbejdsmiljø</h1>
+          </div>
+          <p class="quiz-intro">
+            Vælg ét rigtigt svar til hvert spørgsmål. Når du svarer rigtigt, bliver svaret grønt. Når du svarer
+            forkert, bliver det valgte svar rødt, og det rigtige svar bliver grønt.
+          </p>
+        </header>
+
+        <section class="quiz-list" id="quiz"></section>
+
+        <div class="quiz-actions">
+          <button type="button" class="quiz-btn primary" id="showResultBtn">Vis resultat</button>
+          <button type="button" class="quiz-btn secondary" id="resetBtn">Prøv igen</button>
+        </div>
+
+        <p class="quiz-result" id="quizResult" aria-live="polite"></p>
+      </article>
+    </div>
+
+    <script>
+      const QUIZ_AUDIO_PAGE_TITLE = "Multiple choice om arbejdsmiljo.mp3";
+
+      const questions = [
+        {
+          question: "1. Hvad handler arbejdsmiljø om?",
+          questionAudio: "Hvad handler arbejdsmiljo om.mp3",
+          correct: "B",
+          options: [
+            { letter: "A", text: "Kun hvor lang arbejdsdagen er", audio: "Kun hvor lang arbejdsdagen er.mp3" },
+            { letter: "B", text: "De forhold, du arbejder under hver dag", audio: "De forhold du arbejder under hver dag.mp3" },
+            { letter: "C", text: "Kun hvordan gulvet ser ud", audio: "Kun hvordan gulvet ser ud.mp3" },
+            { letter: "D", text: "Kun hvilke redskaber du bruger", audio: "Kun hvilke redskaber du bruger.mp3" }
+          ]
+        },
+        {
+          question: "2. Hvad er vigtigt i et godt arbejdsmiljø?",
+          questionAudio: "Hvad er vigtigt i et godt arbejdsmiljo.mp3",
+          correct: "A",
+          options: [
+            {
+              letter: "A",
+              text: "De rigtige redskaber, nok plads og tydelige opgaver",
+              audio: "De rigtige redskaber, nok plads og tydelige opgaver.mp3"
+            },
+            { letter: "B", text: "At man arbejder hurtigst muligt", audio: "At man arbejder hurtigst muligt.mp3" },
+            { letter: "C", text: "At man arbejder alene hele dagen", audio: "At man arbejder alene hele dagen.mp3" },
+            { letter: "D", text: "At man selv gætter opgaverne", audio: "At man selv gaetter opgaverne.mp3" }
+          ]
+        },
+        {
+          question: "3. Hvad kan det fysiske arbejdsmiljø handle om?",
+          questionAudio: "Hvad kan det fysiske arbejdsmiljo handle om.mp3",
+          correct: "C",
+          options: [
+            { letter: "A", text: "Kun samarbejde mellem kolleger", audio: "Kun samarbejde mellem kolleger.mp3" },
+            { letter: "B", text: "Kun hvordan man har det mentalt", audio: "Kun hvordan man har det mentalt.mp3" },
+            { letter: "C", text: "Støj, lys, temperatur og plads", audio: "Stoj lys temperatur og plads.mp3" },
+            { letter: "D", text: "Kun planlægning af opgaver", audio: "Kun planlaegning af opgaver.mp3" }
+          ]
+        },
+        {
+          question: "4. Hvad handler det psykiske arbejdsmiljø om?",
+          questionAudio: "Hvad handler det psykiske arbejdsmiljo om.mp3",
+          correct: "B",
+          options: [
+            { letter: "A", text: "Hvor tunge redskaberne er", audio: "Hvor tunge redskaberne er.mp3" },
+            { letter: "B", text: "Hvordan du har det i arbejdet", audio: "Hvordan du har det i arbejdet.mp3" },
+            { letter: "C", text: "Hvor mange rum du gør rent i", audio: "Hvor mange rum du gor rent i.mp3" },
+            { letter: "D", text: "Hvordan gulvet ser ud", audio: "Hvordan gulvet ser ud.mp3" }
+          ]
+        },
+        {
+          question: "5. Hvad kan belaste arbejdsmiljøet?",
+          questionAudio: "Hvad kan belaste arbejdsmiljoet.mp3",
+          correct: "D",
+          options: [
+            { letter: "A", text: "God planlægning og tydelige beskeder", audio: "God planaegning og tydelige beskeder.mp3" },
+            { letter: "B", text: "Respekt og godt samarbejde", audio: "Respekt og godt samarbejde.mp3" },
+            { letter: "C", text: "Redskaber, der virker", audio: "Redskaber der virker.mp3" },
+            { letter: "D", text: "Rod, støj, tidspres og uklare beskeder", audio: "Rod stoj tidspres og uklare beskeder.mp3" }
+          ]
+        },
+        {
+          question: "6. Hvorfor er et godt arbejdsmiljø vigtigt?",
+          questionAudio: "Hvorfor er et godt arbejdsmiljo vigtigt.mp3",
+          correct: "A",
+          options: [
+            { letter: "A", text: "Det mindsker risikoen for uheld og skader", audio: "Det mindsker risikoen for uheld og skader.mp3" },
+            { letter: "B", text: "Det gør arbejdet mere uklart", audio: "Det gor arbejdet mere uklart.mp3" },
+            { letter: "C", text: "Det giver flere konflikter", audio: "Det giver flere konflikter.mp3" },
+            { letter: "D", text: "Det gør medarbejderne mere trætte", audio: "Det gor medarbejderne mere traette.mp3" }
+          ]
+        }
+      ];
+
+      const quizEl = document.getElementById("quiz");
+      const resultEl = document.getElementById("quizResult");
+      const showResultBtn = document.getElementById("showResultBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const quizArticle = document.getElementById("quizArticle");
+
+      var currentQuizAudio = null;
+      var currentQuizAudioBtn = null;
+
+      function releasePriorQuizAudio() {
+        if (currentQuizAudio) {
+          try {
+            currentQuizAudio.pause();
+            currentQuizAudio.currentTime = 0;
+          } catch (err) {}
+          currentQuizAudio = null;
+        }
+        if (currentQuizAudioBtn) {
+          currentQuizAudioBtn.classList.remove("is-audio-playing");
+          currentQuizAudioBtn.classList.remove("is-audio-paused");
+          var playL = currentQuizAudioBtn.getAttribute("data-aria-play");
+          if (playL) currentQuizAudioBtn.setAttribute("aria-label", playL);
+          currentQuizAudioBtn = null;
+        }
+      }
+
+      function stashQuizBtnAria(btn) {
+        if (!btn.getAttribute("data-aria-play")) {
+          btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+        }
+      }
+
+      function updateQuizAudioBtnAria(btn) {
+        var idle = btn.getAttribute("data-aria-play");
+        if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+          if (idle) btn.setAttribute("aria-label", idle);
+          return;
+        }
+        if (btn.classList.contains("is-audio-paused")) {
+          btn.setAttribute("aria-label", "Fortsæt afspilning");
+          return;
+        }
+        btn.setAttribute("aria-label", "Pause afspilning");
+      }
+
+      function resolveAudioUrl(filename) {
+        if (!filename) return "";
+        return new URL(encodeURIComponent(filename), window.location.href).href;
+      }
+
+      function playQuizAudioFile(filename, buttonEl) {
+        if (!filename || !buttonEl) return;
+        stashQuizBtnAria(buttonEl);
+        if (currentQuizAudioBtn === buttonEl && currentQuizAudio) {
+          if (!currentQuizAudio.paused) {
+            currentQuizAudio.pause();
+            buttonEl.classList.remove("is-audio-playing");
+            buttonEl.classList.add("is-audio-paused");
+            updateQuizAudioBtnAria(buttonEl);
+            return;
+          }
+          buttonEl.classList.remove("is-audio-paused");
+          buttonEl.classList.add("is-audio-playing");
+          var pr = currentQuizAudio.play();
+          if (pr !== undefined) {
+            pr
+              .then(function () {
+                updateQuizAudioBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePriorQuizAudio();
+              });
+          } else {
+            updateQuizAudioBtnAria(buttonEl);
+          }
+          return;
+        }
+        releasePriorQuizAudio();
+        buttonEl.classList.remove("is-audio-paused");
+        currentQuizAudioBtn = buttonEl;
+        buttonEl.classList.add("is-audio-playing");
+        var src = resolveAudioUrl(filename);
+        currentQuizAudio = new Audio(src);
+        currentQuizAudio.addEventListener("error", function onQuizAudioErr() {
+          currentQuizAudio.removeEventListener("error", onQuizAudioErr);
+          releasePriorQuizAudio();
+        });
+        currentQuizAudio.addEventListener("ended", function onQuizAudioEnd() {
+          currentQuizAudio.removeEventListener("ended", onQuizAudioEnd);
+          if (currentQuizAudioBtn === buttonEl) {
+            buttonEl.classList.remove("is-audio-playing");
+            buttonEl.classList.remove("is-audio-paused");
+            var pl = buttonEl.getAttribute("data-aria-play");
+            if (pl) buttonEl.setAttribute("aria-label", pl);
+            currentQuizAudioBtn = null;
+            try {
+              currentQuizAudio.currentTime = 0;
+            } catch (e2) {}
+            currentQuizAudio = null;
+          }
+        });
+        updateQuizAudioBtnAria(buttonEl);
+        var p0 = currentQuizAudio.play();
+        if (p0 !== undefined) {
+          p0
+            .then(function () {
+              updateQuizAudioBtnAria(buttonEl);
+            })
+            .catch(function () {
+              releasePriorQuizAudio();
+            });
+        } else {
+          updateQuizAudioBtnAria(buttonEl);
+        }
+      }
+
+      function ensureQuizAudioButtonIcons(btn) {
+        var speaker = btn.querySelector(".quiz-audio-btn__svg--speaker");
+        if (!speaker) {
+          var raw = btn.querySelector(
+            ".quiz-audio-btn__svg:not(.quiz-audio-btn__svg--pause):not(.quiz-audio-btn__svg--play)"
+          );
+          if (raw) {
+            raw.classList.add("quiz-audio-btn__svg--speaker");
+            speaker = raw;
+          }
+        }
+        if (!speaker) return;
+        var w = speaker.getAttribute("width") || "18";
+        var h = speaker.getAttribute("height") || "18";
+        if (!btn.querySelector(".quiz-audio-btn__svg--pause")) {
+          var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          pauseSvg.setAttribute("class", "quiz-audio-btn__svg quiz-audio-btn__svg--pause");
+          pauseSvg.setAttribute("width", w);
+          pauseSvg.setAttribute("height", h);
+          pauseSvg.setAttribute("viewBox", "0 0 24 24");
+          pauseSvg.setAttribute("aria-hidden", "true");
+          var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+          u1.setAttribute("href", "#icon-pause");
+          pauseSvg.appendChild(u1);
+          btn.appendChild(pauseSvg);
+        }
+        if (!btn.querySelector(".quiz-audio-btn__svg--play")) {
+          var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          playSvg.setAttribute("class", "quiz-audio-btn__svg quiz-audio-btn__svg--play");
+          playSvg.setAttribute("width", w);
+          playSvg.setAttribute("height", h);
+          playSvg.setAttribute("viewBox", "0 0 24 24");
+          playSvg.setAttribute("aria-hidden", "true");
+          var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+          u2.setAttribute("href", "#icon-play");
+          playSvg.appendChild(u2);
+          btn.appendChild(playSvg);
+        }
+      }
+
+      function onQuizAudioClick(e) {
+        var btn = e.target.closest(".quiz-audio-btn");
+        if (!btn || !quizArticle.contains(btn)) return;
+        var file = btn.getAttribute("data-audio");
+        if (!file) return;
+        e.preventDefault();
+        e.stopPropagation();
+        playQuizAudioFile(file, btn);
+      }
+
+      function renderQuiz() {
+        quizEl.innerHTML = "";
+
+        questions.forEach((q, index) => {
+          const card = document.createElement("section");
+          card.className = "question-card";
+          card.dataset.correct = q.correct;
+
+          const titleRow = document.createElement("div");
+          titleRow.className = "question-title-row";
+
+          const audioBtn = document.createElement("button");
+          audioBtn.type = "button";
+          audioBtn.className = "quiz-audio-btn quiz-audio-btn--compact";
+          audioBtn.setAttribute("data-audio", q.questionAudio);
+          audioBtn.setAttribute("aria-label", "Afspil spørgsmål " + String(index + 1) + " højt");
+          var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          svg.setAttribute("class", "quiz-audio-btn__svg");
+          svg.setAttribute("width", "20");
+          svg.setAttribute("height", "20");
+          svg.setAttribute("viewBox", "0 0 24 24");
+          svg.setAttribute("aria-hidden", "true");
+          var useEl = document.createElementNS("http://www.w3.org/2000/svg", "use");
+          useEl.setAttribute("href", "#icon-speaker");
+          svg.appendChild(useEl);
+          audioBtn.appendChild(svg);
+
+          const title = document.createElement("h2");
+          title.className = "question-title";
+          title.textContent = q.question;
+
+          titleRow.appendChild(audioBtn);
+          titleRow.appendChild(title);
+          card.appendChild(titleRow);
+
+          ensureQuizAudioButtonIcons(audioBtn);
+
+          const optionsWrap = document.createElement("div");
+          optionsWrap.className = "options";
+
+          q.options.forEach((opt) => {
+            const letter = opt.letter;
+            const text = opt.text;
+            const label = document.createElement("label");
+            label.className = "option-label";
+            label.dataset.letter = letter;
+
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = `question-${index}`;
+            input.value = letter;
+
+            const line = document.createElement("div");
+            line.className = "option-line";
+
+            const optAudioBtn = document.createElement("button");
+            optAudioBtn.type = "button";
+            optAudioBtn.className = "quiz-audio-btn quiz-audio-btn--option";
+            optAudioBtn.setAttribute("data-audio", opt.audio);
+            optAudioBtn.setAttribute("aria-label", "Afspil svar " + letter + " højt");
+            var optSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            optSvg.setAttribute("class", "quiz-audio-btn__svg");
+            optSvg.setAttribute("width", "18");
+            optSvg.setAttribute("height", "18");
+            optSvg.setAttribute("viewBox", "0 0 24 24");
+            optSvg.setAttribute("aria-hidden", "true");
+            var optUse = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            optUse.setAttribute("href", "#icon-speaker");
+            optSvg.appendChild(optUse);
+            optAudioBtn.appendChild(optSvg);
+            ensureQuizAudioButtonIcons(optAudioBtn);
+
+            const span = document.createElement("span");
+            span.className = "option-text";
+            span.innerHTML = `<span class="option-letter">${letter}.</span>${text}`;
+
+            input.addEventListener("change", () => handleAnswer(card, letter));
+
+            line.appendChild(optAudioBtn);
+            line.appendChild(span);
+            label.appendChild(input);
+            label.appendChild(line);
+            optionsWrap.appendChild(label);
+          });
+
+          const feedback = document.createElement("p");
+          feedback.className = "question-feedback";
+          feedback.setAttribute("aria-live", "polite");
+
+          card.appendChild(optionsWrap);
+          card.appendChild(feedback);
+          quizEl.appendChild(card);
+        });
+      }
+
+      function handleAnswer(card, chosenLetter) {
+        const correctLetter = card.dataset.correct;
+        const labels = card.querySelectorAll(".option-label");
+        const feedback = card.querySelector(".question-feedback");
+        const radios = card.querySelectorAll('input[type="radio"]');
+
+        labels.forEach((label) => {
+          const letter = label.dataset.letter;
+          label.classList.remove("correct", "wrong");
+
+          if (letter === correctLetter) {
+            label.classList.add("correct");
+          }
+
+          if (letter === chosenLetter && chosenLetter !== correctLetter) {
+            label.classList.add("wrong");
+          }
+
+          label.classList.add("disabled");
+        });
+
+        radios.forEach((radio) => {
+          radio.disabled = true;
+        });
+
+        if (chosenLetter === correctLetter) {
+          feedback.textContent = "Rigtigt";
+          feedback.className = "question-feedback correct";
+        } else {
+          feedback.textContent = "Forkert";
+          feedback.className = "question-feedback wrong";
+        }
+      }
+
+      function showResult() {
+        const cards = [...document.querySelectorAll(".question-card")];
+        let correctCount = 0;
+        let answeredCount = 0;
+
+        cards.forEach((card) => {
+          const correctLetter = card.dataset.correct;
+          const chosen = card.querySelector('input[type="radio"]:checked');
+
+          if (chosen) {
+            answeredCount += 1;
+            if (chosen.value === correctLetter) {
+              correctCount += 1;
+            }
+          }
+        });
+
+        resultEl.textContent = `Du har ${correctCount} rigtige ud af ${questions.length}. Du har svaret på ${answeredCount} spørgsmål.`;
+      }
+
+      function resetQuiz() {
+        releasePriorQuizAudio();
+        renderQuiz();
+        resultEl.textContent = "";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      showResultBtn.addEventListener("click", showResult);
+      resetBtn.addEventListener("click", resetQuiz);
+      quizArticle.addEventListener("click", onQuizAudioClick);
+
+      var titleBtn = document.getElementById("quizTitleAudioBtn");
+      if (titleBtn) {
+        titleBtn.setAttribute("data-audio", QUIZ_AUDIO_PAGE_TITLE);
+        ensureQuizAudioButtonIcons(titleBtn);
+      }
+
+      renderQuiz();
+    </script>
+  </body>
+</html>

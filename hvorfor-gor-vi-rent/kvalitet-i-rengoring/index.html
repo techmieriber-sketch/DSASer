@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kvalitet i rengøring – Dansk som andetsprog for serviceassistenter</title>
+    <link
+      rel="preload"
+      href="../../assets/hero-hvorfor-gor-vi-rent.jpg"
+      as="image"
+      fetchpriority="high"
+    />
+    <link rel="preload" href="Kvalitet i rengoering.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <style>
+      .page-quiz-vigtig .category-heading {
+        margin-top: 0.35rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-quiz-vigtig .quiz-page-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.45rem 0.6rem;
+        margin-bottom: 0;
+      }
+
+      .page-quiz-vigtig .quiz-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-quiz-vigtig .quiz-lead {
+        margin: 0 0 1.25rem;
+        max-width: 62ch;
+        line-height: 1.65;
+        color: #2c3e4a;
+        font-size: 1.02rem;
+      }
+
+      .page-quiz-vigtig .quiz-wrap {
+        margin-top: 0.25rem;
+        padding: 1.35rem clamp(1rem, 3vw, 1.5rem) 1.5rem;
+        border-radius: 14px;
+        border: 1px solid rgba(13, 122, 110, 0.18);
+        background: linear-gradient(
+          160deg,
+          rgba(255, 255, 255, 0.75) 0%,
+          rgba(240, 252, 250, 0.55) 45%,
+          rgba(255, 248, 240, 0.5) 100%
+        );
+        box-shadow: 0 4px 20px rgba(20, 60, 80, 0.08);
+      }
+
+      .page-quiz-vigtig .question-list {
+        display: grid;
+        gap: 0.9rem;
+        margin-top: 1.1rem;
+      }
+
+      .page-quiz-vigtig .question-item {
+        padding: 0.85rem 1rem 1rem;
+        border-radius: 12px;
+        border-left: 4px solid #2a9d8f;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 2px 10px rgba(19, 66, 82, 0.06);
+      }
+
+      .page-quiz-vigtig .question-stem-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem;
+        margin: 0 0 0.75rem;
+      }
+
+      .page-quiz-vigtig .question-stem-row .question-text {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-quiz-vigtig .question-text {
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: #0c2d3d;
+        line-height: 1.35;
+      }
+
+      .page-quiz-vigtig .question-select {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border-radius: 10px;
+        border: 1px solid rgba(19, 82, 82, 0.18);
+        background: rgba(248, 252, 251, 0.95);
+        font: inherit;
+        color: #2c3e4a;
+      }
+
+      .page-quiz-vigtig .question-select:focus {
+        outline: 3px solid rgba(42, 157, 143, 0.25);
+        outline-offset: 2px;
+      }
+
+      .page-quiz-vigtig .feedback {
+        margin-top: 0.65rem;
+        padding: 0.6rem 0.75rem;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.92rem;
+        display: none;
+        line-height: 1.45;
+      }
+
+      .page-quiz-vigtig .feedback.correct {
+        display: block;
+        background: linear-gradient(120deg, rgba(220, 252, 231, 0.95), rgba(209, 250, 229, 0.9));
+        color: #14532d;
+        border: 1px solid rgba(34, 197, 94, 0.35);
+      }
+
+      .page-quiz-vigtig .feedback.wrong {
+        display: block;
+        background: linear-gradient(120deg, rgba(254, 226, 226, 0.95), rgba(254, 215, 170, 0.35));
+        color: #991b1b;
+        border: 1px solid rgba(248, 113, 113, 0.35);
+      }
+
+      .page-quiz-vigtig .quiz-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(19, 82, 82, 0.12);
+      }
+
+      .page-quiz-vigtig .quiz-actions button {
+        border: 0;
+        border-radius: 10px;
+        padding: 0.65rem 1.2rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        font-family: inherit;
+        cursor: pointer;
+        transition:
+          filter 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-quiz-vigtig .check-btn {
+        color: #fff;
+        background: linear-gradient(100deg, #0d7a6e 0%, #2a9d8f 50%, #2e86ab 100%);
+        box-shadow: 0 3px 12px rgba(13, 122, 110, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+
+      .page-quiz-vigtig .check-btn:hover {
+        filter: brightness(1.06);
+      }
+
+      .page-quiz-vigtig .reset-btn {
+        background: rgba(255, 255, 255, 0.9);
+        color: #134252;
+        border: 1px solid rgba(19, 82, 82, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .page-quiz-vigtig .reset-btn:hover {
+        background: #fff;
+        border-color: rgba(13, 122, 110, 0.35);
+      }
+
+      .page-quiz-vigtig .result {
+        margin-top: 1.1rem;
+        padding: 1rem 1.1rem;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(232, 248, 245, 0.95) 0%, rgba(255, 248, 235, 0.85) 100%);
+        border: 1px solid rgba(13, 122, 110, 0.22);
+        box-shadow: 0 4px 16px rgba(20, 60, 80, 0.08);
+        display: none;
+      }
+
+      .page-quiz-vigtig .result.show {
+        display: block;
+      }
+
+      .page-quiz-vigtig .result h3 {
+        margin: 0 0 0.4rem;
+        font-size: 1.1rem;
+        color: #0c2d3d;
+      }
+
+      .page-quiz-vigtig .result p {
+        margin: 0;
+        color: #2c3e4a;
+        line-height: 1.55;
+      }
+
+      .page-quiz-vigtig .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-quiz-vigtig .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-quiz-vigtig .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-quiz-vigtig .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-quiz-vigtig .crossword-audio-btn__svg--pause,
+      .page-quiz-vigtig .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-quiz-vigtig
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-quiz-vigtig .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-quiz-vigtig .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-quiz-vigtig .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-quiz-vigtig .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-quiz-vigtig .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-quiz-vigtig .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-quiz-vigtig .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-quiz-vigtig .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+        align-self: flex-start;
+        margin-top: 0.06rem;
+      }
+
+      @media (max-width: 640px) {
+        .page-quiz-vigtig .quiz-actions button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-quiz-vigtig">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/hero-hvorfor-gor-vi-rent.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Hvorfor gør vi rent?</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="quiz-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Kvalitet i rengoering.mp3"
+            aria-label="Afspil sidetitlen højt"
+          >
+            <svg class="crossword-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+          </button>
+          <h1 class="page-title">Kvalitet i rengøring</h1>
+        </div>
+        <p class="category-heading">Opgave</p>
+        <p class="quiz-lead">
+          Kvalitet i rengøring betyder, at arbejdet bliver udført grundigt, systematisk og på en fagligt korrekt måde.
+          Det handler ikke kun om, at noget ser rent ud. Det handler også om hygiejne og om at vælge den rigtige metode
+          til opgaven.
+        </p>
+
+        <section class="quiz-wrap" aria-labelledby="opgave-titel">
+          <h2 id="opgave-titel" class="question-title">Tre typer kvalitet</h2>
+          <ul class="quality-list">
+            <li><strong>Synlig kvalitet</strong> = det, man kan se</li>
+            <li><strong>Hygiejnisk kvalitet</strong> = det, der mindsker smitte og urenheder</li>
+            <li><strong>Faglig kvalitet</strong> = at arbejdet udføres rigtigt og ansvarligt</li>
+          </ul>
+
+          <div class="quiz-intro" style="margin-top: 1.1rem">
+            <p>Læs sætningerne og vælg den type kvalitet, der passer bedst.</p>
+          </div>
+
+          <div class="question-list" id="questionList"></div>
+
+          <div class="quiz-actions">
+            <button type="button" class="check-btn" id="checkBtn">Tjek svar</button>
+            <button type="button" class="reset-btn" id="resetBtn">Prøv igen</button>
+          </div>
+
+          <div class="result" id="resultBox" aria-live="polite">
+            <h3 id="scoreText"></h3>
+            <p id="resultText"></p>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          text: "1. Bordet ser rent ud, og der er ingen støvkanter.",
+          audio: "Bordet ser rent ud, og der er ingen stoevkanter.mp3",
+          correct: "synlig",
+          explanation: "Rigtigt. Det handler om det, man kan se."
+        },
+        {
+          text: "2. Dørhåndtag og vandhaner er tørret grundigt af.",
+          audio: "Doerhaandtag og vandhaner er toerret grundigt af.mp3",
+          correct: "hygiejnisk",
+          explanation: "Rigtigt. Det handler om hygiejne og smitteforebyggelse."
+        },
+        {
+          text: "3. Serviceassistenten vælger den rigtige metode til gulvet.",
+          audio: "Serviceassistenten vælger den rigtige metode til gulvet.mp3",
+          correct: "faglig",
+          explanation: "Rigtigt. Det er en faglig vurdering."
+        },
+        {
+          text: "4. Der ligger ikke hår, papir eller snavs på gulvet.",
+          audio: "Der ligger ikke haar papir eller snavs paa gulvet.mp3",
+          correct: "synlig",
+          explanation: "Rigtigt. Det er synligt for øjet."
+        },
+        {
+          text: "5. Klude og mopper bruges rigtigt, så smitte ikke spredes.",
+          audio: "Klude og mopper bruges rigtigt, saa smitte ikke spredes.mp3",
+          correct: "hygiejnisk",
+          explanation: "Rigtigt. Her er fokus på at undgå smitte."
+        },
+        {
+          text: "6. Rengøringen bliver udført som aftalt i arbejdsplanen.",
+          audio: "Rengoeringen bliver udfoert som aftalt i arbejdsplanen.mp3",
+          correct: "faglig",
+          explanation: "Rigtigt. Det er faglig kvalitet at følge planen."
+        },
+        {
+          text: "7. Toilettet ser pænt og indbydende ud.",
+          audio: "Toilettet ser pænt og indbydende ud.mp3",
+          correct: "synlig",
+          explanation: "Rigtigt. Det handler om det synlige resultat."
+        },
+        {
+          text: "8. Medarbejderen vurderer, hvor der er behov for ekstra rengøring.",
+          audio: "Medarbejderen vurderer, hvor der er behov for ekstra rengoering.mp3",
+          correct: "faglig",
+          explanation: "Rigtigt. Det kræver faglig vurdering."
+        },
+        {
+          text: "9. Kontaktpunkter bliver gjort rene for at mindske risikoen for smitte.",
+          audio: "Kontaktpunkter bliver gjort rene for at mindske risikoen for smitte.mp3",
+          correct: "hygiejnisk",
+          explanation: "Rigtigt. Her handler det om hygiejne."
+        },
+        {
+          text: "10. Arbejdet udføres med ansvar og opmærksomhed på kvalitet.",
+          audio: "Arbejdet udfoeres med ansvar og opmaerksomhed paa kvalitet.mp3",
+          correct: "faglig",
+          explanation: "Rigtigt. Det handler om faglighed og ansvar."
+        }
+      ];
+
+      const labels = {
+        synlig: "Synlig kvalitet",
+        hygiejnisk: "Hygiejnisk kvalitet",
+        faglig: "Faglig kvalitet"
+      };
+
+      const questionList = document.getElementById("questionList");
+      const checkBtn = document.getElementById("checkBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const resultBox = document.getElementById("resultBox");
+      const scoreText = document.getElementById("scoreText");
+      const resultText = document.getElementById("resultText");
+
+      function renderQuestions() {
+        questionList.innerHTML = "";
+
+        questions.forEach((question, index) => {
+          const item = document.createElement("div");
+          item.className = "question-item";
+
+          item.innerHTML = `
+            <div class="question-stem-row">
+              <button
+                type="button"
+                class="crossword-audio-btn crossword-audio-btn--compact"
+                data-audio="${question.audio}"
+                aria-label="Afspil sætningen højt"
+              >
+                <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-speaker" />
+                </svg>
+              </button>
+              <p class="question-text">${question.text}</p>
+            </div>
+            <select class="question-select" id="q${index}" aria-label="${question.text}">
+              <option value="">Vælg svar</option>
+              <option value="synlig">Synlig kvalitet</option>
+              <option value="hygiejnisk">Hygiejnisk kvalitet</option>
+              <option value="faglig">Faglig kvalitet</option>
+            </select>
+            <div class="feedback" id="feedback${index}"></div>
+          `;
+
+          questionList.appendChild(item);
+        });
+      }
+
+      function checkAnswers() {
+        let correctCount = 0;
+        let answeredCount = 0;
+
+        questions.forEach((question, index) => {
+          const select = document.getElementById(`q${index}`);
+          const feedback = document.getElementById(`feedback${index}`);
+          const value = select.value;
+
+          feedback.className = "feedback";
+
+          if (value !== "") {
+            answeredCount += 1;
+          }
+
+          if (value === question.correct) {
+            correctCount += 1;
+            feedback.textContent = question.explanation;
+            feedback.classList.add("correct");
+          } else if (value === "") {
+            feedback.textContent = "Vælg et svar.";
+            feedback.classList.add("wrong");
+          } else {
+            feedback.textContent = `Ikke helt. Rigtigt svar er: ${labels[question.correct]}.`;
+            feedback.classList.add("wrong");
+          }
+        });
+
+        resultBox.classList.add("show");
+        scoreText.textContent = `Du har ${correctCount} rigtige ud af ${questions.length}.`;
+
+        if (answeredCount < questions.length) {
+          resultText.textContent = "Du mangler at svare på nogle spørgsmål.";
+        } else if (correctCount === questions.length) {
+          resultText.textContent = "Flot. Du har svaret rigtigt på alle spørgsmål.";
+        } else if (correctCount >= 7) {
+          resultText.textContent = "Godt arbejde. Du har godt styr på kvalitet i rengøring.";
+        } else {
+          resultText.textContent = "Prøv igen og læs forklaringerne under hvert svar.";
+        }
+      }
+
+      function resetAnswers() {
+        questions.forEach((_, index) => {
+          const select = document.getElementById(`q${index}`);
+          const feedback = document.getElementById(`feedback${index}`);
+
+          select.value = "";
+          feedback.textContent = "";
+          feedback.className = "feedback";
+        });
+
+        resultBox.classList.remove("show");
+        scoreText.textContent = "";
+        resultText.textContent = "";
+      }
+
+      renderQuestions();
+      checkBtn.addEventListener("click", checkAnswers);
+      resetBtn.addEventListener("click", resetAnswers);
+
+      (function setupKvalitetQuizAudio() {
+        var quizArticle = document.querySelector(".page-quiz-vigtig article.article-card");
+        if (!quizArticle) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename || !buttonEl) return;
+          stashAria(buttonEl);
+          if (currentBtn === buttonEl && currentAudio) {
+            if (!currentAudio.paused) {
+              currentAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  updateBtnAria(buttonEl);
+                })
+                .catch(function () {
+                  releasePrior();
+                });
+            } else {
+              updateBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePrior();
+          buttonEl.classList.remove("is-audio-paused");
+          currentBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL("./" + encodeURIComponent(filename), window.location.href).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        quizArticle.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !quizArticle.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        quizArticle.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+      })();
+    </script>
+  </body>
+</html>

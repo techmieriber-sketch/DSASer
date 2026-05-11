@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sikkerhed ved brug af rengøringsmidler – Dansk som andetsprog for serviceassistenter</title>
+    <link rel="preload" href="../../assets/bg-rengoringsmidler.jpg" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <link rel="preload" href="Sikkerhed ved brug af rengoeringsmidler.mp3" as="audio" />
+
+    <style>
+      .page-mistake-v1 article.article-card .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn__svg--pause,
+      .page-mistake-v1 article.article-card .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-mistake-v1
+        article.article-card
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      .page-mistake-v1 article.article-card .mistake-page-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.45rem 0.6rem;
+      }
+
+      .page-mistake-v1 article.article-card .mistake-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-mistake-v1 article.article-card .mistake-page-title-row .crossword-audio-btn {
+        margin-top: 0.08rem;
+      }
+
+      .page-mistake-v1 article.article-card .safety-task .case-title-row .crossword-audio-btn,
+      .page-mistake-v1 article.article-card .safety-task .case-title-row .case-audio-btns .crossword-audio-btn {
+        margin-top: 0.06rem;
+      }
+
+      .safety-task .case-title-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem 0.55rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .safety-task .case-title-row h3 {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+        font-size: 1.1rem;
+      }
+
+      .safety-task .case-audio-btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        flex-shrink: 0;
+        align-items: center;
+      }
+
+      .safety-task {
+        --bg: #f5f8fc;
+        --card: #ffffff;
+        --primary: #245c73;
+        --primary-dark: #1c4759;
+        --accent: #eaf2f8;
+        --text: #1f2933;
+        --muted: #52606d;
+        --border: #d9e2ec;
+        --correct: #1f8f55;
+        --wrong: #c44536;
+
+        max-width: 1180px;
+        margin: 0.6rem auto 0;
+        padding: 1.25rem;
+        border-radius: 24px;
+        background: var(--bg);
+        color: var(--text);
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .activity-intro,
+      .task-instruction {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      .task-box {
+        margin-top: 1rem;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 1rem;
+      }
+
+      .safety-task .score-box {
+        margin: 0.85rem 0 1rem;
+        padding: 0.8rem 1rem;
+        background: var(--accent);
+        border-radius: 14px;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      .safety-task .safety-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.9rem;
+      }
+
+      .safety-task .safety-item {
+        display: grid;
+        grid-template-rows: 150px 1fr;
+        overflow: hidden;
+        background: #fff;
+        border: 2px solid var(--border);
+        border-radius: 20px;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .safety-task .safety-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(36, 92, 115, 0.08);
+      }
+
+      .safety-task .safety-item.correct {
+        border-color: rgba(31, 143, 85, 0.5);
+        background: #f1fbf5;
+      }
+
+      .safety-task .safety-item.wrong {
+        border-color: rgba(196, 69, 54, 0.45);
+        background: #fff5f4;
+      }
+
+      .safety-task .safety-visual {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #eaf2f8, #ffffff);
+        border-bottom: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      .safety-task .safety-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .safety-task .safety-content {
+        display: grid;
+        grid-template-rows: auto auto auto 1fr;
+        padding: 0.95rem;
+      }
+
+      .safety-task .safety-content p {
+        margin: 0 0 0.75rem;
+        line-height: 1.5;
+      }
+
+      .safety-task .choice-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.25rem;
+      }
+
+      .safety-task .choice-btn {
+        min-height: 46px;
+        padding: 0.7rem 1rem;
+        border: 2px solid var(--border);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--text);
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .safety-task .choice-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(36, 92, 115, 0.12);
+      }
+
+      .safety-task .choice-btn:focus {
+        outline: 3px solid rgba(36, 92, 115, 0.25);
+        outline-offset: 2px;
+      }
+
+      .safety-task .choice-btn.selected {
+        border-color: var(--primary);
+        background: #dfeff6;
+      }
+
+      .safety-task .feedback {
+        min-height: 1.5em;
+        margin-top: 0.8rem;
+        font-weight: 700;
+      }
+
+      .safety-task .feedback.correct {
+        color: var(--correct);
+      }
+
+      .safety-task .feedback.wrong {
+        color: var(--wrong);
+      }
+
+      .safety-task .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 1.15rem;
+      }
+
+      .safety-task .btn-primary,
+      .safety-task .btn-secondary {
+        min-height: 50px;
+        padding: 0.9rem 1.25rem;
+        border: none;
+        border-radius: 999px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .safety-task .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .safety-task .btn-primary:hover,
+      .safety-task .btn-primary:focus {
+        background: var(--primary-dark);
+      }
+
+      .safety-task .btn-secondary {
+        background: #e6edf3;
+        color: var(--text);
+      }
+
+      .safety-task .btn-secondary:hover,
+      .safety-task .btn-secondary:focus {
+        background: #d9e2ec;
+      }
+
+      @media (max-width: 820px) {
+        .safety-task .safety-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .safety-task {
+          padding: 1rem;
+        }
+
+        .safety-task .safety-item {
+          grid-template-columns: 1fr;
+          grid-template-rows: 150px 1fr;
+        }
+
+        .safety-task .safety-visual {
+          height: 150px;
+        }
+
+        .safety-task .choice-btn {
+          width: 100%;
+          border-radius: 16px;
+          text-align: left;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .safety-task .safety-item,
+        .safety-task .choice-btn {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-mistake-v1">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-rengoringsmidler.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Rengøringsmidler</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+        <div class="mistake-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Sikkerhed ved brug af rengoeringsmidler.mp3"
+            aria-label="Afspil introduktion om sikkerhed ved brug af rengøringsmidler"
+          >
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-pause" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-play" />
+            </svg>
+          </button>
+          <h1 class="page-title">Sikkerhed ved brug af rengøringsmidler</h1>
+        </div>
+        <h2 class="category-heading category-heading--bar-only" aria-hidden="true"></h2>
+
+        <section class="activity-card safety-task" aria-label="Sikkerhed ved brug af rengøringsmidler">
+          <div class="activity-header">
+            <p class="activity-intro">
+              Læs situationen og vælg, om handlingen er <strong>sikker</strong> eller <strong>usikker</strong>.
+              Tryk bagefter på <strong>Tjek svar</strong>.
+            </p>
+          </div>
+
+          <div class="task-box">
+            <p class="task-instruction">
+              Opgaven træner ord som <strong>handsker</strong>, <strong>mærkning</strong>,
+              <strong>etikette</strong>, <strong>opbevaring</strong>, <strong>stænk</strong> og
+              <strong>blande midler</strong>.
+            </p>
+
+            <div class="score-box" aria-live="polite">
+              <span>Rigtige svar: <strong id="safetyScore">0</strong> / 6</span>
+            </div>
+
+            <div class="safety-grid" id="safetyGrid">
+              <article class="safety-item" data-answer="sikker">
+                <div class="safety-visual">
+                  <img src="Opgave 1.png" alt="Brug af handsker ved rengøringsmiddel" loading="lazy" decoding="async" />
+                </div>
+                <div class="safety-content">
+                  <div class="case-title-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Opgave 1.mp3"
+                      aria-label="Afspil opgave 1 højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <h3>Opgave 1</h3>
+                  </div>
+                  <p><strong>Situation:</strong> Du bruger handsker, når rengøringsmidlet kan irritere huden.</p>
+                  <div class="choice-group" role="group" aria-label="Svarmuligheder for opgave 1">
+                    <button type="button" class="choice-btn" data-value="sikker">Sikker</button>
+                    <button type="button" class="choice-btn" data-value="usikker">Usikker</button>
+                  </div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+              </article>
+
+              <article class="safety-item" data-answer="sikker">
+                <div class="safety-visual">
+                  <img src="Opgave 3.png" alt="Læsning af etikette og anvisning" loading="lazy" decoding="async" />
+                </div>
+                <div class="safety-content">
+                  <div class="case-title-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Opgave 2.mp3"
+                      aria-label="Afspil opgave 2 højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <h3>Opgave 2</h3>
+                  </div>
+                  <p><strong>Situation:</strong> Du læser etiketten og følger anvisningen på produktet.</p>
+                  <div class="choice-group" role="group" aria-label="Svarmuligheder for opgave 2">
+                    <button type="button" class="choice-btn" data-value="sikker">Sikker</button>
+                    <button type="button" class="choice-btn" data-value="usikker">Usikker</button>
+                  </div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+              </article>
+
+              <article class="safety-item" data-answer="usikker">
+                <div class="safety-visual">
+                  <img src="Opgave 2.png" alt="Blanding af rengøringsmidler" loading="lazy" decoding="async" />
+                </div>
+                <div class="safety-content">
+                  <div class="case-title-row">
+                    <div class="case-audio-btns" role="group" aria-label="Lyd til opgave 3">
+                      <button
+                        type="button"
+                        class="crossword-audio-btn crossword-audio-btn--compact"
+                        data-audio="Opgave 3.mp3"
+                        aria-label="Afspil opgave 3 højt"
+                      >
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-pause" />
+                        </svg>
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-play" />
+                        </svg>
+                      </button>
+                      <button
+                        type="button"
+                        class="crossword-audio-btn crossword-audio-btn--compact"
+                        data-audio="Man maa ikke blande midler uden at vide, at det er sikkert..mp3"
+                        aria-label="Afspil forklaring om blanding af rengøringsmidler"
+                      >
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-pause" />
+                        </svg>
+                        <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-play" />
+                        </svg>
+                      </button>
+                    </div>
+                    <h3>Opgave 3</h3>
+                  </div>
+                  <p><strong>Situation:</strong> Du blander to rengøringsmidler uden at vide, om det er sikkert.</p>
+                  <div class="choice-group" role="group" aria-label="Svarmuligheder for opgave 3">
+                    <button type="button" class="choice-btn" data-value="sikker">Sikker</button>
+                    <button type="button" class="choice-btn" data-value="usikker">Usikker</button>
+                  </div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+              </article>
+
+              <article class="safety-item" data-answer="sikker">
+                <div class="safety-visual">
+                  <img src="Opgave 5.png" alt="Flaske med tydelig mærkning sættes på plads" loading="lazy" decoding="async" />
+                </div>
+                <div class="safety-content">
+                  <div class="case-title-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Opgave 4.mp3"
+                      aria-label="Afspil opgave 4 højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <h3>Opgave 4</h3>
+                  </div>
+                  <p>
+                    <strong>Situation:</strong> Du skruer låget på flasken og sætter midlet tilbage med tydelig
+                    mærkning.
+                  </p>
+                  <div class="choice-group" role="group" aria-label="Svarmuligheder for opgave 4">
+                    <button type="button" class="choice-btn" data-value="sikker">Sikker</button>
+                    <button type="button" class="choice-btn" data-value="usikker">Usikker</button>
+                  </div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+              </article>
+
+              <article class="safety-item" data-answer="usikker">
+                <div class="safety-visual">
+                  <img src="Opgave 4.png" alt="Stænk fra rengøringsmiddel tæt på øjnene" loading="lazy" decoding="async" />
+                </div>
+                <div class="safety-content">
+                  <div class="case-title-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Opgave 5.mp3"
+                      aria-label="Afspil opgave 5 højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <h3>Opgave 5</h3>
+                  </div>
+                  <p>
+                    <strong>Situation:</strong> Du arbejder hurtigt og får stænk fra rengøringsmiddel tæt på øjnene.
+                  </p>
+                  <div class="choice-group" role="group" aria-label="Svarmuligheder for opgave 5">
+                    <button type="button" class="choice-btn" data-value="sikker">Sikker</button>
+                    <button type="button" class="choice-btn" data-value="usikker">Usikker</button>
+                  </div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+              </article>
+
+              <article class="safety-item" data-answer="usikker">
+                <div class="safety-visual">
+                  <img src="Opgave 6.png" alt="Ekstra rengøringsmiddel hældes i" loading="lazy" decoding="async" />
+                </div>
+                <div class="safety-content">
+                  <div class="case-title-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Opgave 6.mp3"
+                      aria-label="Afspil opgave 6 højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <h3>Opgave 6</h3>
+                  </div>
+                  <p><strong>Situation:</strong> Du hælder ekstra rengøringsmiddel i “for en sikkerheds skyld”.</p>
+                  <div class="choice-group" role="group" aria-label="Svarmuligheder for opgave 6">
+                    <button type="button" class="choice-btn" data-value="sikker">Sikker</button>
+                    <button type="button" class="choice-btn" data-value="usikker">Usikker</button>
+                  </div>
+                  <p class="feedback" aria-live="polite"></p>
+                </div>
+              </article>
+            </div>
+
+            <div class="button-row">
+              <button type="button" class="btn-primary" id="checkSafetyBtn">Tjek svar</button>
+              <button type="button" class="btn-secondary" id="resetSafetyBtn">Prøv igen</button>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        var task = document.querySelector(".safety-task");
+        if (!task) return;
+
+        var items = task.querySelectorAll(".safety-item");
+        var scoreEl = document.getElementById("safetyScore");
+        var checkBtn = document.getElementById("checkSafetyBtn");
+        var resetBtn = document.getElementById("resetSafetyBtn");
+
+        items.forEach(function (item) {
+          var buttons = item.querySelectorAll(".choice-btn");
+
+          buttons.forEach(function (button) {
+            button.addEventListener("click", function () {
+              buttons.forEach(function (btn) {
+                btn.classList.remove("selected");
+              });
+              button.classList.add("selected");
+              item.dataset.selected = button.dataset.value;
+            });
+          });
+        });
+
+        checkBtn.addEventListener("click", function () {
+          var score = 0;
+
+          items.forEach(function (item) {
+            var correctAnswer = item.dataset.answer;
+            var selectedAnswer = item.dataset.selected || "";
+            var feedback = item.querySelector(".feedback");
+
+            item.classList.remove("correct", "wrong");
+            feedback.classList.remove("correct", "wrong");
+
+            if (!selectedAnswer) {
+              feedback.textContent = "Vælg et svar.";
+              feedback.classList.add("wrong");
+              return;
+            }
+
+            if (selectedAnswer === correctAnswer) {
+              item.classList.add("correct");
+              feedback.classList.add("correct");
+              if (correctAnswer === "sikker") {
+                feedback.textContent = "Rigtigt. Det er en sikker måde at handle på.";
+              } else {
+                feedback.textContent = "Rigtigt. Du vurderer korrekt, at handlingen er usikker.";
+              }
+              score += 1;
+            } else {
+              item.classList.add("wrong");
+              feedback.classList.add("wrong");
+
+              if (correctAnswer === "sikker") {
+                feedback.textContent =
+                  "Ikke helt. Denne handling er sikker og hjælper dig med at passe på dig selv.";
+              } else {
+                feedback.textContent =
+                  "Ikke helt. Denne handling er usikker og kan skade dig eller andre.";
+              }
+            }
+          });
+
+          scoreEl.textContent = String(score);
+        });
+
+        resetBtn.addEventListener("click", function () {
+          items.forEach(function (item) {
+            item.classList.remove("correct", "wrong");
+            delete item.dataset.selected;
+
+            var feedback = item.querySelector(".feedback");
+            feedback.textContent = "";
+            feedback.classList.remove("correct", "wrong");
+
+            var buttons = item.querySelectorAll(".choice-btn");
+            buttons.forEach(function (button) {
+              button.classList.remove("selected");
+            });
+          });
+
+          scoreEl.textContent = "0";
+        });
+      })();
+    </script>
+    <script>
+      (function setupMistakeTaskAudio() {
+        var root = document.querySelector(".page-mistake-v1 article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename) return;
+          if (buttonEl) {
+            stashAria(buttonEl);
+            if (currentBtn === buttonEl && currentAudio) {
+              if (!currentAudio.paused) {
+                currentAudio.pause();
+                buttonEl.classList.remove("is-audio-playing");
+                buttonEl.classList.add("is-audio-paused");
+                updateBtnAria(buttonEl);
+                return;
+              }
+              buttonEl.classList.remove("is-audio-paused");
+              buttonEl.classList.add("is-audio-playing");
+              var pr = currentAudio.play();
+              if (pr !== undefined) {
+                pr
+                  .then(function () {
+                    updateBtnAria(buttonEl);
+                  })
+                  .catch(function () {
+                    releasePrior();
+                  });
+              } else {
+                updateBtnAria(buttonEl);
+              }
+              return;
+            }
+          }
+          releasePrior();
+          if (buttonEl) {
+            buttonEl.classList.remove("is-audio-paused");
+            currentBtn = buttonEl;
+            buttonEl.classList.add("is-audio-playing");
+          }
+          var dirHref = new URL(".", window.location.href).href;
+          var src = new URL(filename, dirHref).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              if (buttonEl) {
+                buttonEl.classList.remove("is-audio-playing");
+                buttonEl.classList.remove("is-audio-paused");
+                var pl = buttonEl.getAttribute("data-aria-play");
+                if (pl) buttonEl.setAttribute("aria-label", pl);
+              }
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          if (buttonEl) updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                if (buttonEl) updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            if (buttonEl) updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        window.__mistakeTaskRefreshAudioUi = function () {
+          root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+        };
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        window.__mistakeTaskRefreshAudioUi();
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hvad kan gå galt? – Dansk som andetsprog for serviceassistenter</title>
+    <link rel="preload" href="../../assets/bg-rengoringsmidler.jpg" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <link rel="preload" href="Hvad kan ga galt.mp3" as="audio" />
+
+    <style>
+      .page-mistake-v1 article.article-card .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn__svg--pause,
+      .page-mistake-v1 article.article-card .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-mistake-v1
+        article.article-card
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      .page-mistake-v1 article.article-card .mistake-page-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.45rem 0.6rem;
+      }
+
+      .page-mistake-v1 article.article-card .mistake-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-mistake-v1 article.article-card .mistake-page-title-row .crossword-audio-btn {
+        margin-top: 0.08rem;
+      }
+
+      .mistake-task .case-title-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem 0.55rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .mistake-task .case-title-row h3 {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+        color: var(--primary-dark);
+        font-size: 1.15rem;
+      }
+
+      .page-mistake-v1 article.article-card .mistake-task .case-title-row .crossword-audio-btn {
+        margin-top: 0.06rem;
+      }
+
+      .mistake-task {
+        --bg: #f5f8fc;
+        --card: #ffffff;
+        --primary: #245c73;
+        --primary-dark: #1c4759;
+        --text: #1f2933;
+        --muted: #52606d;
+        --border: #d9e2ec;
+        --accent: #eaf2f8;
+        --correct: #1f8f55;
+        --wrong: #c44536;
+
+        max-width: 1000px;
+        margin: 0.75rem auto 0;
+        padding: 1.25rem;
+        border-radius: 24px;
+        background: var(--bg);
+        color: var(--text);
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .mistake-task * {
+        box-sizing: border-box;
+      }
+
+      .activity-intro,
+      .task-instruction {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      .task-box {
+        margin-top: 1rem;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 1rem;
+      }
+
+      .score-box {
+        margin: 1rem 0;
+        padding: 0.85rem 1rem;
+        background: var(--accent);
+        border-radius: 14px;
+        font-weight: 700;
+      }
+
+      .case-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .case-card {
+        background: #fff;
+        border: 2px solid var(--border);
+        border-radius: 20px;
+        padding: 1rem;
+      }
+
+      .case-card.correct {
+        border-color: rgba(31, 143, 85, 0.5);
+        background: #f1fbf5;
+      }
+
+      .case-card.wrong {
+        border-color: rgba(196, 69, 54, 0.45);
+        background: #fff5f4;
+      }
+
+      .case-card p {
+        margin: 0 0 0.8rem;
+        line-height: 1.5;
+      }
+
+      .case-card label {
+        display: block;
+        font-weight: 700;
+      }
+
+      .case-card select {
+        width: 100%;
+        min-height: 48px;
+        margin-top: 0.4rem;
+        padding: 0.65rem 0.8rem;
+        border: 2px solid var(--border);
+        border-radius: 14px;
+        background: #fff;
+        font-size: 1rem;
+        color: var(--text);
+      }
+
+      .case-card select:focus {
+        outline: 3px solid rgba(36, 92, 115, 0.22);
+        border-color: var(--primary);
+      }
+
+      .feedback {
+        min-height: 1.5em;
+        margin-top: 0.75rem;
+        font-weight: 700;
+      }
+
+      .feedback.correct {
+        color: var(--correct);
+      }
+
+      .feedback.wrong {
+        color: var(--wrong);
+      }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-top: 1.2rem;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        min-height: 50px;
+        padding: 0.9rem 1.25rem;
+        border: none;
+        border-radius: 999px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus {
+        background: var(--primary-dark);
+      }
+
+      .btn-secondary {
+        background: #e6edf3;
+        color: var(--text);
+      }
+
+      .btn-secondary:hover,
+      .btn-secondary:focus {
+        background: #d9e2ec;
+      }
+
+      @media (max-width: 560px) {
+        .mistake-task {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="page-mistake-v1">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-rengoringsmidler.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Rengøringsmidler</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="mistake-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Hvad kan ga galt.mp3"
+            aria-label="Afspil Hvad kan gå galt højt"
+          >
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-pause" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-play" />
+            </svg>
+          </button>
+          <h1 class="page-title">Hvad kan gå galt?</h1>
+        </div>
+        <h2 class="category-heading category-heading--bar-only" aria-hidden="true"></h2>
+
+        <section class="activity-card mistake-task" aria-label="Hvad kan gå galt med rengøringsmidler?">
+          <p class="activity-intro">
+            Læs situationen. Vælg den konsekvens, der passer bedst.
+          </p>
+
+          <div class="task-box">
+            <p class="task-instruction">
+              Opgaven handler om sikker brug af rengøringsmidler, korrekt dosering og valg af det rigtige middel.
+            </p>
+
+            <div class="score-box" aria-live="polite">
+              Rigtige svar: <strong id="score">0</strong> / 6
+            </div>
+
+            <div class="case-grid">
+              <article class="case-card" data-answer="belægning">
+                <div class="case-title-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Situation 1.mp3"
+                    aria-label="Afspil Situation 1 højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <h3>Situation 1</h3>
+                </div>
+                <p>Du bruger for meget rengøringsmiddel i vandet.</p>
+                <label>
+                  Hvad kan der ske?
+                  <select>
+                    <option value="">-- vælg --</option>
+                    <option value="dampe">Der kan opstå farlige dampe.</option>
+                    <option value="belægning">Der kan komme belægninger, og miljøet belastes.</option>
+                    <option value="overflade">Overfladen kan tage skade med det samme.</option>
+                  </select>
+                </label>
+                <div class="feedback" aria-live="polite"></div>
+              </article>
+
+              <article class="case-card" data-answer="snavs">
+                <div class="case-title-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Situation 2.mp3"
+                    aria-label="Afspil Situation 2 højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <h3>Situation 2</h3>
+                </div>
+                <p>Du bruger for lidt rengøringsmiddel til en opgave med fastsiddende snavs.</p>
+                <label>
+                  Hvad kan der ske?
+                  <select>
+                    <option value="">-- vælg --</option>
+                    <option value="hud">Huden bliver altid beskyttet bedre.</option>
+                    <option value="renere">Overfladen bliver automatisk renere.</option>
+                    <option value="snavs">Snavset bliver måske ikke fjernet ordentligt.</option>
+                  </select>
+                </label>
+                <div class="feedback" aria-live="polite"></div>
+              </article>
+
+              <article class="case-card" data-answer="overflade">
+                <div class="case-title-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Situation 3.mp3"
+                    aria-label="Afspil Situation 3 højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <h3>Situation 3</h3>
+                </div>
+                <p>Du bruger et middel på en overflade, som ikke kan tåle midlet.</p>
+                <label>
+                  Hvad kan der ske?
+                  <select>
+                    <option value="">-- vælg --</option>
+                    <option value="mindre">Der bruges mindre kemi.</option>
+                    <option value="overflade">Overfladen kan blive skadet.</option>
+                    <option value="hurtigere">Midlet virker altid hurtigere.</option>
+                  </select>
+                </label>
+                <div class="feedback" aria-live="polite"></div>
+              </article>
+
+              <article class="case-card" data-answer="dampe">
+                <div class="case-title-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Situation 4.mp3"
+                    aria-label="Afspil Situation 4 højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <h3>Situation 4</h3>
+                </div>
+                <p>Du blander to rengøringsmidler uden at vide, om det er sikkert.</p>
+                <label>
+                  Hvad kan der ske?
+                  <select>
+                    <option value="">-- vælg --</option>
+                    <option value="billigere">Rengøringen bliver billigere.</option>
+                    <option value="neutral">Midlerne bliver altid neutrale.</option>
+                    <option value="dampe">Der kan udvikles farlige dampe.</option>
+                  </select>
+                </label>
+                <div class="feedback" aria-live="polite"></div>
+              </article>
+
+              <article class="case-card" data-answer="anvisning">
+                <div class="case-title-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Situation 5.mp3"
+                    aria-label="Afspil Situation 5 højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <h3>Situation 5</h3>
+                </div>
+                <p>Du læser produktets anvisning, før du bruger midlet.</p>
+                <label>
+                  Hvad betyder det?
+                  <select>
+                    <option value="">-- vælg --</option>
+                    <option value="mere">Du skal altid bruge mere middel.</option>
+                    <option value="anvisning">Du kan bruge midlet mere sikkert og korrekt.</option>
+                    <option value="blande">Du må blande midlet med andre produkter.</option>
+                  </select>
+                </label>
+                <div class="feedback" aria-live="polite"></div>
+              </article>
+
+              <article class="case-card" data-answer="stærkt">
+                <div class="case-title-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Situation 6.mp3"
+                    aria-label="Afspil Situation 6 højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <h3>Situation 6</h3>
+                </div>
+                <p>Du vælger altid det stærkeste rengøringsmiddel.</p>
+                <label>
+                  Hvad er problemet?
+                  <select>
+                    <option value="">-- vælg --</option>
+                    <option value="vand">Vand kan aldrig bruges til rengøring.</option>
+                    <option value="bedst">Det stærkeste middel er altid bedst.</option>
+                    <option value="stærkt">Et stærkt middel er ikke altid det rigtige valg.</option>
+                  </select>
+                </label>
+                <div class="feedback" aria-live="polite"></div>
+              </article>
+            </div>
+
+            <div class="button-row">
+              <button type="button" class="btn-primary" id="checkBtn">Tjek svar</button>
+              <button type="button" class="btn-secondary" id="resetBtn">Prøv igen</button>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        var taskRoot = document.querySelector(".mistake-task");
+        if (!taskRoot) return;
+
+        var cards = taskRoot.querySelectorAll(".case-card");
+        var scoreEl = document.getElementById("score");
+        var checkBtn = document.getElementById("checkBtn");
+        var resetBtn = document.getElementById("resetBtn");
+
+        function checkAnswers() {
+          var score = 0;
+
+          cards.forEach(function (card) {
+            var correctAnswer = card.dataset.answer;
+            var select = card.querySelector("select");
+            var feedback = card.querySelector(".feedback");
+            var chosen = select.value;
+
+            card.classList.remove("correct", "wrong");
+            feedback.classList.remove("correct", "wrong");
+
+            if (!chosen) {
+              card.classList.add("wrong");
+              feedback.textContent = "Vælg et svar.";
+              feedback.classList.add("wrong");
+              return;
+            }
+
+            if (chosen === correctAnswer) {
+              card.classList.add("correct");
+              feedback.textContent = "Rigtigt.";
+              feedback.classList.add("correct");
+              score += 1;
+            } else {
+              card.classList.add("wrong");
+              feedback.textContent = "Ikke helt. Læs situationen igen.";
+              feedback.classList.add("wrong");
+            }
+          });
+
+          scoreEl.textContent = String(score);
+        }
+
+        function resetTask() {
+          cards.forEach(function (card) {
+            var select = card.querySelector("select");
+            var feedback = card.querySelector(".feedback");
+
+            select.value = "";
+            feedback.textContent = "";
+            feedback.classList.remove("correct", "wrong");
+            card.classList.remove("correct", "wrong");
+          });
+
+          scoreEl.textContent = "0";
+        }
+
+        checkBtn.addEventListener("click", checkAnswers);
+        resetBtn.addEventListener("click", resetTask);
+      })();
+    </script>
+    <script>
+      (function setupMistakeTaskAudio() {
+        var root = document.querySelector(".page-mistake-v1 article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename) return;
+          if (buttonEl) {
+            stashAria(buttonEl);
+            if (currentBtn === buttonEl && currentAudio) {
+              if (!currentAudio.paused) {
+                currentAudio.pause();
+                buttonEl.classList.remove("is-audio-playing");
+                buttonEl.classList.add("is-audio-paused");
+                updateBtnAria(buttonEl);
+                return;
+              }
+              buttonEl.classList.remove("is-audio-paused");
+              buttonEl.classList.add("is-audio-playing");
+              var pr = currentAudio.play();
+              if (pr !== undefined) {
+                pr
+                  .then(function () {
+                    updateBtnAria(buttonEl);
+                  })
+                  .catch(function () {
+                    releasePrior();
+                  });
+              } else {
+                updateBtnAria(buttonEl);
+              }
+              return;
+            }
+          }
+          releasePrior();
+          if (buttonEl) {
+            buttonEl.classList.remove("is-audio-paused");
+            currentBtn = buttonEl;
+            buttonEl.classList.add("is-audio-playing");
+          }
+          var dirHref = new URL(".", window.location.href).href;
+          var src = new URL(filename, dirHref).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              if (buttonEl) {
+                buttonEl.classList.remove("is-audio-playing");
+                buttonEl.classList.remove("is-audio-paused");
+                var pl = buttonEl.getAttribute("data-aria-play");
+                if (pl) buttonEl.setAttribute("aria-label", pl);
+              }
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          if (buttonEl) updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                if (buttonEl) updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            if (buttonEl) updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        window.__mistakeTaskRefreshAudioUi = function () {
+          root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+        };
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        window.__mistakeTaskRefreshAudioUi();
+      })();
+    </script>
+  </body>
+</html>

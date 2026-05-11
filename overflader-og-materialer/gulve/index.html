@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gulve – Dansk som andetsprog for serviceassistenter</title>
+    <link
+      rel="preload"
+      href="../../assets/bg-overflader-og-materialer.jpg"
+      as="image"
+      fetchpriority="high"
+    />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <link rel="preload" href="Gulve.mp3" as="audio" />
+    <style>
+      .page-gulve-v1 article.article-card .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-gulve-v1 article.article-card .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-gulve-v1 article.article-card .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-gulve-v1 article.article-card .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-gulve-v1 article.article-card .crossword-audio-btn__svg--pause,
+      .page-gulve-v1 article.article-card .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-gulve-v1
+        article.article-card
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-gulve-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-gulve-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-gulve-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-gulve-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-gulve-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-gulve-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-gulve-v1 article.article-card .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-gulve-v1 article.article-card .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      .page-gulve-v1 article.article-card .gulve-page-title-row,
+      .page-gulve-v1 #gulve-ordsortering .gulve-support-heading-row,
+      .page-gulve-v1 #gulve-ordsortering .gulve-support-item-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.45rem 0.6rem;
+      }
+
+      .page-gulve-v1 article.article-card .gulve-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-gulve-v1 #gulve-ordsortering .gulve-support-heading-row .support-title {
+        margin: 0;
+        align-self: center;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-gulve-v1 #gulve-ordsortering .gulve-support-item-row > .support-item-body {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-gulve-v1 article.article-card .gulve-page-title-row .crossword-audio-btn,
+      .page-gulve-v1 #gulve-ordsortering .gulve-support-heading-row .crossword-audio-btn--compact,
+      .page-gulve-v1 #gulve-ordsortering .gulve-support-item-row .crossword-audio-btn--compact {
+        margin-top: 0.08rem;
+      }
+
+      .page-gulve-v1 #gulve-ordsortering .floor-card .crossword-audio-btn--on-card {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        z-index: 4;
+        width: 2rem;
+        height: 2rem;
+        background: rgba(255, 255, 255, 0.92);
+      }
+    </style>
+  </head>
+  <body class="page-gulve-v1">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-overflader-og-materialer.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card article-card--overflader-wide">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Overflader og materialer</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+        <div class="gulve-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Gulve.mp3"
+            aria-label="Afspil Gulve højt"
+          >
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-pause" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-play" />
+            </svg>
+          </button>
+          <h1 class="page-title">Gulve</h1>
+        </div>
+        <h2 class="category-heading" id="gulve-title">Opgave</h2>
+
+        <section class="dsa-exercise" id="gulve-ordsortering" aria-labelledby="gulve-title">
+          <style>
+            #gulve-ordsortering {
+              --bg: #f7f8fc;
+              --card: #ffffff;
+              --text: #1f2937;
+              --muted: #5b6472;
+              --primary: #2f6fed;
+              --primary-soft: #eaf1ff;
+              --success: #157347;
+              --success-soft: #e8f6ee;
+              --danger: #b42318;
+              --danger-soft: #fdecec;
+              --warning: #b76e00;
+              --warning-soft: #fff4db;
+              --border: #d7deea;
+              --shadow: 0 10px 24px rgba(20, 31, 56, 0.08);
+              font-family: Arial, sans-serif;
+              color: var(--text);
+              background: var(--bg);
+              border: 1px solid var(--border);
+              border-radius: 20px;
+              padding: 24px;
+              max-width: 100%;
+              margin: 0.75rem 0 0;
+              box-shadow: var(--shadow);
+            }
+
+            #gulve-ordsortering * {
+              box-sizing: border-box;
+            }
+
+            #gulve-ordsortering h2,
+            #gulve-ordsortering h3,
+            #gulve-ordsortering p {
+              margin: 0;
+            }
+
+            #gulve-ordsortering .exercise-header {
+              margin-bottom: 20px;
+            }
+
+            #gulve-ordsortering .exercise-intro {
+              color: var(--muted);
+              line-height: 1.5;
+              max-width: 72ch;
+            }
+
+            #gulve-ordsortering .support-box {
+              margin-top: 16px;
+              background: #fff;
+              border: 1px solid var(--border);
+              border-radius: 16px;
+              padding: 14px 16px;
+              display: grid;
+              gap: 10px;
+            }
+
+            #gulve-ordsortering .support-title {
+              font-weight: 700;
+              font-size: 1rem;
+            }
+
+            #gulve-ordsortering .support-grid {
+              display: grid;
+              grid-template-columns: repeat(2, minmax(220px, 1fr));
+              gap: 10px;
+            }
+
+            #gulve-ordsortering .support-item {
+              background: #f9fafb;
+              border: 1px solid var(--border);
+              border-radius: 12px;
+              padding: 10px 12px;
+              line-height: 1.45;
+            }
+
+            #gulve-ordsortering .support-item strong {
+              display: block;
+              margin-bottom: 4px;
+            }
+
+            #gulve-ordsortering .cards-area {
+              margin-top: 22px;
+            }
+
+            #gulve-ordsortering .cards-title {
+              font-size: 1.05rem;
+              margin-bottom: 12px;
+              font-weight: 700;
+            }
+
+            #gulve-ordsortering .cards {
+              display: grid;
+              grid-template-columns: repeat(5, minmax(148px, 1fr));
+              gap: 12px;
+            }
+
+            #gulve-ordsortering .floor-card {
+              position: relative;
+              border: 2px solid var(--border);
+              background: #e8ecf4;
+              border-radius: 16px;
+              padding: 0;
+              min-height: 0;
+              aspect-ratio: 4 / 3;
+              display: block;
+              text-align: center;
+              cursor: pointer;
+              transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+              user-select: none;
+              overflow: hidden;
+            }
+
+            #gulve-ordsortering .floor-card:hover,
+            #gulve-ordsortering .floor-card:focus-visible {
+              transform: translateY(-2px);
+              border-color: var(--primary);
+              box-shadow: 0 8px 18px rgba(47, 111, 237, 0.12);
+              outline: none;
+            }
+
+            #gulve-ordsortering .floor-card.selected {
+              border-color: var(--primary);
+              box-shadow: 0 0 0 3px var(--primary-soft), 0 8px 18px rgba(47, 111, 237, 0.2);
+            }
+
+            #gulve-ordsortering .floor-card.selected::after {
+              content: "";
+              position: absolute;
+              inset: 0;
+              border-radius: inherit;
+              box-shadow: inset 0 0 0 3px var(--primary);
+              z-index: 2;
+              pointer-events: none;
+            }
+
+            #gulve-ordsortering .floor-thumb {
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+              display: block;
+              border: none;
+              border-radius: 0;
+              background: #d8dee8;
+            }
+
+            #gulve-ordsortering .floor-card__caption {
+              position: absolute;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              z-index: 1;
+              padding: 14px 10px 10px;
+              background: linear-gradient(
+                to top,
+                rgba(15, 23, 42, 0.88) 0%,
+                rgba(15, 23, 42, 0.5) 45%,
+                transparent 100%
+              );
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: flex-end;
+              text-align: center;
+            }
+
+            #gulve-ordsortering .floor-card .label {
+              margin: 0;
+              font-size: 1.05rem;
+              font-weight: 800;
+              color: #fff;
+              line-height: 1.15;
+              letter-spacing: 0.01em;
+              text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+            }
+
+            #gulve-ordsortering .zones {
+              margin-top: 22px;
+              display: grid;
+              grid-template-columns: repeat(2, minmax(280px, 1fr));
+              gap: 16px;
+            }
+
+            #gulve-ordsortering .zone {
+              background: #fff;
+              border: 2px dashed var(--border);
+              border-radius: 18px;
+              padding: 16px;
+              min-height: 320px;
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+            }
+
+            #gulve-ordsortering .zone.selected-zone {
+              border-color: var(--primary);
+              background: #fcfdff;
+            }
+
+            #gulve-ordsortering .zone h3 {
+              font-size: 1.2rem;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+            }
+
+            #gulve-ordsortering .zone p {
+              color: var(--muted);
+              line-height: 1.45;
+            }
+
+            #gulve-ordsortering .drop-list {
+              display: grid;
+              grid-template-columns: repeat(2, minmax(100px, 1fr));
+              gap: 10px;
+              min-height: 0;
+            }
+
+            #gulve-ordsortering .drop-list .floor-card {
+              aspect-ratio: 4 / 3;
+            }
+
+            #gulve-ordsortering .drop-list .floor-card .label {
+              font-size: 0.95rem;
+            }
+
+            #gulve-ordsortering .zone-actions {
+              margin-top: auto;
+              display: flex;
+              justify-content: flex-end;
+            }
+
+            #gulve-ordsortering .pick-hint {
+              margin-top: 10px;
+              color: var(--muted);
+              font-size: 0.95rem;
+            }
+
+            #gulve-ordsortering .floor-card[draggable="true"] {
+              cursor: grab;
+            }
+
+            #gulve-ordsortering .floor-card.dragging {
+              cursor: grabbing;
+              opacity: 0.88;
+            }
+
+            #gulve-ordsortering .zone.zone--drag-over {
+              border-color: var(--primary);
+              border-style: solid;
+              background: var(--primary-soft);
+              box-shadow: 0 0 0 2px rgba(47, 111, 237, 0.2);
+            }
+
+            #gulve-ordsortering #floorPool.pool--drag-over {
+              outline: 2px dashed var(--primary);
+              outline-offset: 2px;
+              background: var(--primary-soft);
+              border-radius: 12px;
+            }
+
+            #gulve-ordsortering .buttons {
+              margin-top: 22px;
+              display: flex;
+              flex-wrap: wrap;
+              gap: 12px;
+            }
+
+            #gulve-ordsortering button:not(.crossword-audio-btn) {
+              border: none;
+              border-radius: 14px;
+              padding: 12px 18px;
+              font-size: 1rem;
+              font-weight: 700;
+              cursor: pointer;
+              transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+            }
+
+            #gulve-ordsortering button:not(.crossword-audio-btn):hover,
+            #gulve-ordsortering button:not(.crossword-audio-btn):focus-visible {
+              transform: translateY(-1px);
+              outline: none;
+            }
+
+            #gulve-ordsortering .btn-primary {
+              background: var(--primary);
+              color: #fff;
+              box-shadow: 0 10px 18px rgba(47, 111, 237, 0.22);
+            }
+
+            #gulve-ordsortering .btn-secondary {
+              background: #e9edf5;
+              color: var(--text);
+            }
+
+            #gulve-ordsortering .feedback {
+              margin-top: 18px;
+              border-radius: 16px;
+              padding: 14px 16px;
+              line-height: 1.5;
+              display: none;
+              font-weight: 700;
+            }
+
+            #gulve-ordsortering .feedback.show {
+              display: block;
+            }
+
+            #gulve-ordsortering .feedback.success {
+              background: var(--success-soft);
+              color: var(--success);
+              border: 1px solid #b7dfc6;
+            }
+
+            #gulve-ordsortering .feedback.warning {
+              background: var(--warning-soft);
+              color: #7a4b00;
+              border: 1px solid #efd089;
+            }
+
+            #gulve-ordsortering .feedback.error {
+              background: var(--danger-soft);
+              color: var(--danger);
+              border: 1px solid #f1b4ad;
+            }
+
+            #gulve-ordsortering .result-list {
+              margin-top: 8px;
+              font-weight: 700;
+            }
+
+            #gulve-ordsortering .sr-only {
+              position: absolute;
+              width: 1px;
+              height: 1px;
+              padding: 0;
+              margin: -1px;
+              overflow: hidden;
+              clip: rect(0, 0, 0, 0);
+              white-space: nowrap;
+              border: 0;
+            }
+
+            @media (max-width: 900px) {
+              #gulve-ordsortering .cards {
+                grid-template-columns: repeat(3, minmax(110px, 1fr));
+              }
+            }
+
+            @media (max-width: 680px) {
+              #gulve-ordsortering {
+                padding: 18px;
+              }
+
+              #gulve-ordsortering .zones,
+              #gulve-ordsortering .support-grid {
+                grid-template-columns: 1fr;
+              }
+
+              #gulve-ordsortering .cards {
+                grid-template-columns: repeat(2, minmax(140px, 1fr));
+              }
+
+              #gulve-ordsortering .drop-list {
+                grid-template-columns: repeat(2, minmax(130px, 1fr));
+              }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+              #gulve-ordsortering .floor-card,
+              #gulve-ordsortering button:not(.crossword-audio-btn) {
+                transition: none;
+              }
+            }
+          </style>
+
+          <div class="exercise-header">
+            <p class="exercise-intro">
+              Træk hver gulvtype ind i den rigtige gruppe, eller klik på et kort og derefter «Læg her». Målet er at
+              lære fagord om gulve.
+            </p>
+
+            <div class="support-box" aria-label="Ordstøtte">
+              <div class="gulve-support-heading-row">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--compact"
+                  data-audio="Ordstoette.mp3"
+                  aria-label="Afspil ordstøtte højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <div class="support-title">Ordstøtte</div>
+              </div>
+              <div class="support-grid">
+                <div class="support-item">
+                  <div class="gulve-support-item-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Bloede og halvhaarde gulve.mp3"
+                      aria-label="Afspil Bløde og halvhårde gulve højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div class="support-item-body">
+                      <strong>Bløde og halvhårde gulve</strong>
+                      Gulve som ofte kræver mere forsigtig behandling.
+                    </div>
+                  </div>
+                </div>
+                <div class="support-item">
+                  <div class="gulve-support-item-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Haarde gulve.mp3"
+                      aria-label="Afspil Hårde gulve højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div class="support-item-body">
+                      <strong>Hårde gulve</strong>
+                      Gulve som ofte er mere faste og robuste.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cards-area">
+            <div class="cards-title">Gulvtyper – træk dem ind i en gruppe nedenfor</div>
+            <div class="cards" id="floorPool" aria-live="polite">
+              <div class="floor-card" tabindex="0" draggable="true" data-id="vinyl" data-label="Vinyl" data-correct="blod-halv">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--compact crossword-audio-btn--on-card"
+                  data-audio="Vinyl.mp3"
+                  aria-label="Afspil Vinyl højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <img
+                  class="floor-thumb"
+                  src="Vinyl.png"
+                  alt=""
+                  width="400"
+                  height="300"
+                  decoding="async"
+                  loading="lazy"
+                  draggable="false"
+                />
+                <span class="floor-card__caption">
+                  <span class="label">Vinyl</span>
+                </span>
+              </div>
+
+              <div class="floor-card" tabindex="0" draggable="true" data-id="fliser" data-label="Fliser" data-correct="hård">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--compact crossword-audio-btn--on-card"
+                  data-audio="Fliser.mp3"
+                  aria-label="Afspil Fliser højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <img
+                  class="floor-thumb"
+                  src="Fliser.png"
+                  alt=""
+                  width="400"
+                  height="300"
+                  decoding="async"
+                  loading="lazy"
+                  draggable="false"
+                />
+                <span class="floor-card__caption">
+                  <span class="label">Fliser</span>
+                </span>
+              </div>
+
+              <div class="floor-card" tabindex="0" draggable="true" data-id="træ" data-label="Træ" data-correct="blod-halv">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--compact crossword-audio-btn--on-card"
+                  data-audio="Træ.mp3"
+                  aria-label="Afspil Træ højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <img
+                  class="floor-thumb"
+                  src="Træ.png"
+                  alt=""
+                  width="400"
+                  height="300"
+                  decoding="async"
+                  loading="lazy"
+                  draggable="false"
+                />
+                <span class="floor-card__caption">
+                  <span class="label">Træ</span>
+                </span>
+              </div>
+
+              <div class="floor-card" tabindex="0" draggable="true" data-id="sten" data-label="Sten" data-correct="hård">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--compact crossword-audio-btn--on-card"
+                  data-audio="Sten.mp3"
+                  aria-label="Afspil Sten højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <img
+                  class="floor-thumb"
+                  src="Sten.png"
+                  alt=""
+                  width="400"
+                  height="300"
+                  decoding="async"
+                  loading="lazy"
+                  draggable="false"
+                />
+                <span class="floor-card__caption">
+                  <span class="label">Sten</span>
+                </span>
+              </div>
+
+              <div class="floor-card" tabindex="0" draggable="true" data-id="linoleum" data-label="Linoleum" data-correct="blod-halv">
+                <button
+                  type="button"
+                  class="crossword-audio-btn crossword-audio-btn--compact crossword-audio-btn--on-card"
+                  data-audio="Linoleum.mp3"
+                  aria-label="Afspil Linoleum højt"
+                >
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-speaker" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-pause" />
+                  </svg>
+                  <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="#icon-play" />
+                  </svg>
+                </button>
+                <img
+                  class="floor-thumb"
+                  src="Linoleum.png"
+                  alt=""
+                  width="400"
+                  height="300"
+                  decoding="async"
+                  loading="lazy"
+                  draggable="false"
+                />
+                <span class="floor-card__caption">
+                  <span class="label">Linoleum</span>
+                </span>
+              </div>
+            </div>
+            <p class="pick-hint" id="pickHintGulve">
+              Træk et gulv ind i den rigtige kasse, eller vælg et kort og brug «Læg her». Træk tilbage til listen
+              herover for at flytte et svar.
+            </p>
+          </div>
+
+          <div class="zones" aria-label="Grupper af gulve">
+            <section class="zone" id="zone-blod-halv" data-zone="blod-halv" aria-labelledby="zone-blod-halv-title">
+              <h3 id="zone-blod-halv-title">🟦 Bløde og halvhårde gulve</h3>
+              <p>Disse gulve kræver ofte mere forsigtig rengøring og opmærksomhed på vand.</p>
+              <div class="drop-list" id="list-blod-halv"></div>
+              <div class="zone-actions">
+                <button class="btn-secondary zone-button" type="button" data-zone-target="blod-halv">Læg her</button>
+              </div>
+            </section>
+
+            <section class="zone" id="zone-hård" data-zone="hård" aria-labelledby="zone-hård-title">
+              <h3 id="zone-hård-title">🟩 Hårde gulve</h3>
+              <p>Disse gulve er faste overflader som ofte tåler mere.</p>
+              <div class="drop-list" id="list-hård"></div>
+              <div class="zone-actions">
+                <button class="btn-secondary zone-button" type="button" data-zone-target="hård">Læg her</button>
+              </div>
+            </section>
+          </div>
+
+          <div class="buttons">
+            <button class="btn-primary" id="checkAnswerBtnGulve" type="button">Tjek svar</button>
+            <button class="btn-secondary" id="resetExerciseBtnGulve" type="button">Prøv igen</button>
+          </div>
+
+          <div class="feedback" id="feedbackBoxGulve" aria-live="polite"></div>
+          <p class="sr-only" id="screenReaderStatusGulve" aria-live="polite"></p>
+
+          <script>
+            (function () {
+              const root = document.getElementById("gulve-ordsortering");
+              if (!root) return;
+
+              const pool = root.querySelector("#floorPool");
+              const listSoft = root.querySelector("#list-blod-halv");
+              const listHard = root.querySelector("#list-hård");
+              const feedbackBox = root.querySelector("#feedbackBoxGulve");
+              const resetBtn = root.querySelector("#resetExerciseBtnGulve");
+              const checkBtn = root.querySelector("#checkAnswerBtnGulve");
+              const zoneButtons = root.querySelectorAll(".zone-button");
+              const zones = root.querySelectorAll(".zone");
+              const pickHint = root.querySelector("#pickHintGulve");
+              const srStatus = root.querySelector("#screenReaderStatusGulve");
+
+              const pickHintDefault =
+                "Træk et gulv ind i den rigtige kasse, eller vælg et kort og brug «Læg her». Træk tilbage til listen herover for at flytte et svar.";
+
+              const poolOrder = ["vinyl", "fliser", "træ", "sten", "linoleum"];
+
+              let selectedCard = null;
+
+              function getAllCards() {
+                return Array.from(root.querySelectorAll(".floor-card"));
+              }
+
+              function getCardById(id) {
+                return root.querySelector('.floor-card[data-id="' + id + '"]');
+              }
+
+              function clearDragOverUI() {
+                zones.forEach((z) => z.classList.remove("zone--drag-over"));
+                pool.classList.remove("pool--drag-over");
+                getAllCards().forEach((c) => c.classList.remove("dragging"));
+              }
+
+              function clearSelectedCard() {
+                getAllCards().forEach((card) => card.classList.remove("selected"));
+                selectedCard = null;
+                pickHint.textContent = pickHintDefault;
+                srStatus.textContent = "Ingen valgt.";
+              }
+
+              function clearSelectedZone() {
+                zones.forEach((zone) => zone.classList.remove("selected-zone"));
+              }
+
+              function setSelectedCard(card) {
+                getAllCards().forEach((item) => item.classList.remove("selected"));
+                selectedCard = card;
+                card.classList.add("selected");
+                pickHint.textContent = "Du har valgt: " + card.dataset.label + ". Vælg nu en gruppe.";
+                srStatus.textContent = "Valgt gulvtype: " + card.dataset.label;
+              }
+
+              function appendToZone(card, zoneName) {
+                if (!card) return;
+
+                hideFeedback();
+
+                if (zoneName === "blod-halv") {
+                  listSoft.appendChild(card);
+                } else if (zoneName === "hård") {
+                  listHard.appendChild(card);
+                }
+
+                card.classList.remove("selected");
+                card.setAttribute("data-user-zone", zoneName);
+                pickHint.textContent = card.dataset.label + " er lagt i den valgte gruppe.";
+                srStatus.textContent = card.dataset.label + " er placeret.";
+                selectedCard = null;
+              }
+
+              function sortCardsInPool() {
+                Array.from(pool.querySelectorAll(".floor-card"))
+                  .sort((a, b) => poolOrder.indexOf(a.dataset.id) - poolOrder.indexOf(b.dataset.id))
+                  .forEach((c) => pool.appendChild(c));
+              }
+
+              function returnCardToPool(card) {
+                if (!card) return;
+                hideFeedback();
+                clearSelectedZone();
+                card.classList.remove("selected");
+                card.removeAttribute("data-user-zone");
+                pool.appendChild(card);
+                sortCardsInPool();
+                selectedCard = null;
+                pickHint.textContent = pickHintDefault;
+                srStatus.textContent = card.dataset.label + " er flyttet tilbage til listen.";
+              }
+
+              function showFeedback(type, html) {
+                feedbackBox.className = "feedback show " + type;
+                feedbackBox.innerHTML = html;
+              }
+
+              function hideFeedback() {
+                feedbackBox.className = "feedback";
+                feedbackBox.innerHTML = "";
+              }
+
+              function handleCardClick(card) {
+                if (selectedCard === card) {
+                  clearSelectedCard();
+                  return;
+                }
+                setSelectedCard(card);
+              }
+
+              function checkAnswers() {
+                const cards = getAllCards();
+                const unanswered = cards.filter((card) => !card.dataset.userZone);
+                const wrong = cards.filter(
+                  (card) => card.dataset.userZone && card.dataset.userZone !== card.dataset.correct
+                );
+
+                if (unanswered.length > 0) {
+                  showFeedback(
+                    "warning",
+                    "<strong>Du mangler at placere alle gulvtyper.</strong><div class='result-list'>Mangler: " +
+                      unanswered.map((card) => card.dataset.label).join(", ") +
+                      "</div>"
+                  );
+                  srStatus.textContent = "Du mangler at placere alle gulvtyper.";
+                  return;
+                }
+
+                if (wrong.length === 0) {
+                  showFeedback(
+                    "success",
+                    "<strong>Flot arbejde.</strong> Du har sorteret alle gulvtyper rigtigt."
+                  );
+                  srStatus.textContent = "Alle svar er rigtige.";
+                  return;
+                }
+
+                showFeedback(
+                  "error",
+                  "<strong>Næsten rigtigt.</strong><div class='result-list'>Tjek disse gulvtyper igen: " +
+                    wrong.map((card) => card.dataset.label).join(", ") +
+                    "</div>"
+                );
+                srStatus.textContent = "Nogle svar er forkerte.";
+              }
+
+              function resetExercise() {
+                const cards = getAllCards();
+                cards.forEach((card) => {
+                  card.classList.remove("selected");
+                  card.removeAttribute("data-user-zone");
+                  pool.appendChild(card);
+                });
+                sortCardsInPool();
+
+                clearSelectedCard();
+                clearSelectedZone();
+                hideFeedback();
+                clearDragOverUI();
+                pickHint.textContent = pickHintDefault;
+                srStatus.textContent = "Øvelsen er nulstillet.";
+              }
+
+              function ignoreClickAfterDrag(card) {
+                if (card.getAttribute("data-dnd-suppress-click")) {
+                  card.removeAttribute("data-dnd-suppress-click");
+                  return true;
+                }
+                return false;
+              }
+
+              pool.addEventListener("click", function (event) {
+                if (event.target.closest(".crossword-audio-btn")) return;
+                const card = event.target.closest(".floor-card");
+                if (!card) return;
+                if (ignoreClickAfterDrag(card)) return;
+                handleCardClick(card);
+              });
+
+              listSoft.addEventListener("click", function (event) {
+                if (event.target.closest(".crossword-audio-btn")) return;
+                const card = event.target.closest(".floor-card");
+                if (!card) return;
+                if (ignoreClickAfterDrag(card)) return;
+                handleCardClick(card);
+              });
+
+              listHard.addEventListener("click", function (event) {
+                if (event.target.closest(".crossword-audio-btn")) return;
+                const card = event.target.closest(".floor-card");
+                if (!card) return;
+                if (ignoreClickAfterDrag(card)) return;
+                handleCardClick(card);
+              });
+
+              zoneButtons.forEach((button) => {
+                button.addEventListener("click", function () {
+                  const zoneName = button.dataset.zoneTarget;
+                  clearSelectedZone();
+                  const zone = root.querySelector('[data-zone="' + zoneName + '"]');
+                  if (zone) zone.classList.add("selected-zone");
+
+                  if (!selectedCard) {
+                    showFeedback("warning", "<strong>Vælg først en gulvtype.</strong>");
+                    srStatus.textContent = "Vælg først en gulvtype.";
+                    return;
+                  }
+
+                  appendToZone(selectedCard, zoneName);
+                });
+              });
+
+              function handleZoneDragOver(zone, event) {
+                event.preventDefault();
+                event.dataTransfer.dropEffect = "move";
+                zone.classList.add("zone--drag-over");
+              }
+
+              function handleZoneDragLeave(zone, event) {
+                if (!zone.contains(event.relatedTarget)) {
+                  zone.classList.remove("zone--drag-over");
+                }
+              }
+
+              function handleZoneDrop(zone, event) {
+                event.preventDefault();
+                event.stopPropagation();
+                zone.classList.remove("zone--drag-over");
+                const id = event.dataTransfer.getData("text/plain");
+                const card = getCardById(id);
+                if (!card) return;
+                clearSelectedZone();
+                appendToZone(card, zone.dataset.zone);
+              }
+
+              zones.forEach((zone) => {
+                zone.addEventListener(
+                  "dragover",
+                  function (event) {
+                    handleZoneDragOver(zone, event);
+                  },
+                  true
+                );
+
+                zone.addEventListener("dragleave", function (event) {
+                  handleZoneDragLeave(zone, event);
+                });
+
+                zone.addEventListener(
+                  "drop",
+                  function (event) {
+                    handleZoneDrop(zone, event);
+                  },
+                  true
+                );
+              });
+
+              zoneButtons.forEach((button) => {
+                const zone = button.closest(".zone");
+                if (!zone) return;
+
+                button.addEventListener("dragover", function (event) {
+                  handleZoneDragOver(zone, event);
+                });
+
+                button.addEventListener("dragleave", function (event) {
+                  handleZoneDragLeave(zone, event);
+                });
+
+                button.addEventListener("drop", function (event) {
+                  handleZoneDrop(zone, event);
+                });
+              });
+
+              pool.addEventListener(
+                "dragover",
+                function (event) {
+                  event.preventDefault();
+                  event.dataTransfer.dropEffect = "move";
+                  pool.classList.add("pool--drag-over");
+                },
+                true
+              );
+
+              pool.addEventListener("dragleave", function (event) {
+                if (!pool.contains(event.relatedTarget)) {
+                  pool.classList.remove("pool--drag-over");
+                }
+              });
+
+              pool.addEventListener(
+                "drop",
+                function (event) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  pool.classList.remove("pool--drag-over");
+                  const id = event.dataTransfer.getData("text/plain");
+                  const card = getCardById(id);
+                  if (!card) return;
+                  returnCardToPool(card);
+                },
+                true
+              );
+
+              checkBtn.addEventListener("click", checkAnswers);
+              resetBtn.addEventListener("click", resetExercise);
+
+              getAllCards().forEach((card) => {
+                card.addEventListener("dragstart", function (event) {
+                  if (event.target && event.target.closest && event.target.closest(".crossword-audio-btn")) {
+                    event.preventDefault();
+                    return;
+                  }
+                  hideFeedback();
+                  clearSelectedZone();
+                  clearSelectedCard();
+                  card.classList.add("dragging");
+                  event.dataTransfer.setData("text/plain", card.dataset.id);
+                  event.dataTransfer.effectAllowed = "move";
+                });
+
+                card.addEventListener("dragend", function () {
+                  card.setAttribute("data-dnd-suppress-click", "1");
+                  clearDragOverUI();
+                });
+
+                card.addEventListener("keydown", function (event) {
+                  if (event.target !== card) return;
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    handleCardClick(card);
+                  }
+                });
+              });
+            })();
+          </script>
+        </section>
+      </article>
+    </div>
+    <script>
+      (function setupGulveAudio() {
+        var root = document.querySelector(".page-gulve-v1 article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename || !buttonEl) return;
+          stashAria(buttonEl);
+          if (currentBtn === buttonEl && currentAudio) {
+            if (!currentAudio.paused) {
+              currentAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  updateBtnAria(buttonEl);
+                })
+                .catch(function () {
+                  releasePrior();
+                });
+            } else {
+              updateBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePrior();
+          buttonEl.classList.remove("is-audio-paused");
+          currentBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL("./" + encodeURIComponent(filename), window.location.href).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+      })();
+    </script>
+  </body>
+</html>

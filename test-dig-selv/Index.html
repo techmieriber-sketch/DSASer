@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test dig selv – Dansk som andetsprog for serviceassistenter</title>
+    <link rel="preload" href="../assets/bg-arbejdsmiljo.jpg" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="../arbejdsteknik/arbejdsteknik.css" />
+    <link rel="preload" href="Test dig selv.mp3" as="audio" />
+    <style>
+      .page-mistake-v1 article.article-card .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn__svg--pause,
+      .page-mistake-v1 article.article-card .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-mistake-v1
+        article.article-card
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-mistake-v1 article.article-card .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      .quiz-title-row .crossword-audio-btn--intro {
+        margin-top: 0.06rem;
+      }
+
+      .question-title-row .crossword-audio-btn--compact {
+        margin-top: 0.22rem;
+      }
+
+      .option-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem;
+      }
+
+      .option-row .option-label {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-mistake-v1 article.article-card .option-row .crossword-audio-btn--compact {
+        margin-top: 0.12rem;
+      }
+
+      body.page-quiz-mc .page-shell {
+        padding: 1.15rem 0.85rem 1.5rem;
+      }
+
+      body.page-quiz-mc .bg-image {
+        object-fit: contain;
+        background: #d7e3ec;
+      }
+
+      @media (min-width: 600px) {
+        body.page-quiz-mc .page-shell {
+          padding: 1.35rem 1rem 1.65rem;
+        }
+      }
+
+      body.page-quiz-mc .article-topbar {
+        margin-bottom: 0.65rem;
+      }
+
+      .article-card.quiz-card {
+        max-width: min(40rem, calc(100vw - 1.75rem));
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1.35rem clamp(1rem, 3.2vw, 1.6rem) 1.5rem;
+        background: rgba(18, 52, 68, 0.82);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow:
+          0 12px 40px rgba(10, 35, 48, 0.35),
+          0 2px 12px rgba(0, 0, 0, 0.12);
+      }
+
+      .article-card.quiz-card .page-title {
+        color: #fff;
+      }
+
+      .article-card.quiz-card .back-link {
+        color: #e8f4fc;
+      }
+
+      .article-card.quiz-card .subnav-sep {
+        color: rgba(255, 255, 255, 0.45);
+      }
+
+      .quiz-header {
+        margin-bottom: 1rem;
+      }
+
+      .quiz-title-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .quiz-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+        font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+        line-height: 1.2;
+      }
+
+      .quiz-intro {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #f3f7fb;
+        margin: 0;
+      }
+
+      .question-title-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem;
+        margin: 0 0 0.6rem;
+      }
+
+      .question-title-row .question-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .quiz-list {
+        display: grid;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .question-card {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 14px;
+        padding: 0.75rem 0.85rem;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+      }
+
+      .question-title {
+        color: #fff;
+        font-size: 1.02rem;
+        line-height: 1.35;
+      }
+
+      .options {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .option-label {
+        display: flex;
+        gap: 0.45rem;
+        align-items: flex-start;
+        padding: 0.5rem 0.65rem;
+        border-radius: 11px;
+        border: 2px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.08);
+        cursor: pointer;
+        transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+      }
+
+      .option-label:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .option-label input[type="radio"] {
+        margin-top: 0.12rem;
+        transform: scale(1.08);
+        accent-color: #1f8f63;
+        flex-shrink: 0;
+      }
+
+      .option-text {
+        color: #fff;
+        font-size: 0.9rem;
+        line-height: 1.38;
+      }
+
+      .option-letter {
+        font-weight: 700;
+        margin-right: 0.3rem;
+      }
+
+      .option-label.correct {
+        background: rgba(30, 140, 90, 0.26);
+        border-color: rgba(101, 226, 155, 0.9);
+      }
+
+      .option-label.wrong {
+        background: rgba(180, 40, 40, 0.24);
+        border-color: rgba(255, 140, 140, 0.9);
+      }
+
+      .option-label.disabled {
+        cursor: default;
+      }
+
+      .question-feedback {
+        min-height: 1.25rem;
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .question-feedback.correct {
+        color: #9ef0bf;
+      }
+
+      .question-feedback.wrong {
+        color: #ffb4b4;
+      }
+
+      .quiz-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin-top: 1rem;
+      }
+
+      .quiz-btn {
+        appearance: none;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.55rem 1rem;
+        font: inherit;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.15s ease, opacity 0.15s ease;
+      }
+
+      .quiz-btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .quiz-btn.primary {
+        background: #ffffff;
+        color: #16324f;
+      }
+
+      .quiz-btn.secondary {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+      }
+
+      .quiz-result {
+        margin-top: 0.65rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      @media (max-width: 720px) {
+        .question-card {
+          padding: 0.65rem 0.75rem;
+        }
+
+        .option-label {
+          padding: 0.45rem 0.55rem;
+        }
+
+        .question-title {
+          font-size: 0.98rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-quiz-mc page-mistake-v1">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../assets/bg-arbejdsmiljo.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card quiz-card" id="quizArticle">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <header class="quiz-header">
+          <div class="quiz-title-row">
+            <button
+              type="button"
+              class="crossword-audio-btn crossword-audio-btn--intro"
+              data-audio="Test dig selv.mp3"
+              aria-label="Afspil introduktion til Test dig selv"
+            >
+              <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-speaker" />
+              </svg>
+              <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-pause" />
+              </svg>
+              <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-play" />
+              </svg>
+            </button>
+            <h1 class="page-title">Test dig selv</h1>
+          </div>
+          <p class="quiz-intro">
+            Her kan du teste al den viden, du har fra alle de tekster og opgaver, du har været igennem.
+            Vælg ét rigtigt svar til hvert spørgsmål. Når du svarer rigtigt, bliver svaret grønt. Når du svarer
+            forkert, bliver det valgte svar rødt, og det rigtige svar bliver grønt.
+          </p>
+        </header>
+
+        <section class="quiz-list" id="quiz"></section>
+
+        <div class="quiz-actions">
+          <button type="button" class="quiz-btn primary" id="showResultBtn">Vis resultat</button>
+          <button type="button" class="quiz-btn secondary" id="resetBtn">Prøv igen</button>
+        </div>
+
+        <p class="quiz-result" id="quizResult" aria-live="polite"></p>
+      </article>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          question: "1. Hvad bruges et surt rengøringsmiddel bedst til?",
+          correct: "B",
+          options: [
+            { letter: "A", text: "At opløse fedt og organisk snavs" },
+            { letter: "B", text: "At opløse kalk" },
+            { letter: "C", text: "At fjerne løst støv" },
+            { letter: "D", text: "At desinficere alle overflader" }
+          ]
+        },
+        {
+          question: "2. Hvad sker der, hvis man overdoserer et rengøringsmiddel?",
+          correct: "C",
+          options: [
+            { letter: "A", text: "Overfladen bliver ekstra ren" },
+            { letter: "B", text: "Snavset fjernes hurtigere" },
+            { letter: "C", text: "Det kan give belægninger og belaste miljøet unødigt" },
+            { letter: "D", text: "Redskaberne holder bedre" }
+          ]
+        },
+        {
+          question: "3. Hvad er en pH-værdi?",
+          correct: "A",
+          options: [
+            { letter: "A", text: "Et tal, der viser om et middel er surt, neutralt eller basisk" },
+            { letter: "B", text: "Mængden af rengøringsmiddel, der blandes i vand" },
+            { letter: "C", text: "Typen af snavs, man vil fjerne" },
+            { letter: "D", text: "Styrken af et grundrengøringsmiddel" }
+          ]
+        },
+        {
+          question: "4. Hvad er mikrofiber særligt godt til?",
+          correct: "B",
+          options: [
+            { letter: "A", text: "At vaske gulve med store mængder vand" },
+            { letter: "B", text: "At binde støv og snavs effektivt" },
+            { letter: "C", text: "At fjerne kraftigt fedt fra komfurer" },
+            { letter: "D", text: "At polere stenflader" }
+          ]
+        },
+        {
+          question: "5. Hvad er formålet med rengøringsvognen?",
+          correct: "C",
+          options: [
+            { letter: "A", text: "At vaske gulve med maskine" },
+            { letter: "B", text: "At blande rengøringsmidler korrekt" },
+            { letter: "C", text: "At transportere og organisere redskaber, materialer og affald" },
+            { letter: "D", text: "At hente frisk vand til rengøringen" }
+          ]
+        },
+        {
+          question: "6. Hvorfor er det vigtigt at holde klude og mopper rene?",
+          correct: "D",
+          options: [
+            { letter: "A", text: "De bliver billigere at indkøbe" },
+            { letter: "B", text: "De tørrer hurtigere efter brug" },
+            { letter: "C", text: "De lugter bedre" },
+            { letter: "D", text: "Beskidte redskaber kan sprede snavs og mikroorganismer til andre rum" }
+          ]
+        },
+        {
+          question: "7. Hvad skal du altid tænke på, inden du rengør en overflade?",
+          correct: "B",
+          options: [
+            { letter: "A", text: "Hvilken farve rengøringsmidlet har" },
+            { letter: "B", text: "Hvilket materiale det er, hvilket snavs der er, og hvad overfladen tåler" },
+            { letter: "C", text: "Om gulvet er tørt eller vådt" },
+            { letter: "D", text: "Hvor hurtigt opgaven skal laves" }
+          ]
+        },
+        {
+          question: "8. Hvad er løst snavs?",
+          correct: "A",
+          options: [
+            { letter: "A", text: "Snavs, der ligger oven på overfladen og er let at fjerne" },
+            { letter: "B", text: "Snavs, der sidder fast og er svært at fjerne" },
+            { letter: "C", text: "Kemikalier fra et rengøringsmiddel" },
+            { letter: "D", text: "Fugt fra gulvvask" }
+          ]
+        },
+        {
+          question: "9. Hvad menes med en skånsom rengøringsmetode?",
+          correct: "C",
+          options: [
+            { letter: "A", text: "At man arbejder så hurtigt som muligt" },
+            { letter: "B", text: "At man altid bruger store mængder vand" },
+            { letter: "C", text: "En metode, der rengør uden at slide eller skade overfladen" },
+            { letter: "D", text: "At man altid bruger et grundrengøringsmiddel" }
+          ]
+        },
+        {
+          question: "10. Hvornår er maskiner særligt en fordel i rengøring?",
+          correct: "D",
+          options: [
+            { letter: "A", text: "Når der kun er lidt at rengøre" },
+            { letter: "B", text: "Når man arbejder alene om en lille opgave" },
+            { letter: "C", text: "Når overfladen er meget lille og svær at nå" },
+            { letter: "D", text: "På store arealer og ved opgaver, der ville tage lang tid manuelt" }
+          ]
+        },
+        {
+          question: "11. Hvad skal man gøre, inden man tager en rengøringsmaskine i brug?",
+          correct: "B",
+          options: [
+            { letter: "A", text: "Fylde maskinen med rengøringsmiddel" },
+            { letter: "B", text: "Have faæt instruktion og kontrollere, at maskinen er i orden" },
+            { letter: "C", text: "Slukke for lyset i rummet" },
+            { letter: "D", text: "Fjerne alle møbler fra rummet" }
+          ]
+        },
+        {
+          question: "12. Hvad bruges en vandsuger til?",
+          correct: "A",
+          options: [
+            { letter: "A", text: "At opsuge væske" },
+            { letter: "B", text: "At støvsuge tørt snavs som hår og sand" },
+            { letter: "C", text: "At vaske og opsuge snavsevand i samme arbejdsgang" },
+            { letter: "D", text: "At polere gulve" }
+          ]
+        },
+        {
+          question: "13. Hvad er hygiejne i rengøringssammenhæng?",
+          correct: "C",
+          options: [
+            { letter: "A", text: "At bruge mange rengøringsmidler" },
+            { letter: "B", text: "At gøre rent hurtigst muligt" },
+            { letter: "C", text: "Renlighed og gode arbejdsrutiner, der hjælper med at mindske spredning af smitte" },
+            { letter: "D", text: "At arbejde alene uden at forstyrre andre" }
+          ]
+        },
+        {
+          question: "14. Hvad er smitteforebyggelse?",
+          correct: "B",
+          options: [
+            { letter: "A", text: "At bruge handsker ved al rengøring" },
+            { letter: "B", text: "Arbejde, der mindsker risikoen for, at sygdom og mikroorganismer spredes" },
+            { letter: "C", text: "At skylle alt udstyr i varmt vand" },
+            { letter: "D", text: "At lukke vinduer under rengøring" }
+          ]
+        },
+        {
+          question: "15. Hvad betyder kvalitet i rengøring?",
+          correct: "A",
+          options: [
+            { letter: "A", text: "At arbejdet bliver udført grundigt, systematisk og fagligt korrekt" },
+            { letter: "B", text: "At man gør rent hurtigst muligt" },
+            { letter: "C", text: "At man bruger de dyreste rengøringsmidler" },
+            { letter: "D", text: "At overfladen bare ser ren ud" }
+          ]
+        },
+        {
+          question: "16. Hvad er god arbejdsteknik?",
+          correct: "B",
+          options: [
+            { letter: "A", text: "At arbejde så hurtigt som muligt for at spare tid" },
+            { letter: "B", text: "At arbejde tæt på kroppen og bruge benene i stedet for ryggen" },
+            { letter: "C", text: "At bruge armene til al kraft i arbejdet" },
+            { letter: "D", text: "At bøje ryggen fremad for at nå ned til overfladen" }
+          ]
+        },
+        {
+          question: "17. Hvad er en neutral arbejdsstilling?",
+          correct: "D",
+          options: [
+            { letter: "A", text: "At stå helt stille uden at bevæge sig" },
+            { letter: "B", text: "At strække armene fuldt ud for bedre at nå overfladen" },
+            { letter: "C", text: "At bøje ryggen fremad under arbejdet" },
+            { letter: "D", text: "En stilling, hvor kroppen er i balance og belastes mindst muligt" }
+          ]
+        },
+        {
+          question: "18. Hvad er en typisk fejl i arbejdsteknik?",
+          correct: "C",
+          options: [
+            { letter: "A", text: "At holde skuldrene nede under arbejdet" },
+            { letter: "B", text: "At arbejde tæt på kroppen" },
+            { letter: "C", text: "At bøje ryggen i stedet for knæene" },
+            { letter: "D", text: "At bruge 8-tals bevægelser ved mopning" }
+          ]
+        },
+        {
+          question: "19. Hvad handler det psykiske arbejdsmiljø om?",
+          correct: "B",
+          options: [
+            { letter: "A", text: "Støj, lys og temperatur på arbejdspladsen" },
+            { letter: "B", text: "Hvordan man har det i arbejdet – trivsel, samarbejde og tryghed" },
+            { letter: "C", text: "Hvilke redskaber man bruger i dagligdagen" },
+            { letter: "D", text: "Hvor hurtigt man kan udføre sine opgaver" }
+          ]
+        },
+        {
+          question: "20. Hvad kan belaste arbejdsmiljøet?",
+          correct: "D",
+          options: [
+            { letter: "A", text: "God planlægning og tydelige beskeder" },
+            { letter: "B", text: "Redskaber, der virker som de skal" },
+            { letter: "C", text: "Godt samarbejde med kolleger" },
+            { letter: "D", text: "Rod, støj, tidspres og uklare beskeder" }
+          ]
+        }
+      ];
+
+      const quizEl = document.getElementById("quiz");
+      const resultEl = document.getElementById("quizResult");
+      const showResultBtn = document.getElementById("showResultBtn");
+      const resetBtn = document.getElementById("resetBtn");
+
+      function quizSanitizeAudioStem(s) {
+        return s
+          .replace(/\u2013/g, "-")
+          .replace(/\?\s*$/, "")
+          .trim()
+          .replace(/å/g, "aa")
+          .replace(/Å/g, "Aa")
+          .replace(/æ/g, "ae")
+          .replace(/Æ/g, "Ae")
+          .replace(/ø/g, "oe")
+          .replace(/Ø/g, "Oe");
+      }
+
+      function quizQuestionAudioFilename(question) {
+        return quizSanitizeAudioStem(question) + ".mp3";
+      }
+
+      function quizOptionAudioFilename(letter, text) {
+        return letter + ". " + quizSanitizeAudioStem(text) + ".mp3";
+      }
+
+      function createAudioButton(audioFile, ariaLabel, variant) {
+        const size = variant === "intro" ? "22" : "17";
+        const cls = variant === "intro" ? "crossword-audio-btn--intro" : "crossword-audio-btn--compact";
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "crossword-audio-btn " + cls;
+        btn.setAttribute("data-audio", audioFile);
+        btn.setAttribute("aria-label", ariaLabel);
+        btn.innerHTML =
+          '<svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="' +
+          size +
+          '" height="' +
+          size +
+          '" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-speaker" /></svg>' +
+          '<svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="' +
+          size +
+          '" height="' +
+          size +
+          '" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-pause" /></svg>' +
+          '<svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="' +
+          size +
+          '" height="' +
+          size +
+          '" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-play" /></svg>';
+        return btn;
+      }
+
+      function renderQuiz() {
+        quizEl.innerHTML = "";
+
+        questions.forEach((q, index) => {
+          const card = document.createElement("section");
+          card.className = "question-card";
+          card.dataset.correct = q.correct;
+
+          const titleRow = document.createElement("div");
+          titleRow.className = "question-title-row";
+
+          const qBtn = createAudioButton(
+            quizQuestionAudioFilename(q.question),
+            "Afspil spørgsmålet højt",
+            "compact"
+          );
+          titleRow.appendChild(qBtn);
+
+          const title = document.createElement("h2");
+          title.className = "question-title";
+          title.textContent = q.question;
+          titleRow.appendChild(title);
+          card.appendChild(titleRow);
+
+          const optionsWrap = document.createElement("div");
+          optionsWrap.className = "options";
+
+          q.options.forEach((opt) => {
+            const row = document.createElement("div");
+            row.className = "option-row";
+
+            const optBtn = createAudioButton(
+              quizOptionAudioFilename(opt.letter, opt.text),
+              "Afspil svarmulighed " + opt.letter + " højt",
+              "compact"
+            );
+            row.appendChild(optBtn);
+
+            const label = document.createElement("label");
+            label.className = "option-label";
+            label.dataset.letter = opt.letter;
+
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = `question-${index}`;
+            input.value = opt.letter;
+
+            const span = document.createElement("span");
+            span.className = "option-text";
+            span.innerHTML = `<span class="option-letter">${opt.letter}.</span>${opt.text}`;
+
+            input.addEventListener("change", () => handleAnswer(card, opt.letter));
+
+            label.appendChild(input);
+            label.appendChild(span);
+            row.appendChild(label);
+            optionsWrap.appendChild(row);
+          });
+
+          const feedback = document.createElement("p");
+          feedback.className = "question-feedback";
+          feedback.setAttribute("aria-live", "polite");
+
+          card.appendChild(optionsWrap);
+          card.appendChild(feedback);
+          quizEl.appendChild(card);
+        });
+
+        if (window.__mistakeTaskRefreshAudioUi) window.__mistakeTaskRefreshAudioUi();
+      }
+
+      function handleAnswer(card, chosenLetter) {
+        const correctLetter = card.dataset.correct;
+        const labels = card.querySelectorAll(".option-label");
+        const feedback = card.querySelector(".question-feedback");
+        const radios = card.querySelectorAll('input[type="radio"]');
+
+        labels.forEach((label) => {
+          const letter = label.dataset.letter;
+          label.classList.remove("correct", "wrong");
+          if (letter === correctLetter) label.classList.add("correct");
+          if (letter === chosenLetter && chosenLetter !== correctLetter) label.classList.add("wrong");
+          label.classList.add("disabled");
+        });
+
+        radios.forEach((radio) => { radio.disabled = true; });
+
+        if (chosenLetter === correctLetter) {
+          feedback.textContent = "Rigtigt";
+          feedback.className = "question-feedback correct";
+        } else {
+          feedback.textContent = "Forkert";
+          feedback.className = "question-feedback wrong";
+        }
+      }
+
+      function showResult() {
+        const cards = [...document.querySelectorAll(".question-card")];
+        let correctCount = 0;
+        let answeredCount = 0;
+
+        cards.forEach((card) => {
+          const correctLetter = card.dataset.correct;
+          const chosen = card.querySelector('input[type="radio"]:checked');
+          if (chosen) {
+            answeredCount += 1;
+            if (chosen.value === correctLetter) correctCount += 1;
+          }
+        });
+
+        resultEl.textContent = `Du har ${correctCount} rigtige ud af ${questions.length}. Du har svaret på ${answeredCount} spørgsmål.`;
+      }
+
+      function resetQuiz() {
+        renderQuiz();
+        resultEl.textContent = "";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      showResultBtn.addEventListener("click", showResult);
+      resetBtn.addEventListener("click", resetQuiz);
+
+      renderQuiz();
+    </script>
+    <script>
+      (function setupMistakeTaskAudio() {
+        var root = document.querySelector(".page-mistake-v1 article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename) return;
+          if (buttonEl) {
+            stashAria(buttonEl);
+            if (currentBtn === buttonEl && currentAudio) {
+              if (!currentAudio.paused) {
+                currentAudio.pause();
+                buttonEl.classList.remove("is-audio-playing");
+                buttonEl.classList.add("is-audio-paused");
+                updateBtnAria(buttonEl);
+                return;
+              }
+              buttonEl.classList.remove("is-audio-paused");
+              buttonEl.classList.add("is-audio-playing");
+              var pr = currentAudio.play();
+              if (pr !== undefined) {
+                pr
+                  .then(function () {
+                    updateBtnAria(buttonEl);
+                  })
+                  .catch(function () {
+                    releasePrior();
+                  });
+              } else {
+                updateBtnAria(buttonEl);
+              }
+              return;
+            }
+          }
+          releasePrior();
+          if (buttonEl) {
+            buttonEl.classList.remove("is-audio-paused");
+            currentBtn = buttonEl;
+            buttonEl.classList.add("is-audio-playing");
+          }
+          var dirHref = new URL(".", window.location.href).href;
+          var src = new URL(filename, dirHref).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              if (buttonEl) {
+                buttonEl.classList.remove("is-audio-playing");
+                buttonEl.classList.remove("is-audio-paused");
+                var pl = buttonEl.getAttribute("data-aria-play");
+                if (pl) buttonEl.setAttribute("aria-label", pl);
+              }
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          if (buttonEl) updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                if (buttonEl) updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            if (buttonEl) updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        window.__mistakeTaskRefreshAudioUi = function () {
+          root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+        };
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        window.__mistakeTaskRefreshAudioUi();
+      })();
+    </script>
+  </body>
+</html>

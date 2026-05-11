@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brug af maskiner – Dansk som andetsprog for serviceassistenter</title>
+
+    <link rel="preload" href="../Baggrundsbillede.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="Brug af maskiner.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+
+    <style>
+      .page-bam-v3 .bg-image {
+        object-position: 50% 20%;
+      }
+
+      /* Samme designprincip som “Trivsel, ansvar og faglig vurdering” */
+      .page-bam-v3 .article-card {
+        max-width: min(62rem, calc(100vw - 2rem));
+        padding: 1.75rem clamp(1rem, 3vw, 1.8rem) 2rem;
+      }
+
+      .page-bam-v3 .page-shell {
+        padding: 1.25rem 1rem 2rem;
+      }
+
+      .page-bam-v3 .category-heading {
+        margin-top: 0.35rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-bam-v3 #bam-task {
+        color: #2c3e4a;
+        line-height: 1.6;
+      }
+
+      .page-bam-v3 #bam-task .bam-intro {
+        max-width: none;
+        width: 100%;
+        margin: 0;
+        font-size: 1.02rem;
+      }
+
+      .page-bam-v3 #bam-task .bam-note {
+        max-width: none;
+        width: 100%;
+        margin: 0 0 1.35rem;
+        background: #eef7f6;
+        border: 1px solid #cfe5e1;
+        border-left: 6px solid #2a9d8f;
+        padding: 0.9rem 1rem;
+        border-radius: 12px;
+      }
+
+      .page-bam-v3 #bam-task .task-card {
+        background: #fff;
+        padding: 1.15rem 1.2rem 1.35rem;
+        border-radius: 16px;
+        margin-bottom: 1.35rem;
+        border: 1px solid rgba(19, 82, 82, 0.12);
+        box-shadow: 0 4px 18px rgba(20, 60, 80, 0.07);
+      }
+
+      .page-bam-v3 #bam-task .task-card h2 {
+        margin: 0 0 0.85rem;
+        font-size: 1.2rem;
+        color: #134252;
+      }
+
+      .page-bam-v3 #bam-task .task-card-body {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        align-items: start;
+      }
+
+      .page-bam-v3 #bam-task .task-card-media,
+      .page-bam-v3 #bam-task .task-card-questions {
+        min-width: 0;
+      }
+
+      .page-bam-v3 #bam-task .task-card-questions {
+        position: sticky;
+        top: max(0.65rem, env(safe-area-inset-top, 0px));
+        align-self: start;
+        max-height: calc(100svh - max(1.25rem, env(safe-area-inset-top, 0px)) - max(0.5rem, env(safe-area-inset-bottom, 0px)));
+        overflow-y: auto;
+        scrollbar-gutter: stable;
+      }
+
+      @media (min-width: 768px) {
+        .page-bam-v3 #bam-task .task-card-body {
+          grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+          gap: 1.25rem 1.75rem;
+        }
+
+        .page-bam-v3 #bam-task .task-card-questions {
+          padding-left: 0.7rem;
+          border-left: 1px solid rgba(19, 82, 82, 0.12);
+        }
+
+        .page-bam-v3 #bam-task .task-card-media {
+          align-self: start;
+        }
+      }
+
+      .bam-page {
+        color: #2f3b45;
+      }
+
+      .bam-page * {
+        box-sizing: border-box;
+      }
+
+      .bam-page h1,
+      .bam-page h2,
+      .bam-page h3 {
+        margin-top: 0;
+        color: #1f3c4d;
+      }
+
+      .bam-page .image-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      .bam-page .image-step {
+        background: #fff;
+        border: 2px solid #d9e4ea;
+        box-shadow:
+          inset 0 0 0 2px rgba(42, 157, 143, 0.45),
+          0 8px 22px rgba(0, 0, 0, 0.06);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      .bam-page .image-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        background: #f4f8fb;
+        border-bottom: 2px solid #d9e4ea;
+      }
+
+      .bam-page .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        background: #2d6f91;
+        color: #fff;
+        font-weight: 700;
+        flex: 0 0 auto;
+      }
+
+      .bam-page .image-label {
+        font-weight: 700;
+        font-size: 0.98rem;
+      }
+
+      .bam-page .image-frame {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        background: #e5e7eb;
+      }
+
+      .bam-page .image-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center top;
+        display: block;
+      }
+
+      .bam-page .drop-zone {
+        padding: 14px;
+        background: #fff;
+        border-top: 2px solid #d9e4ea;
+        min-height: 94px;
+        display: flex;
+        align-items: center;
+      }
+
+      .bam-page .drop-inner {
+        width: 100%;
+        min-height: 64px;
+        border: 2px dashed #9fb7c7;
+        background: #f9fcfe;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+      }
+
+      .bam-page .drop-zone.is-over .drop-inner {
+        border-color: #4d8db1;
+        background: #e8f4fb;
+        transform: scale(1.01);
+      }
+
+      .bam-page .drop-placeholder {
+        color: #587080;
+        text-align: center;
+        font-size: 0.95rem;
+      }
+
+      .bam-page .answer-bank {
+        display: grid;
+        gap: 12px;
+      }
+
+      .bam-page .drag-item {
+        background: #fff;
+        border: 2px solid #d9e4ea;
+        border-radius: 16px;
+        padding: 14px;
+        cursor: grab;
+        user-select: none;
+        transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      }
+
+      .bam-page .drag-item:hover {
+        border-color: #4d8db1;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 22px rgba(20, 50, 70, 0.12);
+      }
+
+      .bam-page .drag-item:active {
+        cursor: grabbing;
+      }
+
+      .bam-page .drag-item.selected {
+        border-color: #2a9d8f;
+        background: #e6f5f2;
+        box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.35);
+      }
+
+      .bam-page .drag-title {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 6px;
+      }
+
+      .bam-page .drag-item p {
+        margin: 0;
+        color: #587080;
+        font-size: 0.95rem;
+      }
+
+      .bam-page .drop-inner .drag-item {
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .bam-page .drop-inner.has-item {
+        border-style: solid;
+        border-color: #c7d2fe;
+        background: #f8faff;
+      }
+
+      .bam-page .result,
+      .bam-page .facit {
+        margin-top: 18px;
+        padding: 16px;
+        border-radius: 14px;
+        display: none;
+      }
+
+      .bam-page .result.show,
+      .bam-page .facit.show {
+        display: block;
+      }
+
+      .bam-page .result.ok {
+        background: #eaf7ef;
+        color: #215c3b;
+        border: 1px solid #86efac;
+      }
+
+      .bam-page .result.warn {
+        background: #fff7ed;
+        color: #9a3412;
+        border: 1px solid #fdba74;
+      }
+
+      .bam-page .facit {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+      }
+
+      .bam-page .facit ol {
+        margin: 10px 0 0 20px;
+      }
+
+      .bam-page .small-note {
+        margin-top: 12px;
+        font-size: 0.9rem;
+        color: #587080;
+      }
+
+      @media (max-width: 640px) {
+        .bam-page .image-head {
+          padding: 10px 12px;
+        }
+
+        .bam-page .drop-zone {
+          min-height: 88px;
+        }
+      }
+
+      .page-bam-v3 article.article-card .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-bam-v3 article.article-card .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-bam-v3 article.article-card .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-bam-v3 article.article-card .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-bam-v3 article.article-card .crossword-audio-btn__svg--pause,
+      .page-bam-v3 article.article-card .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-bam-v3
+        article.article-card
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-bam-v3 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-bam-v3 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-bam-v3 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-bam-v3 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-bam-v3 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-bam-v3 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-bam-v3 article.article-card .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-bam-v3 article.article-card .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      .page-bam-v3 article.article-card .bam-page-title-row,
+      .page-bam-v3 article.article-card .bam-intro-row,
+      .page-bam-v3 article.article-card .bam-panel-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.45rem 0.6rem;
+      }
+
+      .page-bam-v3 article.article-card .bam-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-bam-v3 article.article-card .bam-intro-row {
+        margin-bottom: 0.8rem;
+      }
+
+      .page-bam-v3 article.article-card .bam-intro-row .bam-intro {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-bam-v3 article.article-card .bam-panel-title-row .panel-title {
+        margin: 0;
+        flex: 1;
+        align-self: center;
+        min-width: 0;
+      }
+
+      .page-bam-v3 article.article-card .bam-page-title-row .crossword-audio-btn,
+      .page-bam-v3 article.article-card .bam-intro-row .crossword-audio-btn--compact,
+      .page-bam-v3 article.article-card .bam-panel-title-row .crossword-audio-btn--compact {
+        margin-top: 0.08rem;
+      }
+
+      .bam-page .drag-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .bam-page .drag-item .drag-item-main {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .bam-page .drop-inner .drag-item {
+        align-items: flex-start;
+      }
+    </style>
+  </head>
+
+  <body class="page-bam-v3">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../Baggrundsbillede.png"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Maskiner</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="bam-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Brug af maskiner.mp3"
+            aria-label="Afspil overskrift højt"
+          >
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-pause" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-play" />
+            </svg>
+          </button>
+          <h1 class="page-title">Brug af maskiner</h1>
+        </div>
+        <p class="category-heading">Opgave</p>
+
+        <div id="bam-task">
+          <div class="bam-intro-row">
+            <button
+              type="button"
+              class="crossword-audio-btn crossword-audio-btn--compact"
+              data-audio="Opgave Saet arbejdsgangen i rigtig raekkefoelge.mp3"
+              aria-label="Afspil opgaveteksten højt"
+            >
+              <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-speaker" />
+              </svg>
+              <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-pause" />
+              </svg>
+              <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-play" />
+              </svg>
+            </button>
+            <p class="bam-intro">
+              Se på billederne og sæt arbejdsgangen i rigtig rækkefølge. Træk svarene over til billederne i venstre side.
+              Du kan også klikke på et svar og derefter klikke på den plads, hvor det skal ligge.
+            </p>
+          </div>
+
+          <div class="bam-note">
+            <strong>Tip:</strong> Du kan altid flytte et svar igen ved at klikke på det.
+          </div>
+
+          <div class="task-card bam-page" aria-label="Opgave: Sæt arbejdsgangen i rigtig rækkefølge">
+            <h2>Opgave: Sæt arbejdsgangen i rigtig rækkefølge</h2>
+
+            <div class="task-card-body">
+              <div class="task-card-media">
+                <h3 class="panel-title">Billeder</h3>
+
+                <div class="image-list">
+                    <article class="image-step">
+                      <div class="image-head">
+                        <span class="step-number">1</span>
+                        <div class="image-label">Billede 1</div>
+                      </div>
+                      <div class="image-frame">
+                        <img
+                          src="./Vejledning om gulvvaskemaskine i gangen.png"
+                          alt="Serviceassistent får instruktion ved en gulvvaskemaskine og ser på en brugsanvisning."
+                        />
+                      </div>
+                      <div class="drop-zone" data-order="1" tabindex="0" aria-label="Plads til svar ved billede 1">
+                        <div class="drop-inner">
+                          <span class="drop-placeholder">Læg det rigtige svar her</span>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="image-step">
+                      <div class="image-head">
+                        <span class="step-number">2</span>
+                        <div class="image-label">Billede 2</div>
+                      </div>
+                      <div class="image-frame">
+                        <img
+                          src="./Inspektion af gulvrengoeringsmaskine.png"
+                          alt="Nærbillede af ledning, stik, håndtag og maskindele før brug."
+                        />
+                      </div>
+                      <div class="drop-zone" data-order="2" tabindex="0" aria-label="Plads til svar ved billede 2">
+                        <div class="drop-inner">
+                          <span class="drop-placeholder">Læg det rigtige svar her</span>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="image-step">
+                      <div class="image-head">
+                        <span class="step-number">3</span>
+                        <div class="image-label">Billede 3</div>
+                      </div>
+                      <div class="image-frame">
+                        <img
+                          src="./Mand drifter gulvvaskemaskine i ganggang.png"
+                          alt="Serviceassistent bruger en gulvvaskemaskine korrekt på gulvet."
+                        />
+                      </div>
+                      <div class="drop-zone" data-order="3" tabindex="0" aria-label="Plads til svar ved billede 3">
+                        <div class="drop-inner">
+                          <span class="drop-placeholder">Læg det rigtige svar her</span>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="image-step">
+                      <div class="image-head">
+                        <span class="step-number">4</span>
+                        <div class="image-label">Billede 4</div>
+                      </div>
+                      <div class="image-frame">
+                        <img
+                          src="./Rengoering af gulvskrubber i korridor.png"
+                          alt="Maskinen er slukket, tømt og aftørret efter brug."
+                        />
+                      </div>
+                      <div class="drop-zone" data-order="4" tabindex="0" aria-label="Plads til svar ved billede 4">
+                        <div class="drop-inner">
+                          <span class="drop-placeholder">Læg det rigtige svar her</span>
+                        </div>
+                      </div>
+                    </article>
+                </div>
+              </div>
+
+              <div class="task-card-questions">
+                <div class="bam-panel-title-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Svarmuligheder.mp3"
+                    aria-label="Afspil forklaring til svarmuligheder højt"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <h3 class="panel-title">Svarmuligheder</h3>
+                </div>
+                <p class="helper-text">
+                  Træk et svar over til et billede, eller klik på et svar og derefter på den rigtige plads.
+                </p>
+
+                <div class="answer-bank" id="answerBank">
+                  <div class="drag-item" draggable="true" data-correct="3">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Bruge maskinen.mp3"
+                      aria-label="Afspil teksten Bruge maskinen højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div class="drag-item-main">
+                      <strong class="drag-title">Bruge maskinen</strong>
+                      <p>Maskinen bruges til opgaven på gulvet.</p>
+                    </div>
+                  </div>
+
+                  <div class="drag-item" draggable="true" data-correct="1">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Faa instruktion.mp3"
+                      aria-label="Afspil teksten Få instruktion højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div class="drag-item-main">
+                      <strong class="drag-title">Få instruktion</strong>
+                      <p>Du får vejledning og ser på brugsanvisningen.</p>
+                    </div>
+                  </div>
+
+                  <div class="drag-item" draggable="true" data-correct="4">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Slukke og goere ren.mp3"
+                      aria-label="Afspil teksten Slukke og gøre ren højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div class="drag-item-main">
+                      <strong class="drag-title">Slukke og gøre ren</strong>
+                      <p>Maskinen slukkes, tømmes og rengøres efter brug.</p>
+                    </div>
+                  </div>
+
+                  <div class="drag-item" draggable="true" data-correct="2">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Tjekke maskinen.mp3"
+                      aria-label="Afspil teksten Tjekke maskinen højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div class="drag-item-main">
+                      <strong class="drag-title">Tjekke maskinen</strong>
+                      <p>Du ser på ledning, stik, håndtag og dele, før du går i gang.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="button-row">
+                  <button type="button" class="match-btn" id="checkBtn">Tjek svar</button>
+                  <button type="button" class="match-btn secondary" id="showAnswerBtn">Vis facit</button>
+                  <button type="button" class="match-btn secondary" id="resetBtn">Nulstil</button>
+                </div>
+
+                <div class="result" id="resultBox" aria-live="polite"></div>
+
+                <div class="facit" id="facitBox">
+                  <strong>Facit</strong>
+                  <ol>
+                    <li>Få instruktion</li>
+                    <li>Tjekke maskinen</li>
+                    <li>Bruge maskinen</li>
+                    <li>Slukke og gøre ren</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <script>
+      const answerBank = document.getElementById("answerBank");
+      const dropZones = document.querySelectorAll(".bam-page .drop-zone");
+      const checkBtn = document.getElementById("checkBtn");
+      const showAnswerBtn = document.getElementById("showAnswerBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const resultBox = document.getElementById("resultBox");
+      const facitBox = document.getElementById("facitBox");
+
+      let dragged = null;
+      let selectedItem = null;
+
+      function getAllDragItems() {
+        return document.querySelectorAll(".bam-page .drag-item");
+      }
+
+      function clearSelection() {
+        getAllDragItems().forEach((item) => item.classList.remove("selected"));
+        selectedItem = null;
+      }
+
+      function addPlaceholderIfNeeded(zone) {
+        const inner = zone.querySelector(".drop-inner");
+        const hasItem = inner.querySelector(".drag-item");
+
+        if (!hasItem) {
+          inner.classList.remove("has-item");
+          inner.innerHTML = '<span class="drop-placeholder">Læg det rigtige svar her</span>';
+        }
+      }
+
+      function removePlaceholder(inner) {
+        const placeholder = inner.querySelector(".drop-placeholder");
+        if (placeholder) placeholder.remove();
+      }
+
+      function bindItemEvents(item) {
+        item.addEventListener("dragstart", (e) => {
+          if (e.target && e.target.closest && e.target.closest(".crossword-audio-btn")) {
+            e.preventDefault();
+            return;
+          }
+          dragged = item;
+          setTimeout(() => {
+            item.style.opacity = "0.55";
+          }, 0);
+        });
+
+        item.addEventListener("dragend", () => {
+          item.style.opacity = "1";
+          dragged = null;
+          dropZones.forEach((zone) => zone.classList.remove("is-over"));
+        });
+
+        item.addEventListener("click", (e) => {
+          if (e.target.closest(".crossword-audio-btn")) return;
+          if (item.parentElement.classList.contains("drop-inner")) {
+            answerBank.appendChild(item);
+            addPlaceholderIfNeeded(item.closest(".drop-zone"));
+            clearSelection();
+            return;
+          }
+
+          const alreadySelected = item.classList.contains("selected");
+          clearSelection();
+
+          if (!alreadySelected) {
+            item.classList.add("selected");
+            selectedItem = item;
+          }
+        });
+      }
+
+      function placeItemInZone(item, zone) {
+        const inner = zone.querySelector(".drop-inner");
+        const existingItem = inner.querySelector(".drag-item");
+
+        if (existingItem && existingItem !== item) {
+          answerBank.appendChild(existingItem);
+        }
+
+        removePlaceholder(inner);
+        inner.appendChild(item);
+        inner.classList.add("has-item");
+        clearSelection();
+      }
+
+      getAllDragItems().forEach(bindItemEvents);
+
+      dropZones.forEach((zone) => {
+        zone.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          zone.classList.add("is-over");
+        });
+
+        zone.addEventListener("dragleave", () => {
+          zone.classList.remove("is-over");
+        });
+
+        zone.addEventListener("drop", (e) => {
+          e.preventDefault();
+          zone.classList.remove("is-over");
+          if (!dragged) return;
+          placeItemInZone(dragged, zone);
+        });
+
+        zone.addEventListener("click", () => {
+          if (selectedItem) {
+            placeItemInZone(selectedItem, zone);
+          }
+        });
+
+        zone.addEventListener("keydown", (e) => {
+          if ((e.key === "Enter" || e.key === " ") && selectedItem) {
+            e.preventDefault();
+            placeItemInZone(selectedItem, zone);
+          }
+        });
+      });
+
+      answerBank.addEventListener("dragover", (e) => e.preventDefault());
+
+      answerBank.addEventListener("drop", (e) => {
+        e.preventDefault();
+        if (!dragged) return;
+
+        const previousZone = dragged.closest(".drop-zone");
+        answerBank.appendChild(dragged);
+
+        if (previousZone) {
+          addPlaceholderIfNeeded(previousZone);
+        }
+
+        clearSelection();
+      });
+
+      checkBtn.addEventListener("click", () => {
+        let correct = 0;
+        let placed = 0;
+
+        dropZones.forEach((zone) => {
+          const item = zone.querySelector(".drag-item");
+          if (item) {
+            placed++;
+            if (item.dataset.correct === zone.dataset.order) {
+              correct++;
+            }
+          }
+        });
+
+        resultBox.classList.add("show");
+
+        if (placed < 4) {
+          resultBox.className = "result show warn";
+          resultBox.innerHTML =
+            "<strong>Du mangler at placere alle 4 svar.</strong><br>Placer resten og tryk på “Tjek svar” igen.";
+          return;
+        }
+
+        if (correct === 4) {
+          resultBox.className = "result show ok";
+          resultBox.innerHTML = "<strong>Flot!</strong><br>Du har sat hele arbejdsgangen i rigtig rækkefølge.";
+          return;
+        }
+
+        resultBox.className = "result show warn";
+        resultBox.innerHTML = `<strong>Du har ${correct} rigtige svar ud af 4.</strong><br>Prøv igen eller tryk på “Vis facit”.`;
+      });
+
+      showAnswerBtn.addEventListener("click", () => {
+        facitBox.classList.toggle("show");
+      });
+
+      resetBtn.addEventListener("click", () => {
+        dropZones.forEach((zone) => {
+          const item = zone.querySelector(".drag-item");
+          if (item) {
+            answerBank.appendChild(item);
+          }
+          addPlaceholderIfNeeded(zone);
+          zone.classList.remove("is-over");
+        });
+
+        clearSelection();
+        resultBox.className = "result";
+        resultBox.innerHTML = "";
+        facitBox.classList.remove("show");
+      });
+    </script>
+    <script>
+      (function setupBamPageAudio() {
+        var root = document.querySelector(".page-bam-v3 article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename || !buttonEl) return;
+          stashAria(buttonEl);
+          if (currentBtn === buttonEl && currentAudio) {
+            if (!currentAudio.paused) {
+              currentAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  updateBtnAria(buttonEl);
+                })
+                .catch(function () {
+                  releasePrior();
+                });
+            } else {
+              updateBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePrior();
+          buttonEl.classList.remove("is-audio-paused");
+          currentBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL("./" + encodeURIComponent(filename), window.location.href).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+      })();
+    </script>
+  </body>
+</html>

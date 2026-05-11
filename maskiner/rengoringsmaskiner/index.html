@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rengøringsmaskiner – Dansk som andetsprog for serviceassistenter</title>
+    <link
+      rel="preload"
+      href="../Baggrundsbillede.png"
+      as="image"
+      fetchpriority="high"
+    />
+    <link rel="preload" href="Rengoeringsmaskiner Se paa maskinerne og vaelg den rigtige til opgaven..mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <style>
+      .page-rm-v3 .bg-image {
+        object-position: 50% 20%;
+      }
+
+      /* Samme designprincip som “Trivsel, ansvar og faglig vurdering” */
+      .page-rm-v3 .article-card {
+        max-width: min(62rem, calc(100vw - 2rem));
+        padding: 1.75rem clamp(1rem, 3vw, 1.8rem) 2rem;
+      }
+
+      .page-rm-v3 .page-shell {
+        padding: 1.25rem 1rem 2rem;
+      }
+
+      .page-rm-v3 .category-heading {
+        margin-top: 0.35rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-rm-v3 #rm-task {
+        color: #2c3e4a;
+        line-height: 1.6;
+      }
+
+      .page-rm-v3 #rm-task .rm-intro {
+        max-width: none;
+        width: 100%;
+        margin: 0 0 0.8rem;
+        font-size: 1.02rem;
+      }
+
+      .page-rm-v3 #rm-task .rm-note {
+        max-width: none;
+        width: 100%;
+        margin: 0 0 1.35rem;
+        background: #eef7f6;
+        border: 1px solid #cfe5e1;
+        border-left: 6px solid #2a9d8f;
+        padding: 0.9rem 1rem;
+        border-radius: 12px;
+      }
+
+      .page-rm-v3 #rm-task .task-card {
+        background: #fff;
+        padding: 1.15rem 1.2rem 1.35rem;
+        border-radius: 16px;
+        margin-bottom: 1.35rem;
+        border: 1px solid rgba(19, 82, 82, 0.12);
+        box-shadow: 0 4px 18px rgba(20, 60, 80, 0.07);
+      }
+
+      .page-rm-v3 #rm-task .task-card h2 {
+        margin: 0 0 0.85rem;
+        font-size: 1.2rem;
+        color: #134252;
+      }
+
+      .page-rm-v3 #rm-task .task-card-body {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr);
+        gap: 1.25rem 1.75rem;
+        align-items: start;
+      }
+
+      .page-rm-v3 #rm-task .task-card-media,
+      .page-rm-v3 #rm-task .task-card-questions {
+        min-width: 0;
+      }
+
+      .page-rm-v3 #rm-task .task-card-media {
+        position: sticky;
+        top: 0.65rem;
+        align-self: start;
+      }
+
+      .page-rm-v3 #rm-task .task-card-questions {
+        padding-left: 0.7rem;
+        border-left: 1px solid rgba(19, 82, 82, 0.12);
+      }
+
+      .page-rm-v3 #rm-task .image-column {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+
+      @media (max-width: 640px) {
+        .page-rm-v3 #rm-task .task-card-body {
+          grid-template-columns: 1fr;
+        }
+        .page-rm-v3 #rm-task .task-card-media {
+          position: static;
+        }
+        .page-rm-v3 #rm-task .task-card-questions {
+          padding-left: 0;
+          border-left: none;
+        }
+        .page-rm-v3 #rm-task .image-column {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      /* Lokale styles til Rengøringsmaskiner (scopet til match-layout) */
+      .article-card--match.article-card--rm-match .match-visual {
+        max-width: none;
+        display: block;
+        aspect-ratio: auto;
+        overflow: visible;
+      }
+
+      .article-card--match.article-card--rm-match .match-visual img {
+        width: 100%;
+        height: auto;
+        display: block;
+        background: #f4f8fb;
+        border-radius: 0;
+      }
+
+      .article-card--match.article-card--rm-match .match-card {
+        padding: 0 !important;
+        overflow: hidden;
+        border-radius: 12px;
+      }
+
+      .article-card--match.article-card--rm-match .match-card .rm-machine-label,
+      .article-card--match.article-card--rm-match .match-card p {
+        padding: 0.3rem 0.5rem;
+        margin: 0;
+        font-size: 0.78rem;
+        line-height: 1.3;
+        word-break: break-word;
+      }
+
+      .article-card--match.article-card--rm-match .match-card .rm-machine-label {
+        padding-top: 0.35rem;
+        padding-bottom: 0;
+      }
+
+      .article-card--match.article-card--rm-match .vacuum {
+        position: relative;
+        width: 120px;
+        height: 90px;
+      }
+
+      .article-card--match.article-card--rm-match .vacuum .body {
+        position: absolute;
+        left: 18px;
+        bottom: 10px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #2d6f91;
+      }
+
+      .article-card--match.article-card--rm-match .vacuum .wheel1,
+      .article-card--match.article-card--rm-match .vacuum .wheel2 {
+        position: absolute;
+        bottom: 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #111827;
+      }
+
+      .article-card--match.article-card--rm-match .vacuum .wheel1 {
+        left: 22px;
+      }
+      .article-card--match.article-card--rm-match .vacuum .wheel2 {
+        left: 58px;
+      }
+
+      .article-card--match.article-card--rm-match .vacuum .hose {
+        position: absolute;
+        left: 58px;
+        top: 16px;
+        width: 44px;
+        height: 44px;
+        border: 6px solid #111827;
+        border-left: none;
+        border-bottom: none;
+        border-radius: 0 40px 0 0;
+        transform: rotate(8deg);
+      }
+
+      .article-card--match.article-card--rm-match .vacuum .pipe {
+        position: absolute;
+        right: 10px;
+        top: 8px;
+        width: 6px;
+        height: 68px;
+        background: #9ca3af;
+        transform: rotate(18deg);
+        border-radius: 99px;
+      }
+
+      .article-card--match.article-card--rm-match .vacuum .head {
+        position: absolute;
+        right: -1px;
+        bottom: 18px;
+        width: 30px;
+        height: 10px;
+        background: #374151;
+        border-radius: 6px;
+        transform: rotate(8deg);
+      }
+
+      .article-card--match.article-card--rm-match .wetvac {
+        position: relative;
+        width: 120px;
+        height: 100px;
+      }
+
+      .article-card--match.article-card--rm-match .wetvac .tank {
+        position: absolute;
+        left: 26px;
+        bottom: 14px;
+        width: 64px;
+        height: 62px;
+        background: #64748b;
+        border-radius: 14px 14px 18px 18px;
+      }
+
+      .article-card--match.article-card--rm-match .wetvac .top {
+        position: absolute;
+        left: 22px;
+        bottom: 66px;
+        width: 72px;
+        height: 18px;
+        background: #0f172a;
+        border-radius: 12px;
+      }
+
+      .article-card--match.article-card--rm-match .wetvac .hose {
+        position: absolute;
+        left: 74px;
+        top: 28px;
+        width: 32px;
+        height: 34px;
+        border: 6px solid #111827;
+        border-left: none;
+        border-bottom: none;
+        border-radius: 0 28px 0 0;
+      }
+
+      .article-card--match.article-card--rm-match .wetvac .pipe {
+        position: absolute;
+        right: 8px;
+        top: 10px;
+        width: 6px;
+        height: 72px;
+        background: #94a3b8;
+        transform: rotate(16deg);
+        border-radius: 99px;
+      }
+
+      .article-card--match.article-card--rm-match .wetvac .drop {
+        position: absolute;
+        left: 8px;
+        top: 12px;
+        width: 16px;
+        height: 22px;
+        background: #38bdf8;
+        border-radius: 50% 50% 60% 60%;
+        transform: rotate(12deg);
+      }
+
+      .article-card--match.article-card--rm-match .scrubber {
+        position: relative;
+        width: 140px;
+        height: 100px;
+      }
+
+      .article-card--match.article-card--rm-match .scrubber .body {
+        position: absolute;
+        left: 20px;
+        bottom: 18px;
+        width: 86px;
+        height: 52px;
+        background: #475569;
+        border-radius: 20px;
+      }
+
+      .article-card--match.article-card--rm-match .scrubber .base {
+        position: absolute;
+        left: 10px;
+        bottom: 8px;
+        width: 112px;
+        height: 20px;
+        background: #2d6f91;
+        border-radius: 999px;
+      }
+
+      .article-card--match.article-card--rm-match .scrubber .handle {
+        position: absolute;
+        right: 20px;
+        top: 6px;
+        width: 8px;
+        height: 54px;
+        background: #111827;
+        transform: rotate(28deg);
+        border-radius: 99px;
+      }
+
+      .article-card--match.article-card--rm-match .scrubber .wheel {
+        position: absolute;
+        left: 34px;
+        bottom: 8px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #111827;
+      }
+
+      .article-card--match.article-card--rm-match .rmq {
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .article-card--match.article-card--rm-match .rmq .rmq-question {
+        background: #f9fcfe;
+        border: 2px solid #d9e4ea;
+        box-shadow: inset 0 0 0 2px rgba(42, 157, 143, 0.4);
+        border-radius: 14px;
+        padding: 0.9rem;
+      }
+
+      .article-card--match.article-card--rm-match .match-card {
+        box-shadow: inset 0 0 0 2px rgba(42, 157, 143, 0.4);
+      }
+
+      .article-card--match.article-card--rm-match .rmq .rmq-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.65rem;
+      }
+
+      .article-card--match.article-card--rm-match .rmq .rmq-option {
+        border: 2px solid #c8d7e2;
+        background: #eef4f8;
+        color: #243741;
+        border-radius: 14px;
+        padding: 0.55rem 0.9rem;
+        cursor: pointer;
+        font-weight: 800;
+        font-family: inherit;
+      }
+
+      .article-card--match.article-card--rm-match .rmq .rmq-visual {
+        width: 100%;
+        height: auto;
+        max-height: 220px;
+        object-fit: contain;
+        object-position: center;
+        display: block;
+        margin: 0.25rem auto 0.6rem;
+        border-radius: 12px;
+        background: #ffffff;
+        border: 1px solid rgba(31, 60, 77, 0.12);
+      }
+
+      .article-card--match.article-card--rm-match .rmq .rmq-option[aria-pressed="true"] {
+        border-color: #2a9d8f;
+        background: #e6f5f2;
+        box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.35);
+      }
+
+      .page-rm-v3 article.article-card .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-rm-v3 article.article-card .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-rm-v3 article.article-card .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-rm-v3 article.article-card .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-rm-v3 article.article-card .crossword-audio-btn__svg--pause,
+      .page-rm-v3 article.article-card .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-rm-v3
+        article.article-card
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-rm-v3 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-rm-v3 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-rm-v3 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-rm-v3 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-rm-v3 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-rm-v3 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-rm-v3 article.article-card .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-rm-v3 article.article-card .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      .page-rm-v3 article.article-card .rm-page-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.45rem 0.6rem;
+        margin-bottom: 0;
+      }
+
+      .page-rm-v3 article.article-card .rm-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-rm-v3 article.article-card .rm-maskin-footer {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem;
+        padding-top: 0.25rem;
+      }
+
+      .page-rm-v3 article.article-card .rm-maskin-footer .rm-maskin-text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-rm-v3 article.article-card .rm-maskin-footer .rm-maskin-text .rm-machine-label {
+        margin-top: 0;
+      }
+
+      .page-rm-v3 article.article-card .rm-q-stem {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem;
+        margin: 0 0 0.65rem;
+      }
+
+      .page-rm-v3 article.article-card .rm-q-stem > p {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+        font-weight: 700;
+        color: #1f3c4d;
+      }
+
+      .page-rm-v3 article.article-card .rm-maskin-footer .crossword-audio-btn--compact,
+      .page-rm-v3 article.article-card .rm-q-stem .crossword-audio-btn--compact {
+        margin-top: 0.08rem;
+      }
+    </style>
+  </head>
+  <body class="page-rm-v3">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../Baggrundsbillede.png"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card article-card--match article-card--rm-match">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Maskiner</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="rm-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Rengoeringsmaskiner Se paa maskinerne og vaelg den rigtige til opgaven..mp3"
+            aria-label="Afspil overskrift og hjælp højt"
+          >
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-pause" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-play" />
+            </svg>
+          </button>
+          <h1 class="page-title" id="match-heading">
+            <span class="page-title__words">Rengøringsmaskiner</span>
+          </h1>
+        </div>
+        <p class="category-heading">Opgave</p>
+
+        <div id="rm-task">
+          <p class="rm-intro">
+            Se på maskinerne og vælg den rigtige til opgaven. Du kan skifte svar ved at klikke på en anden mulighed.
+          </p>
+
+          <div class="rm-note">
+            <strong>Husk:</strong> Maskinerne er mærket med A, B og C.
+          </div>
+
+          <div class="task-card" aria-label="Opgave: vælg maskine til opgaven">
+            <h2>Opgave</h2>
+            <div class="task-card-body">
+              <div class="task-card-media" aria-label="Maskiner">
+                <div class="image-column">
+                <div class="match-card" data-machine="scrubber">
+                  <div class="match-visual">
+                    <img
+                      class="rm-photo"
+                      src="Professionel gulvvaskemaskine i korridor.png"
+                      alt="Gulvvaskemaskine i korridor"
+                      width="1200"
+                      height="675"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="rm-maskin-footer">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="A Gulvvaskemaskine Vasker gulvet og suger snavsevand op samtidig..mp3"
+                      aria-label="Afspil lyd til maskine A – gulvvaskemaskinen"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div class="rm-maskin-text">
+                      <h3 class="rm-machine-label" aria-label="Maskine bogstav">
+                        <span class="rm-machine-label__num">A</span>
+                      </h3>
+                      <p><strong>Gulvvaskemaskine</strong><br />Vasker gulvet og suger snavsevand op samtidig.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="match-card" data-machine="vacuum">
+                  <div class="match-visual">
+                    <img
+                      class="rm-photo"
+                      src="Professionelt rengoeringsudstyr i gangareal.png"
+                      alt="Støvsuger i gangareal"
+                      width="1200"
+                      height="675"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="rm-maskin-footer">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="B Stoevsuger Bruges til toert snavs som stoev, haar og sand..mp3"
+                      aria-label="Afspil lyd til maskine B – støvsugeren"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div class="rm-maskin-text">
+                      <h3 class="rm-machine-label" aria-label="Maskine bogstav">
+                        <span class="rm-machine-label__num">B</span>
+                      </h3>
+                      <p><strong>Støvsuger</strong><br />Bruges til tørt snavs som støv, hår og sand.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="match-card" data-machine="wetvac">
+                  <div class="match-visual">
+                    <img
+                      class="rm-photo"
+                      src="Vandsuger i ren indendoers gang.png"
+                      alt="Vandsuger i indendørs gang"
+                      width="1200"
+                      height="675"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="rm-maskin-footer">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="C Vandsuger Bruges til at suge vand og væske op..mp3"
+                      aria-label="Afspil lyd til maskine C – vandsugeren"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <div class="rm-maskin-text">
+                      <h3 class="rm-machine-label" aria-label="Maskine bogstav">
+                        <span class="rm-machine-label__num">C</span>
+                      </h3>
+                      <p><strong>Vandsuger</strong><br />Bruges til at suge vand og væske op.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+              <div class="task-card-questions" aria-label="Spørgsmål">
+                <div class="options-box">
+                  <h3>Spørgsmål</h3>
+                  <div class="rmq" id="rmq">
+                    <div class="rmq-question" data-answer="vacuum">
+                      <div class="rm-q-stem">
+                        <button
+                          type="button"
+                          class="crossword-audio-btn crossword-audio-btn--compact"
+                          data-audio="Du skal fjerne stoev haar og sand fra gulvet..mp3"
+                          aria-label="Afspil spørgsmål 1 højt"
+                        >
+                          <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="#icon-speaker" />
+                          </svg>
+                          <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="#icon-pause" />
+                          </svg>
+                          <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="#icon-play" />
+                          </svg>
+                        </button>
+                        <p>1. Du skal fjerne støv, hår og sand fra gulvet.</p>
+                      </div>
+                      <img class="rmq-visual" src="1.png" alt="Billede til spørgsmål 1" loading="lazy" decoding="async" />
+                      <div class="rmq-options" role="group" aria-label="Spørgsmål 1">
+                        <button class="rmq-option" type="button" data-value="A" aria-pressed="false">A</button>
+                        <button class="rmq-option" type="button" data-value="B" aria-pressed="false">B</button>
+                        <button class="rmq-option" type="button" data-value="C" aria-pressed="false">C</button>
+                      </div>
+                    </div>
+
+                    <div class="rmq-question" data-answer="wetvac">
+                      <div class="rm-q-stem">
+                        <button
+                          type="button"
+                          class="crossword-audio-btn crossword-audio-btn--compact"
+                          data-audio="Du skal suge vand op fra gulvet..mp3"
+                          aria-label="Afspil spørgsmål 2 højt"
+                        >
+                          <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="#icon-speaker" />
+                          </svg>
+                          <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="#icon-pause" />
+                          </svg>
+                          <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="#icon-play" />
+                          </svg>
+                        </button>
+                        <p>2. Du skal suge vand op fra gulvet.</p>
+                      </div>
+                      <img class="rmq-visual" src="2.png" alt="Billede til spørgsmål 2" loading="lazy" decoding="async" />
+                      <div class="rmq-options" role="group" aria-label="Spørgsmål 2">
+                        <button class="rmq-option" type="button" data-value="A" aria-pressed="false">A</button>
+                        <button class="rmq-option" type="button" data-value="B" aria-pressed="false">B</button>
+                        <button class="rmq-option" type="button" data-value="C" aria-pressed="false">C</button>
+                      </div>
+                    </div>
+
+                    <div class="rmq-question" data-answer="scrubber">
+                      <div class="rm-q-stem">
+                        <button
+                          type="button"
+                          class="crossword-audio-btn crossword-audio-btn--compact"
+                          data-audio="Du skal vaske gulvet og suge snavsevandet op samtidig.mp3"
+                          aria-label="Afspil spørgsmål 3 højt"
+                        >
+                          <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="#icon-speaker" />
+                          </svg>
+                          <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="#icon-pause" />
+                          </svg>
+                          <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                            <use href="#icon-play" />
+                          </svg>
+                        </button>
+                        <p>3. Du skal vaske gulvet og suge snavsevandet op samtidig.</p>
+                      </div>
+                      <img class="rmq-visual" src="3.png" alt="Billede til spørgsmål 3" loading="lazy" decoding="async" />
+                      <div class="rmq-options" role="group" aria-label="Spørgsmål 3">
+                        <button class="rmq-option" type="button" data-value="A" aria-pressed="false">A</button>
+                        <button class="rmq-option" type="button" data-value="B" aria-pressed="false">B</button>
+                        <button class="rmq-option" type="button" data-value="C" aria-pressed="false">C</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="button-row">
+                  <button type="button" id="checkMatchBtn" class="match-btn">Tjek svar</button>
+                  <button type="button" id="resetMatchBtn" class="match-btn secondary">Prøv igen</button>
+                </div>
+
+                <p id="matchResult" class="match-result" aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        var questions = document.querySelectorAll(".rmq-question");
+        var resultBox = document.getElementById("matchResult");
+        var checkBtn = document.getElementById("checkMatchBtn");
+        var resetBtn = document.getElementById("resetMatchBtn");
+        var machineCards = Array.from(document.querySelectorAll(".match-card[data-machine]"));
+
+        // Maskinerne er faste og kronologiske:
+        // A (1.) = Gulvvaskemaskine, B (2.) = Støvsuger, C (3.) = Vandsuger
+
+        function assignFixedMachineLetters() {
+          var fixed = {
+            scrubber: "A", // Gulvvaskemaskine
+            vacuum: "B", // Støvsuger
+            wetvac: "C" // Vandsuger
+          };
+
+          machineCards.forEach(function (card) {
+            var key = card.dataset.machine;
+            var letter = fixed[key] || "?";
+            card.dataset.machineLetter = letter;
+          });
+        }
+
+        function getMachineKeyByLetter(letter) {
+          var found = null;
+          machineCards.forEach(function (card) {
+            if (card.dataset.machineLetter === letter) found = card.dataset.machine;
+          });
+          return found;
+        }
+
+        function ensureOptionsInOrder() {
+          questions.forEach(function (question) {
+            var group = question.querySelector(".rmq-options");
+            if (!group) return;
+
+            var options = Array.from(group.querySelectorAll(".rmq-option"));
+            if (options.length < 2) return;
+
+            options.sort(function (a, b) {
+              var order = { A: 1, B: 2, C: 3 };
+              return (order[a.getAttribute("data-value")] || 99) - (order[b.getAttribute("data-value")] || 99);
+            });
+
+            var fragment = document.createDocumentFragment();
+            options.forEach(function (btn) {
+              fragment.appendChild(btn);
+            });
+            group.appendChild(fragment);
+          });
+        }
+
+        ensureOptionsInOrder();
+        assignFixedMachineLetters();
+
+        questions.forEach(function (question) {
+          var options = question.querySelectorAll(".rmq-option");
+          options.forEach(function (button) {
+            button.addEventListener("click", function () {
+              options.forEach(function (btn) {
+                btn.setAttribute("aria-pressed", "false");
+              });
+              button.setAttribute("aria-pressed", "true");
+              question.dataset.selected = button.dataset.value;
+            });
+          });
+        });
+
+        checkBtn.addEventListener("click", function () {
+          var correct = 0;
+          questions.forEach(function (question) {
+            var selectedLetter = question.dataset.selected;
+            var selectedMachineKey = selectedLetter ? getMachineKeyByLetter(selectedLetter) : null;
+            if (selectedMachineKey && selectedMachineKey === question.dataset.answer) {
+              correct++;
+            }
+          });
+          resultBox.textContent = "Du har " + correct + " rigtige ud af " + questions.length + ".";
+        });
+
+        resetBtn.addEventListener("click", function () {
+          questions.forEach(function (question) {
+            delete question.dataset.selected;
+            question.querySelectorAll(".rmq-option").forEach(function (btn) {
+              btn.setAttribute("aria-pressed", "false");
+            });
+          });
+          resultBox.textContent = "";
+          ensureOptionsInOrder();
+          assignFixedMachineLetters();
+        });
+      })();
+
+      (function setupRmMatchAudio() {
+        var root = document.querySelector(".page-rm-v3 article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename || !buttonEl) return;
+          stashAria(buttonEl);
+          if (currentBtn === buttonEl && currentAudio) {
+            if (!currentAudio.paused) {
+              currentAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  updateBtnAria(buttonEl);
+                })
+                .catch(function () {
+                  releasePrior();
+                });
+            } else {
+              updateBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePrior();
+          buttonEl.classList.remove("is-audio-paused");
+          currentBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL("./" + encodeURIComponent(filename), window.location.href).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+      })();
+    </script>
+  </body>
+</html>

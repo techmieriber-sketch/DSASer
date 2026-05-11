@@ -1,0 +1,8 @@
+@import url("../arbejdsteknik/arbejdsteknik.css");
+
+/* Mellemrumsfelter i kryds og tvaers (svar i flere ord) */
+.article-card--crossword.crossword-theme-new .cell-wrap.separator {
+  background: rgba(255, 255, 255, 0.18);
+  border: 2px dashed rgba(255, 255, 255, 0.45);
+  border-radius: 10px;
+}

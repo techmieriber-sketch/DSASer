@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rengøringsvogn – Klik på det rigtige</title>
+
+    <link rel="preload" href="../../assets/bg-redskaber.jpg" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <link rel="preload" href="Rengoeringsvogn.mp3" as="audio" />
+
+    <style>
+      .page-rv-v1 article.article-card .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease,
+          opacity 0.15s ease;
+      }
+
+      .page-rv-v1 article.article-card .crossword-audio-btn:hover:not(:disabled) {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-rv-v1 article.article-card .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-rv-v1 article.article-card .crossword-audio-btn:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+
+      .page-rv-v1 article.article-card .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-rv-v1 article.article-card .crossword-audio-btn__svg--pause,
+      .page-rv-v1 article.article-card .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-rv-v1
+        article.article-card
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-rv-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-rv-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-rv-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-rv-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-rv-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-rv-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-rv-v1 article.article-card .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-rv-v1 article.article-card .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      .page-rv-v1 .rv-page-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.45rem 0.6rem;
+      }
+
+      .page-rv-v1 .rv-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-rv-v1 .rv-page-title-row .crossword-audio-btn {
+        margin-top: 0.08rem;
+      }
+
+      .page-rv-v1 .rv-current-word-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .page-rv-v1 .rv-current-word-row .rv-current-word {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-rv-v1 .rv-chip-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .page-rv-v1 .rv-chip-row .rv-chip {
+        flex: 1;
+        min-width: 0;
+        text-align: center;
+      }
+    </style>
+
+    <style>
+      .rv-task {
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #5b6472;
+        --primary: #1f5f8b;
+        --primary-dark: #164866;
+        --border: #d7e1ea;
+        --success: #1f8a4c;
+        --success-soft: #e8f6ee;
+        --error: #b23b3b;
+        --error-soft: #fdecec;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+      }
+
+      .article-card--rv-wide {
+        max-width: min(1420px, calc(100vw - 1rem));
+        padding: 1rem clamp(0.9rem, 1.8vw, 1.25rem) 1.15rem;
+      }
+
+      .page-shell--rv {
+        padding: 0.65rem 0.5rem 0.9rem;
+      }
+
+      .article-card--rv-wide .article-topbar {
+        margin-bottom: 0.45rem;
+      }
+
+      .article-card--rv-wide .page-title {
+        margin-bottom: 0.2rem;
+      }
+
+      .article-card--rv-wide .category-heading {
+        margin-bottom: 0.45rem;
+      }
+
+      .rv-task * {
+        box-sizing: border-box;
+      }
+
+      .rv-intro,
+      .rv-control,
+      .rv-image-card,
+      .rv-word-list {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+      }
+
+      .rv-intro {
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        background: linear-gradient(135deg, #e8f3fa, #ffffff);
+      }
+
+      .rv-intro p {
+        margin: 0;
+        max-width: none;
+        color: var(--muted);
+        line-height: 1.3;
+        font-size: 0.98rem;
+      }
+
+      .rv-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(260px, 320px);
+        grid-template-areas: "image sidebar";
+        align-items: start;
+        gap: 16px;
+      }
+
+      .rv-sidebar {
+        grid-area: sidebar;
+        display: grid;
+        gap: 8px;
+        position: sticky;
+        top: 1rem;
+      }
+
+      .rv-control {
+        padding: 12px;
+      }
+
+      .rv-control h3,
+      .rv-image-card h3,
+      .rv-word-list h3 {
+        margin: 0 0 8px;
+        color: var(--primary-dark);
+        font-size: 1.08rem;
+      }
+
+      .rv-current {
+        display: grid;
+        align-items: center;
+        gap: 6px;
+        padding: 8px;
+        background: #f8fbfd;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+      }
+
+      .rv-current-label {
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .rv-current-word {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 38px;
+        padding: 7px 10px;
+        border-radius: 16px;
+        background: #d9ecf7;
+        color: var(--primary-dark);
+        font-size: 1.18rem;
+        font-weight: 800;
+      }
+
+      .rv-feedback {
+        margin-top: 6px;
+        min-height: 28px;
+        padding: 7px 9px;
+        border-radius: 14px;
+        font-weight: 700;
+        line-height: 1.3;
+        visibility: hidden;
+      }
+
+      .rv-feedback.show {
+        visibility: visible;
+      }
+
+      .rv-feedback.correct {
+        color: var(--success);
+        background: var(--success-soft);
+        border: 1px solid rgba(31, 138, 76, 0.25);
+      }
+
+      .rv-feedback.wrong {
+        color: var(--error);
+        background: var(--error-soft);
+        border: 1px solid rgba(178, 59, 59, 0.25);
+      }
+
+      .rv-progress {
+        margin-top: 6px;
+        font-weight: 800;
+        color: var(--primary-dark);
+      }
+
+      .rv-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 8px;
+      }
+
+      .rv-btn {
+        border: none;
+        border-radius: 14px;
+        padding: 8px 12px;
+        font-size: 0.95rem;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .rv-btn.primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .rv-btn.secondary {
+        background: #eef4f8;
+        color: var(--primary-dark);
+        border: 1px solid var(--border);
+      }
+
+      .rv-image-card {
+        grid-area: image;
+        min-width: 0;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .rv-image-card h3,
+      .rv-word-list h3 {
+        margin-bottom: 8px;
+      }
+
+      .rv-image-wrap {
+        position: relative;
+        width: 94%;
+        margin: 0 auto;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #f8fbfd;
+        border: 1px solid var(--border);
+      }
+
+      .rv-image-wrap img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .hotspot {
+        position: absolute;
+        border: 3px solid rgba(31, 95, 139, 0.85);
+        background: rgba(31, 95, 139, 0.08);
+        border-radius: 18px;
+        cursor: pointer;
+        transition: 0.15s ease;
+      }
+
+      .hotspot:hover,
+      .hotspot:focus-visible {
+        background: rgba(31, 95, 139, 0.2);
+        outline: 4px solid rgba(31, 95, 139, 0.2);
+      }
+
+      .hotspot.correct {
+        border-color: var(--success);
+        background: rgba(31, 138, 76, 0.22);
+      }
+
+      .hotspot.wrong {
+        border-color: var(--error);
+        background: rgba(178, 59, 59, 0.22);
+      }
+
+      .rv-label {
+        position: absolute;
+        display: none;
+        padding: 8px 12px;
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        font-weight: 800;
+        color: var(--primary-dark);
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      .rv-label.show {
+        display: block;
+      }
+
+      .rv-word-list {
+        padding: 12px;
+      }
+
+      .rv-words {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .rv-chip {
+        border: 1px solid var(--border);
+        background: #f8fbfd;
+        color: var(--muted);
+        border-radius: 999px;
+        padding: 7px 9px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .rv-chip.done {
+        background: var(--success-soft);
+        color: var(--success);
+        border-color: rgba(31, 138, 76, 0.35);
+      }
+
+      .rv-done {
+        display: none;
+        margin-top: 18px;
+        padding: 16px;
+        border-radius: 18px;
+        background: var(--success-soft);
+        border: 1px solid rgba(31, 138, 76, 0.3);
+        color: var(--success);
+        font-weight: 800;
+      }
+
+      .rv-done.show {
+        display: block;
+      }
+
+      @media (max-width: 1000px) {
+        .rv-layout {
+          grid-template-columns: minmax(0, 1fr);
+          grid-template-areas:
+            "image"
+            "sidebar";
+        }
+
+        .rv-sidebar {
+          position: static;
+        }
+
+        .rv-image-wrap {
+          width: 100%;
+        }
+
+        .rv-words {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .rv-current {
+          align-items: stretch;
+        }
+
+        .rv-current-word {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .hotspot {
+          border-width: 2px;
+          border-radius: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="page-rv-v1">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-redskaber.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell page-shell--rv">
+      <article class="article-card article-card--rv-wide">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Redskaber</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="rv-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Rengoeringsvogn.mp3"
+            aria-label="Afspil Rengøringsvogn højt"
+          >
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-pause" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-play" />
+            </svg>
+          </button>
+          <h1 class="page-title">Rengøringsvogn</h1>
+        </div>
+        <h2 class="category-heading">Klik på det rigtige redskab</h2>
+
+        <section class="rv-task" id="rvTask">
+          <div class="rv-intro">
+            <p>
+              Se på billedet af rengøringsvognen. Du får ét fagord ad gangen.
+              Klik på den rigtige del af vognen.
+            </p>
+          </div>
+
+          <div class="rv-layout">
+            <section class="rv-image-card" aria-label="Billede af rengøringsvogn">
+              <div class="rv-image-wrap" id="imageWrap">
+                <img src="Rengoeringsvogn.png" alt="Rengøringsvogn med spande, flasker, klude, moppe og affaldspose" />
+
+                <button
+                  class="hotspot"
+                  type="button"
+                  data-id="spand"
+                  aria-label="Spand"
+                  style="left: 35%; top: 58%; width: 28%; height: 28%"
+                ></button>
+
+                <button
+                  class="hotspot"
+                  type="button"
+                  data-id="flasker"
+                  aria-label="Flasker"
+                  style="left: 36%; top: 10%; width: 30%; height: 17%"
+                ></button>
+
+                <button
+                  class="hotspot"
+                  type="button"
+                  data-id="klude"
+                  aria-label="Klude"
+                  style="left: 30%; top: 24%; width: 33%; height: 12%"
+                ></button>
+
+                <button
+                  class="hotspot"
+                  type="button"
+                  data-id="moppe"
+                  aria-label="Moppe"
+                  style="left: 59%; top: 3%; width: 22%; height: 90%"
+                ></button>
+
+                <button
+                  class="hotspot"
+                  type="button"
+                  data-id="affaldspose"
+                  aria-label="Affaldspose"
+                  style="left: 73%; top: 20%; width: 19%; height: 55%"
+                ></button>
+
+                <div class="rv-label" id="labelPopup"></div>
+              </div>
+
+              <div class="rv-done" id="doneBox">
+                Flot! Du har fundet alle delene på rengøringsvognen.
+              </div>
+            </section>
+
+            <aside class="rv-sidebar" id="rvSidebar">
+              <section class="rv-control" aria-label="Opgave">
+                <div class="rv-current">
+                  <span class="rv-current-label">Find:</span>
+                  <div class="rv-current-word-row">
+                    <span class="rv-current-word" id="currentWord">Spand</span>
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      id="currentWordAudio"
+                      data-audio="Spand.mp3"
+                      aria-label="Afspil Spand højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="rv-feedback" id="feedback" aria-live="polite"></div>
+                <div class="rv-progress" id="progress">0 af 5 rigtige</div>
+
+                <div class="rv-buttons">
+                  <button class="rv-btn secondary" type="button" id="resetBtn">Start forfra</button>
+                </div>
+              </section>
+
+              <section class="rv-word-list" aria-label="Fagord i opgaven">
+                <h3>Fagord i opgaven</h3>
+                <div class="rv-words">
+                  <div class="rv-chip-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Spand.mp3"
+                      aria-label="Afspil Spand højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <span class="rv-chip" data-chip="spand">Spand</span>
+                  </div>
+                  <div class="rv-chip-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Flasker.mp3"
+                      aria-label="Afspil Flasker højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <span class="rv-chip" data-chip="flasker">Flasker</span>
+                  </div>
+                  <div class="rv-chip-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Klude.mp3"
+                      aria-label="Afspil Klude højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <span class="rv-chip" data-chip="klude">Klude</span>
+                  </div>
+                  <div class="rv-chip-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Moppe.mp3"
+                      aria-label="Afspil Moppe højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <span class="rv-chip" data-chip="moppe">Moppe</span>
+                  </div>
+                  <div class="rv-chip-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Affaldspose.mp3"
+                      aria-label="Afspil Affaldspose højt"
+                    >
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-pause" />
+                      </svg>
+                      <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-play" />
+                      </svg>
+                    </button>
+                    <span class="rv-chip" data-chip="affaldspose">Affaldspose</span>
+                  </div>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <script>
+      const tasks = [
+        {
+          id: "spand",
+          word: "Spand",
+          correct: "Rigtigt. En spand bruges fx til vand eller rengøringsvand.",
+          wrong: "Ikke rigtigt. Find den store blå eller røde beholder nederst på vognen.",
+        },
+        {
+          id: "flasker",
+          word: "Flasker",
+          correct: "Rigtigt. Flasker kan indeholde rengøringsmidler.",
+          wrong: "Ikke rigtigt. Find flaskerne øverst på rengøringsvognen.",
+        },
+        {
+          id: "klude",
+          word: "Klude",
+          correct: "Rigtigt. Klude bruges til inventar som borde, hylder og overflader.",
+          wrong: "Ikke rigtigt. Find de farvede klude foran på vognen.",
+        },
+        {
+          id: "moppe",
+          word: "Moppe",
+          correct: "Rigtigt. En moppe bruges til gulvrengøring.",
+          wrong: "Ikke rigtigt. Find skaftet med moppehovedet nederst til højre.",
+        },
+        {
+          id: "affaldspose",
+          word: "Affaldspose",
+          correct: "Rigtigt. Affaldsposen bruges til affald.",
+          wrong: "Ikke rigtigt. Find den sorte pose i højre side af vognen.",
+        },
+      ];
+
+      const TASK_AUDIO = {
+        spand: "Spand.mp3",
+        flasker: "Flasker.mp3",
+        klude: "Klude.mp3",
+        moppe: "Moppe.mp3",
+        affaldspose: "Affaldspose.mp3",
+      };
+
+      const currentWord = document.getElementById("currentWord");
+      const currentWordAudio = document.getElementById("currentWordAudio");
+      const feedback = document.getElementById("feedback");
+      const progress = document.getElementById("progress");
+      const resetBtn = document.getElementById("resetBtn");
+      const hotspots = Array.from(document.querySelectorAll(".hotspot"));
+      const chips = Array.from(document.querySelectorAll(".rv-chip"));
+      const doneBox = document.getElementById("doneBox");
+      const labelPopup = document.getElementById("labelPopup");
+      const imageWrap = document.getElementById("imageWrap");
+      const imageEl = imageWrap.querySelector("img");
+      const rvSidebar = document.getElementById("rvSidebar");
+
+      let currentIndex = 0;
+      let solved = [];
+
+      function setFeedback(text, type) {
+        feedback.textContent = text;
+        feedback.className = "rv-feedback show " + type;
+        requestAnimationFrame(alignImageToSidebar);
+      }
+
+      function clearFeedback() {
+        feedback.textContent = "";
+        feedback.className = "rv-feedback";
+        requestAnimationFrame(alignImageToSidebar);
+      }
+
+      function updateView() {
+        if (currentIndex >= tasks.length) {
+          currentWord.textContent = "Færdig";
+          if (currentWordAudio) {
+            currentWordAudio.removeAttribute("data-audio");
+            currentWordAudio.classList.remove("is-audio-playing", "is-audio-paused");
+            currentWordAudio.setAttribute("aria-label", "Ingen ord at afspille");
+            currentWordAudio.disabled = true;
+          }
+          progress.textContent = tasks.length + " af " + tasks.length + " rigtige";
+          doneBox.classList.add("show");
+          setFeedback("Du har løst hele opgaven.", "correct");
+          return;
+        }
+
+        if (currentWordAudio) {
+          currentWordAudio.disabled = false;
+          const task = tasks[currentIndex];
+          currentWordAudio.setAttribute("data-audio", TASK_AUDIO[task.id]);
+          currentWordAudio.setAttribute("aria-label", "Afspil " + task.word + " højt");
+        }
+
+        currentWord.textContent = tasks[currentIndex].word;
+        progress.textContent = solved.length + " af " + tasks.length + " rigtige";
+        doneBox.classList.remove("show");
+      }
+
+      function showLabel(hotspot, text) {
+        const hotspotRect = hotspot.getBoundingClientRect();
+        const wrapRect = imageWrap.getBoundingClientRect();
+
+        labelPopup.textContent = text;
+        labelPopup.classList.add("show");
+        labelPopup.style.left = hotspotRect.left - wrapRect.left + hotspotRect.width / 2 - 45 + "px";
+        labelPopup.style.top = hotspotRect.top - wrapRect.top - 44 + "px";
+      }
+
+      function hideLabel() {
+        labelPopup.classList.remove("show");
+      }
+
+      function markChip(id) {
+        const chip = chips.find((item) => item.dataset.chip === id);
+        if (chip) chip.classList.add("done");
+      }
+
+      function alignImageToSidebar() {
+        if (window.innerWidth <= 1000 || !imageEl.naturalWidth || !imageEl.naturalHeight) {
+          imageWrap.style.width = "";
+          return;
+        }
+
+        const imageCard = imageWrap.closest(".rv-image-card");
+        const cardStyles = window.getComputedStyle(imageCard);
+        const cardPaddingY = parseFloat(cardStyles.paddingTop) + parseFloat(cardStyles.paddingBottom);
+        const targetImageHeight = Math.max(180, rvSidebar.getBoundingClientRect().height - cardPaddingY - 2);
+        const aspectRatio = imageEl.naturalWidth / imageEl.naturalHeight;
+        const targetWidth = targetImageHeight * aspectRatio;
+
+        imageWrap.style.width = Math.min(targetWidth, imageCard.clientWidth) + "px";
+      }
+
+      hotspots.forEach((hotspot) => {
+        hotspot.addEventListener("click", () => {
+          if (currentIndex >= tasks.length) return;
+
+          const task = tasks[currentIndex];
+          const clicked = hotspot.dataset.id;
+
+          hotspot.classList.remove("wrong");
+
+          if (clicked === task.id) {
+            hotspot.classList.add("correct");
+            solved.push(clicked);
+            markChip(clicked);
+            showLabel(hotspot, task.word);
+            setFeedback(task.correct, "correct");
+
+            currentIndex += 1;
+
+            setTimeout(() => {
+              hideLabel();
+              clearFeedback();
+              updateView();
+            }, 1200);
+          } else {
+            hotspot.classList.add("wrong");
+            showLabel(hotspot, "Prøv igen");
+            setFeedback(task.wrong, "wrong");
+
+            setTimeout(() => {
+              hotspot.classList.remove("wrong");
+              hideLabel();
+            }, 1000);
+          }
+        });
+      });
+
+      resetBtn.addEventListener("click", () => {
+        currentIndex = 0;
+        solved = [];
+        clearFeedback();
+        hideLabel();
+        doneBox.classList.remove("show");
+
+        hotspots.forEach((hotspot) => {
+          hotspot.classList.remove("correct", "wrong");
+        });
+
+        chips.forEach((chip) => {
+          chip.classList.remove("done");
+        });
+
+        updateView();
+      });
+
+      updateView();
+      alignImageToSidebar();
+      window.addEventListener("resize", alignImageToSidebar);
+      imageEl.addEventListener("load", alignImageToSidebar);
+    </script>
+    <script>
+      (function setupRvAudio() {
+        var root = document.querySelector(".page-rv-v1 article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename || !buttonEl || buttonEl.disabled) return;
+          stashAria(buttonEl);
+          if (currentBtn === buttonEl && currentAudio) {
+            if (!currentAudio.paused) {
+              currentAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  updateBtnAria(buttonEl);
+                })
+                .catch(function () {
+                  releasePrior();
+                });
+            } else {
+              updateBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePrior();
+          buttonEl.classList.remove("is-audio-paused");
+          currentBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL("./" + encodeURIComponent(filename), window.location.href).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          if (btn.disabled) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+      })();
+    </script>
+  </body>
+</html>

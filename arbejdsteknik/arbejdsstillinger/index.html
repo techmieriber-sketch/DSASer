@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arbejdsstillinger – Vælg rigtigt eller forkert</title>
+    <link rel="preload" href="../../assets/bg-arbejdsteknik.jpg" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="../arbejdsteknik.css" />
+  </head>
+  <body class="page-arbejdsstillinger">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-arbejdsteknik.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <main class="article-card article-card--arbejdsstillinger">
+        <nav class="subnav" aria-label="Undernavigation">
+          <a class="back-link" href="../index.html">Tilbage til Arbejdsteknik</a>
+          <span class="subnav-sep" aria-hidden="true">·</span>
+          <a class="back-link" href="../../index.html">Tilbage til forsiden</a>
+        </nav>
+
+        <div class="as-title-audio-row">
+          <h1 class="page-title">Arbejdsstillinger</h1>
+          <button
+            type="button"
+            class="as-audio-btn"
+            data-audio="Arbejdsstillinger.mp3"
+            aria-label="Afspil oplæsning om siden Arbejdsstillinger"
+          >
+            <svg class="as-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+          </button>
+        </div>
+        <h2 class="page-title page-title--activity">Vælg rigtigt eller forkert</h2>
+        <p class="arbejdsstillinger-audio-tip">
+          På ordkortene nedenfor kan du klikke på <strong>overskriften</strong> eller <strong>billedet</strong> på et kort:
+          så bliver navnet på ordkortet læst op.
+        </p>
+        <p class="arbejdsstillinger-lead">
+          Vælg for hvert kort om udsagnet er rigtigt eller forkert, og klik på <strong>Tjek svar</strong>. Længere nede er
+          to små videoopgaver: én om arbejdsstilling og én om mopning.
+        </p>
+
+        <h2 class="category-heading as-section-title">Ordkort</h2>
+
+        <div class="cards">
+          <div class="card" data-answer="rigtigt" data-audio="Belaste kroppen.mp3">
+            <div class="ordkort-audio-frame">
+              <img
+                class="ordkort-audio-target"
+                src="assets/belaste-kroppen.jpg"
+                alt="Person arbejder med bøjet ryg og belaster kroppen"
+                title="Klik for at høre ordet"
+              />
+              <span class="ordkort-speaker-badge" aria-hidden="true">
+                <svg class="ordkort-speaker-badge__svg" width="16" height="16" viewBox="0 0 24 24">
+                  <use href="#icon-speaker" />
+                </svg>
+              </span>
+            </div>
+            <div class="card-content">
+              <h2 class="ordkort-audio-target" title="Klik for at høre ordet">Belaste kroppen</h2>
+              <p class="statement">Du belaster kroppen, når du arbejder med bøjet ryg.</p>
+              <div class="buttons">
+                <button type="button" class="rigtigt" data-choice="rigtigt" onclick="select(this)">✔ Rigtigt</button>
+                <button type="button" class="forkert" data-choice="forkert" onclick="select(this)">✘ Forkert</button>
+              </div>
+              <div class="feedback" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div class="card" data-answer="rigtigt" data-audio="Neutral arbejdsstilling.mp3">
+            <div class="ordkort-audio-frame">
+              <img
+                class="ordkort-audio-target"
+                src="assets/neutral-arbejdsstilling.jpg"
+                alt="Person står i neutral arbejdsstilling"
+                title="Klik for at høre ordet"
+              />
+              <span class="ordkort-speaker-badge" aria-hidden="true">
+                <svg class="ordkort-speaker-badge__svg" width="16" height="16" viewBox="0 0 24 24">
+                  <use href="#icon-speaker" />
+                </svg>
+              </span>
+            </div>
+            <div class="card-content">
+              <h2 class="ordkort-audio-target" title="Klik for at høre ordet">Neutral arbejdsstilling</h2>
+              <p class="statement">I en neutral arbejdsstilling er kroppen i balance.</p>
+              <div class="buttons">
+                <button type="button" class="rigtigt" data-choice="rigtigt" onclick="select(this)">✔ Rigtigt</button>
+                <button type="button" class="forkert" data-choice="forkert" onclick="select(this)">✘ Forkert</button>
+              </div>
+              <div class="feedback" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div class="card" data-answer="forkert" data-audio="Vaegtoverfoering.mp3">
+            <div class="ordkort-audio-frame">
+              <img
+                class="ordkort-audio-target"
+                src="assets/vaegtoverforing.jpg"
+                alt="Person mopper og flytter vægten fra ben til ben"
+                title="Klik for at høre ordet"
+              />
+              <span class="ordkort-speaker-badge" aria-hidden="true">
+                <svg class="ordkort-speaker-badge__svg" width="16" height="16" viewBox="0 0 24 24">
+                  <use href="#icon-speaker" />
+                </svg>
+              </span>
+            </div>
+            <div class="card-content">
+              <h2 class="ordkort-audio-target" title="Klik for at høre ordet">Vægtoverføring</h2>
+              <p class="statement">Vægtoverføring betyder, at du står stille og ikke bevæger kroppen.</p>
+              <div class="buttons">
+                <button type="button" class="rigtigt" data-choice="rigtigt" onclick="select(this)">✔ Rigtigt</button>
+                <button type="button" class="forkert" data-choice="forkert" onclick="select(this)">✘ Forkert</button>
+              </div>
+              <div class="feedback" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div class="card" data-answer="forkert" data-audio="Arbejdsstilling.mp3">
+            <div class="ordkort-audio-frame">
+              <img
+                class="ordkort-audio-target"
+                src="assets/arbejdsstilling.jpg"
+                alt="Person arbejder med armene langt fra kroppen"
+                title="Klik for at høre ordet"
+              />
+              <span class="ordkort-speaker-badge" aria-hidden="true">
+                <svg class="ordkort-speaker-badge__svg" width="16" height="16" viewBox="0 0 24 24">
+                  <use href="#icon-speaker" />
+                </svg>
+              </span>
+            </div>
+            <div class="card-content">
+              <h2 class="ordkort-audio-target" title="Klik for at høre ordet">Arbejdsstilling</h2>
+              <p class="statement">Det er en god arbejdsstilling at arbejde med strakte arme langt fra kroppen.</p>
+              <div class="buttons">
+                <button type="button" class="rigtigt" data-choice="rigtigt" onclick="select(this)">✔ Rigtigt</button>
+                <button type="button" class="forkert" data-choice="forkert" onclick="select(this)">✘ Forkert</button>
+              </div>
+              <div class="feedback" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div class="card" data-answer="rigtigt" data-audio="Overbelastning.mp3">
+            <div class="ordkort-audio-frame">
+              <img
+                class="ordkort-audio-target"
+                src="assets/overbelastning.jpg"
+                alt="Person har smerter i skulderen på grund af overbelastning"
+                title="Klik for at høre ordet"
+              />
+              <span class="ordkort-speaker-badge" aria-hidden="true">
+                <svg class="ordkort-speaker-badge__svg" width="16" height="16" viewBox="0 0 24 24">
+                  <use href="#icon-speaker" />
+                </svg>
+              </span>
+            </div>
+            <div class="card-content">
+              <h2 class="ordkort-audio-target" title="Klik for at høre ordet">Overbelastning</h2>
+              <p class="statement">Overbelastning kan give smerter i kroppen.</p>
+              <div class="buttons">
+                <button type="button" class="rigtigt" data-choice="rigtigt" onclick="select(this)">✔ Rigtigt</button>
+                <button type="button" class="forkert" data-choice="forkert" onclick="select(this)">✘ Forkert</button>
+              </div>
+              <div class="feedback" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div class="card" data-answer="forkert" data-audio="Ergonomi.mp3">
+            <div class="ordkort-audio-frame">
+              <img
+                class="ordkort-audio-target"
+                src="assets/ergonomi.jpg"
+                alt="Person indstiller et skaft og arbejder ergonomisk"
+                title="Klik for at høre ordet"
+              />
+              <span class="ordkort-speaker-badge" aria-hidden="true">
+                <svg class="ordkort-speaker-badge__svg" width="16" height="16" viewBox="0 0 24 24">
+                  <use href="#icon-speaker" />
+                </svg>
+              </span>
+            </div>
+            <div class="card-content">
+              <h2 class="ordkort-audio-target" title="Klik for at høre ordet">Ergonomi</h2>
+              <p class="statement">Ergonomi betyder, at du skal arbejde hurtigt uden at tænke på kroppen.</p>
+              <div class="buttons">
+                <button type="button" class="rigtigt" data-choice="rigtigt" onclick="select(this)">✔ Rigtigt</button>
+                <button type="button" class="forkert" data-choice="forkert" onclick="select(this)">✘ Forkert</button>
+              </div>
+              <div class="feedback" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="arbejdsstillinger-actions">
+          <button type="button" class="article-tool" onclick="checkAnswers()">Tjek svar</button>
+          <button type="button" class="as-btn-secondary" onclick="resetQuiz()">Prøv igen</button>
+          <p id="result" class="as-result" aria-live="polite"></p>
+        </div>
+
+        <h2 class="category-heading as-section-title">Videør om arbejdsstilling</h2>
+
+        <div class="video-task">
+          <div class="as-video-heading-row">
+            <button
+              type="button"
+              class="as-audio-btn"
+              data-audio="Hvilken arbejdsstilling er korrekt.mp3"
+              aria-label="Afspil oplæsning: Hvilken arbejdsstilling er korrekt?"
+            >
+              <svg class="as-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-speaker" />
+              </svg>
+            </button>
+            <h3 class="video-task-heading">Hvilken arbejdsstilling er korrekt?</h3>
+          </div>
+          <p class="video-intro">
+            Se de to små film. For hver video skal du vælge om den viser en <strong>rigtig</strong> eller
+            <strong>forkert</strong> arbejdsstilling. Klik derefter på <strong>Tjek svar</strong>.
+          </p>
+
+          <div class="videos">
+            <div class="video-box" data-video="A" data-correct-choice="correct">
+              <video
+                controls
+                preload="metadata"
+                src="Film Korrekt arbejdsstilling.mp4"
+                title="Film: korrekt arbejdsstilling"
+              ></video>
+              <div class="choice-group">
+                <button type="button" class="choice-btn correct-option" data-video-choice="correct">
+                  <span class="icon">✔</span>Rigtigt
+                </button>
+                <button type="button" class="choice-btn wrong-option" data-video-choice="wrong">
+                  <span class="icon">✘</span>Forkert
+                </button>
+              </div>
+              <p class="video-choice-feedback" aria-live="polite"></p>
+            </div>
+
+            <div class="video-box" data-video="B" data-correct-choice="wrong">
+              <video
+                controls
+                preload="metadata"
+                src="Film Forkert arbejdsstilling.mp4"
+                title="Film: forkert arbejdsstilling"
+              ></video>
+              <div class="choice-group">
+                <button type="button" class="choice-btn correct-option" data-video-choice="correct">
+                  <span class="icon">✔</span>Rigtigt
+                </button>
+                <button type="button" class="choice-btn wrong-option" data-video-choice="wrong">
+                  <span class="icon">✘</span>Forkert
+                </button>
+              </div>
+              <p class="video-choice-feedback" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="video-task-actions">
+            <button type="button" class="article-tool video-task-check-btn">Tjek svar</button>
+            <button type="button" class="as-btn-secondary video-task-reset-btn">Prøv igen</button>
+          </div>
+          <p class="video-task-result" aria-live="polite"></p>
+        </div>
+
+        <div class="video-task">
+          <div class="as-video-heading-row">
+            <button
+              type="button"
+              class="as-audio-btn"
+              data-audio="Hvilken mopning er korrekt.mp3"
+              aria-label="Afspil oplæsning: Hvilken mopning er korrekt?"
+            >
+              <svg class="as-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="#icon-speaker" />
+              </svg>
+            </button>
+            <h3 class="video-task-heading">Hvilken mopning er korrekt?</h3>
+          </div>
+          <p class="video-intro">
+            Se de to små film om mopning. For hver video skal du vælge om den viser en <strong>rigtig</strong> eller
+            <strong>forkert</strong> mopning. Klik derefter på <strong>Tjek svar</strong>.
+          </p>
+
+          <div class="videos">
+            <div class="video-box" data-video="C" data-correct-choice="correct">
+              <video
+                controls
+                preload="metadata"
+                src="8-tals mopning.mp4"
+                title="8-tals mopning"
+              ></video>
+              <div class="choice-group">
+                <button type="button" class="choice-btn correct-option" data-video-choice="correct">
+                  <span class="icon">✔</span>Rigtigt
+                </button>
+                <button type="button" class="choice-btn wrong-option" data-video-choice="wrong">
+                  <span class="icon">✘</span>Forkert
+                </button>
+              </div>
+              <p class="video-choice-feedback" aria-live="polite"></p>
+            </div>
+
+            <div class="video-box" data-video="D" data-correct-choice="wrong">
+              <video
+                controls
+                preload="metadata"
+                src="Forkert mopning.mp4"
+                title="Forkert mopning"
+              ></video>
+              <div class="choice-group">
+                <button type="button" class="choice-btn correct-option" data-video-choice="correct">
+                  <span class="icon">✔</span>Rigtigt
+                </button>
+                <button type="button" class="choice-btn wrong-option" data-video-choice="wrong">
+                  <span class="icon">✘</span>Forkert
+                </button>
+              </div>
+              <p class="video-choice-feedback" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="video-task-actions">
+            <button type="button" class="article-tool video-task-check-btn">Tjek svar</button>
+            <button type="button" class="as-btn-secondary video-task-reset-btn">Prøv igen</button>
+          </div>
+          <p class="video-task-result" aria-live="polite"></p>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      function select(btn) {
+        const card = btn.closest(".card");
+        const buttons = card.querySelectorAll(".buttons button");
+
+        buttons.forEach(function (b) {
+          b.classList.remove("selected");
+        });
+        btn.classList.add("selected");
+
+        card.dataset.selected = btn.getAttribute("data-choice");
+      }
+
+      function resetQuiz() {
+        document.querySelectorAll(".cards .card").forEach(function (card) {
+          delete card.dataset.selected;
+          card.querySelectorAll(".buttons button").forEach(function (btn) {
+            btn.classList.remove("selected");
+          });
+          const feedback = card.querySelector(".feedback");
+          feedback.textContent = "";
+          feedback.style.color = "";
+        });
+        var resultEl = document.getElementById("result");
+        if (resultEl) resultEl.textContent = "";
+      }
+
+      function checkAnswers() {
+        const cards = document.querySelectorAll(".cards .card");
+        let correct = 0;
+
+        cards.forEach(function (card) {
+          const selected = card.dataset.selected;
+          const answer = card.dataset.answer;
+          const feedback = card.querySelector(".feedback");
+
+          if (!selected) {
+            feedback.textContent = "Du mangler at svare";
+            feedback.style.color = "orange";
+            return;
+          }
+
+          if (selected === answer) {
+            correct++;
+            feedback.textContent = "Rigtigt";
+            feedback.style.color = "green";
+          } else {
+            feedback.textContent = "Forkert";
+            feedback.style.color = "red";
+          }
+        });
+
+        const percent = Math.round((correct / cards.length) * 100);
+        document.getElementById("result").textContent =
+          "Du har " + correct + " ud af " + cards.length + " rigtige (" + percent + "%)";
+      }
+    </script>
+    <script>
+      (function () {
+        var pageRoot = document.querySelector(".article-card--arbejdsstillinger");
+        if (!pageRoot) return;
+
+        var cardsRoot = pageRoot.querySelector(".cards");
+        var currentAudio = null;
+        var currentTarget = null;
+
+        function enhanceOrdkortSpeakerBadges(root) {
+          root.querySelectorAll(".ordkort-speaker-badge").forEach(function (badge) {
+            if (badge.querySelector(".ordkort-speaker-badge__svg--play")) return;
+            var spk = badge.querySelector(
+              ".ordkort-speaker-badge__svg:not(.ordkort-speaker-badge__svg--pause):not(.ordkort-speaker-badge__svg--play)"
+            );
+            if (!spk) return;
+            if (!spk.classList.contains("ordkort-speaker-badge__svg--speaker")) {
+              spk.classList.add("ordkort-speaker-badge__svg--speaker");
+            }
+            var w = spk.getAttribute("width") || "16";
+            var h = spk.getAttribute("height") || "16";
+            if (!badge.querySelector(".ordkort-speaker-badge__svg--pause")) {
+              var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+              pauseSvg.setAttribute("class", "ordkort-speaker-badge__svg ordkort-speaker-badge__svg--pause");
+              pauseSvg.setAttribute("width", w);
+              pauseSvg.setAttribute("height", h);
+              pauseSvg.setAttribute("viewBox", "0 0 24 24");
+              pauseSvg.setAttribute("aria-hidden", "true");
+              var useEl = document.createElementNS("http://www.w3.org/2000/svg", "use");
+              useEl.setAttribute("href", "#icon-pause");
+              pauseSvg.appendChild(useEl);
+              badge.appendChild(pauseSvg);
+            }
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "ordkort-speaker-badge__svg ordkort-speaker-badge__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var usePlay = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            usePlay.setAttribute("href", "#icon-play");
+            playSvg.appendChild(usePlay);
+            badge.appendChild(playSvg);
+          });
+        }
+
+        function enhanceAsAudioButtons() {
+          pageRoot.querySelectorAll(".as-audio-btn").forEach(function (btn) {
+            if (btn.querySelector(".as-audio-btn__svg--play")) return;
+            var icon = btn.querySelector(
+              ".as-audio-btn__svg:not(.as-audio-btn__svg--pause):not(.as-audio-btn__svg--play)"
+            );
+            if (!icon) return;
+            icon.classList.add("as-audio-btn__svg--speaker");
+            var w = icon.getAttribute("width") || "22";
+            var h = icon.getAttribute("height") || "22";
+            if (!btn.querySelector(".as-audio-btn__svg--pause")) {
+              var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+              pauseSvg.setAttribute("class", "as-audio-btn__svg as-audio-btn__svg--pause");
+              pauseSvg.setAttribute("width", w);
+              pauseSvg.setAttribute("height", h);
+              pauseSvg.setAttribute("viewBox", "0 0 24 24");
+              pauseSvg.setAttribute("aria-hidden", "true");
+              var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+              u1.setAttribute("href", "#icon-pause");
+              pauseSvg.appendChild(u1);
+              btn.appendChild(pauseSvg);
+            }
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "as-audio-btn__svg as-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          });
+        }
+
+        function stashAsBtnAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateAsBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function abandonPageAudio() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (e) {}
+            currentAudio = null;
+          }
+          if (currentTarget) {
+            currentTarget.classList.remove("is-audio-playing");
+            currentTarget.classList.remove("is-audio-paused");
+            if (currentTarget.classList.contains("as-audio-btn")) {
+              var ap = currentTarget.getAttribute("data-aria-play");
+              if (ap) currentTarget.setAttribute("aria-label", ap);
+            }
+            currentTarget = null;
+          }
+        }
+
+        function playAudioTarget(targetEl) {
+          var file = targetEl.getAttribute("data-audio");
+          if (!file) return;
+          var isBtn = targetEl.classList.contains("as-audio-btn");
+
+          if (currentTarget === targetEl && currentAudio) {
+            if (!currentAudio.paused) {
+              currentAudio.pause();
+              targetEl.classList.remove("is-audio-playing");
+              targetEl.classList.add("is-audio-paused");
+              if (isBtn) updateAsBtnAria(targetEl);
+              return;
+            }
+            targetEl.classList.remove("is-audio-paused");
+            targetEl.classList.add("is-audio-playing");
+            if (isBtn) updateAsBtnAria(targetEl);
+            var pr = currentAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  if (isBtn) updateAsBtnAria(targetEl);
+                })
+                .catch(function () {
+                  abandonPageAudio();
+                });
+            } else if (isBtn) {
+              updateAsBtnAria(targetEl);
+            }
+            return;
+          }
+
+          abandonPageAudio();
+          currentTarget = targetEl;
+          targetEl.classList.remove("is-audio-paused");
+          targetEl.classList.add("is-audio-playing");
+          if (isBtn) {
+            stashAsBtnAria(targetEl);
+            updateAsBtnAria(targetEl);
+          }
+
+          var src = new URL(encodeURIComponent(file), window.location.href).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onAudioEnd() {
+            currentAudio.removeEventListener("ended", onAudioEnd);
+            if (currentTarget === targetEl) {
+              targetEl.classList.remove("is-audio-playing");
+              targetEl.classList.remove("is-audio-paused");
+              if (isBtn) {
+                var pl = targetEl.getAttribute("data-aria-play");
+                if (pl) targetEl.setAttribute("aria-label", pl);
+              }
+              currentTarget = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                if (isBtn) updateAsBtnAria(targetEl);
+              })
+              .catch(function () {
+                abandonPageAudio();
+              });
+          } else if (isBtn) {
+            updateAsBtnAria(targetEl);
+          }
+        }
+
+        if (cardsRoot) {
+          enhanceOrdkortSpeakerBadges(cardsRoot);
+          cardsRoot.addEventListener("click", function (e) {
+            var t = e.target;
+            if (t.closest && t.closest(".ordkort-speaker-badge")) {
+              var cardB = t.closest(".card");
+              if (cardB && cardsRoot.contains(cardB)) {
+                e.preventDefault();
+                playAudioTarget(cardB);
+              }
+              return;
+            }
+            if (!(t.tagName === "H2" || t.tagName === "IMG")) return;
+            if (!t.classList.contains("ordkort-audio-target")) return;
+            var card = t.closest(".card");
+            if (!card || !cardsRoot.contains(card)) return;
+            if (t.closest(".buttons")) return;
+            e.preventDefault();
+            playAudioTarget(card);
+          });
+        }
+
+        enhanceAsAudioButtons();
+        pageRoot.addEventListener("click", function (e) {
+          var btn = e.target.closest && e.target.closest(".as-audio-btn");
+          if (btn && pageRoot.contains(btn)) {
+            e.preventDefault();
+            playAudioTarget(btn);
+          }
+        });
+      })();
+    </script>
+    <script>
+      (function () {
+        var section = document.querySelector(".article-card--arbejdsstillinger");
+        if (!section) return;
+
+        section.querySelectorAll(".video-task").forEach(function (videoTask) {
+          var answers = {};
+          var resultEl = videoTask.querySelector(".video-task-result");
+
+          function resetVideoTask() {
+            videoTask.querySelectorAll(".video-box").forEach(function (box) {
+              var id = box.getAttribute("data-video");
+              if (id) delete answers[id];
+              box.querySelectorAll(".choice-btn").forEach(function (btn) {
+                btn.classList.remove("selected");
+              });
+              var fb = box.querySelector(".video-choice-feedback");
+              if (fb) fb.textContent = "";
+              var vid = box.querySelector("video");
+              if (vid) {
+                try {
+                  vid.pause();
+                } catch (e) {}
+              }
+            });
+            if (resultEl) resultEl.textContent = "";
+          }
+
+          videoTask.querySelectorAll(".video-box").forEach(function (box) {
+            var videoId = box.getAttribute("data-video");
+            var buttons = box.querySelectorAll(".choice-btn");
+            var feedback = box.querySelector(".video-choice-feedback");
+
+            buttons.forEach(function (button) {
+              button.addEventListener("click", function () {
+                var choice = button.getAttribute("data-video-choice");
+                answers[videoId] = choice;
+
+                buttons.forEach(function (btn) {
+                  btn.classList.remove("selected");
+                });
+                button.classList.add("selected");
+
+                if (feedback) {
+                  feedback.textContent =
+                    choice === "correct"
+                      ? "Valgt: Rigtigt — dit svar er registreret."
+                      : "Valgt: Forkert — dit svar er registreret.";
+                }
+                if (resultEl) resultEl.textContent = "";
+              });
+            });
+          });
+
+          var checkBtn = videoTask.querySelector(".video-task-check-btn");
+          if (checkBtn) {
+            checkBtn.addEventListener("click", function () {
+              var boxes = videoTask.querySelectorAll(".video-box");
+              var total = boxes.length;
+              var score = 0;
+              boxes.forEach(function (box) {
+                var id = box.getAttribute("data-video");
+                var expected = box.getAttribute("data-correct-choice");
+                if (id && expected && answers[id] === expected) score++;
+              });
+              var percent = total ? Math.round((score / total) * 100) : 0;
+              if (resultEl) {
+                resultEl.textContent = "Du har " + percent + "% rigtige svar";
+              }
+            });
+          }
+
+          var resetBtn = videoTask.querySelector(".video-task-reset-btn");
+          if (resetBtn) {
+            resetBtn.addEventListener("click", resetVideoTask);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

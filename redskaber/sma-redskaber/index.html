@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Små redskaber – Vendespil – Dansk som andetsprog for serviceassistenter</title>
+    <link rel="preload" href="../../assets/bg-redskaber.jpg" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <link rel="preload" href="Smaa redskaber.mp3" as="audio" />
+    <style>
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn__svg--pause,
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-sma-redskaber-v1
+        article.article-card
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .sma-redskaber-page-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.45rem 0.6rem;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .sma-redskaber-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .sma-redskaber-page-title-row .crossword-audio-btn {
+        margin-top: 0.08rem;
+      }
+
+      .sma-redskaber-memory {
+        --sr-bg: #f4f7fb;
+        --sr-card: #ffffff;
+        --sr-primary: #1f5f8b;
+        --sr-primary-dark: #164866;
+        --sr-accent: #d9ecf7;
+        --sr-success: #1f8a4c;
+        --sr-error: #b23b3b;
+        --sr-text: #1f2933;
+        --sr-muted: #5b6b7a;
+        --sr-border: #d7e1ea;
+        --sr-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        --sr-radius: 18px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--sr-text);
+        line-height: 1.5;
+      }
+
+      .page-shell--sma-redskaber {
+        padding: 1rem 0.5rem 1.5rem;
+      }
+
+      .article-card--sma-redskaber {
+        max-width: min(1500px, calc(100vw - 1rem));
+        padding: 1.25rem clamp(0.9rem, 1.8vw, 1.5rem) 1.5rem;
+      }
+
+      .sma-redskaber-memory * {
+        box-sizing: border-box;
+      }
+
+      .sma-redskaber-memory .page {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 0 8px;
+      }
+
+      .sma-redskaber-memory .hero {
+        background: linear-gradient(135deg, #e8f3fa, #fdfefe);
+        border: 1px solid var(--sr-border);
+        border-radius: 24px;
+        padding: 14px 18px;
+        box-shadow: var(--sr-shadow);
+        margin-bottom: 14px;
+      }
+
+      .sma-redskaber-memory .hero p {
+        margin: 0;
+        max-width: 70ch;
+        color: var(--sr-muted);
+        font-size: 1.05rem;
+      }
+
+      .sma-redskaber-memory .panel {
+        background: var(--sr-card);
+        border: 1px solid var(--sr-border);
+        border-radius: var(--sr-radius);
+        padding: 14px 18px;
+        margin-bottom: 14px;
+        box-shadow: var(--sr-shadow);
+      }
+
+      .sma-redskaber-memory .panel h2 {
+        margin: 0 0 12px;
+        font-size: 1.25rem;
+        color: var(--sr-primary-dark);
+      }
+
+      .sma-redskaber-memory .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      .sma-redskaber-memory .extra-audio-list {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid var(--sr-border);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .sma-redskaber-memory .extra-audio-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .sma-redskaber-memory .extra-audio-row p {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+        color: var(--sr-muted);
+        font-size: 0.98rem;
+      }
+
+      .page-sma-redskaber-v1 article.article-card .extra-audio-row .crossword-audio-btn {
+        flex-shrink: 0;
+        margin-top: 0.06rem;
+      }
+
+      .sma-redskaber-memory .btn {
+        border: none;
+        border-radius: 14px;
+        padding: 12px 18px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s ease;
+      }
+
+      .sma-redskaber-memory .btn-primary {
+        background: var(--sr-primary);
+        color: white;
+      }
+
+      .sma-redskaber-memory .btn-primary:hover,
+      .sma-redskaber-memory .btn-primary:focus {
+        background: var(--sr-primary-dark);
+      }
+
+      .sma-redskaber-memory .btn-secondary {
+        background: #eef4f8;
+        color: var(--sr-primary-dark);
+        border: 1px solid var(--sr-border);
+      }
+
+      .sma-redskaber-memory .btn-secondary:hover,
+      .sma-redskaber-memory .btn-secondary:focus {
+        background: #ddebf4;
+      }
+
+      .sma-redskaber-memory .status {
+        margin-top: 8px;
+        min-height: 24px;
+        font-weight: 700;
+      }
+
+      .sma-redskaber-memory .progress {
+        margin-top: 6px;
+        color: var(--sr-muted);
+        font-weight: 700;
+      }
+
+      .sma-redskaber-memory .game-area {
+        background: var(--sr-card);
+        border: 1px solid var(--sr-border);
+        border-radius: var(--sr-radius);
+        padding: 14px;
+        box-shadow: var(--sr-shadow);
+      }
+
+      .sma-redskaber-memory .game-area h2 {
+        margin: 0 0 14px;
+        color: var(--sr-primary-dark);
+        font-size: 1.2rem;
+      }
+
+      .sma-redskaber-memory .memory-grid {
+        display: grid;
+        grid-template-columns: repeat(10, minmax(86px, 1fr));
+        gap: 10px;
+      }
+
+      .sma-redskaber-memory .memory-card {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+        perspective: 1000px;
+        text-align: left;
+        font: inherit;
+        color: inherit;
+      }
+
+      .sma-redskaber-memory .memory-card:disabled {
+        cursor: default;
+      }
+
+      .sma-redskaber-memory .memory-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease;
+        transform-style: preserve-3d;
+      }
+
+      .sma-redskaber-memory .memory-card.flipped .memory-card-inner,
+      .sma-redskaber-memory .memory-card.matched .memory-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .sma-redskaber-memory .memory-face {
+        position: absolute;
+        inset: 0;
+        border-radius: 18px;
+        border: 1px solid var(--sr-border);
+        backface-visibility: hidden;
+        overflow: hidden;
+        box-shadow: var(--sr-shadow);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .sma-redskaber-memory .memory-front {
+        background:
+          radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.9) 0 3%, rgba(255, 255, 255, 0.3) 4% 11%, transparent 12%),
+          radial-gradient(circle at 70% 18%, rgba(255, 255, 255, 0.85) 0 2%, rgba(255, 255, 255, 0.28) 3% 9%, transparent 10%),
+          radial-gradient(circle at 82% 72%, rgba(255, 255, 255, 0.85) 0 3%, rgba(255, 255, 255, 0.24) 4% 13%, transparent 14%),
+          radial-gradient(circle at 34% 78%, rgba(255, 255, 255, 0.8) 0 2%, rgba(255, 255, 255, 0.22) 3% 8%, transparent 9%),
+          linear-gradient(145deg, #bfe8f6 0%, #58a9d1 48%, #1f6f9f 100%);
+        color: white;
+        font-size: 0.98rem;
+        font-weight: 700;
+        text-align: center;
+        padding: 10px;
+      }
+
+      .sma-redskaber-memory .bubble-mark {
+        position: relative;
+        width: 50%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.62);
+        background:
+          radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.92) 0 8%, transparent 9%),
+          radial-gradient(circle at 62% 68%, rgba(255, 255, 255, 0.28) 0 18%, transparent 19%),
+          rgba(255, 255, 255, 0.16);
+        box-shadow:
+          inset -8px -10px 18px rgba(255, 255, 255, 0.18),
+          inset 8px 10px 22px rgba(255, 255, 255, 0.22),
+          0 10px 22px rgba(11, 83, 122, 0.24);
+      }
+
+      .sma-redskaber-memory .bubble-mark::before,
+      .sma-redskaber-memory .bubble-mark::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .sma-redskaber-memory .bubble-mark::before {
+        width: 38%;
+        height: 38%;
+        right: -24%;
+        top: -18%;
+      }
+
+      .sma-redskaber-memory .bubble-mark::after {
+        width: 28%;
+        height: 28%;
+        left: -20%;
+        bottom: -14%;
+      }
+
+      .sma-redskaber-memory .memory-back {
+        transform: rotateY(180deg);
+        background: white;
+        padding: 0;
+        flex-direction: column;
+        gap: 0;
+        align-items: stretch;
+        justify-content: stretch;
+      }
+
+      /* Bagsiden skal kunne klikkes når kortet er vendt; forsiden må ikke blokere hits (især i Safari/WebKit). */
+      .sma-redskaber-memory .memory-card:not(.flipped):not(.matched) .memory-back {
+        pointer-events: none;
+      }
+
+      .sma-redskaber-memory .memory-card.flipped .memory-front,
+      .sma-redskaber-memory .memory-card.matched .memory-front {
+        pointer-events: none;
+      }
+
+      .sma-redskaber-memory .card-image-wrap {
+        width: 100%;
+        height: 100%;
+        flex: 1 1 auto;
+        min-height: 0;
+        border-radius: 0;
+        overflow: hidden;
+        background: #f8fbfd;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .sma-redskaber-memory .card-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .sma-redskaber-memory .memory-card.matched .memory-face {
+        border: 2px solid var(--sr-success);
+        box-shadow: 0 0 0 4px rgba(31, 138, 76, 0.1);
+      }
+
+      .sma-redskaber-memory .done-box {
+        margin-top: 22px;
+        display: none;
+        background: #ffffff;
+        border: 1px solid var(--sr-border);
+        border-radius: var(--sr-radius);
+        padding: 18px;
+        box-shadow: var(--sr-shadow);
+      }
+
+      .sma-redskaber-memory .done-box.show {
+        display: block;
+      }
+
+      .sma-redskaber-memory .done-box h2 {
+        margin: 0 0 8px;
+        color: var(--sr-success);
+      }
+
+      .sma-redskaber-memory .done-box p {
+        margin: 0;
+        color: var(--sr-muted);
+      }
+
+      @media (max-width: 900px) {
+        .sma-redskaber-memory .memory-grid {
+          grid-template-columns: repeat(5, minmax(90px, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .sma-redskaber-memory .memory-grid {
+          grid-template-columns: repeat(2, minmax(120px, 1fr));
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .sma-redskaber-memory .memory-card-inner {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-sma-redskaber-v1">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-redskaber.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell page-shell--sma-redskaber">
+      <article class="article-card article-card--sma-redskaber">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Redskaber</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="sma-redskaber-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Smaa redskaber.mp3"
+            aria-label="Afspil Små redskaber højt"
+          >
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-pause" />
+            </svg>
+            <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-play" />
+            </svg>
+          </button>
+          <h1 class="page-title">Små redskaber</h1>
+        </div>
+        <h2 class="category-heading">Vendespil</h2>
+
+        <div class="sma-redskaber-memory">
+          <div class="page">
+            <section class="hero">
+              <p>
+                Vend to kort ad gangen. Find de to billeder, der er ens.
+              </p>
+            </section>
+
+            <section class="panel">
+              <h2>Sådan gør du</h2>
+              <p>Find de kort, der hører sammen: to ens billeder.</p>
+
+              <div class="controls">
+                <button class="btn btn-secondary" id="resetBtn" type="button">Start forfra</button>
+              </div>
+
+              <div class="extra-audio-list" aria-label="Ekstra lyttips">
+                <div class="extra-audio-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Ren og toer klud Kluden er klar til brug..mp3"
+                    aria-label="Afspil: Ren og tør klud — kluden er klar til brug"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <p>Ren og tør klud — kluden er klar til brug.</p>
+                </div>
+                <div class="extra-audio-row">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Ryddelig vogn Redskaberne staar paent og systematisk..mp3"
+                    aria-label="Afspil: Ryddelig vogn — redskaberne står pænt og systematisk"
+                  >
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--speaker" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--pause" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-pause" />
+                    </svg>
+                    <svg class="crossword-audio-btn__svg crossword-audio-btn__svg--play" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-play" />
+                    </svg>
+                  </button>
+                  <p>Ryddelig vogn — redskaberne står pænt og systematisk.</p>
+                </div>
+              </div>
+
+              <div class="status" id="status" aria-live="polite"></div>
+              <div class="progress" id="progress">0 af 10 par fundet</div>
+            </section>
+
+            <section class="game-area" aria-label="Vendespil">
+              <h2>Vendespil</h2>
+              <div class="memory-grid" id="memoryGrid"></div>
+
+              <div class="done-box" id="doneBox" aria-live="polite">
+                <h2>Flot!</h2>
+                <p>Du har fundet alle parrene.</p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <script>
+      var pairs = [
+        {
+          id: "affaldstang",
+          word: "Affaldstang",
+          image: "Affaldstang.png",
+          audio: "Affaldstang.mp3",
+        },
+        {
+          id: "engangshandsker",
+          word: "Engangshandsker",
+          image: "Engangshandsker.png",
+          audio: "Engangshandsker.mp3",
+        },
+        {
+          id: "fejeblad",
+          word: "Fejeblad",
+          image: "Fejeblad.png",
+          audio: "Fejeblad.mp3",
+        },
+        {
+          id: "kost",
+          word: "Kost",
+          image: "Kost.png",
+          audio: "Kost.mp3",
+        },
+        {
+          id: "mikrofiberklud",
+          word: "Mikrofiberklud",
+          image: "mikrofiberklud.png",
+          audio: "mikrofiberklud.mp3",
+        },
+        {
+          id: "moppe",
+          word: "Moppe",
+          image: "Moppe.png",
+          audio: "Moppe.mp3",
+        },
+        {
+          id: "skuresvamp",
+          word: "Skuresvamp",
+          image: "Skuresvamp.png",
+          audio: "Skuresvamp.mp3",
+        },
+        {
+          id: "spand",
+          word: "Spand",
+          image: "Spand.png",
+          audio: "Spand.mp3",
+        },
+        {
+          id: "sprayflaske",
+          word: "Sprayflaske",
+          image: "Sprayflaske.png",
+          audio: "Sprayflaskeker.mp3",
+        },
+        {
+          id: "toiletborste",
+          word: "Toiletbørste",
+          image: "Toiletboerste.png",
+          audio: "Toiletboerste.mp3",
+        },
+      ];
+
+      var memoryGrid = document.getElementById("memoryGrid");
+      var resetBtn = document.getElementById("resetBtn");
+      var statusEl = document.getElementById("status");
+      var progressEl = document.getElementById("progress");
+      var doneBox = document.getElementById("doneBox");
+
+      var cards = [];
+      var flippedCards = [];
+      var lockBoard = false;
+      var matchedCount = 0;
+
+      function shuffle(array) {
+        var copy = array.slice();
+        var i;
+        var j;
+        var tmp;
+        for (i = copy.length - 1; i > 0; i--) {
+          j = Math.floor(Math.random() * (i + 1));
+          tmp = copy[i];
+          copy[i] = copy[j];
+          copy[j] = tmp;
+        }
+        return copy;
+      }
+
+      function buildCards() {
+        var prepared = [];
+
+        pairs.forEach(function (item) {
+          prepared.push({
+            uid: item.id + "-1",
+            pairId: item.id,
+            type: "image",
+            word: item.word,
+            image: item.image,
+            audio: item.audio,
+          });
+
+          prepared.push({
+            uid: item.id + "-2",
+            pairId: item.id,
+            type: "image",
+            word: item.word,
+            image: item.image,
+            audio: item.audio,
+          });
+        });
+
+        cards = shuffle(prepared);
+      }
+
+      function handleCardClick(el, card) {
+        if (lockBoard) return;
+        if (el.classList.contains("flipped")) return;
+        if (el.classList.contains("matched")) return;
+        if (flippedCards.length === 2) return;
+
+        el.classList.add("flipped");
+        flippedCards.push({ el: el, card: card });
+
+        if (card.audio && typeof window.__smaRedskaberPlayCardAudio === "function") {
+          window.__smaRedskaberPlayCardAudio(card.audio);
+        }
+
+        if (flippedCards.length === 2) {
+          checkMatch();
+        }
+      }
+
+      function bindCard(el, card) {
+        el.addEventListener("click", function () {
+          handleCardClick(el, card);
+        });
+        el.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleCardClick(el, card);
+          }
+        });
+      }
+
+      function renderCards() {
+        memoryGrid.innerHTML = "";
+
+        cards.forEach(function (card) {
+          var el = document.createElement("div");
+          el.className = "memory-card";
+          el.setAttribute("tabindex", "0");
+          el.dataset.uid = card.uid;
+          el.dataset.pairId = card.pairId;
+          el.setAttribute("aria-label", "Vend kort");
+
+          var inner = document.createElement("div");
+          inner.className = "memory-card-inner";
+
+          var front = document.createElement("div");
+          front.className = "memory-face memory-front";
+          var bubbleMark = document.createElement("span");
+          bubbleMark.className = "bubble-mark";
+          bubbleMark.setAttribute("aria-hidden", "true");
+          front.appendChild(bubbleMark);
+
+          var back = document.createElement("div");
+          back.className = "memory-face memory-back";
+
+          var wrap = document.createElement("div");
+          wrap.className = "card-image-wrap";
+          var img = document.createElement("img");
+          img.src = card.image;
+          img.alt = card.word;
+          img.loading = "lazy";
+          img.decoding = "async";
+          wrap.appendChild(img);
+          back.appendChild(wrap);
+
+          inner.appendChild(front);
+          inner.appendChild(back);
+          el.appendChild(inner);
+
+          bindCard(el, card);
+          memoryGrid.appendChild(el);
+        });
+        if (typeof window.__smaRedskaberRefreshAudioUi === "function") {
+          window.__smaRedskaberRefreshAudioUi();
+        }
+      }
+
+      function checkMatch() {
+        var first = flippedCards[0];
+        var second = flippedCards[1];
+        var isMatch = first.card.pairId === second.card.pairId && first.card.uid !== second.card.uid;
+
+        if (isMatch) {
+          first.el.classList.add("matched");
+          second.el.classList.add("matched");
+          first.el.classList.remove("flipped");
+          second.el.classList.remove("flipped");
+          first.el.setAttribute("aria-disabled", "true");
+          second.el.setAttribute("aria-disabled", "true");
+
+          matchedCount += 1;
+          progressEl.textContent = matchedCount + " af " + pairs.length + " par fundet";
+          statusEl.textContent = "Godt! Du fandt et par.";
+          statusEl.style.color = "var(--sr-success)";
+
+          flippedCards = [];
+
+          if (matchedCount === pairs.length) {
+            doneBox.classList.add("show");
+            statusEl.textContent = "Flot! Du har fundet alle par.";
+          }
+        } else {
+          lockBoard = true;
+          statusEl.textContent = "Prøv igen.";
+          statusEl.style.color = "var(--sr-error)";
+
+          setTimeout(function () {
+            first.el.classList.remove("flipped");
+            second.el.classList.remove("flipped");
+            flippedCards = [];
+            lockBoard = false;
+          }, 950);
+        }
+      }
+
+      function resetGame() {
+        flippedCards = [];
+        lockBoard = false;
+        matchedCount = 0;
+        statusEl.textContent = "";
+        statusEl.style.color = "";
+        doneBox.classList.remove("show");
+        progressEl.textContent = "0 af " + pairs.length + " par fundet";
+
+        buildCards();
+        renderCards();
+      }
+
+      resetBtn.addEventListener("click", resetGame);
+
+      resetGame();
+    </script>
+    <script>
+      (function setupSmaRedskaberAudio() {
+        var root = document.querySelector(".page-sma-redskaber-v1 article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename) return;
+          if (buttonEl) {
+            stashAria(buttonEl);
+            if (currentBtn === buttonEl && currentAudio) {
+              if (!currentAudio.paused) {
+                currentAudio.pause();
+                buttonEl.classList.remove("is-audio-playing");
+                buttonEl.classList.add("is-audio-paused");
+                updateBtnAria(buttonEl);
+                return;
+              }
+              buttonEl.classList.remove("is-audio-paused");
+              buttonEl.classList.add("is-audio-playing");
+              var pr = currentAudio.play();
+              if (pr !== undefined) {
+                pr
+                  .then(function () {
+                    updateBtnAria(buttonEl);
+                  })
+                  .catch(function () {
+                    releasePrior();
+                  });
+              } else {
+                updateBtnAria(buttonEl);
+              }
+              return;
+            }
+          }
+          releasePrior();
+          if (buttonEl) {
+            buttonEl.classList.remove("is-audio-paused");
+            currentBtn = buttonEl;
+            buttonEl.classList.add("is-audio-playing");
+          }
+          var dirHref = new URL(".", window.location.href).href;
+          var src = new URL(filename, dirHref).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              if (buttonEl) {
+                buttonEl.classList.remove("is-audio-playing");
+                buttonEl.classList.remove("is-audio-paused");
+                var pl = buttonEl.getAttribute("data-aria-play");
+                if (pl) buttonEl.setAttribute("aria-label", pl);
+              }
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          if (buttonEl) updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                if (buttonEl) updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            if (buttonEl) updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        window.__smaRedskaberRefreshAudioUi = function () {
+          root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+        };
+
+        window.__smaRedskaberPlayCardAudio = function (filename) {
+          playFile(filename, null);
+        };
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        window.__smaRedskaberRefreshAudioUi();
+      })();
+    </script>
+  </body>
+</html>

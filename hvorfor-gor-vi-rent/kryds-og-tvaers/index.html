@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kryds og tværs om hvorfor vi gør rent – Hvorfor gør vi rent? – Dansk som andetsprog for serviceassistenter</title>
+    <link rel="preload" href="../../assets/hero-hvorfor-gor-vi-rent.jpg" as="image" fetchpriority="high" />
+    <link rel="preload" href="Kryds og tvaers om hvorfor vi goer rent.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/hero-hvorfor-gor-vi-rent.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card article-card--crossword crossword-theme-new">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Hvorfor gør vi rent?</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="crossword-page-title-row">
+          <button
+            type="button"
+            id="cwTitleAudioBtn"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Kryds og tvaers om hvorfor vi goer rent.mp3"
+            aria-label="Afspil overskriften højt"
+          >
+            <svg class="crossword-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+          </button>
+          <h1 class="page-title" id="cw-page-title">Kryds og tværs om hvorfor vi gør rent</h1>
+        </div>
+
+        <section class="crossword-section" aria-labelledby="cw-page-title">
+          <div id="crosswordApp" class="crossword-container">
+            <header class="crossword-header">
+              <p class="crossword-intro">
+                Skriv ordene i felterne. Når et ord er rigtigt, bliver det grønt. Du kan klikke på et tip for at hoppe
+                direkte til ordet.
+              </p>
+              <div class="crossword-button-row">
+                <button type="button" id="clearSelectedBtn" class="crossword-btn secondary">Slet valgt ord</button>
+                <button type="button" id="clearAllBtn" class="crossword-btn secondary">Nulstil alle felter</button>
+              </div>
+            </header>
+
+            <div class="crossword-layout">
+              <div class="crossword-board-area">
+                <div class="crossword-board-scroll">
+                  <div id="board" class="board" aria-label="Kryds og tværs om hvorfor vi gør rent"></div>
+                </div>
+                <p class="crossword-status" id="status" aria-live="polite"></p>
+              </div>
+
+              <div class="crossword-clues-column">
+                <section class="crossword-panel" aria-label="Sådan gør du">
+                  <div class="crossword-panel-title-row">
+                    <button
+                      type="button"
+                      id="cwIntroAudioBtn"
+                      class="crossword-audio-btn crossword-audio-btn--intro"
+                      aria-label="Afspil vejledning: Sådan gør du"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <h2 class="crossword-panel__title crossword-panel__title--in-row">Sådan gør du</h2>
+                  </div>
+                  <p class="crossword-help">
+                    Brug tastaturet til at skrive. <kbd>Backspace</kbd> sletter. Piletaster flytter dig rundt. Klik på et
+                    tip for at starte ved det rigtige ord.
+                  </p>
+                </section>
+
+                <section class="crossword-panel">
+                  <h2 class="crossword-panel__title crossword-panel__title--minor">Tips</h2>
+                  <ol class="clue-list" id="clueList"></ol>
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        var app = document.getElementById("crosswordApp");
+        if (!app) return;
+
+        var cwArticle = app.closest("article");
+        if (!cwArticle) return;
+
+        var puzzle = {
+          rows: 24,
+          cols: 20,
+          words: [
+            {
+              id: 1,
+              answer: "SMITTEFOREBYGGELSE",
+              clue: "Arbejde, der mindsker risikoen for, at sygdom og mikroorganismer spredes.",
+              row: 10,
+              col: 2,
+              dir: "across"
+            },
+            {
+              id: 2,
+              answer: "MIKROORGANISMER",
+              clue: "Meget små levende organismer, for eksempel bakterier og svampe.",
+              row: 10,
+              col: 3,
+              dir: "down"
+            },
+            {
+              id: 3,
+              answer: "HYGIEJNE",
+              clue: "Renlighed og gode arbejdsrutiner, der mindsker spredning af smitte.",
+              row: 3,
+              col: 7,
+              dir: "down"
+            },
+            {
+              id: 4,
+              answer: "TRIVSEL",
+              clue: "At man har det godt og føler sig tryg og tilpas i sine omgivelser.",
+              row: 10,
+              col: 5,
+              dir: "down"
+            },
+            {
+              id: 5,
+              answer: "SNAVS",
+              clue: "Uønskede stoffer som støv, fedt og madrester.",
+              row: 10,
+              col: 2,
+              dir: "down"
+            },
+            {
+              id: 6,
+              answer: "RENGORING",
+              clue: "At fjerne snavs og urenheder fra overflader, rum og inventar.",
+              row: 10,
+              col: 10,
+              dir: "down"
+            },
+            {
+              id: 7,
+              answer: "STANDARD",
+              clue: "Det niveau eller de krav, som rengøringen skal leve op til.",
+              row: 3,
+              col: 20,
+              dir: "down"
+            },
+            {
+              id: 8,
+              answer: "SMITTEVEJ",
+              clue: "Den måde smitte bliver ført videre på.",
+              row: 6,
+              col: 5,
+              dir: "across"
+            },
+            {
+              id: 9,
+              answer: "KVALITET",
+              clue: "At arbejdet bliver udført på en god, grundig og fagligt korrekt måde.",
+              row: 18,
+              col: 1,
+              dir: "across"
+            },
+            {
+              id: 10,
+              answer: "SUNDHED",
+              clue: "At kroppen og omgivelserne støtter velvære og mindsker risikoen for sygdom.",
+              row: 21,
+              col: 3,
+              dir: "across"
+            }
+          ]
+        };
+
+        var board = document.getElementById("board");
+        var clueList = document.getElementById("clueList");
+        var status = document.getElementById("status");
+        var clearSelectedBtn = document.getElementById("clearSelectedBtn");
+        var clearAllBtn = document.getElementById("clearAllBtn");
+
+        if (!board || !clueList || !status || !clearSelectedBtn || !clearAllBtn) return;
+
+        /**
+         * Lydfiler i kryds-og-tværs/. Samme tekst som hvert tip (..mp3 som på filsystemet).
+         * Intro-panel: Sæt CW_AUDIO.intro = "Saadan goer du.mp3" og læg filen i mappen — ellers er højttaleren skjult.
+         */
+        var CW_AUDIO = {
+          pageTitle: "Kryds og tvaers om hvorfor vi goer rent.mp3",
+          /* Sæt til "Saadan goer du.mp3" når filen ligger i mappen (så vises højttaleren igen). */
+          intro: "",
+          clueById: {
+            1: "Arbejde, der mindsker risikoen for, at sygdom og mikroorganismer spredes..mp3",
+            2: "Meget smaa levende organismer, for eksempel bakterier og svampe..mp3",
+            3: "Renlighed og gode arbejdsrutiner, der mindsker spredning af smitte..mp3",
+            4: "At man har det godt og foeler sig tryg og tilpas i sine omgivelser..mp3",
+            5: "Uoenskede stoffer som stoev, fedt og madrester..mp3",
+            6: "At fjerne snavs og urenheder fra overflader, rum og inventar..mp3",
+            7: "Det niveau eller de krav, som rengoeringen skal leve op til..mp3",
+            8: "Den maade smitte bliver foert videre paa..mp3",
+            9: "At arbejdet bliver udfoert paa en god, grundig og fagligt korrekt maade.mp3",
+            10: "At kroppen og omgivelserne stoetter velvaere og mindsker risikoen for sygdom..mp3"
+          },
+          clueFile: function (id) {
+            return CW_AUDIO.clueById[id] || "";
+          }
+        };
+
+        var titleAudioBtn = document.getElementById("cwTitleAudioBtn");
+        if (titleAudioBtn) {
+          titleAudioBtn.setAttribute("data-audio", CW_AUDIO.pageTitle);
+        }
+
+        var introAudioBtn = document.getElementById("cwIntroAudioBtn");
+        if (introAudioBtn) {
+          if (CW_AUDIO.intro) {
+            introAudioBtn.setAttribute("data-audio", CW_AUDIO.intro);
+            introAudioBtn.hidden = false;
+            introAudioBtn.style.display = "";
+            introAudioBtn.removeAttribute("aria-hidden");
+          } else {
+            introAudioBtn.removeAttribute("data-audio");
+            introAudioBtn.hidden = true;
+            introAudioBtn.style.display = "none";
+            introAudioBtn.setAttribute("aria-hidden", "true");
+          }
+        }
+
+        var currentCwAudio = null;
+        var currentCwAudioBtn = null;
+
+        function releasePriorCwAudio() {
+          if (currentCwAudio) {
+            try {
+              currentCwAudio.pause();
+              currentCwAudio.currentTime = 0;
+            } catch (err) {}
+            currentCwAudio = null;
+          }
+          if (currentCwAudioBtn) {
+            currentCwAudioBtn.classList.remove("is-audio-playing");
+            currentCwAudioBtn.classList.remove("is-audio-paused");
+            var playL = currentCwAudioBtn.getAttribute("data-aria-play");
+            if (playL) currentCwAudioBtn.setAttribute("aria-label", playL);
+            currentCwAudioBtn = null;
+          }
+        }
+
+        function stashCwBtnAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateCwAudioBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playCwAudioFile(filename, buttonEl) {
+          if (!filename || !buttonEl) return;
+          stashCwBtnAria(buttonEl);
+          if (currentCwAudioBtn === buttonEl && currentCwAudio) {
+            if (!currentCwAudio.paused) {
+              currentCwAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateCwAudioBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentCwAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  updateCwAudioBtnAria(buttonEl);
+                })
+                .catch(function () {
+                  releasePriorCwAudio();
+                });
+            } else {
+              updateCwAudioBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePriorCwAudio();
+          buttonEl.classList.remove("is-audio-paused");
+          currentCwAudioBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL("./" + encodeURIComponent(filename), window.location.href).href;
+          currentCwAudio = new Audio(src);
+          currentCwAudio.addEventListener("ended", function onCwAudioEnd() {
+            currentCwAudio.removeEventListener("ended", onCwAudioEnd);
+            if (currentCwAudioBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentCwAudioBtn = null;
+              try {
+                currentCwAudio.currentTime = 0;
+              } catch (e2) {}
+              currentCwAudio = null;
+            }
+          });
+          updateCwAudioBtnAria(buttonEl);
+          var p0 = currentCwAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                updateCwAudioBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePriorCwAudio();
+              });
+          } else {
+            updateCwAudioBtnAria(buttonEl);
+          }
+        }
+
+        function ensureCwAudioButtonIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        function onCwAudioClick(e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !cwArticle.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          playCwAudioFile(file, btn);
+        }
+
+        board.style.gridTemplateColumns = "repeat(" + puzzle.cols + ", var(--cell))";
+
+        var grid = [];
+        for (var r = 0; r < puzzle.rows; r++) {
+          grid[r] = [];
+          for (var c = 0; c < puzzle.cols; c++) {
+            grid[r][c] = null;
+          }
+        }
+
+        var cellMap = new Map();
+        var selectedWordId = puzzle.words[0].id;
+
+        function key(row, col) {
+          return row + "-" + col;
+        }
+
+        function normalizeChar(char) {
+          return (char || "")
+            .toLocaleUpperCase("da-DK")
+            .replace(/[^A-ZÆØÅ]/g, "");
+        }
+
+        function addWordToGrid(word) {
+          var letters = word.answer.split("");
+          for (var index = 0; index < letters.length; index++) {
+            var letter = letters[index];
+            var row = word.dir === "across" ? word.row : word.row + index;
+            var col = word.dir === "across" ? word.col + index : word.col;
+
+            if (row < 1 || row > puzzle.rows || col < 1 || col > puzzle.cols) {
+              throw new Error("Ordet " + word.answer + " ligger uden for gitteret.");
+            }
+
+            var existing = grid[row - 1][col - 1];
+            if (existing && existing.letter !== letter) {
+              throw new Error("Bogstavkonflikt ved " + row + "," + col + ": " + existing.letter + " / " + letter);
+            }
+
+            if (!existing) {
+              grid[row - 1][col - 1] = {
+                letter: letter,
+                words: [word.id],
+                number: null
+              };
+            } else {
+              existing.words.push(word.id);
+            }
+          }
+        }
+
+        try {
+          for (var wi = 0; wi < puzzle.words.length; wi++) {
+            addWordToGrid(puzzle.words[wi]);
+          }
+        } catch (err) {
+          status.textContent = (err && err.message) || "Kryds og tværs kunne ikke bygges.";
+          return;
+        }
+
+        for (var wj = 0; wj < puzzle.words.length; wj++) {
+          var w = puzzle.words[wj];
+          var startCell = grid[w.row - 1][w.col - 1];
+          if (startCell && startCell.number === null) {
+            startCell.number = w.id;
+          }
+        }
+
+        function qs(sel) {
+          return app.querySelector(sel);
+        }
+
+        function qsa(sel) {
+          return app.querySelectorAll(sel);
+        }
+
+        function getWordCells(word) {
+          var out = [];
+          for (var i = 0; i < word.answer.length; i++) {
+            var row = word.dir === "across" ? word.row : word.row + i;
+            var col = word.dir === "across" ? word.col + i : word.col;
+            out.push(qs('[data-row="' + row + '"][data-col="' + col + '"]'));
+          }
+          return out;
+        }
+
+        function getWordById(id) {
+          for (var i = 0; i < puzzle.words.length; i++) {
+            if (puzzle.words[i].id === id) return puzzle.words[i];
+          }
+          return null;
+        }
+
+        function getCellWordIds(row, col) {
+          var data = grid[row - 1][col - 1];
+          return data ? data.words : [];
+        }
+
+        function getInputValue(el) {
+          return normalizeChar(el.value);
+        }
+
+        function isWordCorrect(word) {
+          var cells = getWordCells(word);
+          var ans = word.answer.split("");
+          for (var i = 0; i < cells.length; i++) {
+            if (!cells[i] || getInputValue(cells[i]) !== ans[i]) return false;
+          }
+          return true;
+        }
+
+        function updateWordStates() {
+          qsa(".cell-wrap").forEach(function (wrap) {
+            wrap.classList.remove("correct");
+          });
+
+          qsa(".clue-item").forEach(function (item) {
+            item.classList.remove("correct");
+          });
+
+          var solved = 0;
+
+          puzzle.words.forEach(function (word) {
+            var correct = isWordCorrect(word);
+            if (correct) {
+              solved += 1;
+              getWordCells(word).forEach(function (cell) {
+                if (cell && cell.parentElement) cell.parentElement.classList.add("correct");
+              });
+              var clueItem = qs('[data-clue-id="' + word.id + '"]');
+              if (clueItem) clueItem.classList.add("correct");
+            }
+          });
+
+          if (solved === puzzle.words.length) {
+            app.classList.add("crossword-app--solved");
+            status.textContent = "Flot! Du har løst hele kryds og tværsen.";
+          } else {
+            app.classList.remove("crossword-app--solved");
+            if (solved > 0) {
+              status.textContent = "Du har " + solved + " rigtige ord.";
+            } else {
+              status.textContent = "";
+            }
+          }
+        }
+
+        function clearWordHighlight() {
+          qsa(".cell-wrap").forEach(function (wrap) {
+            wrap.classList.remove("word-active", "active-cell");
+          });
+        }
+
+        function highlightSelectedWord(activeCell) {
+          clearWordHighlight();
+
+          var word = getWordById(selectedWordId);
+          if (word) {
+            getWordCells(word).forEach(function (cell) {
+              if (cell && cell.parentElement) cell.parentElement.classList.add("word-active");
+            });
+          }
+
+          if (activeCell && activeCell.parentElement) {
+            activeCell.parentElement.classList.add("active-cell");
+          }
+        }
+
+        function focusWordStart(wordId) {
+          selectedWordId = wordId;
+          var word = getWordById(wordId);
+          if (!word) return;
+          var start = qs('[data-row="' + word.row + '"][data-col="' + word.col + '"]');
+          if (start) {
+            start.focus();
+            highlightSelectedWord(start);
+          }
+        }
+
+        function getNextCellInWord(wordId, row, col) {
+          var word = getWordById(wordId);
+          if (!word) return null;
+
+          var cells = getWordCells(word);
+          var currentIndex = -1;
+          for (var i = 0; i < cells.length; i++) {
+            if (
+              cells[i] &&
+              Number(cells[i].dataset.row) === row &&
+              Number(cells[i].dataset.col) === col
+            ) {
+              currentIndex = i;
+              break;
+            }
+          }
+
+          if (currentIndex === -1) return null;
+          return cells[currentIndex + 1] || null;
+        }
+
+        function getPreviousCellInWord(wordId, row, col) {
+          var word = getWordById(wordId);
+          if (!word) return null;
+
+          var cells = getWordCells(word);
+          var currentIndex = -1;
+          for (var i = 0; i < cells.length; i++) {
+            if (
+              cells[i] &&
+              Number(cells[i].dataset.row) === row &&
+              Number(cells[i].dataset.col) === col
+            ) {
+              currentIndex = i;
+              break;
+            }
+          }
+
+          if (currentIndex === -1) return null;
+          return cells[currentIndex - 1] || null;
+        }
+
+        function moveDirectional(row, col, deltaRow, deltaCol) {
+          var r = row + deltaRow;
+          var c = col + deltaCol;
+
+          while (r >= 1 && r <= puzzle.rows && c >= 1 && c <= puzzle.cols) {
+            var candidate = qs('[data-row="' + r + '"][data-col="' + c + '"]');
+            if (candidate) {
+              candidate.focus();
+              var ids = getCellWordIds(r, c);
+              if (ids.indexOf(selectedWordId) !== -1) {
+                highlightSelectedWord(candidate);
+              } else if (ids.length) {
+                selectedWordId = ids[0];
+                highlightSelectedWord(candidate);
+              }
+              return;
+            }
+            r += deltaRow;
+            c += deltaCol;
+          }
+        }
+
+        function clearSelectedWord() {
+          var word = getWordById(selectedWordId);
+          if (!word) return;
+          getWordCells(word).forEach(function (cell) {
+            if (cell) cell.value = "";
+          });
+          updateWordStates();
+          focusWordStart(word.id);
+        }
+
+        function clearAll() {
+          qsa(".cell").forEach(function (cell) {
+            cell.value = "";
+          });
+          updateWordStates();
+          focusWordStart(puzzle.words[0].id);
+        }
+
+        function createBoard() {
+          for (var row = 1; row <= puzzle.rows; row++) {
+            for (var col = 1; col <= puzzle.cols; col++) {
+              var data = grid[row - 1][col - 1];
+              var wrap = document.createElement("div");
+              wrap.className = "cell-wrap";
+
+              if (!data) {
+                wrap.classList.add("block");
+                board.appendChild(wrap);
+                continue;
+              }
+
+              if (data.number !== null) {
+                var number = document.createElement("span");
+                number.className = "cell-number";
+                number.textContent = data.number;
+                wrap.appendChild(number);
+              }
+
+              var input = document.createElement("input");
+              input.className = "cell";
+              input.type = "text";
+              input.inputMode = "text";
+              input.maxLength = 1;
+              input.setAttribute("aria-label", "Felt række " + row + ", kolonne " + col);
+              input.dataset.row = row;
+              input.dataset.col = col;
+              input.dataset.words = data.words.join(",");
+              wrap.appendChild(input);
+
+              cellMap.set(key(row, col), input);
+              board.appendChild(wrap);
+
+              input.addEventListener("focus", function (d, inp) {
+                return function () {
+                  var wordIds = d.words;
+                  if (wordIds.indexOf(selectedWordId) === -1) {
+                    selectedWordId = wordIds[0];
+                  }
+                  highlightSelectedWord(inp);
+                };
+              }(data, input));
+
+              input.addEventListener("click", function (d, inp) {
+                return function () {
+                  var wordIds = d.words;
+                  if (wordIds.length > 1) {
+                    var currentIndex = wordIds.indexOf(selectedWordId);
+                    selectedWordId = wordIds[(currentIndex + 1) % wordIds.length];
+                  } else {
+                    selectedWordId = wordIds[0];
+                  }
+                  highlightSelectedWord(inp);
+                };
+              }(data, input));
+
+              input.addEventListener("input", function (inp) {
+                return function () {
+                  inp.value = normalizeChar(inp.value);
+                  updateWordStates();
+
+                  if (inp.value) {
+                    var next = getNextCellInWord(
+                      selectedWordId,
+                      Number(inp.dataset.row),
+                      Number(inp.dataset.col)
+                    );
+                    if (next) {
+                      next.focus();
+                      highlightSelectedWord(next);
+                    } else {
+                      highlightSelectedWord(inp);
+                    }
+                  }
+                };
+              }(input));
+
+              input.addEventListener("keydown", function (inp) {
+                return function (event) {
+                  var row = Number(inp.dataset.row);
+                  var col = Number(inp.dataset.col);
+
+                  if (event.key === "Backspace") {
+                    event.preventDefault();
+                    if (inp.value) {
+                      inp.value = "";
+                      updateWordStates();
+                      highlightSelectedWord(inp);
+                    } else {
+                      var prev = getPreviousCellInWord(selectedWordId, row, col);
+                      if (prev) {
+                        prev.value = "";
+                        prev.focus();
+                        updateWordStates();
+                        highlightSelectedWord(prev);
+                      }
+                    }
+                    return;
+                  }
+
+                  if (event.key === "Delete") {
+                    event.preventDefault();
+                    inp.value = "";
+                    updateWordStates();
+                    highlightSelectedWord(inp);
+                    return;
+                  }
+
+                  if (event.key === "ArrowRight") {
+                    event.preventDefault();
+                    moveDirectional(row, col, 0, 1);
+                    return;
+                  }
+
+                  if (event.key === "ArrowLeft") {
+                    event.preventDefault();
+                    moveDirectional(row, col, 0, -1);
+                    return;
+                  }
+
+                  if (event.key === "ArrowDown") {
+                    event.preventDefault();
+                    moveDirectional(row, col, 1, 0);
+                    return;
+                  }
+
+                  if (event.key === "ArrowUp") {
+                    event.preventDefault();
+                    moveDirectional(row, col, -1, 0);
+                    return;
+                  }
+
+                  if (event.key === " ") {
+                    event.preventDefault();
+                    var ids = getCellWordIds(row, col);
+                    if (ids.length > 1) {
+                      var currentIndex = ids.indexOf(selectedWordId);
+                      selectedWordId = ids[(currentIndex + 1) % ids.length];
+                      highlightSelectedWord(inp);
+                    }
+                  }
+                };
+              }(input));
+            }
+          }
+        }
+
+        function createClues() {
+          puzzle.words.forEach(function (word) {
+            var item = document.createElement("li");
+            item.className = "clue-item";
+            item.dataset.clueId = String(word.id);
+
+            var head = document.createElement("div");
+            head.className = "clue-head";
+
+            var textBox = document.createElement("div");
+
+            var titleRow = document.createElement("div");
+            titleRow.className = "clue-title-row";
+
+            var audioFile = CW_AUDIO.clueFile(word.id);
+            if (audioFile) {
+              var clueAudioBtn = document.createElement("button");
+              clueAudioBtn.type = "button";
+              clueAudioBtn.className = "crossword-audio-btn crossword-audio-btn--compact";
+              clueAudioBtn.setAttribute("data-audio", audioFile);
+              clueAudioBtn.setAttribute("aria-label", "Afspil oplæsning af tip " + word.id);
+              var clueSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+              clueSvg.setAttribute("class", "crossword-audio-btn__svg");
+              clueSvg.setAttribute("width", "18");
+              clueSvg.setAttribute("height", "18");
+              clueSvg.setAttribute("viewBox", "0 0 24 24");
+              clueSvg.setAttribute("aria-hidden", "true");
+              var clueUse = document.createElementNS("http://www.w3.org/2000/svg", "use");
+              clueUse.setAttribute("href", "#icon-speaker");
+              clueSvg.appendChild(clueUse);
+              clueAudioBtn.appendChild(clueSvg);
+              titleRow.appendChild(clueAudioBtn);
+            }
+
+            var title = document.createElement("p");
+            title.className = "clue-title";
+            title.textContent =
+              word.id +
+              ". " +
+              (word.dir === "across" ? "Vandret" : "Lodret") +
+              " · " +
+              word.answer.length +
+              " bogstaver";
+
+            titleRow.appendChild(title);
+
+            var meta = document.createElement("p");
+            meta.className = "clue-meta";
+            meta.textContent = "Start: række " + word.row + ", kolonne " + word.col;
+
+            var clue = document.createElement("p");
+            clue.className = "clue-text";
+            clue.textContent = word.clue;
+
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "clue-btn crossword-btn";
+            btn.textContent = "Gå til ord";
+            btn.addEventListener("click", function (wid) {
+              return function () {
+                focusWordStart(wid);
+              };
+            }(word.id));
+
+            textBox.appendChild(titleRow);
+            textBox.appendChild(meta);
+            textBox.appendChild(clue);
+
+            head.appendChild(textBox);
+            head.appendChild(btn);
+            item.appendChild(head);
+            clueList.appendChild(item);
+          });
+        }
+
+        clearSelectedBtn.addEventListener("click", clearSelectedWord);
+        clearAllBtn.addEventListener("click", clearAll);
+
+        createBoard();
+        createClues();
+        cwArticle.addEventListener("click", onCwAudioClick);
+        cwArticle.querySelectorAll(".crossword-audio-btn").forEach(ensureCwAudioButtonIcons);
+        focusWordStart(puzzle.words[0].id);
+        updateWordStates();
+      })();
+    </script>
+  </body>
+</html>

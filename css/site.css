@@ -1,0 +1,185 @@
+/* Søsterside til Gastronom-forsiden: fast baggrund + scrollbart lag ovenpå (intet tomt hvidt felt) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  min-height: 100%;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  background: #cfd9e4;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  position: relative;
+  font-family: "Segø UI", system-ui, sans-serif;
+  color: #fff;
+  background: #cfd9e4;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Fast fuldskærmsbaggrund — som .bg-media på gastronom-siden */
+.bg-media {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #cfd9e4;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+/* Let mørkning som tidligere hero-overlay, dækker kun viewport (fast lag) */
+.bg-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(28, 40, 52, 0.12) 100%
+  );
+}
+
+/* Indhold scroller; første skærm = titel, ekstra højde giver scroll uden ny baggrundsfarve */
+.page-shell {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 2rem 1rem 3rem;
+}
+
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 0 1rem;
+}
+
+.hero-band {
+  position: relative;
+  margin: 0 -1rem;
+  padding: 0 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+/* Én linje: nowrap; små skærme kan scrolle vandret i wrap-containeren */
+.hero__title-wrap {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  padding: clamp(0.5rem, 2vw, 1rem) 0.75rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hero__title {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  font-size: clamp(0.8rem, 2.35vw, 2.35rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: #fff;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.45),
+    0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Kopi af gastronom-forsiden: kort + AppWriter + kategorier */
+.content-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.appwriter-info {
+  text-align: center;
+  color: #fff;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  margin: 0 0 2rem 0;
+  line-height: 1.5;
+}
+
+.appwriter-info a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.appwriter-info a:hover,
+.appwriter-info a:focus {
+  text-decoration: none;
+}
+
+.categories {
+  list-style: none;
+  padding: 0;
+  margin: 4rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.categories li {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+}
+
+.category-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+.category-link:focus,
+.category-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .page-shell {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .content-card {
+    padding: 1.5rem;
+  }
+
+  .categories {
+    margin-top: 1.25rem;
+  }
+}

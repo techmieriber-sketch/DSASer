@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kvalitet i rengøring</title>
+
+  <link rel="preload" href="../../../assets/hero-hvorfor-gor-vi-rent.jpg" as="image" fetchpriority="high" />
+  <link rel="stylesheet" href="../../../arbejdsteknik/arbejdsteknik.css" />
+
+  <style>
+    .topic-card {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .topic-intro {
+      margin: 0;
+      max-width: 68ch;
+    }
+
+    .explain-box,
+    .quiz-box,
+    .result-box {
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+
+    .explain-title,
+    .quiz-title {
+      margin: 0 0 0.75rem;
+      font-size: 1.15rem;
+    }
+
+    .quality-list {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .quality-list li + li {
+      margin-top: 0.5rem;
+    }
+
+    .question-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .question-item {
+      padding: 1rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .question-text {
+      margin: 0 0 0.75rem;
+      font-weight: 700;
+    }
+
+    .question-select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 0.85rem;
+      border: 1px solid rgba(15, 23, 42, 0.16);
+      background: #fff;
+      font: inherit;
+      color: inherit;
+    }
+
+    .question-select:focus {
+      outline: 3px solid rgba(59, 130, 246, 0.25);
+      outline-offset: 2px;
+    }
+
+    .feedback {
+      margin-top: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-radius: 0.85rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .feedback.correct {
+      display: block;
+      background: #ecfdf3;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .feedback.wrong {
+      display: block;
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .action-button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.9rem 1.2rem;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+    }
+
+    .action-button:hover,
+    .action-button:focus-visible {
+      transform: translateY(-1px);
+    }
+
+    .action-button--primary {
+      background: #1d4ed8;
+      color: #fff;
+    }
+
+    .action-button--primary:hover,
+    .action-button--primary:focus-visible {
+      background: #1e40af;
+    }
+
+    .action-button--secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .action-button--secondary:hover,
+    .action-button--secondary:focus-visible {
+      background: #d1d5db;
+    }
+
+    .result-box {
+      display: none;
+    }
+
+    .result-box.show {
+      display: block;
+    }
+
+    .result-score {
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .result-text {
+      margin: 0;
+    }
+
+    @media (max-width: 640px) {
+      .actions {
+        flex-direction: column;
+      }
+
+      .action-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-landing">
+  <div class="bg-media" aria-hidden="true">
+    <img
+      class="bg-image"
+      src="../../../assets/hero-hvorfor-gor-vi-rent.jpg"
+      alt=""
+      width="1920"
+      height="1080"
+      decoding="async"
+      fetchpriority="high"
+    />
+  </div>
+  <div class="bg-scrim" aria-hidden="true"></div>
+
+  <div class="page-shell page-shell--landing">
+    <main class="landing-card">
+      <a class="back-link" href="../index.html">Tilbage til “Kvalitet i rengøring”</a>
+
+      <h1 class="page-title page-title--landing">Kvalitet i rengøring</h1>
+
+      <div class="topic-card">
+        <p class="topic-intro">
+          Kvalitet i rengøring betyder, at arbejdet bliver udført grundigt, systematisk og på en
+          fagligt korrekt måde. Det handler ikke kun om, at noget ser rent ud. Det handler også om
+          hygiejne og om at vælge den rigtige metode til opgaven.
+        </p>
+
+        <section class="explain-box" aria-labelledby="forklaring-title">
+          <h2 class="explain-title" id="forklaring-title">Tre typer kvalitet</h2>
+          <ul class="quality-list">
+            <li><strong>Synlig kvalitet</strong> = det, man kan se</li>
+            <li><strong>Hygiejnisk kvalitet</strong> = det, der mindsker smitte og urenheder</li>
+            <li><strong>Faglig kvalitet</strong> = at arbejdet udføres rigtigt og ansvarligt</li>
+          </ul>
+        </section>
+
+        <section class="quiz-box" aria-labelledby="opgave-title">
+          <h2 class="quiz-title" id="opgave-title">Opgave</h2>
+          <p>Læs sætningerne og vælg den type kvalitet, der passer bedst.</p>
+
+          <div class="question-list" id="questionList"></div>
+
+          <div class="actions">
+            <button class="action-button action-button--primary" id="checkBtn" type="button">
+              Tjek svar
+            </button>
+            <button class="action-button action-button--secondary" id="resetBtn" type="button">
+              Prøv igen
+            </button>
+          </div>
+
+          <div class="result-box" id="resultBox" aria-live="polite">
+            <p class="result-score" id="scoreText"></p>
+            <p class="result-text" id="resultText"></p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "1. Bordet ser rent ud, og der er ingen støvkanter.",
+        correct: "synlig",
+        explanation: "Rigtigt. Det handler om det, man kan se."
+      },
+      {
+        text: "2. Dørhåndtag og vandhaner er tørret grundigt af.",
+        correct: "hygiejnisk",
+        explanation: "Rigtigt. Det handler om hygiejne og smitteforebyggelse."
+      },
+      {
+        text: "3. Serviceassistenten vælger den rigtige metode til gulvet.",
+        correct: "faglig",
+        explanation: "Rigtigt. Det er en faglig vurdering."
+      },
+      {
+        text: "4. Der ligger ikke hår, papir eller snavs på gulvet.",
+        correct: "synlig",
+        explanation: "Rigtigt. Det er synligt for øjet."
+      },
+      {
+        text: "5. Klude og mopper bruges rigtigt, så smitte ikke spredes.",
+        correct: "hygiejnisk",
+        explanation: "Rigtigt. Her er fokus på at undgå smitte."
+      },
+      {
+        text: "6. Rengøringen bliver udført som aftalt i arbejdsplanen.",
+        correct: "faglig",
+        explanation: "Rigtigt. Det er faglig kvalitet at følge planen."
+      },
+      {
+        text: "7. Toilettet ser pænt og indbydende ud.",
+        correct: "synlig",
+        explanation: "Rigtigt. Det handler om det synlige resultat."
+      },
+      {
+        text: "8. Medarbejderen vurderer, hvor der er behov for ekstra rengøring.",
+        correct: "faglig",
+        explanation: "Rigtigt. Det kræver faglig vurdering."
+      },
+      {
+        text: "9. Kontaktpunkter bliver gjort rene for at mindske risikoen for smitte.",
+        correct: "hygiejnisk",
+        explanation: "Rigtigt. Her handler det om hygiejne."
+      },
+      {
+        text: "10. Arbejdet udføres med ansvar og opmærksomhed på kvalitet.",
+        correct: "faglig",
+        explanation: "Rigtigt. Det handler om faglighed og ansvar."
+      }
+    ];
+
+    const labels = {
+      synlig: "Synlig kvalitet",
+      hygiejnisk: "Hygiejnisk kvalitet",
+      faglig: "Faglig kvalitet"
+    };
+
+    const questionList = document.getElementById("questionList");
+    const checkBtn = document.getElementById("checkBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const resultBox = document.getElementById("resultBox");
+    const scoreText = document.getElementById("scoreText");
+    const resultText = document.getElementById("resultText");
+
+    function renderQuestions() {
+      questionList.innerHTML = "";
+
+      questions.forEach((question, index) => {
+        const item = document.createElement("div");
+        item.className = "question-item";
+
+        item.innerHTML = `
+          <p class="question-text">${question.text}</p>
+          <select class="question-select" id="q${index}" aria-label="${question.text}">
+            <option value="">Vælg svar</option>
+            <option value="synlig">Synlig kvalitet</option>
+            <option value="hygiejnisk">Hygiejnisk kvalitet</option>
+            <option value="faglig">Faglig kvalitet</option>
+          </select>
+          <div class="feedback" id="feedback${index}"></div>
+        `;
+
+        questionList.appendChild(item);
+      });
+    }
+
+    function checkAnswers() {
+      let correctCount = 0;
+      let answeredCount = 0;
+
+      questions.forEach((question, index) => {
+        const select = document.getElementById(`q${index}`);
+        const feedback = document.getElementById(`feedback${index}`);
+        const value = select.value;
+
+        feedback.className = "feedback";
+
+        if (value !== "") {
+          answeredCount += 1;
+        }
+
+        if (value === question.correct) {
+          correctCount += 1;
+          feedback.textContent = question.explanation;
+          feedback.classList.add("correct");
+        } else if (value === "") {
+          feedback.textContent = "Vælg et svar.";
+          feedback.classList.add("wrong");
+        } else {
+          feedback.textContent = `Ikke helt. Rigtigt svar er: ${labels[question.correct]}.`;
+          feedback.classList.add("wrong");
+        }
+      });
+
+      resultBox.classList.add("show");
+      scoreText.textContent = `Du har ${correctCount} rigtige ud af ${questions.length}.`;
+
+      if (answeredCount < questions.length) {
+        resultText.textContent = "Du mangler at svare på nogle spørgsmål.";
+      } else if (correctCount === questions.length) {
+        resultText.textContent = "Flot. Du har svaret rigtigt på alle spørgsmål.";
+      } else if (correctCount >= 7) {
+        resultText.textContent = "Godt arbejde. Du har godt styr på kvalitet i rengøring.";
+      } else {
+        resultText.textContent = "Prøv igen og læs forklaringerne under hvert svar.";
+      }
+    }
+
+    function resetAnswers() {
+      questions.forEach((_, index) => {
+        const select = document.getElementById(`q${index}`);
+        const feedback = document.getElementById(`feedback${index}`);
+
+        select.value = "";
+        feedback.textContent = "";
+        feedback.className = "feedback";
+      });
+
+      resultBox.classList.remove("show");
+      scoreText.textContent = "";
+      resultText.textContent = "";
+    }
+
+    renderQuestions();
+    checkBtn.addEventListener("click", checkAnswers);
+    resetBtn.addEventListener("click", resetAnswers);
+  </script>
+</body>
+</html>
+

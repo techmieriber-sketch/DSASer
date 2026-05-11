@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trivsel, ansvar og faglig vurdering – Opgave – Dansk som andetsprog for serviceassistenter</title>
+    <link rel="preload" href="../../assets/hero-hvorfor-gor-vi-rent.jpg" as="image" fetchpriority="high" />
+    <link rel="preload" href="Trivsel ansvar og faglig vurdering.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <style>
+      .page-trivsel-v3 .article-card {
+        /* Gør opgaven mindre "dominerende" end standard-kortet */
+        max-width: min(62rem, calc(100vw - 2rem));
+        padding: 1.75rem clamp(1rem, 3vw, 1.8rem) 2rem;
+      }
+
+      .page-trivsel-v3 .page-shell {
+        padding: 1.25rem 1rem 2rem;
+      }
+
+      .page-trivsel-v3 .category-heading {
+        margin-top: 0.35rem;
+        margin-bottom: 1rem;
+      }
+
+      .page-trivsel-v3 .triv-page-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.45rem 0.6rem;
+        margin-bottom: 0;
+      }
+
+      .page-trivsel-v3 .triv-page-title-row .page-title {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer {
+        color: #2c3e4a;
+        line-height: 1.6;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .trivsel-intro {
+        max-width: none;
+        width: 100%;
+        margin: 0 0 0.8rem;
+        font-size: 1.02rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .trivsel-note {
+        max-width: none;
+        width: 100%;
+        margin: 0 0 1.35rem;
+        background: #eef7f6;
+        border: 1px solid #cfe5e1;
+        border-left: 6px solid #2a9d8f;
+        padding: 0.9rem 1rem;
+        border-radius: 12px;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .task-card {
+        background: #fff;
+        padding: 1.15rem 1.2rem 1.35rem;
+        border-radius: 16px;
+        margin-bottom: 1.35rem;
+        border: 1px solid rgba(19, 82, 82, 0.12);
+        box-shadow: 0 4px 18px rgba(20, 60, 80, 0.07);
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .task-card h2 {
+        margin: 0 0 0.85rem;
+        font-size: 1.2rem;
+        color: #134252;
+      }
+
+      /* Tosplalt: billede venstre, spørgsmål højre (samme række = samme situation) */
+      .page-trivsel-v3 #trivsel-situationer .task-card-body {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        align-items: start;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .task-card-media {
+        min-width: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .task-card-questions {
+        min-width: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .triv-q-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem;
+        margin: 1rem 0 0.45rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .task-card-questions > .triv-q-head:first-of-type {
+        margin-top: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .triv-q-head h3,
+      .page-trivsel-v3 #trivsel-situationer .triv-q-head .reflection-label {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .triv-q-head h3 {
+        font-size: 1.04rem;
+        color: #0c2d3d;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-box .triv-q-head {
+        margin-top: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-box .reflection-label--prompt {
+        font-size: 1.04rem;
+        color: #0c2d3d;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .triv-subline-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem;
+        margin: 0.35rem 0 0.5rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .triv-subline-row .task-help {
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .triv-opt-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.45rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .triv-opt-row .crossword-audio-btn {
+        flex-shrink: 0;
+        margin-top: 0.12rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .triv-opt-row .option {
+        flex: 1;
+        min-width: 0;
+        margin-top: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .option .option-label-text {
+        flex: 1;
+        min-width: 0;
+        line-height: 1.45;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .task-image {
+        margin-bottom: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .task-image img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        border-radius: 12px;
+        border: 1px solid #d7e1ea;
+        object-fit: cover;
+        background: #dde7ef;
+        display: block;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .task-card-media .task-help {
+        margin: 0.5rem 0 0;
+        font-size: 0.95rem;
+        color: #4a6170;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .task-help {
+        margin: 0.25rem 0 0.2rem;
+        font-size: 0.95rem;
+        color: #4a6170;
+      }
+
+      @media (min-width: 768px) {
+        .page-trivsel-v3 #trivsel-situationer .task-card-body {
+          /* Giv billedkolonnen markant mere plads end spørgsmåls-kolonnen */
+          grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+          gap: 1.25rem 1.75rem;
+        }
+
+        .page-trivsel-v3 #trivsel-situationer .task-card-questions {
+          padding-left: 0.7rem;
+          border-left: 1px solid rgba(19, 82, 82, 0.12);
+        }
+
+        .page-trivsel-v3 #trivsel-situationer .task-card-media {
+          position: sticky;
+          top: 0.65rem;
+          align-self: start;
+        }
+      }
+
+      @media (min-width: 1100px) {
+        .page-trivsel-v3 #trivsel-situationer .task-card-body {
+          grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.8fr);
+        }
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .options {
+        margin-top: 0.45rem;
+        display: grid;
+        gap: 0.5rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .option {
+        background: linear-gradient(165deg, rgba(248, 252, 251, 0.95), rgba(241, 246, 250, 0.9));
+        border: 1px solid rgba(19, 82, 82, 0.14);
+        padding: 0.7rem 0.8rem;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        gap: 0.55rem;
+        align-items: flex-start;
+        transition: border-color 0.15s ease, background 0.15s ease;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .option:hover {
+        border-color: rgba(13, 122, 110, 0.35);
+        background: rgba(232, 248, 245, 0.5);
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .option input {
+        margin-top: 0.15rem;
+        transform: scale(1.15);
+        accent-color: #0d7a6e;
+        flex-shrink: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-box {
+        margin-top: 1rem;
+        padding: 0.95rem 1rem;
+        border-radius: 14px;
+        background: #f7f3ea;
+        border: 1px solid #ead9b6;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-box h3 {
+        margin-top: 0;
+        font-size: 1.04rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-box .reflection-facit-line {
+        margin: 0.35rem 0 0.5rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-label {
+        display: block;
+        font-weight: 700;
+        margin: 0.75rem 0 0.35rem;
+        color: #674d1f;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-box .triv-q-head + .triv-subline-row + .triv-q-head {
+        margin-top: 0.75rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-box .task-help + .triv-q-head {
+        margin-top: 0.25rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-box .task-help + .reflection-label--prompt {
+        margin-top: 0.35rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-box .options + .reflection-label--prompt {
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer textarea {
+        width: 100%;
+        min-height: 110px;
+        border-radius: 12px;
+        border: 1px solid #ccb98f;
+        padding: 0.85rem 0.95rem;
+        font: inherit;
+        line-height: 1.5;
+        resize: vertical;
+        background: #fffdf8;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer textarea:focus {
+        outline: 3px solid rgba(42, 157, 143, 0.18);
+        border-color: #2a9d8f;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .button-row {
+        margin-top: 1.35rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .button-row button {
+        padding: 0.78rem 1.2rem;
+        font-weight: 700;
+        font-family: inherit;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .primary-btn {
+        color: #fff;
+        background: linear-gradient(100deg, #0d7a6e 0%, #2a9d8f 50%, #2e86ab 100%);
+        box-shadow: 0 3px 12px rgba(13, 122, 110, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .primary-btn:hover {
+        filter: brightness(1.05);
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .danger-btn {
+        background: #f6dede;
+        color: #b23b3b;
+        border: 1px solid rgba(178, 59, 59, 0.25);
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .danger-btn:hover {
+        background: #f0d0d0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer #feedbackBox {
+        display: none;
+        margin-top: 1.15rem;
+        border-radius: 14px;
+        padding: 1rem 1.05rem;
+        background: linear-gradient(135deg, rgba(238, 248, 239, 0.96), rgba(232, 248, 245, 0.7));
+        border: 1px solid rgba(46, 125, 50, 0.18);
+        border-left: 6px solid #2e7d32;
+      }
+
+      /* Samme udtryk som .page-quiz-vigtig .result på «Hvorfor rengøring er vigtig» */
+      .page-trivsel-v3 #trivsel-situationer .quiz-result-match {
+        margin: 0 0 1rem;
+        padding: 1rem 1.1rem;
+        border-radius: 12px;
+        background: linear-gradient(
+          135deg,
+          rgba(232, 248, 245, 0.95) 0%,
+          rgba(255, 248, 235, 0.85) 100%
+        );
+        border: 1px solid rgba(13, 122, 110, 0.22);
+        box-shadow: 0 4px 16px rgba(20, 60, 80, 0.08);
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .quiz-result-match h3 {
+        margin: 0 0 0.4rem;
+        font-size: 1.1rem;
+        color: #0c2d3d;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .quiz-result-match p {
+        margin: 0;
+        color: #2c3e4a;
+        line-height: 1.55;
+        font-size: 1rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .feedback-heading {
+        margin: 0 0 0.45rem;
+        font-size: 1.08rem;
+        color: #134252;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .feedback-item {
+        margin-bottom: 0.5rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .feedback-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .correct {
+        color: #1b5e20;
+        font-weight: 700;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .wrong {
+        color: #b23b3b;
+        font-weight: 700;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .neutral {
+        color: #7a5a17;
+        font-weight: 700;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer label.option.option--correct {
+        outline: 2px solid rgba(27, 94, 32, 0.35);
+        background: rgba(27, 94, 32, 0.06);
+        border-radius: 10px;
+        padding: 0.35rem 0.55rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer label.option.option--wrong {
+        outline: 2px solid rgba(178, 59, 59, 0.3);
+        background: rgba(178, 59, 59, 0.05);
+        border-radius: 10px;
+        padding: 0.35rem 0.55rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer label.option.option--missed {
+        outline: 2px dashed rgba(122, 90, 23, 0.35);
+        background: rgba(122, 90, 23, 0.05);
+        border-radius: 10px;
+        padding: 0.35rem 0.55rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .small-note {
+        margin-top: 0.85rem;
+        color: #425968;
+        font-size: 0.95rem;
+      }
+
+      /* Højttalerknapper (samme princip som på Hygiejnen) */
+      .page-trivsel-v3 article.article-card .crossword-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        color: #134252;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.22);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .page-trivsel-v3 article.article-card .crossword-audio-btn:hover {
+        background: #fff;
+        color: #0d7a6e;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.28);
+      }
+
+      .page-trivsel-v3 article.article-card .crossword-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .page-trivsel-v3 article.article-card .crossword-audio-btn__svg {
+        display: block;
+      }
+
+      .page-trivsel-v3 article.article-card .crossword-audio-btn__svg--pause,
+      .page-trivsel-v3 article.article-card .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-trivsel-v3
+        article.article-card
+        .crossword-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .crossword-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .page-trivsel-v3 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--speaker,
+      .page-trivsel-v3 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--play {
+        display: none;
+      }
+
+      .page-trivsel-v3 article.article-card .crossword-audio-btn.is-audio-playing .crossword-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .page-trivsel-v3 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--speaker,
+      .page-trivsel-v3 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .page-trivsel-v3 article.article-card .crossword-audio-btn.is-audio-paused .crossword-audio-btn__svg--play {
+        display: block;
+      }
+
+      .page-trivsel-v3 article.article-card .crossword-audio-btn--intro {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .page-trivsel-v3 article.article-card .crossword-audio-btn--compact {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-box .triv-q-head .reflection-label--prompt {
+        margin: 0;
+      }
+
+      .page-trivsel-v3 #trivsel-situationer .reflection-box .triv-subline-row + .reflection-label--prompt {
+        margin-top: 0.5rem;
+      }
+
+      @media (max-width: 640px) {
+        .page-trivsel-v3 #trivsel-situationer .button-row button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body class="page-trivsel-v3">
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/hero-hvorfor-gor-vi-rent.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Hvorfor gør vi rent?</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="triv-page-title-row">
+          <button
+            type="button"
+            class="crossword-audio-btn crossword-audio-btn--intro"
+            data-audio="Trivsel ansvar og faglig vurdering.mp3"
+            aria-label="Afspil sidetitlen højt"
+          >
+            <svg class="crossword-audio-btn__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <use href="#icon-speaker" />
+            </svg>
+          </button>
+          <h1 class="page-title">Trivsel, ansvar og faglig vurdering</h1>
+        </div>
+        <p class="category-heading">Opgave</p>
+
+        <div id="trivsel-situationer">
+          <p class="trivsel-intro">
+            Se på billederne og svar på spørgsmålene til højre for hvert billede. Nogle billeder viser almindelige
+            rengøringssituationer. Andre viser situationer, hvor du også skal tænke over <strong>ansvar</strong>,
+            <strong>arbejdsmiljø</strong> og <strong>hvem du skal tale med</strong>.
+          </p>
+
+          <div class="trivsel-note">
+            <strong>Vigtigt:</strong> I denne opgave er der både faglige spørgsmål og refleksionsspørgsmål.
+            Faglige spørgsmål har rigtige svar. Refleksionsspørgsmål giver point, når du vælger et svar.
+          </div>
+
+          <div class="task-card" data-situation="1">
+            <h2>Billede 1</h2>
+            <div class="task-card-body">
+              <div class="task-card-media">
+                <div class="task-image">
+                  <img src="billede1-beskidt-gulv.png.png" alt="Gulv med krummer og papir" width="800" height="600" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="task-card-questions">
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvad ser du isaer paa gulvet.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>1. Hvad ser du især på gulvet?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Loest snavs, krummer og papir.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s1q1" value="lost" />
+                      <span class="option-label-text">Løst snavs, krummer og papir</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Kun vand paa gulvet.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s1q1" value="vand" />
+                      <span class="option-label-text">Kun vand på gulvet</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Ingen synlig snavs.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s1q1" value="ingen" /> <span class="option-label-text">Ingen synlig snavs</span></label
+                    >
+                  </div>
+                </div>
+
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvad er en fagligt god foerste opgave her.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>2. Hvad er en fagligt god første opgave her?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Opsamle snavset og derefter rengoere gulvet.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s1q2" value="opsamle" />
+                      <span class="option-label-text">Opsamle snavset og derefter rengøre gulvet</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Vente og haabe at nogen andre goer det.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s1q2" value="vente" />
+                      <span class="option-label-text">Vente og håbe at nogen andre gør det</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Gaa videre uden at reagere.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s1q2" value="intet" />
+                      <span class="option-label-text">Gå videre uden at reagere</span></label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="task-card" data-situation="2">
+            <h2>Billede 2</h2>
+            <div class="task-card-body">
+              <div class="task-card-media">
+                <div class="task-image">
+                  <img src="billede2-ren-hospitalsstue.png.png" alt="Ren hospitalsstue" width="800" height="600" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="task-card-questions">
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvad viser denne stue.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>1. Hvad viser denne stue?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="God orden og hoej.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s2q1" value="orden" />
+                      <span class="option-label-text">God orden og høj rengøringskvalitet</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Kaos og utryghed.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s2q1" value="kaos" /> <span class="option-label-text">Kaos og utryghed</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Meget synligt snavs.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s2q1" value="snavs" /> <span class="option-label-text">Meget synligt snavs</span></label
+                    >
+                  </div>
+                </div>
+
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvorfor er renlighed vigtig her.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>2. Hvorfor er renlighed vigtig her?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Den stoetter hygiejne.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s2q2" value="tryghed" />
+                      <span class="option-label-text">Den støtter hygiejne, trivsel og tryghed</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Den betyder ikke noget.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s2q2" value="ligegyldig" />
+                      <span class="option-label-text">Den betyder ikke noget</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Den er kun vigtig som pynt.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s2q2" value="pynt" /> <span class="option-label-text">Den er kun vigtig som pynt</span></label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="task-card" data-situation="3">
+            <h2>Billede 3</h2>
+            <div class="task-card-body">
+              <div class="task-card-media">
+                <div class="task-image">
+                  <img src="billede3-beskidt-toilet.png.png" alt="Toilet med synlig forurening og papir på gulvet" width="800" height="600" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="task-card-questions">
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvad er den stoerste faglige udfordring her.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>1. Hvad er den største faglige udfordring her?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Der er risiko for smitte og omraadet er urent.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s3q1" value="hygiejne" />
+                      <span class="option-label-text">Der er risiko for smitte, og området er urent</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Lyset er det stoerste problem.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s3q1" value="lys" /> <span class="option-label-text">Lyset er det største problem</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Flisernes farve er det stoerste problem.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s3q1" value="farve" />
+                      <span class="option-label-text">Flisernes farve er det største problem</span></label
+                    >
+                  </div>
+                </div>
+
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvad skal du vaere saerligt opmaerksom paa.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>2. Hvad skal du være særligt opmærksom på?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Vaernemidler haandhygiejne og arbejde fra rent mod urent.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s3q2" value="værnemidler" />
+                      <span class="option-label-text">Værnemidler, håndhygiejne og arbejde fra rent mod urent</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="At blive faerdig saa hurtigt som muligt uden plan.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s3q2" value="hurtigt" />
+                      <span class="option-label-text">At blive færdig så hurtigt som muligt uden plan</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="At saette musik paa foerst.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s3q2" value="musik" /> <span class="option-label-text">At sætte musik på først</span></label
+                    >
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <div class="triv-q-head">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Refleksion ansvar og arbejdsmiljoe.mp3"
+                      aria-label="Afspil rubrikken højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <h3>Refleksion – ansvar og arbejdsmiljø</h3>
+                  </div>
+                  <div class="triv-subline-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Her er der ikke kun ét facit.mp3"
+                      aria-label="Afspil linjen højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <p class="task-help">Her er der ikke kun ét facit</p>
+                  </div>
+                  <div class="triv-q-head">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Hvad vil du taenke hvis du moeder denne situation paa arbejde.mp3"
+                      aria-label="Afspil spørgsmålet højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <p class="reflection-label reflection-label--prompt">
+                      Hvad vil du tænke, hvis du møder denne situation på arbejde?
+                    </p>
+                  </div>
+                  <div class="options">
+                    <div class="triv-opt-row">
+                      <button
+                        type="button"
+                        class="crossword-audio-btn crossword-audio-btn--compact"
+                        data-audio="Situationen kan helt eller delvist ligge uden for den almindelige rengoeringsopgave.mp3"
+                        aria-label="Afspil teksten højt"
+                      >
+                        <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                      <label class="option">
+                        <input type="checkbox" name="s3r1" value="ja" />
+                        <span class="option-label-text"
+                          >Situationen kan helt eller delvist ligge uden for den almindelige rengøringsopgave</span
+                        >
+                      </label>
+                    </div>
+                    <div class="triv-opt-row">
+                      <button
+                        type="button"
+                        class="crossword-audio-btn crossword-audio-btn--compact"
+                        data-audio="Situationen ligger inden for den almindelige rengoeringsopgave.mp3"
+                        aria-label="Afspil teksten højt"
+                      >
+                        <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                      <label class="option">
+                        <input type="checkbox" name="s3r1" value="nej" />
+                        <span class="option-label-text">Situationen ligger inden for den almindelige rengøringsopgave</span>
+                      </label>
+                    </div>
+                    <div class="triv-opt-row">
+                      <button
+                        type="button"
+                        class="crossword-audio-btn crossword-audio-btn--compact"
+                        data-audio="Jeg er i tvivl og vil tjekke min arbejdsplan eller spoerge min leder.mp3"
+                        aria-label="Afspil teksten højt"
+                      >
+                        <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                      <label class="option">
+                        <input type="checkbox" name="s3r1" value="tvivl" />
+                        <span class="option-label-text"
+                          >Jeg er i tvivl og vil tjekke min arbejdsplan eller spørge min leder</span
+                        >
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="task-card" data-situation="4">
+            <h2>Billede 4</h2>
+            <div class="task-card-body">
+              <div class="task-card-media">
+                <div class="task-image">
+                  <img src="billede4-rent-klasselokale.png.png" alt="Rent klasselokale" width="800" height="600" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="task-card-questions">
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvad kan et ryddeligt klasselokale give.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>1. Hvad kan et ryddeligt klasselokale give?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Ro og bedre mulighed for koncentration.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s4q1" value="ro" />
+                      <span class="option-label-text">Ro og bedre mulighed for koncentration</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Mere uro og forvirring.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s4q1" value="uro" /> <span class="option-label-text">Mere uro og forvirring</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Ingen forskel for eleverne.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s4q1" value="ingenting" />
+                      <span class="option-label-text">Ingen forskel for eleverne</span></label
+                    >
+                  </div>
+                </div>
+
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvad viser rummet om rengoeringen.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>2. Hvad viser rummet om rengøringen?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Rengoeringen er udfoert med god kvalitet.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s4q2" value="kvalitet" />
+                      <span class="option-label-text">Rengøringen er udført med god kvalitet</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Rengoeringen er sjusket.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s4q2" value="sjusk" /> <span class="option-label-text">Rengøringen er sjusket</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Der mangler tydelig rengoering.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s4q2" value="mangler" />
+                      <span class="option-label-text">Der mangler tydelig rengøring</span></label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="task-card" data-situation="5">
+            <h2>Billede 5</h2>
+            <div class="task-card-body">
+              <div class="task-card-media">
+                <div class="task-image">
+                  <img src="billede5-beskidt-personalekokken.png.png" alt="Personalekøkken med kopper, krummer og snavs" width="800" height="600" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="task-card-questions">
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvad er det stoerste problem i koekkenet.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>1. Hvad er det største problem i køkkenet?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Rod madrester og daarlig hygiejne.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s5q1" value="rodhygiejne" />
+                      <span class="option-label-text">Rod, madrester og dårlig hygiejne</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="At der er gjort for grundigt rent.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s5q1" value="forrent" />
+                      <span class="option-label-text">At der er gjort for grundigt rent</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Der er ingen problemer.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s5q1" value="intet" /> <span class="option-label-text">Der er ingen problemer</span></label
+                    >
+                  </div>
+                </div>
+
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvad er en fagligt rigtig tanke foerst.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>2. Hvad er en fagligt rigtig tanke først?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Vurdere hvad der er brugeroprydning og hvad der er rengoering.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s5q2" value="vurdere" />
+                      <span class="option-label-text">Vurdere hvad der er brugeroprydning, og hvad der er rengøring</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Jeg skal altid bare ordne det hele uden spoergsmaal.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s5q2" value="altmit" />
+                      <span class="option-label-text">Jeg skal altid bare ordne det hele uden spørgsmål</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Jeg gaar bare igen uden at sige noget.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s5q2" value="gå" /> <span class="option-label-text">Jeg går bare igen uden at sige noget</span></label
+                    >
+                  </div>
+                </div>
+
+                <div class="reflection-box">
+                  <div class="triv-q-head">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Refleksion - grænser og samarbejde.mp3"
+                      aria-label="Afspil rubrikken højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <h3>Refleksion – grænser og samarbejde</h3>
+                  </div>
+                  <div class="triv-subline-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Her er der ikke kun ét facit.mp3"
+                      aria-label="Afspil linjen højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <p class="task-help reflection-facit-line">Her er der ikke kun ét facit</p>
+                  </div>
+                  <p class="reflection-label reflection-label--prompt">
+                    Hvad vil du tænke, hvis du møder dette køkken på arbejde?
+                  </p>
+
+                  <div class="options">
+                    <div class="triv-opt-row">
+                      <button
+                        type="button"
+                        class="crossword-audio-btn crossword-audio-btn--compact"
+                        data-audio="Situationen kan helt eller delvist ligge uden for den almindelige rengoeringsopgave.mp3"
+                        aria-label="Afspil teksten højt"
+                      >
+                        <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                      <label class="option">
+                        <input type="checkbox" name="s5r1" value="udenfor" />
+                        <span class="option-label-text"
+                          >Situationen kan helt eller delvist ligge uden for den almindelige rengøringsopgave</span
+                        >
+                      </label>
+                    </div>
+                    <div class="triv-opt-row">
+                      <button
+                        type="button"
+                        class="crossword-audio-btn crossword-audio-btn--compact"
+                        data-audio="Situationen ligger inden for den almindelige rengoeringsopgave.mp3"
+                        aria-label="Afspil teksten højt"
+                      >
+                        <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                      <label class="option">
+                        <input type="checkbox" name="s5r1" value="indenfor" />
+                        <span class="option-label-text">Situationen ligger inden for den almindelige rengøringsopgave</span>
+                      </label>
+                    </div>
+                    <div class="triv-opt-row">
+                      <button
+                        type="button"
+                        class="crossword-audio-btn crossword-audio-btn--compact"
+                        data-audio="Jeg vil tjekke arbejdsplanen og spoerge min leder eller arbejdsmiljoerepraesentant ved tvivl.mp3"
+                        aria-label="Afspil teksten højt"
+                      >
+                        <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                          <use href="#icon-speaker" />
+                        </svg>
+                      </button>
+                      <label class="option">
+                        <input type="checkbox" name="s5r1" value="tvivl" />
+                        <span class="option-label-text"
+                          >Jeg vil tjekke arbejdsplanen og spørge min leder eller arbejdsmiljørepræsentant ved tvivl</span
+                        >
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="task-card" data-situation="6">
+            <h2>Billede 6</h2>
+            <div class="task-card-body">
+              <div class="task-card-media">
+                <div class="task-image">
+                  <img src="billede6-ren-gang.png.png" alt="Ren gang" width="800" height="600" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="task-card-questions">
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvad signalerer denne gang.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>1. Hvad signalerer denne gang?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Renlighed og et professionelt miljoe.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s6q1" value="professionel" />
+                      <span class="option-label-text">Renlighed og et professionelt miljø</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Uorden og rod.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s6q1" value="uorden" /> <span class="option-label-text">Uorden og rod</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Stærkt synligt snavs.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s6q1" value="snavs" /> <span class="option-label-text">Stærkt synligt snavs</span></label
+                    >
+                  </div>
+                </div>
+
+                <div class="triv-q-head">
+                  <button
+                    type="button"
+                    class="crossword-audio-btn crossword-audio-btn--compact"
+                    data-audio="Hvorfor er rengoering vigtig i en gang.mp3"
+                    aria-label="Afspil spørgsmålet højt"
+                  >
+                    <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-speaker" />
+                    </svg>
+                  </button>
+                  <h3>2. Hvorfor er rengøring vigtig i en gang?</h3>
+                </div>
+                <div class="options">
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Mange mennesker gaar her og roerer ved ting.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s6q2" value="mange" />
+                      <span class="option-label-text">Mange mennesker går her og rører ved ting</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Gangen er ikke vigtig.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s6q2" value="ligegyldigt" />
+                      <span class="option-label-text">Gangen er ikke vigtig</span></label
+                    >
+                  </div>
+                  <div class="triv-opt-row">
+                    <button
+                      type="button"
+                      class="crossword-audio-btn crossword-audio-btn--compact"
+                      data-audio="Kun for at se pænt ud.mp3"
+                      aria-label="Afspil teksten højt"
+                    >
+                      <svg class="crossword-audio-btn__svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#icon-speaker" />
+                      </svg>
+                    </button>
+                    <label class="option"
+                      ><input type="radio" name="s6q2" value="kunpynt" /> <span class="option-label-text">Kun for at se pænt ud</span></label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="primary-btn" id="checkAnswers">Tjek mine svar</button>
+            <button type="button" class="danger-btn" id="resetAnswers">Nulstil</button>
+          </div>
+
+          <div id="feedbackBox" role="region" aria-live="polite" aria-label="Feedback på dine svar"></div>
+        </div>
+      </article>
+    </div>
+
+    <script>
+      (function () {
+        const factualAnswers = {
+          s1q1: {
+            correct: "lost",
+            label: "Billede 1, spørgsmål 1",
+            feedback: "Det er især løst snavs, krummer og papir på gulvet."
+          },
+          s1q2: {
+            correct: "opsamle",
+            label: "Billede 1, spørgsmål 2",
+            feedback: "Det er fagligt rigtigt først at opsamle snavset og derefter rengøre gulvet."
+          },
+          s2q1: {
+            correct: "orden",
+            label: "Billede 2, spørgsmål 1",
+            feedback: "Stuen viser orden og god rengøringskvalitet."
+          },
+          s2q2: {
+            correct: "tryghed",
+            label: "Billede 2, spørgsmål 2",
+            feedback: "Renhed støtter hygiejne, trivsel og tryghed."
+          },
+          s3q1: {
+            correct: "hygiejne",
+            label: "Billede 3, spørgsmål 1",
+            feedback: "Den største udfordring er hygiejne og risiko for smitte."
+          },
+          s3q2: {
+            correct: "værnemidler",
+            label: "Billede 3, spørgsmål 2",
+            feedback: "Her skal man være særligt opmærksom på værnemidler, håndhygiejne og arbejdsrækkefølge."
+          },
+          s4q1: {
+            correct: "ro",
+            label: "Billede 4, spørgsmål 1",
+            feedback: "Et ryddeligt rum kan give ro og bedre koncentration."
+          },
+          s4q2: {
+            correct: "kvalitet",
+            label: "Billede 4, spørgsmål 2",
+            feedback: "Rummet viser god kvalitet i rengøringen."
+          },
+          s5q1: {
+            correct: "rodhygiejne",
+            label: "Billede 5, spørgsmål 1",
+            feedback: "Det største problem er rod, madrester og dårlig hygiejne."
+          },
+          s5q2: {
+            correct: "vurdere",
+            label: "Billede 5, spørgsmål 2",
+            feedback: "Det er fagligt vigtigt at skelne mellem brugeroprydning og rengøring."
+          },
+          s6q1: {
+            correct: "professionel",
+            label: "Billede 6, spørgsmål 1",
+            feedback: "Den rene gang signalerer et professionelt miljø."
+          },
+          s6q2: {
+            correct: "mange",
+            label: "Billede 6, spørgsmål 2",
+            feedback: "En gang er vigtig, fordi mange mennesker går her og rører ved ting."
+          }
+        };
+
+        const reflectionItems = [
+          {
+            name: "s3r1",
+            label: "Billede 3 – refleksion",
+            correctValues: ["ja"]
+          },
+          {
+            name: "s5r1",
+            label: "Billede 5 – refleksion",
+            correctValues: ["udenfor"]
+          }
+        ];
+
+        const root = document.getElementById("trivsel-situationer");
+        const feedbackBox = document.getElementById("feedbackBox");
+        const checkBtn = document.getElementById("checkAnswers");
+        const resetBtn = document.getElementById("resetAnswers");
+
+        function shuffleArray(arr) {
+          for (let i = arr.length - 1; i > 0; i -= 1) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
+          }
+          return arr;
+        }
+
+        function shuffleOptions() {
+          const optionGroups = root.querySelectorAll(".options");
+          optionGroups.forEach(function (group) {
+            const rows = Array.from(group.querySelectorAll(".triv-opt-row"));
+            if (rows.length < 2) return;
+
+            const originalOrder = rows.map(function (row) {
+              const input = row.querySelector("input");
+              return input ? input.name + ":" + input.value : row.textContent;
+            });
+
+            let attempts = 0;
+            let changed = false;
+            while (attempts < 12 && !changed) {
+              shuffleArray(rows);
+              const newOrder = rows.map(function (row) {
+                const input = row.querySelector("input");
+                return input ? input.name + ":" + input.value : row.textContent;
+              });
+              changed = newOrder.join("|") !== originalOrder.join("|");
+              attempts += 1;
+            }
+
+            const fragment = document.createDocumentFragment();
+            rows.forEach(function (row) {
+              fragment.appendChild(row);
+            });
+            group.appendChild(fragment);
+          });
+        }
+
+        shuffleOptions();
+
+        function optionLabelPlainText(label) {
+          var textEl = label.querySelector(".option-label-text");
+          if (textEl) {
+            return textEl.textContent.replace(/\s+/g, " ").trim();
+          }
+          return label.textContent.replace(/\s+/g, " ").trim();
+        }
+
+        function getCheckedValue(name) {
+          const checked = root.querySelector('input[name="' + name + '"]:checked');
+          return checked ? checked.value : null;
+        }
+
+        function getCheckedValues(name) {
+          return Array.from(root.querySelectorAll('input[name="' + name + '"]:checked')).map(function (input) {
+            return input.value;
+          });
+        }
+
+        function escapeHtml(text) {
+          return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+        }
+
+        function clearOptionHighlights() {
+          root.querySelectorAll("label.option").forEach(function (label) {
+            label.classList.remove("option--correct", "option--wrong", "option--missed");
+          });
+        }
+
+        checkBtn.addEventListener("click", function () {
+          clearOptionHighlights();
+
+          let factualScore = 0;
+          let factualUnanswered = 0;
+          let reflectionScore = 0;
+          let reflectionUnanswered = 0;
+          const factualMax = Object.keys(factualAnswers).length;
+          const reflectionMax = reflectionItems.reduce(function (sum, item) {
+            return sum + item.correctValues.length;
+          }, 0);
+
+          const parts = [];
+
+          for (const key in factualAnswers) {
+            if (!Object.prototype.hasOwnProperty.call(factualAnswers, key)) continue;
+
+            const answer = factualAnswers[key];
+            const selected = getCheckedValue(key);
+
+            if (!selected) {
+              factualUnanswered += 1;
+              parts.push(
+                '<div class="feedback-item"><span class="wrong">✖ ' +
+                  escapeHtml(answer.label) +
+                  ":</span> Du mangler et svar.</div>"
+              );
+              continue;
+            }
+
+            if (selected === answer.correct) {
+              factualScore += 1;
+              parts.push(
+                '<div class="feedback-item"><span class="correct">✔ ' +
+                  escapeHtml(answer.label) +
+                  ":</span> " +
+                  escapeHtml(answer.feedback) +
+                  "</div>"
+              );
+            } else {
+              parts.push(
+                '<div class="feedback-item"><span class="wrong">✖ ' +
+                  escapeHtml(answer.label) +
+                  ":</span> Prøv igen. " +
+                  escapeHtml(answer.feedback) +
+                  "</div>"
+              );
+            }
+          }
+
+          reflectionItems.forEach(function (item) {
+            const checkedValues = getCheckedValues(item.name);
+            const optionCount = root.querySelectorAll('input[name="' + item.name + '"]').length;
+            const correctChosen = checkedValues.filter(function (value) {
+              return item.correctValues.indexOf(value) !== -1;
+            });
+
+            reflectionScore += correctChosen.length;
+
+            if (checkedValues.length === 0) {
+              reflectionUnanswered += 1;
+              parts.push(
+                '<div class="feedback-item"><span class="wrong">✖ ' +
+                  escapeHtml(item.label) +
+                  ":</span> Du mangler at vælge mindst ét refleksionssvar.</div>"
+              );
+              return;
+            }
+
+            const correctTexts = item.correctValues
+              .map(function (value) {
+                const input = root.querySelector('input[name="' + item.name + '"][value="' + value + '"]');
+                if (!input) return null;
+                const label = input.closest("label.option");
+                return label ? optionLabelPlainText(label) : null;
+              })
+              .filter(Boolean);
+
+            const correctListHtml =
+              correctTexts.length > 0
+                ? "<br><strong>Korrekte (pointgivende) svar:</strong> " + escapeHtml(correctTexts.join(" / "))
+                : "";
+
+            parts.push(
+              '<div class="feedback-item"><span class="neutral">● ' +
+                escapeHtml(item.label) +
+                ":</span> Du har valgt " +
+                checkedValues.length +
+                " ud af " +
+                optionCount +
+                " mulige svar. Point her: " +
+                correctChosen.length +
+                " ud af " +
+                item.correctValues.length +
+                "." +
+                correctListHtml +
+                "</div>"
+            );
+
+            // Vis tydeligt hvad der giver point ved refleksion:
+            // - Korrekte svar får grøn markering
+            // - Forkerte valgte svar får rød markering
+            // - Korrekte svar man ikke har valgt får en “manglende” markering
+            const allInputs = Array.from(root.querySelectorAll('input[name="' + item.name + '"]'));
+            allInputs.forEach(function (input) {
+              const label = input.closest("label.option");
+              if (!label) return;
+
+              const isCorrect = item.correctValues.indexOf(input.value) !== -1;
+              if (isCorrect) {
+                if (input.checked) label.classList.add("option--correct");
+                else label.classList.add("option--missed");
+                return;
+              }
+
+              if (input.checked) label.classList.add("option--wrong");
+            });
+          });
+
+          const totalScore = factualScore + reflectionScore;
+          const totalMax = factualMax + reflectionMax;
+          const totalSummary = document.createElement("div");
+          totalSummary.className = "quiz-result-match";
+          totalSummary.innerHTML =
+            "<h3>Pointtavle – samlet</h3>" +
+            "<p>Du har " +
+            totalScore +
+            " ud af " +
+            totalMax +
+            " point.</p>";
+
+          const factualSummary = document.createElement("div");
+          factualSummary.className = "quiz-result-match";
+          factualSummary.innerHTML =
+            "<h3>Pointtavle – faktaspørgsmål</h3>" +
+            "<p>Du har " +
+            factualScore +
+            " ud af " +
+            factualMax +
+            " rigtige." +
+            (factualUnanswered > 0 ? " Du mangler at svare på " + factualUnanswered + " faktaspørgsmål." : "") +
+            "</p>";
+
+          const reflectionSummary = document.createElement("div");
+          reflectionSummary.className = "quiz-result-match";
+          reflectionSummary.innerHTML =
+            "<h3>Pointtavle – refleksionsspørgsmål</h3>" +
+            "<p>Du har " +
+            reflectionScore +
+            " ud af " +
+            reflectionMax +
+            " rigtige (pointgivende) refleksionssvar." +
+            (reflectionUnanswered > 0
+              ? " Du mangler at svare på " + reflectionUnanswered + " refleksionsspørgsmål."
+              : "") +
+            "</p>";
+
+          feedbackBox.innerHTML = "";
+          feedbackBox.style.display = "block";
+          feedbackBox.appendChild(totalSummary);
+          feedbackBox.appendChild(factualSummary);
+          feedbackBox.appendChild(reflectionSummary);
+
+          const detailBox = document.createElement("div");
+          detailBox.innerHTML =
+            '<h3 class="feedback-heading">Feedback på dine svar</h3>' +
+            parts.join("") +
+            '<p class="small-note"><strong>Tal gerne videre i klassen:</strong> Hvornår er noget en almindelig rengøringsopgave, og hvornår skal man stoppe op, vurdere situationen og tale med leder eller arbejdsmiljørepræsentant?</p>';
+
+          feedbackBox.appendChild(detailBox);
+          feedbackBox.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+        resetBtn.addEventListener("click", function () {
+          root.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(function (input) {
+            input.checked = false;
+          });
+
+          root.querySelectorAll("textarea").forEach(function (textarea) {
+            textarea.value = "";
+          });
+
+          clearOptionHighlights();
+          feedbackBox.style.display = "none";
+          feedbackBox.innerHTML = "";
+          shuffleOptions();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      })();
+
+      (function setupTrivselAudio() {
+        var root = document.querySelector(".page-trivsel-v3 article.article-card");
+        if (!root) return;
+
+        var currentAudio = null;
+        var currentBtn = null;
+
+        function releasePrior() {
+          if (currentAudio) {
+            try {
+              currentAudio.pause();
+              currentAudio.currentTime = 0;
+            } catch (err) {}
+            currentAudio = null;
+          }
+          if (currentBtn) {
+            currentBtn.classList.remove("is-audio-playing");
+            currentBtn.classList.remove("is-audio-paused");
+            var playL = currentBtn.getAttribute("data-aria-play");
+            if (playL) currentBtn.setAttribute("aria-label", playL);
+            currentBtn = null;
+          }
+        }
+
+        function stashAria(btn) {
+          if (!btn.getAttribute("data-aria-play")) {
+            btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+          }
+        }
+
+        function updateBtnAria(btn) {
+          var idle = btn.getAttribute("data-aria-play");
+          if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+            if (idle) btn.setAttribute("aria-label", idle);
+            return;
+          }
+          if (btn.classList.contains("is-audio-paused")) {
+            btn.setAttribute("aria-label", "Fortsæt afspilning");
+            return;
+          }
+          btn.setAttribute("aria-label", "Pause afspilning");
+        }
+
+        function playFile(filename, buttonEl) {
+          if (!filename || !buttonEl) return;
+          stashAria(buttonEl);
+          if (currentBtn === buttonEl && currentAudio) {
+            if (!currentAudio.paused) {
+              currentAudio.pause();
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.add("is-audio-paused");
+              updateBtnAria(buttonEl);
+              return;
+            }
+            buttonEl.classList.remove("is-audio-paused");
+            buttonEl.classList.add("is-audio-playing");
+            var pr = currentAudio.play();
+            if (pr !== undefined) {
+              pr
+                .then(function () {
+                  updateBtnAria(buttonEl);
+                })
+                .catch(function () {
+                  releasePrior();
+                });
+            } else {
+              updateBtnAria(buttonEl);
+            }
+            return;
+          }
+          releasePrior();
+          buttonEl.classList.remove("is-audio-paused");
+          currentBtn = buttonEl;
+          buttonEl.classList.add("is-audio-playing");
+          var src = new URL("./" + encodeURIComponent(filename), window.location.href).href;
+          currentAudio = new Audio(src);
+          currentAudio.addEventListener("ended", function onEnd() {
+            currentAudio.removeEventListener("ended", onEnd);
+            if (currentBtn === buttonEl) {
+              buttonEl.classList.remove("is-audio-playing");
+              buttonEl.classList.remove("is-audio-paused");
+              var pl = buttonEl.getAttribute("data-aria-play");
+              if (pl) buttonEl.setAttribute("aria-label", pl);
+              currentBtn = null;
+              try {
+                currentAudio.currentTime = 0;
+              } catch (e2) {}
+              currentAudio = null;
+            }
+          });
+          updateBtnAria(buttonEl);
+          var p0 = currentAudio.play();
+          if (p0 !== undefined) {
+            p0
+              .then(function () {
+                updateBtnAria(buttonEl);
+              })
+              .catch(function () {
+                releasePrior();
+              });
+          } else {
+            updateBtnAria(buttonEl);
+          }
+        }
+
+        function ensureIcons(btn) {
+          var speaker = btn.querySelector(".crossword-audio-btn__svg--speaker");
+          if (!speaker) {
+            var raw = btn.querySelector(
+              ".crossword-audio-btn__svg:not(.crossword-audio-btn__svg--pause):not(.crossword-audio-btn__svg--play)"
+            );
+            if (raw) {
+              raw.classList.add("crossword-audio-btn__svg--speaker");
+              speaker = raw;
+            }
+          }
+          if (!speaker) return;
+          var w = speaker.getAttribute("width") || "18";
+          var h = speaker.getAttribute("height") || "18";
+          if (!btn.querySelector(".crossword-audio-btn__svg--pause")) {
+            var pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            pauseSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--pause");
+            pauseSvg.setAttribute("width", w);
+            pauseSvg.setAttribute("height", h);
+            pauseSvg.setAttribute("viewBox", "0 0 24 24");
+            pauseSvg.setAttribute("aria-hidden", "true");
+            var u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u1.setAttribute("href", "#icon-pause");
+            pauseSvg.appendChild(u1);
+            btn.appendChild(pauseSvg);
+          }
+          if (!btn.querySelector(".crossword-audio-btn__svg--play")) {
+            var playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            playSvg.setAttribute("class", "crossword-audio-btn__svg crossword-audio-btn__svg--play");
+            playSvg.setAttribute("width", w);
+            playSvg.setAttribute("height", h);
+            playSvg.setAttribute("viewBox", "0 0 24 24");
+            playSvg.setAttribute("aria-hidden", "true");
+            var u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            u2.setAttribute("href", "#icon-play");
+            playSvg.appendChild(u2);
+            btn.appendChild(playSvg);
+          }
+        }
+
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest(".crossword-audio-btn");
+          if (!btn || !root.contains(btn)) return;
+          var file = btn.getAttribute("data-audio");
+          if (!file) return;
+          e.preventDefault();
+          e.stopPropagation();
+          playFile(file, btn);
+        });
+
+        root.querySelectorAll(".crossword-audio-btn").forEach(ensureIcons);
+      })();
+    </script>
+  </body>
+</html>

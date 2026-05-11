@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Godt eller dårligt arbejdsmiljø? – Dansk som andetsprog for serviceassistenter</title>
+    <link rel="preload" href="../../assets/bg-arbejdsmiljo.jpg" as="image" fetchpriority="high" />
+    <link rel="preload" href="Godt eller dårligt arbejdsmiljø.mp3" as="audio" />
+    <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
+    <style>
+      .article-card.good-bad-shell {
+        max-width: 1100px;
+        background: linear-gradient(180deg, rgba(244, 248, 251, 0.97) 0%, rgba(232, 240, 245, 0.97) 100%);
+        border: 1px solid rgba(19, 59, 93, 0.12);
+        box-shadow:
+          0 8px 32px rgba(20, 60, 80, 0.12),
+          0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .good-bad-page,
+      .good-bad-page * {
+        box-sizing: border-box;
+      }
+
+      .good-bad-page {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+        color: #1f2d3d;
+      }
+
+      .good-bad-page .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0;
+      }
+
+      .good-bad-page .hero {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+
+      .good-bad-page .hero-title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .good-bad-page .hero h1 {
+        margin: 0;
+        font-size: clamp(1.2rem, 2.8vw, 1.55rem);
+        color: #123b5d;
+        line-height: 1.2;
+        text-align: center;
+      }
+
+      .good-bad-page .hero p {
+        margin: 0 auto;
+        max-width: 44rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #35516b;
+      }
+
+      .good-bad-page .quiz-audio-btn--intro {
+        width: 2.4rem;
+        height: 2.4rem;
+        flex-shrink: 0;
+      }
+
+      .good-bad-page .quiz-audio-btn {
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: rgba(31, 78, 121, 0.12);
+        color: #1f4e79;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 6px rgba(20, 50, 70, 0.15);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+
+      .good-bad-page .quiz-audio-btn:hover {
+        background: rgba(31, 78, 121, 0.2);
+        color: #123b5d;
+        box-shadow: 0 2px 10px rgba(20, 50, 70, 0.22);
+      }
+
+      .good-bad-page .quiz-audio-btn:focus-visible {
+        outline: 3px solid #2a9d8f;
+        outline-offset: 2px;
+      }
+
+      .good-bad-page .quiz-audio-btn__svg {
+        display: block;
+      }
+
+      .good-bad-page .quiz-audio-btn__svg--pause,
+      .good-bad-page .quiz-audio-btn__svg--play {
+        display: none;
+      }
+
+      .good-bad-page
+        .quiz-audio-btn:not(.is-audio-playing):not(.is-audio-paused)
+        .quiz-audio-btn__svg--speaker {
+        display: block;
+      }
+
+      .good-bad-page .quiz-audio-btn.is-audio-playing .quiz-audio-btn__svg--speaker,
+      .good-bad-page .quiz-audio-btn.is-audio-playing .quiz-audio-btn__svg--play {
+        display: none;
+      }
+
+      .good-bad-page .quiz-audio-btn.is-audio-playing .quiz-audio-btn__svg--pause {
+        display: block;
+      }
+
+      .good-bad-page .quiz-audio-btn.is-audio-paused .quiz-audio-btn__svg--speaker,
+      .good-bad-page .quiz-audio-btn.is-audio-paused .quiz-audio-btn__svg--pause {
+        display: none;
+      }
+
+      .good-bad-page .quiz-audio-btn.is-audio-paused .quiz-audio-btn__svg--play {
+        display: block;
+      }
+
+      .good-bad-page .game-card {
+        background: #ffffff;
+        border-radius: 18px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        padding: 1rem 1rem 1.35rem;
+      }
+
+      .good-bad-page .good-bad-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+        gap: 1.25rem;
+      }
+
+      .good-bad-page .good-bad-card {
+        background: rgba(255, 255, 255, 0.88);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(19, 66, 82, 0.12);
+        box-shadow: 0 4px 16px rgba(20, 60, 80, 0.08);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .good-bad-page .good-bad-image-frame {
+        background: #eef4f8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        min-height: 100px;
+        border-bottom: 1px solid #d8e3eb;
+      }
+
+      .good-bad-page .good-bad-image-frame img {
+        width: 100%;
+        height: auto;
+        max-height: min(280px, 42vw);
+        object-fit: contain;
+        object-position: center;
+        display: block;
+      }
+
+      .good-bad-page .good-bad-card-content {
+        padding: 0.9rem 1rem 1rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .good-bad-page .good-bad-card-num {
+        margin: 0 0 0.35rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #5a7288;
+      }
+
+      .good-bad-page .good-bad-card-prompt {
+        margin: 0 0 0.75rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #123b5d;
+        line-height: 1.35;
+      }
+
+      .good-bad-page .good-bad-buttons {
+        display: flex;
+        gap: 0.65rem;
+        flex-wrap: wrap;
+      }
+
+      .good-bad-page .good-bad-buttons button {
+        flex: 1;
+        min-width: min(120px, 100%);
+        padding: 0.55rem 0.75rem;
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.92rem;
+        font-family: inherit;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      }
+
+      .good-bad-page .good-bad-buttons button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+      }
+
+      .good-bad-page .good-bad-buttons button.good-bad-choice--good {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      .good-bad-page .good-bad-buttons button.good-bad-choice--bad {
+        background: #f8d7da;
+        color: #721c24;
+      }
+
+      .good-bad-page .good-bad-buttons button.selected {
+        outline: 3px solid #0c2d3d;
+        outline-offset: 2px;
+      }
+
+      .good-bad-page .good-bad-feedback {
+        margin-top: 0.65rem;
+        font-weight: 700;
+        font-size: 0.88rem;
+        line-height: 1.45;
+        min-height: 1.35em;
+        color: #2c3e4a;
+      }
+
+      .good-bad-page .good-bad-feedback.is-warn {
+        color: #b45309;
+      }
+
+      .good-bad-page .good-bad-feedback.is-ok {
+        color: #1f6b2a;
+      }
+
+      .good-bad-page .good-bad-feedback.is-bad {
+        color: #9b2226;
+      }
+
+      .good-bad-page .good-bad-actions {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1rem;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .good-bad-page .good-bad-result {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #0c2d3d;
+        min-height: 1.4em;
+      }
+
+      @media (max-width: 700px) {
+        .good-bad-page .good-bad-image-frame img {
+          max-height: min(240px, 55vw);
+        }
+
+        .good-bad-page .good-bad-buttons button {
+          flex: 1 1 calc(50% - 0.35rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true" class="svg-sprite-defs">
+      <defs>
+        <symbol id="icon-speaker" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.84-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M8 5v14l11-7L8 5z" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="bg-media" aria-hidden="true">
+      <img
+        class="bg-image"
+        src="../../assets/bg-arbejdsmiljo.jpg"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="bg-scrim" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <article class="article-card good-bad-shell">
+        <div class="article-topbar">
+          <nav class="subnav" aria-label="Undernavigation">
+            <a class="back-link" href="../index.html">Tilbage til Arbejdsmiljø</a>
+            <span class="subnav-sep" aria-hidden="true">·</span>
+            <a class="back-link back-link--quiet" href="../../index.html">Tilbage til forsiden</a>
+          </nav>
+        </div>
+
+        <div class="good-bad-page">
+          <div class="container">
+            <section class="hero">
+              <div class="hero-title-row">
+                <button
+                  type="button"
+                  class="quiz-audio-btn quiz-audio-btn--intro"
+                  data-audio="Godt eller dårligt arbejdsmiljø.mp3"
+                  data-aria-play="Afspil opgaven højt"
+                  aria-label="Afspil opgaven højt"
+                >
+                  <svg
+                    class="quiz-audio-btn__svg quiz-audio-btn__svg--speaker"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <use href="#icon-speaker" />
+                  </svg>
+                </button>
+                <h1>Godt eller dårligt arbejdsmiljø?</h1>
+              </div>
+              <p>
+                Vælg for hvert billede om arbejdsmiljøet er godt eller dårligt.
+                Klik på <strong>Tjek svar</strong> for at se, om du har ret, og læse en kort forklaring.
+              </p>
+            </section>
+
+            <section class="game-card">
+              <div class="good-bad-cards" id="goodBadCards" aria-label="Billedopgaver"></div>
+
+              <div class="good-bad-actions">
+                <button type="button" class="article-tool" id="checkGoodBad">Tjek svar</button>
+                <button type="button" class="as-btn-secondary" id="resetGoodBad">Prøv igen</button>
+                <p id="goodBadResult" class="good-bad-result" aria-live="polite"></p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <script>
+      const tasks = [
+        {
+          image: "daarligt-arbejdsmiljoe-1.png",
+          answer: "bad",
+          correctText:
+            "Rigtigt. Her er arbejdsmiljøet dårligt. Der er konflikt, stress og rod på gulvet.",
+          incorrectText:
+            "Ikke helt. Her er arbejdsmiljøet dårligt, fordi der både er konflikt og mange risici i omgivelserne."
+        },
+        {
+          image: "godt-arbejdsmiljoe-1.png",
+          answer: "good",
+          correctText:
+            "Rigtigt. Her er arbejdsmiljøet godt. Medarbejderne samarbejder roligt og arbejder struktureret.",
+          incorrectText:
+            "Ikke helt. Her er arbejdsmiljøet godt, fordi der er samarbejde, overblik og en rolig situation."
+        },
+        {
+          image: "daarligt-arbejdsmiljoe-2.png",
+          answer: "bad",
+          correctText:
+            "Rigtigt. Her er arbejdsmiljøet dårligt. Løftet ser belastende ud, og der er rod og farer omkring personen.",
+          incorrectText: "Ikke helt. Her er arbejdsmiljøet dårligt, fordi løftet og omgivelserne ser usikre ud."
+        },
+        {
+          image: "godt-arbejdsmiljoe-2.png",
+          answer: "good",
+          correctText:
+            "Rigtigt. Her er arbejdsmiljøet godt. De arbejder i et ryddeligt miljø og virker til at have en god arbejdsdag.",
+          incorrectText:
+            "Ikke helt. Her er arbejdsmiljøet godt, fordi omgivelserne er ordnede og arbejdet ser sikkert ud."
+        },
+        {
+          image: "daarligt-arbejdsmiljoe-3.png",
+          answer: "bad",
+          correctText:
+            "Rigtigt. Her er arbejdsmiljøet dårligt. Arbejdsstillingen belaster kroppen, og ledningerne på gulvet er farlige.",
+          incorrectText:
+            "Ikke helt. Her er arbejdsmiljøet dårligt, fordi arbejdsstillingen er uhensigtsmæssig, og der er snublefare."
+        },
+        {
+          image: "godt-arbejdsmiljoe-3.png",
+          answer: "good",
+          correctText:
+            "Rigtigt. Her er arbejdsmiljøet godt. Arbejdsstillingen ser bedre ud, og området er mere ryddeligt og sikkert.",
+          incorrectText:
+            "Ikke helt. Her er arbejdsmiljøet godt, fordi arbejdet foregår mere sikkert og med bedre arbejdsstilling."
+        }
+      ];
+
+      const goodBadPage = document.querySelector(".good-bad-page");
+      let goodBadIntroAudio = null;
+      let goodBadIntroBtn = null;
+
+      function releaseGoodBadIntroAudio() {
+        if (goodBadIntroAudio) {
+          try {
+            goodBadIntroAudio.pause();
+            goodBadIntroAudio.currentTime = 0;
+          } catch (e) {}
+          goodBadIntroAudio = null;
+        }
+        if (goodBadIntroBtn) {
+          goodBadIntroBtn.classList.remove("is-audio-playing");
+          goodBadIntroBtn.classList.remove("is-audio-paused");
+          const pl = goodBadIntroBtn.getAttribute("data-aria-play");
+          if (pl) goodBadIntroBtn.setAttribute("aria-label", pl);
+          goodBadIntroBtn = null;
+        }
+      }
+
+      function stashGoodBadAudioAria(btn) {
+        if (!btn.getAttribute("data-aria-play")) {
+          btn.setAttribute("data-aria-play", btn.getAttribute("aria-label") || "Afspil");
+        }
+      }
+
+      function updateGoodBadAudioAria(btn) {
+        const idle = btn.getAttribute("data-aria-play");
+        if (!btn.classList.contains("is-audio-playing") && !btn.classList.contains("is-audio-paused")) {
+          if (idle) btn.setAttribute("aria-label", idle);
+          return;
+        }
+        if (btn.classList.contains("is-audio-paused")) {
+          btn.setAttribute("aria-label", "Fortsæt afspilning");
+          return;
+        }
+        btn.setAttribute("aria-label", "Pause afspilning");
+      }
+
+      function resolveGoodBadAudioUrl(filename) {
+        if (!filename) return "";
+        return new URL(encodeURIComponent(filename), window.location.href).href;
+      }
+
+      function playGoodBadIntroAudio(filename, buttonEl) {
+        if (!filename || !buttonEl) return;
+        stashGoodBadAudioAria(buttonEl);
+        if (goodBadIntroBtn === buttonEl && goodBadIntroAudio) {
+          if (!goodBadIntroAudio.paused) {
+            goodBadIntroAudio.pause();
+            buttonEl.classList.remove("is-audio-playing");
+            buttonEl.classList.add("is-audio-paused");
+            updateGoodBadAudioAria(buttonEl);
+            return;
+          }
+          buttonEl.classList.remove("is-audio-paused");
+          buttonEl.classList.add("is-audio-playing");
+          const pr = goodBadIntroAudio.play();
+          if (pr !== undefined) {
+            pr
+              .then(function () {
+                updateGoodBadAudioAria(buttonEl);
+              })
+              .catch(function () {
+                releaseGoodBadIntroAudio();
+              });
+          } else {
+            updateGoodBadAudioAria(buttonEl);
+          }
+          return;
+        }
+        releaseGoodBadIntroAudio();
+        buttonEl.classList.remove("is-audio-paused");
+        goodBadIntroBtn = buttonEl;
+        buttonEl.classList.add("is-audio-playing");
+        const src = resolveGoodBadAudioUrl(filename);
+        goodBadIntroAudio = new Audio(src);
+        goodBadIntroAudio.addEventListener("error", function onErr() {
+          goodBadIntroAudio.removeEventListener("error", onErr);
+          releaseGoodBadIntroAudio();
+        });
+        goodBadIntroAudio.addEventListener("ended", function onEnd() {
+          goodBadIntroAudio.removeEventListener("ended", onEnd);
+          if (goodBadIntroBtn === buttonEl) {
+            buttonEl.classList.remove("is-audio-playing");
+            buttonEl.classList.remove("is-audio-paused");
+            const pl = buttonEl.getAttribute("data-aria-play");
+            if (pl) buttonEl.setAttribute("aria-label", pl);
+            goodBadIntroBtn = null;
+            try {
+              goodBadIntroAudio.currentTime = 0;
+            } catch (e2) {}
+            goodBadIntroAudio = null;
+          }
+        });
+        updateGoodBadAudioAria(buttonEl);
+        const p0 = goodBadIntroAudio.play();
+        if (p0 !== undefined) {
+          p0
+            .then(function () {
+              updateGoodBadAudioAria(buttonEl);
+            })
+            .catch(function () {
+              releaseGoodBadIntroAudio();
+            });
+        } else {
+          updateGoodBadAudioAria(buttonEl);
+        }
+      }
+
+      function ensureGoodBadAudioButtonIcons(btn) {
+        let speaker = btn.querySelector(".quiz-audio-btn__svg--speaker");
+        if (!speaker) {
+          const raw = btn.querySelector(
+            ".quiz-audio-btn__svg:not(.quiz-audio-btn__svg--pause):not(.quiz-audio-btn__svg--play)"
+          );
+          if (raw) {
+            raw.classList.add("quiz-audio-btn__svg--speaker");
+            speaker = raw;
+          }
+        }
+        if (!speaker) return;
+        const w = speaker.getAttribute("width") || "18";
+        const h = speaker.getAttribute("height") || "18";
+        if (!btn.querySelector(".quiz-audio-btn__svg--pause")) {
+          const pauseSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          pauseSvg.setAttribute("class", "quiz-audio-btn__svg quiz-audio-btn__svg--pause");
+          pauseSvg.setAttribute("width", w);
+          pauseSvg.setAttribute("height", h);
+          pauseSvg.setAttribute("viewBox", "0 0 24 24");
+          pauseSvg.setAttribute("aria-hidden", "true");
+          const u1 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+          u1.setAttribute("href", "#icon-pause");
+          pauseSvg.appendChild(u1);
+          btn.appendChild(pauseSvg);
+        }
+        if (!btn.querySelector(".quiz-audio-btn__svg--play")) {
+          const playSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          playSvg.setAttribute("class", "quiz-audio-btn__svg quiz-audio-btn__svg--play");
+          playSvg.setAttribute("width", w);
+          playSvg.setAttribute("height", h);
+          playSvg.setAttribute("viewBox", "0 0 24 24");
+          playSvg.setAttribute("aria-hidden", "true");
+          const u2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+          u2.setAttribute("href", "#icon-play");
+          playSvg.appendChild(u2);
+          btn.appendChild(playSvg);
+        }
+      }
+
+      goodBadPage.querySelectorAll(".quiz-audio-btn").forEach(ensureGoodBadAudioButtonIcons);
+
+      goodBadPage.addEventListener("click", function (e) {
+        const btn = e.target.closest(".quiz-audio-btn");
+        if (!btn || !goodBadPage.contains(btn)) return;
+        const file = btn.getAttribute("data-audio");
+        if (!file) return;
+        e.preventDefault();
+        playGoodBadIntroAudio(file, btn);
+      });
+
+      const root = document.getElementById("goodBadCards");
+      const resultEl = document.getElementById("goodBadResult");
+
+      function clearFeedbackClasses(el) {
+        el.classList.remove("is-warn", "is-ok", "is-bad");
+      }
+
+      function buildCards() {
+        root.innerHTML = "";
+        tasks.forEach((task, i) => {
+          const card = document.createElement("article");
+          card.className = "good-bad-card";
+          card.dataset.answer = task.answer;
+
+          const frame = document.createElement("div");
+          frame.className = "good-bad-image-frame";
+          const img = document.createElement("img");
+          img.src = task.image;
+          img.alt = `Arbejdssituation ${i + 1}`;
+          img.decoding = "async";
+          img.loading = i < 2 ? "eager" : "lazy";
+          frame.appendChild(img);
+
+          const body = document.createElement("div");
+          body.className = "good-bad-card-content";
+
+          const num = document.createElement("p");
+          num.className = "good-bad-card-num";
+          num.textContent = `Billede ${i + 1} af ${tasks.length}`;
+
+          const prompt = document.createElement("p");
+          prompt.className = "good-bad-card-prompt";
+          prompt.textContent = "Er arbejdsmiljøet godt eller dårligt?";
+
+          const row = document.createElement("div");
+          row.className = "good-bad-buttons";
+
+          const goodBtn = document.createElement("button");
+          goodBtn.type = "button";
+          goodBtn.className = "good-bad-choice--good";
+          goodBtn.dataset.choice = "good";
+          goodBtn.textContent = "Godt arbejdsmiljø";
+
+          const badBtn = document.createElement("button");
+          badBtn.type = "button";
+          badBtn.className = "good-bad-choice--bad";
+          badBtn.dataset.choice = "bad";
+          badBtn.textContent = "Dårligt arbejdsmiljø";
+
+          row.appendChild(goodBtn);
+          row.appendChild(badBtn);
+
+          const fb = document.createElement("div");
+          fb.className = "good-bad-feedback";
+          fb.setAttribute("aria-live", "polite");
+
+          body.appendChild(num);
+          body.appendChild(prompt);
+          body.appendChild(row);
+          body.appendChild(fb);
+
+          card.appendChild(frame);
+          card.appendChild(body);
+          root.appendChild(card);
+
+          function select(btn) {
+            row.querySelectorAll("button").forEach((b) => b.classList.remove("selected"));
+            btn.classList.add("selected");
+            card.dataset.selected = btn.dataset.choice;
+            clearFeedbackClasses(fb);
+            fb.textContent = "";
+            resultEl.textContent = "";
+          }
+
+          goodBtn.addEventListener("click", () => select(goodBtn));
+          badBtn.addEventListener("click", () => select(badBtn));
+        });
+      }
+
+      function checkAnswers() {
+        const cards = root.querySelectorAll(".good-bad-card");
+        let missing = 0;
+
+        cards.forEach((card) => {
+          if (!card.dataset.selected) missing++;
+        });
+
+        if (missing > 0) {
+          cards.forEach((card) => {
+            const fb = card.querySelector(".good-bad-feedback");
+            clearFeedbackClasses(fb);
+            if (!card.dataset.selected) {
+              fb.textContent = "Du mangler at svare.";
+              fb.classList.add("is-warn");
+            } else {
+              fb.textContent = "";
+            }
+          });
+          resultEl.textContent = `Du mangler svar på ${missing} billede${missing === 1 ? "" : "r"}.`;
+          return;
+        }
+
+        let correct = 0;
+        cards.forEach((card, i) => {
+          const selected = card.dataset.selected;
+          const task = tasks[i];
+          const fb = card.querySelector(".good-bad-feedback");
+          clearFeedbackClasses(fb);
+
+          if (selected === task.answer) {
+            correct++;
+            fb.textContent = task.correctText;
+            fb.classList.add("is-ok");
+          } else {
+            fb.textContent = task.incorrectText;
+            fb.classList.add("is-bad");
+          }
+        });
+
+        const pct = Math.round((correct / tasks.length) * 100);
+        let extra = "";
+        if (correct === tasks.length) {
+          extra = " Flot — du har rigtig godt blik for arbejdsmiljø og sikkerhed.";
+        } else if (correct >= 4) {
+          extra = " Godt klaret.";
+        } else {
+          extra = " Prøv gerne igen og brug listen nedenfor som hjælp.";
+        }
+        resultEl.textContent = `Du har ${correct} ud af ${tasks.length} rigtige (${pct}%).${extra}`;
+      }
+
+      function resetQuiz() {
+        releaseGoodBadIntroAudio();
+        root.querySelectorAll(".good-bad-card").forEach((card) => {
+          delete card.dataset.selected;
+          card.querySelectorAll(".good-bad-buttons button").forEach((btn) => btn.classList.remove("selected"));
+          const fb = card.querySelector(".good-bad-feedback");
+          clearFeedbackClasses(fb);
+          fb.textContent = "";
+        });
+        resultEl.textContent = "";
+      }
+
+      document.getElementById("checkGoodBad").addEventListener("click", checkAnswers);
+      document.getElementById("resetGoodBad").addEventListener("click", resetQuiz);
+
+      buildCards();
+    </script>
+  </body>
+</html>
