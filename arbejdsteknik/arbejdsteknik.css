@@ -38,12 +38,6 @@ body {
   object-fit: cover;
   object-position: center 35%;
   display: block;
-  animation: bg-fade-in 0.5s ease-out both;
-}
-
-@keyframes bg-fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
 }
 
 .bg-scrim {
