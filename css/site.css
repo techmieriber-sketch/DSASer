@@ -34,7 +34,7 @@ body {
   overflow: hidden;
   /* Mørk tone tæt på fotoots midtergrå — mindre “blink” end lys #cfd9e4 før pixeldata er klar */
   background-color: #394652;
-  background-image: url("../assets/Baggrundsbillede.png");
+  background-image: url("../Baggrundsbillede.png");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
