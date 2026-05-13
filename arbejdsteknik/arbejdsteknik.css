@@ -1,44 +1,12 @@
 /* Grund-layout (scrollbar, body) ligger i layout-shell.css som indlæses før denne fil. */
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   color: #14212e;
-  position: relative;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-.bg-media {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  background-color: #2a5f6f;
-  background-position: center 35%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
-
-.bg-scrim {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    165deg,
-    rgba(255, 248, 240, 0.35) 0%,
-    rgba(32, 90, 110, 0.45) 45%,
-    rgba(18, 48, 62, 0.55) 100%
-  );
-}
-
 .page-shell {
-  position: relative;
-  z-index: 2;
-  min-height: 100vh;
-  min-height: 100svh;
   padding: 2rem 1rem 3rem;
 }
 
@@ -79,9 +47,8 @@ body {
   max-width: min(16rem, calc(100vw - 1.5rem));
   padding: 0.5rem 0.55rem;
   border-radius: 12px;
-  background: rgba(12, 45, 58, 0.42);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* Uden backdrop-filter → mindre repaint/flicker ved scroll (jf. stabilt foto-lag) */
+  background: rgba(12, 45, 58, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.28);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
 }
@@ -353,8 +320,8 @@ button.article-tool {
 }
 
 @media print {
-  .bg-media,
-  .bg-scrim {
+  html::before,
+  html::after {
     display: none !important;
   }
 

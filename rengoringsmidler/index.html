@@ -7,18 +7,29 @@
     <link rel="icon" href="../assets/site-icon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#1a3a4a" />
     <title>Rengøringsmidler – Dansk som andetsprog for serviceassistenter</title>
-            <style id="critical-bg-cover">
-      .bg-media {
+                <style id="critical-bg-cover">
+      html::before {
+        content: "";
         position: fixed;
         inset: 0;
         z-index: 0;
-        overflow: hidden;
-        transform: translateZ(0);
         background-color: #2a5f6f;
         background-image: url("../assets/bg-rengoringsmidler.jpg");
-        background-position: center 35%;
         background-size: cover;
+        background-position: center 35%;
         background-repeat: no-repeat;
+        pointer-events: none;
+      }
+      html::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          rgba(30, 144, 255, 0.08),
+          rgba(30, 144, 255, 0.08)
+        );
+        pointer-events: none;
       }
     </style>
     <link rel="stylesheet" href="../arbejdsteknik/layout-shell.css" />
@@ -26,9 +37,6 @@
     <link rel="preload" href="../assets/bg-rengoringsmidler.jpg" as="image" fetchpriority="high" />
 </head>
   <body class="page-landing">
-    <div class="bg-media" aria-hidden="true"></div>
-
-<div class="bg-scrim" aria-hidden="true"></div>
 
 
     <div class="page-shell page-shell--landing">

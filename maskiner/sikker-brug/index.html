@@ -7,18 +7,29 @@
     <link rel="icon" href="../../assets/site-icon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#1a3a4a" />
     <title>Sikker brug – Find 5 fejl</title>
-            <style id="critical-bg-cover">
-      .bg-media {
+                <style id="critical-bg-cover">
+      html::before {
+        content: "";
         position: fixed;
         inset: 0;
         z-index: 0;
-        overflow: hidden;
-        transform: translateZ(0);
         background-color: #2a5f6f;
         background-image: url("../Baggrundsbillede.png");
-        background-position: center 35%;
         background-size: cover;
+        background-position: center 35%;
         background-repeat: no-repeat;
+        pointer-events: none;
+      }
+      html::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          rgba(30, 144, 255, 0.08),
+          rgba(30, 144, 255, 0.08)
+        );
+        pointer-events: none;
       }
     </style>
     <link rel="stylesheet" href="../../arbejdsteknik/layout-shell.css" />
@@ -26,7 +37,7 @@
     <link rel="preload" href="../Baggrundsbillede.png" as="image" fetchpriority="high" />
     <link rel="preload" href="Sikker brug.mp3" as="audio" />
 <style>
-      .page-sikker-maskiner .bg-media {
+      html.page-sikker-maskiner::before {
         background-position: 50% 20%;
       }
 
@@ -495,9 +506,6 @@
   </head>
 
   <body class="page-sikker-maskiner">
-    <div class="bg-media" aria-hidden="true"></div>
-
-<div class="bg-scrim" aria-hidden="true"></div>
 
 
 
@@ -1005,7 +1013,7 @@
 <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
 
     <style>
-      .page-sikker-maskiner .bg-media {
+      html.page-sikker-maskiner::before {
         background-position: 50% 20%;
       }
 
@@ -1807,7 +1815,7 @@ ALT herunder er en gammel duplikeret version, og er bevidst kommenteret ud.
 <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
 
     <style>
-      .page-sikker-maskiner .bg-media {
+      html.page-sikker-maskiner::before {
         background-position: 50% 20%;
       }
 
@@ -2612,7 +2620,7 @@ ALT herunder er en gammel duplikeret version, og er bevidst kommenteret ud.
 <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
 
     <style>
-      .page-sikker-maskiner .bg-media {
+      html.page-sikker-maskiner::before {
         background-position: 50% 20%;
       }
 
@@ -3417,7 +3425,7 @@ ALT herunder er en gammel duplikeret version, og er bevidst kommenteret ud.
 <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
 
     <style>
-      .page-sikker-maskiner .bg-media {
+      html.page-sikker-maskiner::before {
         background-position: 50% 20%;
       }
 
@@ -4222,7 +4230,7 @@ ALT herunder er en gammel duplikeret version, og er bevidst kommenteret ud.
 <link rel="stylesheet" href="../../arbejdsteknik/arbejdsteknik.css" />
 
     <style>
-      .page-sikker-maskiner .bg-media {
+      html.page-sikker-maskiner::before {
         background-position: 50% 20%;
       }
 

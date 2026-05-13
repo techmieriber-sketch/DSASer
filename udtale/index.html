@@ -7,18 +7,29 @@
     <link rel="icon" href="../assets/site-icon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#394652" />
     <title>Udtale – Dansk som andetsprog for serviceassistenter</title>
-        <style id="critical-bg-cover">
-      .bg-media {
+            <style id="critical-bg-cover">
+      html::before {
+        content: "";
         position: fixed;
         inset: 0;
         z-index: 0;
-        overflow: hidden;
-        transform: translateZ(0);
         background-color: #394652;
         background-image: url("../Baggrundsbillede.png");
-        background-position: center center;
         background-size: cover;
+        background-position: center center;
         background-repeat: no-repeat;
+        pointer-events: none;
+      }
+      html::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          rgba(30, 144, 255, 0.08),
+          rgba(30, 144, 255, 0.08)
+        );
+        pointer-events: none;
       }
     </style>
     <link rel="stylesheet" href="../arbejdsteknik/layout-shell.css" />
@@ -98,9 +109,6 @@
     <link rel="preload" href="../Baggrundsbillede.png" as="image" fetchpriority="high" />
   </head>
   <body class="page-udtale">
-    <div class="bg-media" aria-hidden="true"></div>
-
-<div class="bg-scrim" aria-hidden="true"></div>
 
     <div class="page-shell">
       <main class="overlay">
