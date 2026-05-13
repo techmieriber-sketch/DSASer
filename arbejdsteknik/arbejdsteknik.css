@@ -1,4 +1,4 @@
-/* Grund-layout (html, scrollbar, viewport, body-baggrund) ligger i layout-shell.css som indlæses før denne fil. */
+/* Grund-layout (scrollbar, body) ligger i layout-shell.css som indlæses før denne fil. */
 
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
@@ -13,7 +13,6 @@ body {
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  /* Fast farve under foto; konkret billede-URL sættes per side i <head> (kritisk inline) */
   background-color: #2a5f6f;
   background-position: center 35%;
   background-size: cover;
@@ -21,8 +20,6 @@ body {
   backface-visibility: hidden;
   transform: translateZ(0);
 }
-
-/* Baggrundsfoto ligger nu på .bg-media (background-image), ikke <img class="bg-image"> */
 
 .bg-scrim {
   position: fixed;
@@ -42,7 +39,6 @@ body {
   z-index: 2;
   min-height: 100vh;
   min-height: 100svh;
-  min-height: 100dvh;
   padding: 2rem 1rem 3rem;
 }
 
@@ -156,6 +152,8 @@ button.article-tool {
   letter-spacing: -0.03em;
   color: #0c2d3d;
   line-height: 1.15;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .category-heading {
@@ -293,7 +291,7 @@ button.article-tool {
   display: block;
   width: 100%;
   height: auto;
-  max-height: min(42vh, 320px);
+  max-height: min(18rem, 320px);
   object-fit: cover;
   object-position: center 40%;
   vertical-align: middle;

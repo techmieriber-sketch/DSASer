@@ -1,75 +1,26 @@
-/* Søsterside til Gastronom-forsiden: fast baggrund + scrollbart lag ovenpå (intet tomt hvidt felt) */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  margin: 0;
-  min-height: 100%;
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
-  background: #cfd9e4;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  min-height: 100svh;
-  min-height: 100dvh;
-  position: relative;
-  font-family: "Segoe UI", system-ui, sans-serif;
-  color: #fff;
-  background: #cfd9e4;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-/* Fast fuldskærmsbaggrund: cover-lag ét sted → færre repaint/reflow end <img> + object-fit ved load */
-.bg-media {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  /* Mørk tone tæt på fotoots midtergrå — mindre “blink” end lys #cfd9e4 før pixeldata er klar */
-  background-color: #394652;
-  background-image: url("../Baggrundsbillede.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  /* undgår contain: strict her — size containment + fixed layers har givet issues på nogle Chrome-versioner */
-  backface-visibility: hidden;
-  transform: translateZ(0);
-}
-
-/* Let mørkning som tidligere hero-overlay, dækker kun viewport (fast lag) */
+/* Forside — indlæses kun her; overskriver layout-shells mørkere .bg-scrim */
 .bg-scrim {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(28, 40, 52, 0.12) 100%
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(28, 40, 52, 0.1) 100%
   );
 }
 
-/* Indhold scroller; første skærm = titel, ekstra højde giver scroll uden ny baggrundsfarve */
-.page-shell {
-  position: relative;
-  z-index: 2;
-  min-height: 100vh;
-  min-height: 100svh;
-  min-height: 100dvh;
-  padding: 2rem 1rem 3rem;
+/* Lidt mere lys i selve fotodet (samme fil som kun forsiden bruger) */
+.bg-media {
+  filter: brightness(1.12);
 }
-
 .content {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 0 1rem;
+}
+
+.page-shell {
+  position: relative;
+  z-index: 2;
+  padding: 2rem 1rem 3rem;
 }
 
 .hero-band {
@@ -80,46 +31,42 @@ body {
   flex-direction: column;
   align-items: stretch;
   gap: 1rem;
-  /* Reserverer første skærms plads fra start → mindre layout-hop når typo/webfonts/card måles */
-  min-height: calc(100vh - (2rem + 3rem));
-  min-height: calc(100svh - (2rem + 3rem));
-  min-height: calc(100dvh - (2rem + 3rem));
   box-sizing: border-box;
 }
 
-/* Én linje: nowrap; små skærme kan scrolle vandret i wrap-containeren */
 .hero__title-wrap {
   position: relative;
   z-index: 2;
   flex-shrink: 0;
   padding: clamp(0.5rem, 2vw, 1rem) 0.75rem 0;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-x: hidden;
   text-align: center;
-  -webkit-overflow-scrolling: touch;
 }
 
 .hero__title {
-  display: inline-block;
-  margin: 0;
+  display: block;
+  margin: 0 auto;
   padding: 0;
-  max-width: none;
-  font-size: clamp(0.8rem, 2.35vw, 2.35rem);
+  max-width: 100%;
+  font-size: clamp(18px, 2.5vw, 24px);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.02em;
-  white-space: nowrap;
-  color: #fff;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.45),
-    0 4px 24px rgba(0, 0, 0, 0.35);
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+  hyphens: auto;
+  background: linear-gradient(135deg, #ffffff 0%, #e6f3ff 50%, #b3d9ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 20px rgba(179, 217, 255, 0.3));
 }
 
-/* Kopi af gastronom-forsiden: kort + AppWriter + kategorier */
 .content-card {
   position: relative;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   padding: 2rem;
@@ -178,13 +125,6 @@ body {
 @media (max-width: 700px) {
   .page-shell {
     padding: 1.5rem 1rem 2rem;
-  }
-
-  /* Samme viewport-reservation som på desktop — bruger .page-shells faktiske padding */
-  .hero-band {
-    min-height: calc(100vh - (1.5rem + 2rem));
-    min-height: calc(100svh - (1.5rem + 2rem));
-    min-height: calc(100dvh - (1.5rem + 2rem));
   }
 
   .content-card {

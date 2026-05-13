@@ -1,5 +1,6 @@
 /**
- * Ensret hero/cover til CSS background på .bg-media (ingen decoding=sync-<img>).
+ * (Ældre) Migrering til baggrund på .bg-media. Nye sider bruger html::before/::after +
+ * :root { --dsa-bg-image } via layout-shell.css (jf. Læsevejlederen).
  */
 import fs from "node:fs";
 import path from "node:path";
